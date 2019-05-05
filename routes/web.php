@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::view('/welcome', 'welcome');
+
+// Route::get('user/{id}', function ($id) {
+//     return 'User '.$id;
+// })->where('id', '[0-9]+'); // where is optional
+
+Route::get('user/{id}', 'UserController@show');
