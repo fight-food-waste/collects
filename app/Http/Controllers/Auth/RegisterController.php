@@ -46,14 +46,14 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
+    //     ]);
+    // }
 
     /**
      * Create a new user instance after a valid registration.
@@ -61,12 +61,38 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    // protected function create(array $data)
+    // {
+    //     return User::create([
+    //         'name' => $data['name'],
+    //         'email' => $data['email'],
+    //         'password' => Hash::make($data['password']),
+    //     ]);
+    // }
+
+    public function store()
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        request()->validate([
+            'first_name' => 'required|min:2|max:50',
+            'last_name' => 'required|min:2|max:50',
+            // 'phone' => 'required|numeric',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+            'confirm_password' => 'required|same:password',
+            'terms' => 'required',
+        ], [
+            'terms.required' => 'Please agree to terms to continue'
         ]);
+
+        $input = request()->except('password', 'confirm_password');
+        $user = new User($input);
+        $user->password = bcrypt(request()->password);
+        $user->save();
+
+        return back()->with('success', 'User created successfully.');
+
+        // auth()->login($user);
+
+        // return redirect()->to('/home');
     }
 }

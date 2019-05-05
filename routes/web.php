@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 Route::view('/welcome', 'welcome');
 
-Route::view('/register', 'register');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@store');
 
 // Route::get('user/{id}', function ($id) {
 //     return 'User '.$id;
