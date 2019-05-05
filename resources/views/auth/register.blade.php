@@ -66,9 +66,9 @@
 
                             <div class="col-xs-12 col-sm-6 mb-4">
                                 <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Confirm Password:</label>
-                                <input name="confirm_password" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="password" placeholder="Password">
-                                @if ($errors->has('confirm_password'))
-                                    <span class="text-danger">{{ $errors->first('confirm_password') }}</span>
+                                <input name="password_confirmation" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="password" placeholder="Password">
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                                 @endif
                             </div>
                         </div>
