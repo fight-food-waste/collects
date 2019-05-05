@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::view('/welcome', 'welcome');
 
+Route::view('/register', 'register');
+
 // Route::get('user/{id}', function ($id) {
 //     return 'User '.$id;
 // })->where('id', '[0-9]+'); // where is optional
