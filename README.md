@@ -8,4 +8,6 @@ Run `php artisan cache:clear` after modifications.
 
 ## Usage
 
+Run migrations: `php artisan migrate`.
+
 Server locally with `php artisan serve`.
