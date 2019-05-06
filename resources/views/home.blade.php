@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<!-- Signup -->
+<!-- Home -->
 <section class="g-bg-gray-light-v5">
     <div class="container g-py-100">
         <div class="row justify-content-center">
@@ -12,9 +12,10 @@
                         <p>{{ $message }}</p>
                     </div>
                 @endif
+                <h3>Welcome, {{ $user->first_name }}</h3>
             </div>
         </div>
     </div>
 </section>
-<!-- End Signup -->
+<!-- End Home -->
 @endsection

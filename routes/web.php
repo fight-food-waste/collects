@@ -20,7 +20,10 @@ Route::view('/welcome', 'welcome');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-Route::view('/home', 'home');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+
+Route::get('home', 'HomeController@show');
 
 // Route::get('user/{id}', function ($id) {
 //     return 'User '.$id;
