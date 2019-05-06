@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -15,9 +16,13 @@ class HomeController extends Controller
 
     public function show()
     {
-        $currentUserId = \Auth::user()->id;
-        $currentUser = User::findOrFail($currentUserId);
+        if (Auth::check()) {
+            $currentUserId = Auth::user()->id;
+            $currentUser = User::findOrFail($currentUserId);
 
-        return view('home', ['user' => $currentUser]);
+            return view('home', ['user' => $currentUser]);
+        } else {
+            return view('home');
+        }
     }
 }

@@ -12,7 +12,11 @@
                         <p>{{ $message }}</p>
                     </div>
                 @endif
-                <h3>Welcome, {{ $user->first_name }}</h3>
+                @if (Auth::check())
+                    <h3>Welcome, {{ $user->first_name }}</h3>
+                @else
+                    <h3>Welcome</h3>
+                @endif
             </div>
         </div>
     </div>

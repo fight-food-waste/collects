@@ -11,11 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::view('/welcome', 'welcome');
+
+Route::get('/', 'HomeController@show');
+Route::get('home', 'HomeController@show');
 
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
@@ -23,10 +22,8 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 
-Route::get('home', 'HomeController@show');
-
 // Route::get('user/{id}', function ($id) {
 //     return 'User '.$id;
 // })->where('id', '[0-9]+'); // where is optional
 
-Route::get('user/{id}', 'UserController@show');
+// Route::get('user/{id}', 'UserController@show');
