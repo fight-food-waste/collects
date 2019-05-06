@@ -1,11 +1,37 @@
 # Laravel app
 
+## Install
+
+```sh
+docker run --rm -it --volume $PWD:/app composer install
+```
+
+Build PHP docker image:
+
+```sh
+docker-compose build
+```
+
 ## Config
 
 Copy `.env.example` to `.env`.
 
-Run `php artisan cache:clear` after modifications.
+After modifications, run:
+
+```sh
+docker-compose exec laravel php artisan cache:clear
+```
 
 ## Usage
 
-Server locally with `php artisan serve`.
+Run migrations:
+
+```sh
+docker-compose exec laravel php artisan migrate
+```
+
+Start server with:
+
+```sh
+docker-compose up -d
+```
