@@ -20,6 +20,8 @@ Route::view('/welcome', 'welcome');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
+Route::view('/home', 'home');
+
 // Route::get('user/{id}', function ($id) {
 //     return 'User '.$id;
 // })->where('id', '[0-9]+'); // where is optional

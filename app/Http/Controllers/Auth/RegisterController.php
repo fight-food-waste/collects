@@ -91,6 +91,10 @@ class RegisterController extends Controller
 
         $this->create($request->all());
 
+        // return back()->with('success', 'User created successfully.');
+
+        $request->session()->flash('success', 'User created successfully.');
+
         return redirect($this->redirectPath());
     }
 
