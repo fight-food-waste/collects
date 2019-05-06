@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Address;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -69,10 +70,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $address = new Address;
+
+        $address->store(
+            [
+                "line_1" => $data['line_1'],
+                "county_province" => $data['county_province'],
+                "region" => $data['region'],
+                "zip_postal_code" => $data['zip_postal_code'],
+                "country" => $data['country'],
+            ]
+        );
+
+        // error_log($address->id);
+
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
+            'address_id' => $address->id,
             'password' => Hash::make($data['password']),
         ]);
     }
