@@ -4,7 +4,9 @@ services:
   mysql:
     image: mariadb:10
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=laravel
+      - MYSQL_PASSWORD=laravel
     volumes:
       - './docker/volumes/mysql:/var/lib/mysql'
     ports:
