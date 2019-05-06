@@ -9,3 +9,10 @@ services:
       - './docker/volumes/mysql:/var/lib/mysql'
     ports:
       - 127.0.0.1:3306:3306
+  laravel:
+    build: '.'
+    ports:
+      - 127.0.0.1:8000:8000
+    volumes:
+      - ./:/app
+    command: php artisan serve --host=0.0.0.0
