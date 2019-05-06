@@ -1,6 +1,8 @@
 # Laravel app
 
-## Install
+## Run with Docker
+
+To install dependencies:
 
 ```sh
 docker run --rm -it --volume $PWD:/app composer install
@@ -12,7 +14,13 @@ Build PHP docker image:
 docker-compose build
 ```
 
-## Config
+Copy `.env.example` to `.env`.
+
+Start server with:
+
+```sh
+docker-compose up -d
+```
 
 Create key:
 
@@ -20,24 +28,20 @@ Create key:
 docker-compose exec laravel php artisan key:generate
 ```
 
-Copy `.env.example` to `.env`.
-
 After modifications, run:
 
 ```sh
 docker-compose exec laravel php artisan cache:clear
 ```
 
-## Usage
+Restart server:
+
+```sh
+docker-compose restart laravel
+```
 
 Run migrations:
 
 ```sh
 docker-compose exec laravel php artisan migrate
-```
-
-Start server with:
-
-```sh
-docker-compose up -d
 ```
