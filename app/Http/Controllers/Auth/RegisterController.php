@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Address;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -49,16 +50,26 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'terms' => ['required'],
-        ],
-        [
-            'terms.required' => 'Please agree to terms to continue',
-        ]);
+        return Validator::make(
+            $data,
+            [
+                'first_name' => ['required', 'string', 'max:255'],
+                'last_name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'line_1' => ['required', 'string', 'max:100'],
+                'line_2' => ['sometimes', 'required', 'string', 'max:100'],
+                'line_3' => ['sometimes', 'required', 'string', 'max:100'],
+                'county_province' => ['required', 'string', 'max:60'],
+                'region' => ['required', 'string', 'max:60'],
+                'zip_postal_code' => ['required', 'string', 'max:10'],
+                'country' => ['required', 'string', 'max:100'],
+                'terms' => ['required'],
+            ],
+            [
+                'terms.required' => 'Please agree to terms to continue',
+            ]
+        );
     }
 
     /**
@@ -69,10 +80,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        // Method 1
+        // $address = new Address();
+
+        // $address->line_1 = $data['line_1'];
+        // $address->line_2 = isset($data['line_2']) ? $data['line_2'] : null;
+        // $address->line_3 = isset($data['line_3']) ? $data['line_3'] : null;
+        // $address->county_province = $data['county_province'];
+        // $address->region = $data['region'];
+        // $address->zip_postal_code = $data['zip_postal_code'];
+        // $address->country = $data['country'];
+
+        // $address->save();
+
+        // Method 2
+        $address = Address::create([
+            "line_1" => $data['line_1'],
+            "line_2" => isset($data['line_2']) ? $data['line_2'] : null,
+            "line_3" => isset($data['line_3']) ? $data['line_3'] : null,
+            "county_province" => $data['county_province'],
+            "region" => $data['region'],
+            "zip_postal_code" => $data['zip_postal_code'],
+            "country" => $data['country'],
+        ]);
+
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
+            'address_id' => $address->id,
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -97,5 +134,4 @@ class RegisterController extends Controller
 
         return redirect($this->redirectPath());
     }
-
 }

@@ -67,6 +67,68 @@
                             </div>
                         </div>
 
+                        <div class="mb-4">
+                            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Line 1</label>
+                            <input name="line_1" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="Line 1">
+                            @if ($errors->has('line_1'))
+                                <span class="text-danger">{{ $errors->first('line_1') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Line 2</label>
+                            <input name="line_2" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="Line 2">
+                            @if ($errors->has('line_2'))
+                                <span class="text-danger">{{ $errors->first('line_2') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Line 3</label>
+                            <input name="line_3" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="Line 3">
+                            @if ($errors->has('line_3'))
+                                <span class="text-danger">{{ $errors->first('line_3') }}</span>
+                            @endif
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 mb-4">
+                                <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">County / Province</label>
+                                <input name="county_province" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="County / Province">
+                                @if ($errors->has('county_province'))
+                                    <span class="text-danger">{{ $errors->first('county_province') }}</span>
+                                @endif
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 mb-4">
+                                <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Region</label>
+                                <input name="region" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="Region">
+                                @if ($errors->has('region'))
+                                    <span class="text-danger">{{ $errors->first('region') }}</span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 mb-4">
+                                <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Postal Code</label>
+                                <input name="zip_postal_code" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="Postal Code">
+                                @if ($errors->has('zip_postal_code'))
+                                    <span class="text-danger">{{ $errors->first('zip_postal_code') }}</span>
+                                @endif
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 mb-4">
+                                <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Country</label>
+                                <input name="country" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="text" placeholder="Country">
+                                @if ($errors->has('country'))
+                                    <span class="text-danger">{{ $errors->first('country') }}</span>
+                                @endif
+                            </div>
+                        </div>
+
+
                         <div class="row justify-content-between mb-5">
                             <div class="col-8 align-self-center">
                                 <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-13 g-pl-25">
