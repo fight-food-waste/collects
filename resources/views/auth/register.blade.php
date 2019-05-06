@@ -20,12 +20,6 @@
                         </div>
                     @endif
 
-                  @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                  @endif
-
                     <!-- Form -->
                     <form class="g-py-15" method="POST" action="{{ route('register') }}">
                         @csrf
