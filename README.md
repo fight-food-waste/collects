@@ -14,6 +14,12 @@ docker-compose build
 
 ## Config
 
+Create key:
+
+```sh
+docker-compose exec laravel php artisan key:generate
+```
+
 Copy `.env.example` to `.env`.
 
 After modifications, run:
