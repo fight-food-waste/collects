@@ -7,6 +7,7 @@ services:
       - MYSQL_DATABASE=laravel
       - MYSQL_USER=laravel
       - MYSQL_PASSWORD=laravel
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
     volumes:
       - './docker/volumes/mysql:/var/lib/mysql'
     ports:
