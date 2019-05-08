@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'address_id',
+        'first_name', 'last_name', 'email', 'password', 'address_id', 'agency_id'
     ];
 
     /**
@@ -43,5 +43,13 @@ class User extends Authenticatable
     public function address()
     {
         return $this->hasOne('App\Address');
+    }
+
+    /**
+     * Get the address record associated with the user.
+     */
+    public function agency()
+    {
+        return $this->hasOne('App\Agency');
     }
 }

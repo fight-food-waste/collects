@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->bigInteger('address_id')->unsigned();
             $table->foreign('address_id')->references('id')->on('addresses');
+            $table->bigInteger('address_id')->unsigned()->nullable();
+            $table->foreign('agency_id')->references('id')->on('agency');
             $table->timestamps(); // add created_at and updated_at
         });
     }
