@@ -8,7 +8,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use \Tightenco\Parental\HasChildren;
     use Notifiable;
+
+    /**
+     * Don't want to store raw class names in the type column
+     *
+     * @var array
+     */
+    protected $childTypes = [
+        'donor' => App\Donor::class,
+        'storekeeper' => App\StoreKeeper::classs,
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +27,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'address_id', 'agency_id', 'aid_application_id'
+        'first_name',
+        'last_name',
+        'email',
+        'password',
+        'address_id',
+        'type',
     ];
 
     /**
