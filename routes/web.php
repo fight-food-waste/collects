@@ -17,7 +17,10 @@ Route::get('/', 'HomeController@show');
 Route::get('home', 'HomeController@show');
 
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+Route::get('register/donor', 'Auth\RegisterController@showRegistrationForm')->defaults('userType', 'donor');
+Route::get('register/storekeeper', 'Auth\RegisterController@showRegistrationForm')->defaults('userType', 'storekeeper');
+Route::get('register/needy_person', 'Auth\RegisterController@showRegistrationForm')->defaults('userType', 'needy_person');
+Route::post('register/', 'Auth\RegisterController@register');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
