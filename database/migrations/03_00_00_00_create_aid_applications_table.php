@@ -16,9 +16,7 @@ class CreateAidApplicationsTable extends Migration
         Schema::create('aid_applications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->boolean('is_approved')->default(false);
-            $table->decimal(9,2);
-            $table->bigInteger('user_id')->unsigned()->;
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->decimal('annual_income');
             $table->timestamps();
         });
     }
