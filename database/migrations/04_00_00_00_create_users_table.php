@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('aid_application_id')->unsigned()->nullable();
             $table->foreign('aid_application_id')->references('id')->on('aid_applications');
             $table->string('type');
-            $table->timestamps(); // add created_at and updated_at
+            $table->timestamps();
         });
     }
 
