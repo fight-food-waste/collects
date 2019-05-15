@@ -10,3 +10,4 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 docker/
+_ide_helper.php
