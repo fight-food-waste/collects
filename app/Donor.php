@@ -2,10 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Tightenco\Parental\HasParent;
 
 class Donor extends User
 {
-    use \Tightenco\Parental\HasParent;
+    use HasParent;
 
 }

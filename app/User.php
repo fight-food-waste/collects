@@ -3,12 +3,13 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tightenco\Parental\HasChildren;
+
 
 class User extends Authenticatable
 {
-    use \Tightenco\Parental\HasChildren;
+    use HasChildren;
     use Notifiable;
 
     /**
@@ -17,8 +18,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $childTypes = [
-        'donor' => App\Donor::class,
-        'storekeeper' => App\StoreKeeper::classs,
+        'donor' => Donor::class,
+        'storekeeper' => Storekeeper::class,
+        'needy_person' => NeedyPerson::class,
     ];
 
     /**

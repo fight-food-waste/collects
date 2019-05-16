@@ -4,7 +4,7 @@ namespace App;
 
 use Tightenco\Parental\HasParent;
 
-class Storekeeper extends User
+class NeedyPerson extends User
 {
     use HasParent;
 
@@ -20,6 +20,6 @@ class Storekeeper extends User
         'password',
         'address_id',
         'type',
-        'membership'
+        'aid_application_id'
     ];
 }

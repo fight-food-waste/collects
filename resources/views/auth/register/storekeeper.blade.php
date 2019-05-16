@@ -1,1 +1,7 @@
-Registration from for StoreKeeper.
+@extends('layouts.main')
+
+@section('content')
+
+    @include('auth.register.partials.signup')
+
+@endsection

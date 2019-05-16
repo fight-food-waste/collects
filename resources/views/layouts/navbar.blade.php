@@ -15,7 +15,7 @@
 
                     <!-- Logo -->
                     <a href="#" class="navbar-brand d-flex">
-                        <img src="assets/img/logo/logo-ffw.svg" alt="Logo">
+                        <img src="{{ url('assets/img/logo/logo-ffw.svg') }}" alt="Logo">
                     </a>
                     <!-- End Logo -->
 

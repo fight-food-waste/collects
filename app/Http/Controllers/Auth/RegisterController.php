@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Http\Requests\StoreDonor;
+use App\Http\Requests\StoreNeedyPerson;
+use App\Http\Requests\StoreStorekeeper;
+use App\NeedyPerson;
+use App\Donor;
 use App\Address;
 use App\Http\Controllers\Controller;
+use App\Storekeeper;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\View\View;
+
 
 class RegisterController extends Controller
 {
@@ -45,7 +52,8 @@ class RegisterController extends Controller
     /**
      * Show the application registration form.
      *
-     * @return \Illuminate\Http\Response
+     * @param string $userType
+     * @return View
      */
     public function showRegistrationForm(string $userType)
     {
@@ -53,95 +61,95 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Show the registration dispacther (choose user type)
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return View
      */
-    protected function validator(array $data)
+    public function showRegistrationDispatcher()
     {
-        return Validator::make(
-            $data,
-            [
-                'first_name' => ['required', 'string', 'max:255'],
-                'last_name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-                'line_1' => ['required', 'string', 'max:100'],
-                'line_2' => ['sometimes', 'required', 'string', 'max:100'],
-                'line_3' => ['sometimes', 'required', 'string', 'max:100'],
-                'county_province' => ['required', 'string', 'max:60'],
-                'region' => ['required', 'string', 'max:60'],
-                'zip_postal_code' => ['required', 'string', 'max:10'],
-                'country' => ['required', 'string', 'max:100'],
-                'terms' => ['required'],
-            ],
-            [
-                'terms.required' => 'Please agree to terms to continue',
-            ]
-        );
+        return view('auth.register.dispatch');
+    }
+
+
+    public function newAddress(Request $request)
+    {
+        return Address::create(request([
+            "line_1",
+            "line_2",
+            "line_3",
+            "county_province",
+            "region",
+            "zip_postal_code",
+            "country",
+        ]));
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Create a new Donor instance after a valid registration.
+     * And redirect to home page
      *
-     * @param  array  $data
-     * @return \App\User
+     * @param StoreDonor $request
+     * @return RedirectResponse
      */
-    protected function create(array $data)
+    public function storeDonor(StoreDonor $request)
     {
 
-        // Method 1
-        // $address = new Address();
+        $user_attributes = $request->validated();
 
-        // $address->line_1 = $data['line_1'];
-        // $address->line_2 = isset($data['line_2']) ? $data['line_2'] : null;
-        // $address->line_3 = isset($data['line_3']) ? $data['line_3'] : null;
-        // $address->county_province = $data['county_province'];
-        // $address->region = $data['region'];
-        // $address->zip_postal_code = $data['zip_postal_code'];
-        // $address->country = $data['country'];
+        $address = $this->newAddress($request);
 
-        // $address->save();
+        $user_attributes += ['address_id' => $address->id];
 
-        // Method 2
-        $address = Address::create([
-            "line_1" => $data['line_1'],
-            "line_2" => isset($data['line_2']) ? $data['line_2'] : null,
-            "line_3" => isset($data['line_3']) ? $data['line_3'] : null,
-            "county_province" => $data['county_province'],
-            "region" => $data['region'],
-            "zip_postal_code" => $data['zip_postal_code'],
-            "country" => $data['country'],
-        ]);
+        $user_attributes['password'] = Hash::make($user_attributes['password']);
 
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'address_id' => $address->id,
-            'password' => Hash::make($data['password']),
-        ]);
+        Donor::create($user_attributes);
+
+        return redirect($this->redirectPath())->with('success', 'User created successfully.');
     }
 
     /**
-     * Handle a registration request for the application.
+     * Create a new Donor instance after a valid registration.
+     * And redirect to home page
      *
-     * Override RegistersUsers->register() to not login right away
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreNeedyPerson $request
+     * @return RedirectResponse
      */
-    public function register(Request $request)
+    public function storeNeedyPerson(StoreNeedyPerson $request)
     {
-        $this->validator($request->all())->validate();
 
-        $this->create($request->all());
+        $user_attributes = $request->validated();
 
-        // return back()->with('success', 'User created successfully.');
+        $address = $this->newAddress($request);
 
-        $request->session()->flash('success', 'User created successfully.');
+        $user_attributes += ['address_id' => $address->id];
 
-        return redirect($this->redirectPath());
+        $user_attributes['password'] = Hash::make($user_attributes['password']);
+
+        NeedyPerson::create($user_attributes);
+
+        return redirect($this->redirectPath())->with('success', 'User created successfully.');
+    }
+
+    /**
+     * Create a new Donor instance after a valid registration.
+     * And redirect to home page
+     *
+     * @param StoreStorekeeper $request
+     * @return RedirectResponse
+     */
+    public function storeStorekeeper(StoreStorekeeper $request)
+    {
+
+        $user_attributes = $request->validated();
+
+        $address = $this->newAddress($request);
+
+        $user_attributes += ['address_id' => $address->id];
+
+        $user_attributes['password'] = Hash::make($user_attributes['password']);
+
+        Storekeeper::create($user_attributes);
+
+        return redirect($this->redirectPath())->with('success', 'User created successfully.');
     }
 }
