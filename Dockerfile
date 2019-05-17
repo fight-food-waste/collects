@@ -1,4 +1,4 @@
-FROM php:7.3.4-cli
+FROM php:7.3.5-cli
 
 RUN docker-php-ext-install pdo_mysql \
     && pecl install xdebug \
