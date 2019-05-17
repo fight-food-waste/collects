@@ -11,7 +11,7 @@ class UserController extends Controller
      * Show the profile for the given user.
      *
      * @param  int  $id
-     * @return View
+     * @return \Illuminate\View\View
      */
     public function show($id)
     {

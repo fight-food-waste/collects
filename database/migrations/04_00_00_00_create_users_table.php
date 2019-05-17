@@ -21,13 +21,18 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
             $table->bigInteger('address_id')->unsigned();
             $table->foreign('address_id')->references('id')->on('addresses');
+
             $table->bigInteger('agency_id')->unsigned()->nullable();
             $table->foreign('agency_id')->references('id')->on('agencies');
+
             $table->bigInteger('aid_application_id')->unsigned()->nullable();
             $table->foreign('aid_application_id')->references('id')->on('aid_applications');
-            $table->timestamps(); // add created_at and updated_at
+
+            $table->string('type');
+            $table->timestamps();
         });
     }
 

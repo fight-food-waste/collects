@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     /**
      * Show the home page.
      *
-     * @return View
+     * @return \Illuminate\View\View.
      */
 
     public function show()
