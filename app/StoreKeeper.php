@@ -22,4 +22,9 @@ class Storekeeper extends User
         'type',
         'membership'
     ];
+
+    public function memberships()
+    {
+        return $this->hasMany(StorekeeperMembership::class);
+    }
 }
