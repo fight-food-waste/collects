@@ -47,7 +47,7 @@
                     <!-- End Form -->
 
                     <footer class="text-center">
-                        <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">Don't have an account? <a class="g-font-weight-600" href="register">Sign up</a>
+                        <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">Don't have an account? <a class="g-font-weight-600" href="{{ url('register') }}">Sign up</a>
                         </p>
                     </footer>
                 </div>

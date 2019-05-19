@@ -14,7 +14,7 @@
                     <!-- End Responsive Toggle Button -->
 
                     <!-- Logo -->
-                    <a href="#" class="navbar-brand d-flex">
+                    <a href="{{ url('/') }}" class="navbar-brand d-flex">
                         <img src="{{ url('assets/img/logo/logo-ffw.svg') }}" alt="Logo">
                     </a>
                     <!-- End Logo -->
@@ -68,7 +68,7 @@
                     <!-- End Navigation -->
 
                     <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
-                        <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="register">Join the program</a>
+                        <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="{{ url('register') }}">Join the program</a>
                     </div>
                 </div>
             </nav>

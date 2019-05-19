@@ -150,7 +150,7 @@
                     <!-- End Form -->
 
                     <footer class="text-center">
-                        <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">Already have an account? <a class="g-font-weight-600" href="login">Login</a>
+                        <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">Already have an account? <a class="g-font-weight-600" href="{{ url('login') }}">Login</a>
                         </p>
                     </footer>
                 </div>
