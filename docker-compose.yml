@@ -19,3 +19,8 @@ services:
     volumes:
       - ./:/app
     command: php artisan serve --host=0.0.0.0
+  composer:
+    image: composer
+    command: sleep infinity
+    volumes:
+      - './:/app'
