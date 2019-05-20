@@ -22,4 +22,9 @@ class NeedyPerson extends User
         'type',
         'aid_application_id'
     ];
+
+    public function deliveryRounds()
+    {
+        return $this->belongsToMany(NeedyPerson::class);
+    }
 }

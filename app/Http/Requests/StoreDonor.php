@@ -31,6 +31,7 @@ class StoreDonor extends FormRequest
             'line_1' => ['required', 'string', 'max:100'],
             'line_2' => ['nullable', 'string', 'max:100'],
             'line_3' => ['nullable', 'string', 'max:100'],
+            'city' => ['required', 'string', 'max:60'],
             'county_province' => ['required', 'string', 'max:60'],
             'region' => ['required', 'string', 'max:60'],
             'zip_postal_code' => ['required', 'string', 'max:10'],

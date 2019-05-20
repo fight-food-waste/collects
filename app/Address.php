@@ -16,6 +16,7 @@ class Address extends Model
         'line_1',
         'line_2',
         'line_3',
+        'city',
         'county_province',
         'region',
         'zip_postal_code',
