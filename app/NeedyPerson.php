@@ -25,6 +25,6 @@ class NeedyPerson extends User
 
     public function deliveryRounds()
     {
-        return $this->belongsToMany(NeedyPerson::class);
+        return $this->belongsToMany(DeliveryRound::class);
     }
 }
