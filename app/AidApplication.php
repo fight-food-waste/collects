@@ -23,6 +23,6 @@ class AidApplication extends Model
      */
     public function aidApplication()
     {
-        return $this->belongsTo('App\AidApplication');
+        return $this->belongsTo(AidApplication::class);
     }
 }

@@ -28,3 +28,7 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
+//Route::resource('delivery_rounds', 'DeliveryRoundsController');
+// Routes tests pour les delivery_rounds
+//Route::get('delivery-rounds/{id}', 'DeliveryRoundsController@show');
+//Route::get('delivery-rounds/new', 'DeliveryRoundsController@store');
