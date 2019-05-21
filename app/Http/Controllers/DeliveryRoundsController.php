@@ -59,7 +59,7 @@ class DeliveryRoundsController extends Controller
     public function show($id)
     {
         // Pieces of code for testing
-//        $round = DeliveryRound::find($id);
+        $round = DeliveryRound::find($id);
 
 //        dd($round);
 //        dd($round->needyPeople());
@@ -67,10 +67,10 @@ class DeliveryRoundsController extends Controller
 
 //        return $round->needyPeople()->first();
 //
-//        return view('delivery-round.show', [
-//            'round' => $round,
-//            'needy_people' => $round->needyPeople()->get(),
-//        ]);
+        return view('delivery_round.show', [
+            'round' => $round,
+            'needy_people' => $round->needyPeople()->get(),
+        ]);
     }
 
     /**
