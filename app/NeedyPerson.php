@@ -8,8 +8,6 @@ class NeedyPerson extends User
 {
     use HasParent;
 
-    public $table = 'users';
-
     /**
      * The attributes that are mass assignable.
      *

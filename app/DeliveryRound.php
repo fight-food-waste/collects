@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class DeliveryRound extends Model
 {
-    public $table = 'delivery_rounds';
-//    public $timestamps = false;
-
     protected $fillable = ['round_date', 'user_id'];
 
     public function needyPeople()
