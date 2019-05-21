@@ -17,14 +17,7 @@
             <td>{{ $person->first_name }}</td>
             <td>{{ $person->last_name }}</td>
             <td>
-                {{ App\DeliveryRound::needyPersonAddress($person->address_id)->line_1 }}
-                {{ App\DeliveryRound::needyPersonAddress($person->address_id)->line_2 }}
-                {{ App\DeliveryRound::needyPersonAddress($person->address_id)->line_3 }}
-                {{ App\DeliveryRound::needyPersonAddress($person->address_id)->city }}
-                {{ App\DeliveryRound::needyPersonAddress($person->address_id)->county_province }}
-                {{ App\DeliveryRound::needyPersonAddress($person->address_id)->region }}
-                {{ App\DeliveryRound::needyPersonAddress($person->address_id)->zip_postal_code }}
-                {{ App\DeliveryRound::needyPersonAddress($person->address_id)->country }}
+                {{ App\DeliveryRound::needyPersonAddress($person->address_id) }}
             </td>
         </tr>
     @endforeach
