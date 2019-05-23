@@ -1,5 +1,6 @@
 <?php
 
+use App\CollectionRound;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +16,12 @@ class DatabaseSeeder extends Seeder
              AddressesTableSeeder::class,
              StorekeepersTableSeeder::class,
              NeedyPeopleTableSeeder::class,
+             EmployeesTableSeeder::class,
+             DonorsTableSeeder::class,
+             BundleStatusesTableSeeder::class,
+             ProductStatusesTableSeeder::class,
+             CollectionRoundsTableSeeder::class,
+             BundlesTableSeeder::class,
          ]);
     }
 }

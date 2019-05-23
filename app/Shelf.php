@@ -12,4 +12,9 @@ class Shelf extends Model
     {
         return $this->belongsTo(Warehouse::class);
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

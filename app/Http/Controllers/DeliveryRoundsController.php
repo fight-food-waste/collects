@@ -44,7 +44,7 @@ class DeliveryRoundsController extends Controller
 //        ]);
 
 //        $round = DeliveryRound::first();
-//        $currentUser = NeedyPerson::find(4);
+//        $currentUser = NeedyPerson::find(2);
 
 //        $round->needyPeople()->attach($currentUser->id);
 //        $currentUser->deliveryRounds()->attach($round->id);

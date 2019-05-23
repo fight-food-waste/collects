@@ -18,7 +18,7 @@ class NeedyPeopleTableSeeder extends Seeder
         User::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'tata@tata.com',
+            'email' => 'needy@needy.com',
             'password' => Hash::make('qwertyuiop'),
             'address_id' => 1,
             'type' => 'needy_person',
