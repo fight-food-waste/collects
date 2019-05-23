@@ -38,16 +38,16 @@ class DeliveryRoundsController extends Controller
      */
     public function store(Request $request)
     {
-//        $round = DeliveryRound::create([
-//            'rounds_date' => Carbon::today(),
-//            'user_id' => 3,
-//        ]);
+        $round = DeliveryRound::create([
+            'rounds_date' => Carbon::today(),
+            'user_id' => 3,
+        ]);
 
 //        $round = DeliveryRound::first();
-//        $currentUser = NeedyPerson::find(2);
+        $currentUser = NeedyPerson::find(2);
 
-//        $round->needyPeople()->attach($currentUser->id);
-//        $currentUser->deliveryRounds()->attach($round->id);
+        $round->needyPeople()->attach($currentUser->id);
+        $currentUser->deliveryRounds()->attach($round->id);
     }
 
     /**

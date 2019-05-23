@@ -30,5 +30,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 //Route::resource('delivery_rounds', 'DeliveryRoundsController');
 // Routes tests pour les delivery_rounds
-Route::get('delivery-rounds/{id}', 'DeliveryRoundsController@show');
-//Route::get('delivery-rounds/new', 'DeliveryRoundsController@store');
+Route::get('delivery-rounds/new', 'DeliveryRoundsController@store');
+Route::get('delivery-rounds/{id}', 'DeliveryRoundsController@show')->where('id', '[0-9]+');
