@@ -11,6 +11,7 @@
                         <h2 class="h2 g-color-black g-font-weight-600">Login</h2>
                     </header>
                     @if ($errors->any())
+                        @lang('auth.failed')
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
