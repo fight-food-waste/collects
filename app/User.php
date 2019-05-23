@@ -21,6 +21,7 @@ class User extends Authenticatable
         'donor' => Donor::class,
         'storekeeper' => Storekeeper::class,
         'needy_person' => NeedyPerson::class,
+        'employee' => Employee::class,
     ];
 
     /**

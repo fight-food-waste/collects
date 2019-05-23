@@ -25,6 +25,6 @@ class NeedyPerson extends User
 
     public function deliveryRounds()
     {
-        return $this->belongsToMany(DeliveryRound::class);
+        return $this->belongsToMany(DeliveryRound::class, 'delivery_round_needy_person')->withTimestamps();
     }
 }

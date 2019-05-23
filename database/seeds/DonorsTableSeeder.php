@@ -4,7 +4,7 @@ use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class StorekeepersTableSeeder extends Seeder
+class DonorsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,10 +18,10 @@ class StorekeepersTableSeeder extends Seeder
         User::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'store@store.com',
+            'email' => 'donor@donor.com',
             'password' => Hash::make('qwertyuiop'),
             'address_id' => 1,
-            'type' => 'storekeeper',
+            'type' => 'donor',
         ]);
     }
 }
