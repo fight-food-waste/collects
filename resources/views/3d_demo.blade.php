@@ -86,7 +86,7 @@
         } );
         // collada
         var loader = new THREE.ColladaLoader( loadingManager );
-        loader.load( '{{ url('assets/webgl/js//models/collada/truck.dae') }}', function ( collada ) {
+        loader.load( '{{ url('assets/webgl/models/collada/truck.dae') }}', function ( collada ) {
             elf = collada.scene;
             elf.scale.set(3,3,3);
             elf.position.set(0,30,0);
@@ -94,14 +94,14 @@
             scene.add(elf);
         } );
 
-        loader.load( '{{ url('assets/webgl/js/models/collada/model.dae') }}', function ( collada ) {
+        loader.load( '{{ url('assets/webgl/models/collada/model.dae') }}', function ( collada ) {
             city = collada.scene;
             city.scale.set(3,3,3);
             //city.position.set(0,0000,0);
             scene.add(city);
         } );
 
-        loader.load( '{{ url('assets/webgl/js/models/collada/hospital.dae') }}', function ( collada ) {
+        loader.load( '{{ url('assets/webgl/models/collada/hospital.dae') }}', function ( collada ) {
             hospital = collada.scene;
             hospital.scale.set(3,3,3);
             hospital.rotation.z = - Math.PI/2;
@@ -205,14 +205,14 @@
         scene.add(cartMesh);
 
 
-        var textureStock = new THREE.TextureLoader().load( '{{ url('assets/webgl/extures/carton.jpg') }}' );
+        var textureStock = new THREE.TextureLoader().load( '{{ url('assets/webgl/textures/carton.jpg') }}' );
         var geometryStock = new THREE.BoxBufferGeometry( 300, 150, 150 );
         var materialStock = new THREE.MeshBasicMaterial( { map: textureStock } );
         stockMesh = new THREE.Mesh(geometryStock, materialStock);
         stockMesh.position.set(-2000, 400,-1900);
         scene.add(stockMesh);
 
-        var textureDelivery = new THREE.TextureLoader().load('{{ url('textures/stock.jpg') }}');
+        var textureDelivery = new THREE.TextureLoader().load('{{ url('assets/webgl/textures/stock.jpg') }}');
         var geometryDelivery = new THREE.BoxBufferGeometry(300, 300, 300);
         var materialDelivery = new THREE.MeshBasicMaterial( {map : textureDelivery});
         deliveryMesh = new THREE.Mesh(geometryDelivery, materialDelivery);
@@ -221,7 +221,7 @@
 
         // model
         var loader = new THREE.FBXLoader();
-        loader.load( '{{ url('models/fbx/VAN.fbx') }}', function ( object ) {
+        loader.load( '{{ url('assets/webgl/models/fbx/VAN.fbx') }}', function ( object ) {
             object.mixer = new THREE.AnimationMixer( object );
 
             mixer.push(object.mixer);
@@ -314,7 +314,7 @@
         }
 
         var distance3 = elf.position.distanceTo(deliveryMesh.position);
-        console.log(distance3);
+        // console.log(distance3);
 
         if (distance3 <= 380 ) {
             scene.remove(deliveryMesh);
