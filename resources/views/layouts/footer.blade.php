@@ -89,6 +89,22 @@
                 <script src="{{ url('assets/vendor/imagesloaded/imagesloaded.js') }}"></script>
                 <script src="{{ url('assets/vendor/slick-carousel/slick/slick.js') }}"></script>
 
+                <!-- JS Revolution Slider -->
+                <script src="{{ url('assets/vendor/revolution-slider/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+                <script src="{{ url('assets/vendor/revolution-slider/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+
+                <script src="{{ url('assets/vendor/revolution-slider/revolution-addons/particles/js/revolution.addon.particles.min.js') }}"></script>
+
+                <script src="{{ url('assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.actions.min.js') }}"></script>
+                <script src="{{ url('assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.carousel.min.js') }}"></script>
+                <script src="{{ url('assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.kenburn.min.js') }}"></script>
+                <script src="{{ url('assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
+                <script src="{{ url('assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.migration.min.js') }}"></script>
+                <script src="{{ url('assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+                <script src="{{ url('assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.parallax.min.js') }}"></script>
+                <script src="{{ url('assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
+                <script src="{{ url('assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
+
                 <!-- JS Unify -->
                 <script src="{{ url('assets/js/hs.core.js') }}"></script>
                 <script src="{{ url('assets/js/components/hs.header.js') }}"></script>
@@ -107,6 +123,53 @@
 
                 <!-- JS Plugins Init. -->
                 <script>
+                    // initialization of slider revolution
+                    var tpj = jQuery,
+                        revapi1174;
+
+                    tpj(document).ready(function () {
+                        if (tpj("#rev_slider_1174_1").revolution == undefined) {
+                            revslider_showDoubleJqueryError("#rev_slider_1174_1");
+                        } else {
+                            revapi1174 = tpj("#rev_slider_1174_1").show().revolution({
+                                sliderType: "hero",
+                                jsFileLocation: "../../assets/vendor/revolution-slider/revolution/js/",
+                                sliderLayout: "fullscreen",
+                                dottedOverlay: "none",
+                                delay: 9000,
+                                navigation: {},
+                                responsiveLevels: [1240, 1024, 778, 480],
+                                visibilityLevels: [1240, 1024, 778, 480],
+                                gridwidth: [1240, 1024, 778, 480],
+                                gridheight: [868, 768, 960, 720],
+                                lazyType: "none",
+                                parallax: {
+                                    type: "scroll",
+                                    origo: "slidercenter",
+                                    speed: 400,
+                                    levels: [10, 15, 20, 25, 30, 35, 40, -10, -15, -20, -25, -30, -35, -40, -45, 55]
+                                },
+                                shadow: 0,
+                                spinner: "off",
+                                autoHeight: "off",
+                                fullScreenAutoWidth: "off",
+                                fullScreenAlignForce: "off",
+                                fullScreenOffsetContainer: "",
+                                fullScreenOffset: "60px",
+                                disableProgressBar: "on",
+                                hideThumbsOnMobile: "off",
+                                hideSliderAtLimit: 0,
+                                hideCaptionAtLimit: 0,
+                                hideAllCaptionAtLilmit: 0,
+                                debugMode: false,
+                                fallbacks: {
+                                    simplifyAll: "off",
+                                    disableFocusListener: false
+                                }
+                            });
+                        }
+                    });
+
                     $(document).on('ready', function () {
                         // initialization of carousel
                         $.HSCore.components.HSCarousel.init('.js-carousel');
@@ -137,6 +200,9 @@
                             duration: 700,
                             over: $('.u-secondary-navigation')
                         });
+
+                        // initialization of cubeportfolio
+                        $.HSCore.components.HSCubeportfolio.init('.cbp');
 
                         // initialization of masonry.js
                         $('.masonry-grid').imagesLoaded().then(function () {

@@ -25,10 +25,17 @@
         <link rel="stylesheet" href="{{ url('assets/vendor/dzsparallaxer/dzsparallaxer.css') }}">
         <link rel="stylesheet" href="{{ url('assets/vendor/dzsparallaxer/dzsscroller/scroller.css') }}">
         <link rel="stylesheet" href="{{ url('assets/vendor/dzsparallaxer/advancedscroller/plugin.css') }}">
+        <link rel="stylesheet" href="{{ url('assets/vendor/fancybox/jquery.fancybox.css') }}">
         <link rel="stylesheet" href="{{ url('assets/vendor/slick-carousel/slick/slick.css') }}">
+        <link rel="stylesheet" href="{{ url('assets/vendor/cubeportfolio-full/cubeportfolio/css/cubeportfolio.min.css') }}">
         <link rel="stylesheet" href="{{ url('assets/vendor/animate.css') }}">
         <link rel="stylesheet" href="{{ url('assets/vendor/hs-megamenu/src/hs.megamenu.css') }}">
         <link rel="stylesheet" href="{{ url('assets/vendor/hamburgers/hamburgers.min.css') }}">
+
+        <!-- Revolution Slider -->
+        <link rel="stylesheet" href="{{ url('assets/vendor/revolution-slider/revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css') }}">
+        <link rel="stylesheet" href="{{ url('assets/vendor/revolution-slider/revolution/css/settings.css') }}">
+        <link rel="stylesheet" href="{{ url('assets/vendor/revolution-slider/revolution-addons/particles/css/revolution.addon.particles.css') }}">
 
         <!-- CSS Unify -->
         <link rel="stylesheet" href="{{ url('assets/css/unify-core.css') }}">
