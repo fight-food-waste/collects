@@ -25,4 +25,9 @@ class Product extends Model
     {
         return $this->belongsTo(ProductStatus::class);
     }
+
+    public static function productStatusName($id)
+    {
+        return ProductStatus::where('id', $id)->first()->name;
+    }
 }

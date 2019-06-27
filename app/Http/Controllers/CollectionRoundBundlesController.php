@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\DeliveryRound;
-use App\NeedyPerson;
-use Carbon\Carbon;
+use App\Bundle;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class DeliveryRoundsController extends Controller
+class CollectionRoundBundlesController extends Controller
 {
     public function __construct()
     {
@@ -25,6 +23,13 @@ class DeliveryRoundsController extends Controller
         //
     }
 
+    public function bundlesList($id)
+    {
+        $bundles = Bundle::where('collection_round_id', $id)->get();
+
+        return view('collection_round.bundles_list.show', compact('bundles'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -32,50 +37,29 @@ class DeliveryRoundsController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return Response
      */
     public function store(Request $request)
     {
-        $round = DeliveryRound::create([
-            'rounds_date' => Carbon::today(),
-            'user_id' => 3,
-        ]);
-
-//        $round = DeliveryRound::first();
-        $currentUser = NeedyPerson::find(2);
-
-        $round->needyPeople()->attach($currentUser->id);
-        $currentUser->deliveryRounds()->attach($round->id);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param $id
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
     {
-        // Pieces of code for testing
-        $round = DeliveryRound::find($id);
-
-//        dd($round);
-//        dd($round->needyPeople());
-//        dd($round->needyPeople()->first()->first_name);
-
-//        return $round->needyPeople()->first();
-//
-        return view('delivery_round.show', [
-            'round' => $round,
-            'needy_people' => $round->needyPeople()->get(),
-        ]);
+        //
     }
 
     /**
@@ -92,7 +76,7 @@ class DeliveryRoundsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return Response
      */

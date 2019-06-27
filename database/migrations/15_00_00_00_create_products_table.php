@@ -19,16 +19,16 @@ class CreateProductsTable extends Migration
 
             $table->date('expiration_date');
 
-            $table->unsignedBigInteger('product_status_id');
+            $table->unsignedBigInteger('product_status_id')->nullable();
             $table->foreign('product_status_id')->references('id')->on('product_statuses');
 
-            $table->unsignedBigInteger('bundle_status_id');
-            $table->foreign('bundle_status_id')->references('id')->on('bundle_statuses');
+            $table->unsignedBigInteger('bundle_id');
+            $table->foreign('bundle_id')->references('id')->on('bundles');
 
-            $table->unsignedBigInteger('shelf_id');
+            $table->unsignedBigInteger('shelf_id')->nullable();
             $table->foreign('shelf_id')->references('id')->on('shelves');
 
-            $table->unsignedBigInteger('delivery_round_id');
+            $table->unsignedBigInteger('delivery_round_id')->nullable();
             $table->foreign('delivery_round_id')->references('id')->on('delivery_rounds');
 
             $table->timestamps();

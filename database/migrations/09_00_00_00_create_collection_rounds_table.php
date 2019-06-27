@@ -16,6 +16,8 @@ class CreateCollectionRoundsTable extends Migration
         Schema::create('collection_rounds', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamp('round_date');
+            $table->timestamp('started_at')->nullable();
+            $table->boolean('is_completed')->default(false);
             // employee_id
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

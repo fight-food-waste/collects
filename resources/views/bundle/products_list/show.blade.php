@@ -5,7 +5,7 @@
         <div class="container">
             <div class="card-header d-flex align-items-center justify-content-between g-bg-gray-light-v5 border-0 g-mb-15">
                 <h3 class="h6 mb-0">
-                    <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> All bundles
+                    <i class="icon-directions g-pos-rel g-top-1 g-mr-5"></i> Bundle products
                 </h3>
             </div>
 
@@ -18,26 +18,32 @@
                             <th class="g-font-weight-300 g-color-black g-min-width-200">Status</th>
                             <th class="g-font-weight-300 g-color-black">Submission Date</th>
                             <th class="g-font-weight-300 g-color-black">Validation Date</th>
+                            <th class="g-font-weight-300 g-color-black">Donor name</th>
                         </tr>
                         </thead>
 
                         <tbody>
 
-                        @foreach ($bundles->reverse() as $bundle)
+                        @foreach ($products->reverse() as $product)
                             <tr>
                                 <td class="align-middle text-nowrap">
-                                    <h4 class="h6 g-mb-2">#{{ $bundle->id }}</h4>
+                                    <h4 class="h6 g-mb-2">#{{ $product->id }}</h4>
                                 </td>
                                 <td class="align-middle">
                                     <div class="d-flex">
-                                        <h4 class="h6 g-mb-2">{{ $bundle->bundle_status_id ? App\Bundle::bundleStatusName($bundle->bundle_status_id) : 'Not validated' }}</h4>
+                                        <h4 class="h6 g-mb-2">{{ $product->product_status_id ? App\Product::productStatusName($product->product_status_id) : 'Not validated' }}</h4>
                                     </div>
                                 </td>
                                 <td class="align-middle">
-                                    <span>{{  date('d/m/Y', strtotime($bundle->created_at)) }}</span>
+                                    <span>{{  date('d/m/Y', strtotime($product->created_at)) }}</span>
                                 </td>
                                 <td class="align-middle text-nowrap">
-                                    <span>{{ $bundle->validated_at ? date('d/m/Y', strtotime($bundle->validated_at)) : 'Not validated' }}</span>
+                                    <span>{{ $product->validated_at ? date('d/m/Y', strtotime($product->validated_at)) : 'Not validated' }}</span>
+                                </td>
+                                <td class="align-middle">
+                                    <h4 class="h6 g-mb-2">
+                                        {{ App\Bundle::bundleUserName($product->bundle_id) }}
+                                    </h4>
                                 </td>
                             </tr>
                         @endforeach
@@ -49,3 +55,4 @@
         </div>
     </div>
 @endsection
+{{-- AFFICHER LES PRODUITS DU BUNDLE --}}

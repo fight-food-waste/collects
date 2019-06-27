@@ -1,6 +1,5 @@
 <?php
 
-use App\CollectionRound;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +21,7 @@ class DatabaseSeeder extends Seeder
              ProductStatusesTableSeeder::class,
              CollectionRoundsTableSeeder::class,
              BundlesTableSeeder::class,
+             ProductsTableSeeder::class,
          ]);
     }
 }

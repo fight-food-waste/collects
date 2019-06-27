@@ -21,11 +21,7 @@ class BundleStatusesTableSeeder extends Seeder
         ]);
 
         BundleStatus::create([
-            'name' => 'Stored'
-        ]);
-
-        BundleStatus::create([
-            'name' => 'Delivered'
+            'name' => 'Collected'
         ]);
     }
 }

@@ -22,7 +22,7 @@ class HomeController extends Controller
 
             return view('home', ['user' => $currentUser]);
         } else {
-            return view('home');
+            return view('welcome');
         }
     }
 }

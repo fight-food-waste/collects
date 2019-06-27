@@ -30,4 +30,18 @@ class Address extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public static function fullAddress($id)
+    {
+        $address = Address::where('id', $id)->first()->line_1 . ' ';
+        $address .= Address::where('id', $id)->first()->line_2 . ' ';
+        $address .= Address::where('id', $id)->first()->line_3 . ' ';
+        $address .= Address::where('id', $id)->first()->city . ' ';
+        $address .= Address::where('id', $id)->first()->county_province . ' ';
+        $address .= Address::where('id', $id)->first()->region . ' ';
+        $address .= Address::where('id', $id)->first()->zip_postal_code . ' ';
+        $address .= Address::where('id', $id)->first()->country;
+
+        return $address;
+    }
 }

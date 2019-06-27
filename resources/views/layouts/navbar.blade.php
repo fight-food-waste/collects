@@ -15,7 +15,13 @@
 
                     <!-- Logo -->
                     <a href="{{ url('/') }}" class="navbar-brand d-flex">
-                        <img src="{{ url('assets/img/logo/logo-ffw.svg') }}" alt="Logo">
+                        @if (Auth::check())
+                            @if (Auth::user()->type == 'employee')
+                                <h1 class="d-inline-block g-brd-around g-brd-2 g-brd-white g-color-black g-font-weight-700 g-font-size-20 g-font-size-32--md text-uppercase g-line-height-1_2 g-letter-spacing-5 g-py-12 g-px-20 g-mb-50">FFW ADMIN</h1>
+                            @else
+                                <img src="{{ url('assets/img/logo/logo-ffw.svg') }}" alt="Logo">
+                            @endif
+                        @endif
                     </a>
                     <!-- End Logo -->
 
@@ -24,7 +30,10 @@
                         <ul class="navbar-nav text-uppercase g-pos-rel g-font-weight-600 ml-auto">
                             <!-- Intro -->
                             <li class="nav-item  g-mx-10--lg g-mx-15--xl">
-                                <a href="#" class="nav-link g-py-7 g-px-0">Intro</a>
+                                <a href="{{ route('home') }}" class="nav-link g-py-7 g-px-0">Home</a>
+                            </li>
+                            <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+                                <a href="{{ route('3d_demo') }}" class="nav-link g-py-7 g-px-0">3D Demonstration</a>
                             </li>
                             <!-- End Intro -->
 
@@ -67,9 +76,11 @@
                     </div>
                     <!-- End Navigation -->
 
-                    <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
-                        <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="{{ url('register') }}">Join the program</a>
-                    </div>
+                    @if (!Auth::check())
+                        <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
+                            <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="{{ url('register') }}">Join the program</a>
+                        </div>
+                    @endif
                 </div>
             </nav>
         </div>
