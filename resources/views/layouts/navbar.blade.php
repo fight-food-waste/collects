@@ -39,39 +39,28 @@
 
                             <!-- Features -->
                             <li class="nav-item hs-has-sub-menu  g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                                <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">Features</a>
+                                <a id="nav-link--features" class="nav-link g-py-7 g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features">Rounds</a>
 
                                 <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu--features" aria-labelledby="nav-link--features">
                                     <!-- Features - Headers -->
                                     <li class="dropdown-item ">
-                                        <a class="nav-link" href="#">Headers</a>
+                                        <a class="nav-link" href="{{ route('collection-rounds.index') }}">Collection</a>
                                     </li>
                                     <!-- End Features - Headers -->
 
                                     <!-- Features - Promo blocks -->
                                     <li class="dropdown-item ">
-                                        <a class="nav-link" href="#">Promo Blocks</a>
+                                        <a class="nav-link" href="#">Delivery</a>
                                     </li>
                                     <!-- End Features - Promo blocks -->
 
-                                    <!-- Features - Sliders -->
-                                    <li class="dropdown-item hs-has-sub-menu ">
-                                        <a id="nav-link--features--sliders" class="nav-link" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--features--sliders">Sliders</a>
-
-                                        <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-minus-2" id="nav-submenu--features--sliders" aria-labelledby="nav-link--features--sliders">
-                                            <li class="dropdown-item ">
-                                                <a class="nav-link" href="#">Revolution sliders</a>
-                                            </li>
-                                            <li class="dropdown-item ">
-                                                <a class="nav-link" href="#">Master sliders</a>
-                                            </li>
-                                        </ul>
-                                    </li>
                                     <!-- End Features - Sliders -->
-
                                 </ul>
                             </li>
                             <!-- End Features -->
+                            <li class="nav-item g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                                <a href="{{ route('logout') }}" class="nav-link g-py-7 g-px-0" >Log out</a>
+                            </li>
                         </ul>
                     </div>
                     <!-- End Navigation -->
