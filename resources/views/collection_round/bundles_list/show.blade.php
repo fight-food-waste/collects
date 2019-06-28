@@ -38,7 +38,7 @@
                                 </td>
                                 <td class="align-middle">
                                     <div class="d-flex">
-                                        <h4 class="h6 g-mb-2">{{ $bundle->bundle_status_id ? App\Bundle::bundleStatusName($bundle->bundle_status_id) : 'Not validated' }}</h4>
+                                        <h4 class="h6 g-mb-2">Validated</h4>
                                     </div>
                                 </td>
                                 <td class="align-middle">
