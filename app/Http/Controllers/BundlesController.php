@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bundle;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -25,16 +26,18 @@ class BundlesController extends Controller
         return view('bundle.index', compact('bundles'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
+    public function validateBundle($id)
     {
-        //
+        $bundle = Bundle::where('id', $id)->first();
+
+        $bundle->validated_at = Carbon::now();
+        $bundle->lifecycle_status = 'to_collect';
+
+        $bundle->save();
+
+        return redirect()->route('bundles.index');
     }
+
 
     /**
      * Remove the specified resource from storage.

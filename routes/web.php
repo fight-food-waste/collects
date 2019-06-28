@@ -44,5 +44,6 @@ Route::get('delivery-rounds/{id}', 'DeliveryRoundsController@show')->where('id',
 
 Route::get('profile', 'ProfilesController@getProfile');
 
-Route::get('admin/bundles', 'BundlesController@index');
+Route::get('admin/bundles', 'BundlesController@index')->name('bundles.index');
 Route::get('admin/bundles/{id}/products/', 'BundleProductsController@productsList')->where('id', '[0-9]+')->name('bundles.products');
+Route::post('admin/bundles/{id}/validate', 'BundlesController@validateBundle')->name('bundles.validate')->where('id', '[0-9]+');

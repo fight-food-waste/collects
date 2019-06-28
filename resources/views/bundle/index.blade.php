@@ -15,10 +15,11 @@
                         <thead class="text-uppercase g-letter-spacing-1">
                         <tr>
                             <th class="g-font-weight-300 g-color-black">ID</th>
-                            <th class="g-font-weight-300 g-color-black g-min-width-200">Status</th>
+                            <th class="g-font-weight-300 g-color-black g-min-width-200">Lifecycle status</th>
                             <th class="g-font-weight-300 g-color-black">Submission Date</th>
                             <th class="g-font-weight-300 g-color-black">Validation Date</th>
                             <th class="g-font-weight-300 g-color-black">Donor name</th>
+                            <th class="g-font-weight-300 g-color-black">Action</th>
                         </tr>
                         </thead>
 
@@ -33,7 +34,7 @@
                                 </td>
                                 <td class="align-middle">
                                     <div class="d-flex">
-                                        <h4 class="h6 g-mb-2">{{ $bundle->bundle_status_id ? App\Bundle::bundleStatusName($bundle->bundle_status_id) : 'Not validated' }}</h4>
+                                        <h4 class="h6 g-mb-2">{{ $bundle->lifecycle_status ? $bundle->lifecycle_status : 'Not validated' }}</h4>
                                     </div>
                                 </td>
                                 <td class="align-middle">
@@ -46,6 +47,17 @@
                                     <h4 class="h6 g-mb-2">
                                         {{ App\Bundle::bundleUserName($bundle->user_id) }}
                                     </h4>
+                                </td>
+                                <td class="align-middle">
+                                    @if ($bundle->validated_at == null)
+                                        <form action="{{ route('bundles.validate', $bundle->id) }}" method="POST">
+                                            @csrf
+
+    {{--                                        <input type="hidden" name="bundle_id" value="{{ $bundle->id  }}">--}}
+
+                                            <button class="btn btn-primary" type="submit">Validate</button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
