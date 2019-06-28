@@ -17,6 +17,7 @@ class ProductsTableSeeder extends Seeder
 
         Product::create([
             'details' => "{}",
+            'name' => "Brocolis - Vitavert - 500 g",
             'expiration_date' => Carbon::createFromFormat('d/m/Y', '29/07/2019')->toDateTimeString(),
             'barcode' => '3276559825549',
             'status' => 1,
@@ -29,6 +30,7 @@ class ProductsTableSeeder extends Seeder
 
         Product::create([
             'details' => "{}",
+            'name' => "Penne au Saumon, Crème d'épinards - Marie - 280 g",
             'expiration_date' => Carbon::createFromFormat('d/m/Y', '08/04/2021')->toDateTimeString(),
             'status' => 1,
             'barcode' => "3248832960025",
@@ -41,6 +43,7 @@ class ProductsTableSeeder extends Seeder
 
         Product::create([
             'details' => "{}",
+            'name' => "Penne au Poulet, Sauce Pesto - Marie - 280 g",
             'expiration_date' => Carbon::createFromFormat('d/m/Y', '19/01/2020')->toDateTimeString(),
             'status' => 2,
             'barcode' => "3248832960209",
@@ -53,6 +56,7 @@ class ProductsTableSeeder extends Seeder
 
         Product::create([
             'details' => "{}",
+            'name' => "PastaBox - Tortellini Ricotta Tomates Poivrons - Sodebo - 280 g",
             'expiration_date' => Carbon::createFromFormat('d/m/Y', '31/08/2019')->toDateTimeString(),
             'status' => 3,
             'barcode' => "3242272251255",

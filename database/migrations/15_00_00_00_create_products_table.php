@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
 
             $table->date('expiration_date');
             $table->string('barcode');
+            $table->string('name');
 
             $table->unsignedBigInteger('bundle_id');
             $table->foreign('bundle_id')->references('id')->on('bundles');
