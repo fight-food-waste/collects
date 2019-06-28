@@ -31,6 +31,7 @@ class CreateProductsTable extends Migration
             $table->foreign('delivery_round_id')->references('id')->on('delivery_rounds');
 
             $table->integer('status');
+            $table->integer('integer');
 
             $table->timestamps();
         });
