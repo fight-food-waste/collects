@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateCollectionRoundsTable extends Migration
 {
@@ -14,7 +14,7 @@ class CreateCollectionRoundsTable extends Migration
     public function up()
     {
         Schema::create('collection_rounds', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->primary();
             $table->timestamp('round_date');
             $table->timestamp('started_at')->nullable();
             $table->boolean('is_completed')->default(false);

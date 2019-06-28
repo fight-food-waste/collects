@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateBundlesTable extends Migration
 {
@@ -14,7 +14,7 @@ class CreateBundlesTable extends Migration
     public function up()
     {
         Schema::create('bundles', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->primary();
             $table->timestamp('submitted_at');
             $table->timestamp('validated_at')->nullable();
 

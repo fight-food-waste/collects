@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateAidApplicationsTable extends Migration
 {
@@ -14,7 +14,7 @@ class CreateAidApplicationsTable extends Migration
     public function up()
     {
         Schema::create('aid_applications', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->primary();
             $table->boolean('is_approved')->default(false);
             $table->decimal('annual_income');
             $table->timestamps();
