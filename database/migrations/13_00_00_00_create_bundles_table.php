@@ -25,6 +25,7 @@ class CreateBundlesTable extends Migration
             $table->foreign('collection_round_id')->references('id')->on('collection_rounds');
 
             $table->string('status');
+            $table->string('lifecycle_status');
 
             $table->timestamps();
         });
