@@ -43,10 +43,10 @@ class ProductsTableSeeder extends Seeder
 
         Product::create([
             'details' => "{}",
-            'name' => "Penne au Poulet, Sauce Pesto - Marie - 280 g",
+            'name' => "Compote Veloutée - St Mamet - 800 g",
             'expiration_date' => Carbon::createFromFormat('d/m/Y', '19/01/2020')->toDateTimeString(),
             'status' => 2,
-            'barcode' => "3248832960209",
+            'barcode' => "3080920986650",
             'bundle_id' => 3,
             'shelf_id' => null,
             'delivery_round_id' => null,
