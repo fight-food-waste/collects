@@ -14,7 +14,7 @@ class CreateDeliveryRoundsTable extends Migration
     public function up()
     {
         Schema::create('delivery_rounds', function (Blueprint $table) {
-            $table->bigIncrements('id')->primary();
+            $table->bigIncrements('id');
             $table->timestamp('round_date');
             // employee_id
             $table->unsignedBigInteger('user_id');

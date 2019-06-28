@@ -14,7 +14,7 @@ class CreateAidApplicationsTable extends Migration
     public function up()
     {
         Schema::create('aid_applications', function (Blueprint $table) {
-            $table->bigIncrements('id')->primary();
+            $table->bigIncrements('id');
             $table->boolean('is_approved')->default(false);
             $table->decimal('annual_income');
             $table->timestamps();

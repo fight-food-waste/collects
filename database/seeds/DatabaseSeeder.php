@@ -17,8 +17,6 @@ class DatabaseSeeder extends Seeder
              NeedyPeopleTableSeeder::class,
              EmployeesTableSeeder::class,
              DonorsTableSeeder::class,
-             BundleStatusesTableSeeder::class,
-             ProductStatusesTableSeeder::class,
              CollectionRoundsTableSeeder::class,
              BundlesTableSeeder::class,
              ProductsTableSeeder::class,

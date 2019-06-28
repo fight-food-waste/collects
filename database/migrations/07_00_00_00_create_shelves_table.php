@@ -14,7 +14,7 @@ class CreateShelvesTable extends Migration
     public function up()
     {
         Schema::create('shelves', function (Blueprint $table) {
-            $table->bigIncrements('id')->primary();
+            $table->bigIncrements('id');
             $table->string('number', 255);
             $table->unsignedBigInteger('warehouse_id');
             $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade');

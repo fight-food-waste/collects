@@ -14,7 +14,7 @@ class CreateStorekeeperMembershipsTable extends Migration
     public function up()
     {
         Schema::create('storekeeper_memberships', function (Blueprint $table) {
-            $table->bigIncrements('id')->primary();
+            $table->bigIncrements('id');
             // Are the 2 commented lines below useless?
             // $table->timestamp('joined_at');
             // $table->timestamp('renewed_at');

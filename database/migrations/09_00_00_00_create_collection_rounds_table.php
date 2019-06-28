@@ -14,7 +14,7 @@ class CreateCollectionRoundsTable extends Migration
     public function up()
     {
         Schema::create('collection_rounds', function (Blueprint $table) {
-            $table->bigIncrements('id')->primary();
+            $table->bigIncrements('id');
             $table->timestamp('round_date');
             $table->timestamp('started_at')->nullable();
             $table->boolean('is_completed')->default(false);
