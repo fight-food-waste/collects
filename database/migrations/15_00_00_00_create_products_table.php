@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateProductsTable extends Migration
 {
@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->json('details');
 
             $table->date('expiration_date');
+            $table->string('barcode');
 
             $table->unsignedBigInteger('product_status_id')->nullable();
             $table->foreign('product_status_id')->references('id')->on('product_statuses');
