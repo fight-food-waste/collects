@@ -20,3 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/', function () {
     return response()->json(["message" => "Welcome to FFW API"], 200);
 });
+
+Route::get('products', 'Api\ProductController@index');
+Route::get('products/{article}', 'Api\ProductController@show');
+Route::post('products', 'Api\ProductController@store');
+Route::put('products/{article}', 'Api\ProductController@update');
+Route::delete('products/{article}', 'Api\ProductController@delete');
