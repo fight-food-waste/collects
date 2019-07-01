@@ -2,8 +2,19 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Address
+ *
+ * @property-read User $user
+ * @method static Builder|Address newModelQuery()
+ * @method static Builder|Address newQuery()
+ * @method static Builder|Address query()
+ * @mixin Eloquent
+ */
 class Address extends Model
 {
 
