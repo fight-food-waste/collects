@@ -51,7 +51,7 @@ class CollectionRoundsController extends Controller
 //        $latestRound = CollectionRound::latest()->first();
 
 //        CollectionRound::create([
-//            'round_date' => !$latestRound ? Carbon::now() : Carbon::parse($latestRound->round_date)->addDays(1),
+//            'round_date' => !$latestRound ? now() : Carbon::parse($latestRound->round_date)->addDays(1),
 //            'user_id' => Auth::user()->id,
 //        ]);
 

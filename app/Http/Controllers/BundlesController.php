@@ -30,7 +30,7 @@ class BundlesController extends Controller
     {
         $bundle = Bundle::where('id', $id)->first();
 
-        $bundle->validated_at = Carbon::now();
+        $bundle->validated_at = now();
         $bundle->lifecycle_status = 'to_collect';
 
         $bundle->save();

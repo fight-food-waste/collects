@@ -20,7 +20,7 @@ class CollectionRoundsTableSeeder extends Seeder
         ]);
 
         CollectionRound::create([
-            'round_date' => Carbon::now(),
+            'round_date' => now(),
             'user_id' => Employee::where('email', 'employee2@employee2.com')->first()->id,
         ]);
 

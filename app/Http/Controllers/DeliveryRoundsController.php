@@ -44,7 +44,7 @@ class DeliveryRoundsController extends Controller
     public function store(Request $request)
     {
         $round = DeliveryRound::create([
-            'rounds_date' => Carbon::today(),
+            'rounds_date' => today(),
             'user_id' => 3,
         ]);
 
