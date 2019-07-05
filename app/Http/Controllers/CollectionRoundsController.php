@@ -71,12 +71,12 @@ class CollectionRoundsController extends Controller
         $bundles = Bundle::where('round_id', $roundId);
 
         foreach($bundles as $bundle) {
-            $bundle->bundle_status_id = BundleStatus::where('name', 'Being collected')->first()->id;
+            $bundle->bundle_status_id = BundleStatus::where('name', 'Being collected')->value('id');
 
             $products = Product::where('bundle_id', $bundle->id);
 
             foreach($products as $product) {
-                $product->product_status_id = ProductStatus::where('name', 'Being collected')->first()->id;
+                $product->product_status_id = ProductStatus::where('name', 'Being collected')->value('id');
             }
         }
 
@@ -90,12 +90,12 @@ class CollectionRoundsController extends Controller
         $bundles = Bundle::where('round_id', $roundId);
 
         foreach($bundles as $bundle) {
-            $bundle->bundle_status_id = BundleStatus::where('name', 'Collected')->first()->id;
+            $bundle->bundle_status_id = BundleStatus::where('name', 'Collected')->value('id');
 
             $products = Product::where('bundle_id', $bundle->id);
 
             foreach($products as $product) {
-                $product->product_status_id = ProductStatus::where('name', 'Stored')->first()->id;
+                $product->product_status_id = ProductStatus::where('name', 'Stored')->value('id');
             }
         }
 

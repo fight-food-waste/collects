@@ -68,7 +68,7 @@ class DeliveryRoundsController extends Controller
 
 //        dd($round);
 //        dd($round->needyPeople());
-//        dd($round->needyPeople()->first()->first_name);
+//        dd($round->needyPeople()->value('first_name'));
 
 //        return $round->needyPeople()->first();
 //

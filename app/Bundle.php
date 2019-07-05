@@ -37,11 +37,11 @@ class Bundle extends Model
 
     public static function bundleStatusName($id)
     {
-        return BundleStatus::where('id', $id)->first()->name;
+        return BundleStatus::where('id', $id)->value('name');
     }
 
     public static function bundleUserName($id)
     {
-        return User::where('id', $id)->first()->first_name . ' ' . User::where('id', $id)->first()->last_name;
+        return User::where('id', $id)->value('first_name') . ' ' . User::where('id', $id)->value('last_name');
     }
 }

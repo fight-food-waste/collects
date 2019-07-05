@@ -42,6 +42,6 @@ class Product extends Model
 
     public static function productStatusName($id)
     {
-        return ProductStatus::where('id', $id)->first()->name;
+        return ProductStatus::where('id', $id)->value('name');
     }
 }

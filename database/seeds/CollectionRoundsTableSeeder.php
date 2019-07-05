@@ -16,25 +16,25 @@ class CollectionRoundsTableSeeder extends Seeder
     {
         CollectionRound::create([
             'round_date' => Carbon::tomorrow(),
-            'user_id' => Employee::where('email', 'employee1@employee1.com')->first()->id,
+            'user_id' => Employee::where('email', 'employee1@employee1.com')->value('id'),
         ]);
 
         CollectionRound::create([
             'round_date' => now(),
-            'user_id' => Employee::where('email', 'employee2@employee2.com')->first()->id,
+            'user_id' => Employee::where('email', 'employee2@employee2.com')->value('id'),
         ]);
 
         CollectionRound::create([
             'round_date' => Carbon::yesterday(),
             'started_at' => Carbon::yesterday(),
-            'user_id' => Employee::where('email', 'employee3@employee3.com')->first()->id,
+            'user_id' => Employee::where('email', 'employee3@employee3.com')->value('id'),
         ]);
 
         CollectionRound::create([
             'round_date' => Carbon::yesterday()->subWeekday(),
             'started_at' => Carbon::yesterday()->subWeekday(),
             'is_completed' => true,
-            'user_id' => Employee::where('email', 'employee4@employee4.com')->first()->id,
+            'user_id' => Employee::where('email', 'employee4@employee4.com')->value('id'),
         ]);
     }
 }
