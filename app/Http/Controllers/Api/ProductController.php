@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    // TODO: Add auth middleware
+    // TODO: validation
+
     public function index()
     {
         return Product::all();
@@ -15,27 +18,18 @@ class ProductController extends Controller
 
     public function show($id)
     {
+        // TODO: check that the product's bundle belongs to the user
         return Product::find($id);
     }
 
     public function store(Request $request)
     {
+        // TODO: store https://world.openfoodfacts.org/api/v0/product/${value.barcode}.json to details attribute
         return Product::create($request->all());
     }
 
-    public function update(Request $request, $id)
-    {
-        $article = Product::findOrFail($id);
-        $article->update($request->all());
-
-        return $article;
-    }
-
-    public function delete(Request $request, $id)
-    {
-        $article = Product::findOrFail($id);
-        $article->delete();
-
-        return 204;
+    public function showFromStock() {
+        //TODO: rework status
+        // return Product::where->('status'...)
     }
 }
