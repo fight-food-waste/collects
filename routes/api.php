@@ -13,16 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::get('/', function () {
     return response()->json(["message" => "Welcome to FFW API"], 200);
 });
 
 Route::get('products', 'Api\ProductController@index');
-Route::get('products/{article}', 'Api\ProductController@show');
+Route::get('products/{id}', 'Api\ProductController@show');
 Route::post('products', 'Api\ProductController@store');
-Route::put('products/{article}', 'Api\ProductController@update');
-Route::delete('products/{article}', 'Api\ProductController@delete');
+Route::get('products/stock', 'Api\ProductController@showFromStock');
+
+Route::post('/bundle', 'Api\BundleController@open');
+Route::get('/bundle/{id}', 'Api\BundleController@show');
+Route::post('/bundle/close', 'Api\BundleController@close');
+
+// Route::get('/user', 'Api\UserController@show');
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
