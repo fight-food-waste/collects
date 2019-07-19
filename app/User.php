@@ -51,6 +51,7 @@ class User extends Authenticatable
         'password',
         'address_id',
         'type',
+        'api_token',
     ];
 
     /**
@@ -85,5 +86,13 @@ class User extends Authenticatable
     public function agency()
     {
         return $this->hasOne('App\Agency');
+    }
+
+    public function generateToken()
+    {
+        $this->api_token = str_random(60);
+        $this->save();
+
+        return $this->api_token;
     }
 }

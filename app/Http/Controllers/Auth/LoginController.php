@@ -56,4 +56,20 @@ class LoginController extends Controller
 
         return $this->loggedOut($request) ?: redirect('/');
     }
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        if ($this->attemptLogin($request)) {
+            $user = $this->guard()->user();
+            $user->generateToken();
+
+            return response()->json([
+                'data' => $user->toArray(),
+            ]);
+        }
+
+        return $this->sendFailedLoginResponse($request);
+    }
 }
