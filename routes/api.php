@@ -17,7 +17,7 @@ Route::get('/', function () {
     return response()->json(["message" => "Welcome to FFW API"], 200);
 });
 
-Route::post('login', 'Auth\LoginController@login');
+Route::post('/login', 'Api\LoginController@login');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('products', 'Api\ProductController@index');

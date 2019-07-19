@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
@@ -43,8 +44,8 @@ class LoginController extends Controller
      *
      * Override AuthenticatesUsers->logout for success message
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function logout(Request $request)
     {
@@ -55,21 +56,5 @@ class LoginController extends Controller
         $request->session()->flash('success', 'Logged out successfully.');
 
         return $this->loggedOut($request) ?: redirect('/');
-    }
-
-    public function login(Request $request)
-    {
-        $this->validateLogin($request);
-
-        if ($this->attemptLogin($request)) {
-            $user = $this->guard()->user();
-            $user->generateToken();
-
-            return response()->json([
-                'data' => $user->toArray(),
-            ]);
-        }
-
-        return $this->sendFailedLoginResponse($request);
     }
 }

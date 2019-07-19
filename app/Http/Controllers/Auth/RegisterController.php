@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Address;
+use App\Donor;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDonor;
 use App\Http\Requests\StoreNeedyPerson;
 use App\Http\Requests\StoreStorekeeper;
 use App\NeedyPerson;
-use App\Donor;
-use App\Address;
-use App\Http\Controllers\Controller;
 use App\Storekeeper;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\View\View;
 
 
@@ -100,7 +100,6 @@ class RegisterController extends Controller
         $address = $this->newAddress($request);
 
         $user_attributes += ['address_id' => $address->id];
-
         $user_attributes['password'] = Hash::make($user_attributes['password']);
 
         Donor::create($user_attributes);
