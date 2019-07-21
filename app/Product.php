@@ -20,6 +20,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
+
+    protected $fillable = [
+        'details',
+        'expiration_date',
+        'barcode',
+        'name',
+        'bundle_id',
+        'status',
+        'quantity'
+    ];
+
     public function bundle()
     {
         return $this->belongsTo(Bundle::class);
@@ -33,15 +44,5 @@ class Product extends Model
     public function deliveryRound()
     {
         return $this->belongsTo(DeliveryRound::class);
-    }
-
-    public function productStatus()
-    {
-        return $this->belongsTo(ProductStatus::class);
-    }
-
-    public static function productStatusName($id)
-    {
-        return ProductStatus::where('id', $id)->value('name');
     }
 }
