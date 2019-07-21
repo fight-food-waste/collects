@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // TODO: Add auth middleware
     // TODO: validation
 
     public function index()
@@ -16,10 +15,16 @@ class ProductController extends Controller
         return Product::all();
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
-        // TODO: check that the product's bundle belongs to the user
-        return Product::find($id);
+        $product = Product::find($request->route('id'));
+
+        if ($product->bundle()->value('user_id') != $request->user()->value('id')) {
+            return $product;
+        } else {
+            return response()->json([
+                'error' => 'You are not authorised to access this product'], 403);
+        }
     }
 
     public function store(Request $request)

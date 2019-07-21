@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Bundle;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class BundleController extends Controller
 {
-    // TODO: Add auth middleware
     // TODO: validation
 
     public function open(Request $request) {

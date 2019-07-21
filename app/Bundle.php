@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Bundle
  *
- * @property-read BundleStatus $bundleStatus
  * @property-read CollectionRound $collectionRound
  * @property-read Collection|Product[] $products
  * @method static Builder|Bundle newModelQuery()
@@ -20,10 +19,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Bundle extends Model
 {
-    public function bundleStatus()
-    {
-        return $this->belongsTo(BundleStatus::class);
-    }
 
     public function collectionRound()
     {
@@ -33,15 +28,5 @@ class Bundle extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
-    }
-
-    public static function bundleStatusName($id)
-    {
-        return BundleStatus::where('id', $id)->value('name');
-    }
-
-    public static function bundleUserName($id)
-    {
-        return User::where('id', $id)->value('first_name') . ' ' . User::where('id', $id)->value('last_name');
     }
 }
