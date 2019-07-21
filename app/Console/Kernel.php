@@ -19,13 +19,13 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param Schedule $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        # https://laravel.com/docs/5.8/telescope#data-pruning
+        $schedule->command('telescope:prune')->daily();
     }
 
     /**
