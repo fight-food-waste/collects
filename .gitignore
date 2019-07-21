@@ -4,6 +4,7 @@
 /public/vendor
 /storage/*.key
 /storage/debugbar
+/storage/clockwork
 /vendor
 .env
 .phpunit.result.cache
