@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,16 +11,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::get('/', function () {
     return response()->json(["message" => "Welcome to FFW API"], 200);
 });
 
-Route::get('products', 'Api\ProductController@index');
-Route::get('products/{article}', 'Api\ProductController@show');
-Route::post('products', 'Api\ProductController@store');
-Route::put('products/{article}', 'Api\ProductController@update');
-Route::delete('products/{article}', 'Api\ProductController@delete');
+Route::post('/login', 'Api\LoginController@login');
+
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('/user', 'Api\UserController@self');
+
+    Route::get('/products/{id}', 'Api\ProductController@show')->where('id', '[0-9]+');
+    Route::post('/products', 'Api\ProductController@store');
+    Route::get('/products/stock', 'Api\ProductController@showFromStock');
+
+    Route::post('/bundles', 'Api\BundleController@store');
+    Route::get('/bundles/{id}', 'Api\BundleController@show')->where('id', '[0-9]+');
+});

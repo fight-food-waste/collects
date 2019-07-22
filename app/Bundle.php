@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Bundle
  *
- * @property-read BundleStatus $bundleStatus
  * @property-read CollectionRound $collectionRound
  * @property-read Collection|Product[] $products
  * @method static Builder|Bundle newModelQuery()
@@ -20,10 +19,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Bundle extends Model
 {
-    public function bundleStatus()
-    {
-        return $this->belongsTo(BundleStatus::class);
-    }
+
+    protected $fillable = [
+        'user_id',
+    ];
 
     public function collectionRound()
     {
@@ -35,13 +34,13 @@ class Bundle extends Model
         return $this->hasMany(Product::class);
     }
 
-    public static function bundleStatusName($id)
+    public function isOpen()
     {
-        return BundleStatus::where('id', $id)->value('name');
+        return $this->status == 0;
     }
 
-    public static function bundleUserName($id)
+    public function isClosed()
     {
-        return User::where('id', $id)->value('first_name') . ' ' . User::where('id', $id)->value('last_name');
+        return $this->status != 0;
     }
 }

@@ -30,7 +30,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('delivery_round_id')->nullable();
             $table->foreign('delivery_round_id')->references('id')->on('delivery_rounds');
 
-            $table->integer('status');
+            $table->integer('status')->default(0);
             $table->integer('quantity')->default(1);
 
             $table->timestamps();
