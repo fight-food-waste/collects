@@ -6,18 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Validator;
 
 class ProductController extends Controller
 {
-    // TODO: validation
 
-    public function index()
-    {
-        return Product::all();
-    }
-
+    /**
+     * Show product information only if it was originally the user's
+     *
+     * @param Request $request
+     * @return Product|Product[]|Collection|Model|JsonResponse|null
+     */
     public function show(Request $request)
     {
         $product = Product::find($request->route('id'));
@@ -31,6 +34,12 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * Store product
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -54,7 +63,6 @@ class ProductController extends Controller
             $product_details = (string)$response->getBody();
 
             $data['details'] = $product_details;
-            $data['status'] = 1;
 
             $product = Product::create($data);
 
@@ -66,9 +74,11 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * Show all product that are available
+     */
     public function showFromStock()
     {
-        //TODO: rework status
-        // return Product::where->('status'...)
+        return Product::where('status', 1)->get();
     }
 }
