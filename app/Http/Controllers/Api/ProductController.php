@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Bundle;
 use App\Http\Controllers\Controller;
 use App\Product;
 use GuzzleHttp\Client;
@@ -25,7 +26,7 @@ class ProductController extends Controller
     {
         $product = Product::find($request->route('id'));
 
-        if ($product->bundle()->value('user_id') != $request->user()->value('id')) {
+        if ($product->bundle()->value('user_id') == $request->user()->value('id')) {
             return $product;
         } else {
             return response()->json([
@@ -35,7 +36,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Store product
+     * Store product and add to open bundle if valid
      *
      * @param Request $request
      * @return JsonResponse
@@ -56,6 +57,11 @@ class ProductController extends Controller
 
         $data = $validator->attributes();
 
+        $bundle = Bundle::find($data['bundle_id']);
+        if ($bundle->isClosed()) {
+            return response()->json(['error' => 'You can\'t add products to this bundle anymore'], 400);
+        }
+
         try {
             $client = new Client();
             $url = "https://world.openfoodfacts.org/api/v0/product/" . $data['barcode'] . "json";
@@ -66,7 +72,7 @@ class ProductController extends Controller
 
             $product = Product::create($data);
 
-            return response()->json(array('success' => true, 'id' => $product->id), 200);
+            return response()->json(['success' => true, 'id' => $product->id], 200);
         } catch (GuzzleException $e) {
             return response()->json([
                 'error' => 'Something went wrong when contacting the Open Food Facts API'

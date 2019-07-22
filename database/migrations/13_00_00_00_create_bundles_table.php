@@ -24,8 +24,7 @@ class CreateBundlesTable extends Migration
             $table->unsignedBigInteger('collection_round_id')->nullable();
             $table->foreign('collection_round_id')->references('id')->on('collection_rounds');
 
-            $table->string('status');
-            $table->string('lifecycle_status')->default('not_validated');
+            $table->integer('status')->default(0);
 
             $table->timestamps();
         });

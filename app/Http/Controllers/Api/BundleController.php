@@ -4,27 +4,46 @@ namespace App\Http\Controllers\Api;
 
 use App\Bundle;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class BundleController extends Controller
 {
-    // TODO: validation
+    /**
+     * Create bundle
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function store(Request $request)
+    {
+        $bundle = Bundle::create(['user_id' => $request->user()->value('id')]);
 
-    public function open(Request $request) {
-        return Bundle::create($request->all());
+        if ($bundle->exists) {
+            return response()->json(['success' => true, 'id' => $bundle->id], 200);
+        } else {
+            return response()->json(['error' => 'Something went wrong'], 500);
+        }
     }
 
-    public function show(int $id) {
-        // TODO: Verify the user owns this bundle
-        return Bundle::where('id', $id);
-    }
+    /**
+     * Return bundle if it belongs to the user
+     *
+     * @param Request $request
+     * @return Bundle|Bundle[]|Collection|Model|JsonResponse|null
+     */
+    public function show(Request $request)
+    {
+        $bundle = Bundle::find($request->route('id'));
 
-    public function close(Request $request) {
-        // TODO: Verify the user owns this bundles
-        $bundle = Bundle::where('id', $request->id);
-        $bundle->status = "closed";
-        $bundle->save();
-
-        // return ok
+        if ($request->user()->bundles->contains($bundle)) {
+            return $bundle;
+        } else {
+            return response()->json([
+                'error' => 'You are not authorised to access this bundle'
+            ], 403);
+        }
     }
 }

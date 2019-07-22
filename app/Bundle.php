@@ -20,6 +20,10 @@ use Illuminate\Database\Eloquent\Model;
 class Bundle extends Model
 {
 
+    protected $fillable = [
+        'user_id',
+    ];
+
     public function collectionRound()
     {
         return $this->belongsTo(CollectionRound::class);
@@ -28,5 +32,15 @@ class Bundle extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function isOpen()
+    {
+        return $this->status == 0;
+    }
+
+    public function isClosed()
+    {
+        return $this->status != 0;
     }
 }

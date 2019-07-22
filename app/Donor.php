@@ -23,4 +23,8 @@ class Donor extends User
 {
     use HasParent;
 
+    public function bundles()
+    {
+        return $this->hasMany('App\Bundle');
+    }
 }
