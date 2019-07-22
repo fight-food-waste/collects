@@ -7,6 +7,7 @@ use App\Product;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -32,17 +33,30 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $client = new Client();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:3',
+            'barcode' => 'required|integer',
+            'quantity' => 'required|integer|min:1',
+            'bundle_id' => 'required|integer|exists:bundles,id',
+            'expiration_date' => 'required|date|after:today',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->messages()->all()], 400);
+        }
+
+        $data = $validator->attributes();
+
         try {
-            $url = "https://world.openfoodfacts.org/api/v0/product/" . $request->input('barcode') . "json";
+            $client = new Client();
+            $url = "https://world.openfoodfacts.org/api/v0/product/" . $data['barcode'] . "json";
             $response = $client->request('GET', $url);
             $product_details = (string)$response->getBody();
 
-            $attr = $request->all();
-            $attr['details'] = $product_details;
-            $attr['status'] = 1;
+            $data['details'] = $product_details;
+            $data['status'] = 1;
 
-            $product = Product::create($attr);
+            $product = Product::create($data);
 
             return response()->json(array('success' => true, 'id' => $product->id), 200);
         } catch (GuzzleException $e) {
