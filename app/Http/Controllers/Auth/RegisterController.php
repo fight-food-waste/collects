@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Auth;
 
 use App\Address;
 use App\Donor;
+use App\Forms\DonorForm;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreDonor;
 use App\Http\Requests\StoreNeedyPerson;
 use App\Http\Requests\StoreStorekeeper;
 use App\NeedyPerson;
 use App\Storekeeper;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
-
+use Kris\LaravelFormBuilder\FormBuilder;
 
 class RegisterController extends Controller
 {
@@ -67,45 +67,82 @@ class RegisterController extends Controller
      */
     public function showRegistrationDispatcher()
     {
-        return view('auth.register.dispatch');
+        return view('register.dispatch');
     }
 
 
-    public function newAddress(Request $request)
+    public function newAddress($attributes)
     {
-        return Address::create(request([
-            "line_1",
-            "line_2",
-            "line_3",
-            "city",
-            "county_province",
-            "region",
-            "zip_postal_code",
-            "country",
-        ]));
+//        dd($attributes);
+        return Address::create($attributes);
     }
 
     /**
-     * Create a new Donor instance after a valid registration.
-     * And redirect to home page
+     * Show Donor registration form
      *
-     * @param StoreDonor $request
+     * @param FormBuilder $formBuilder
+     * @return View
+     */
+    public function createDonor(FormBuilder $formBuilder)
+    {
+        $form = $formBuilder->create(DonorForm::class, [
+            'method' => 'POST',
+            'url' => route('register.donor.store')
+        ]);
+
+        return view('register.form', compact('form'));
+    }
+
+    /**
+     * Store Donor if valid
+     *
+     * @param FormBuilder $formBuilder
      * @return RedirectResponse
      */
-    public function storeDonor(StoreDonor $request)
+    public function storeDonor(FormBuilder $formBuilder)
     {
+        $form = $formBuilder->create(DonorForm::class);
 
-        $user_attributes = $request->validated();
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
 
-        $address = $this->newAddress($request);
+        $user_attributes = $form->getFieldValues();
+
+        $address = $this->newAddress($user_attributes);
 
         $user_attributes += ['address_id' => $address->id];
         $user_attributes['password'] = Hash::make($user_attributes['password']);
+        $user_attributes['status'] = "active";
 
-        Donor::create($user_attributes);
+        $member = Donor::create($user_attributes);
 
-        return redirect($this->redirectPath())->with('success', 'User created successfully.');
+        Auth::login($member);
+
+        return redirect($this->redirectPath())->with('success', 'Registration successful!');
     }
+
+//    /**
+//     * Create a new Donor instance after a valid registration.
+//     * And redirect to home page
+//     *
+//     * @param StoreDonor $request
+//     * @return RedirectResponse
+//     */
+//    public function storeDonor(StoreDonor $request)
+//    {
+//
+//        $user_attributes = $request->validated();
+//
+//        $address = $this->newAddress($request);
+//
+//        $user_attributes += ['address_id' => $address->id];
+//        $user_attributes['password'] = Hash::make($user_attributes['password']);
+//
+//        Donor::create($user_attributes);
+//
+//        return redirect($this->redirectPath())->with('success', 'User created successfully.');
+//    }
 
     /**
      * Create a new Donor instance after a valid registration.

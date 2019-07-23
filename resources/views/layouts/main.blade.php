@@ -68,9 +68,9 @@
                                     </a>
                                 @endif
 
-                                <a class="dropdown-item" href="{{ route('services') }}">
-                                    {{ __('Services') }}
-                                </a>
+                                {{--                                <a class="dropdown-item" href="{{ route('services') }}">--}}
+                                {{--                                    {{ __('Services') }}--}}
+                                {{--                                </a>--}}
 
                                 @if($user->type == "admin")
                                     <a class="dropdown-item" href="{{ route('admin') }}">
