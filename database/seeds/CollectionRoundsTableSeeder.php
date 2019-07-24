@@ -33,7 +33,6 @@ class CollectionRoundsTableSeeder extends Seeder
         CollectionRound::create([
             'round_date' => Carbon::yesterday()->subWeekday(),
             'started_at' => Carbon::yesterday()->subWeekday(),
-            'is_completed' => true,
             'user_id' => Employee::where('email', 'employee4@employee4.com')->value('id'),
         ]);
     }

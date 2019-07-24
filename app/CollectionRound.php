@@ -26,15 +26,24 @@ class CollectionRound extends Model
         return $this->belongsTo(Employee::class);
     }
 
-    public static function employeeFullName($id)
-    {
-        $employee = Employee::where('id', $id)->first();
-
-        return $employee->first_name . ' ' . $employee->last_name;
-    }
-
     public function bundles()
     {
         return $this->hasMany(Bundle::class);
+    }
+
+    public function getStatusName()
+    {
+        switch ($this->status) {
+            case 0:
+                return "Not ready";
+            case 1:
+                return "Ready";
+            case 2:
+                return "In progress";
+            case 3:
+                return "Done";
+            default:
+                return "Unknown";
+        }
     }
 }

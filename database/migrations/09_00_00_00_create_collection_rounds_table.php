@@ -17,8 +17,7 @@ class CreateCollectionRoundsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamp('round_date');
             $table->timestamp('started_at')->nullable();
-            $table->boolean('is_completed')->default(false);
-            // employee_id
+            $table->integer('status')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

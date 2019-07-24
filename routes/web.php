@@ -33,12 +33,17 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('profile', 'ProfilesController@getProfile')->name('profile');
 
-Route::name('admin.')->group(function () {
-    Route::get('bundles', 'Admin\BundleController@index')->name('bundles.index');
-    Route::post('bundles/approve', 'Admin\BundleController@approve')->name('bundles.approve');
-    Route::post('bundles/reject', 'Admin\BundleController@reject')->name('bundles.reject');
-    Route::get('bundles/{id}', 'Admin\BundleController@show')->where('id', '[0-9]+')->name('bundles.show');
-    Route::post('bundles/product/reject', 'Admin\BundleController@rejectProduct')->name('bundles.product.reject');
+Route::prefix('admin')->group(function () {
+    Route::get('bundles', 'Admin\BundleController@index')->name('admin.bundles.index');
+    Route::post('bundles/approve', 'Admin\BundleController@approve')->name('admin.bundles.approve');
+    Route::post('bundles/reject', 'Admin\BundleController@reject')->name('admin.bundles.reject');
+    Route::get('bundles/{id}', 'Admin\BundleController@show')
+        ->where('id', '[0-9]+')->name('admin.bundles.show');
+    Route::post('bundles/product/reject', 'Admin\BundleController@rejectProduct')->name('admin.bundles.product.reject');
+
+    Route::get('collection-rounds', 'Admin\CollectionRoundController@index')->name('collection_rounds.index');
+    Route::get('collection-rounds/{id}', 'Admin\CollectionRoundController@show')
+        ->where('id', '[0-9]+')->name('collection_rounds.show');
 });
 
 //Route::resource('admin/collection-rounds', 'CollectionRoundsController');
