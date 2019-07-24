@@ -41,11 +41,16 @@ class CollectionRoundController extends Controller
 
     public function removeBundle(Request $request)
     {
+        $collectionRound = CollectionRound::find($request->input('collection_round_id'));
         $bundle = Bundle::find($request->input('bundle_id'));
 
-        $bundle->collection_round_id = null;
-        $bundle->save();
+        if ($collectionRound->status == 0) {
+            $bundle->collection_round_id = null;
+            $bundle->save();
 
-        return redirect()->back()->with('success', 'The bundle has been removed from this collection round.');
+            return redirect()->back()->with('success', 'The bundle has been removed from this collection round.');
+        } else {
+            return redirect()->back()->with('error', 'The collection round can\'t be modified anymore.');
+        }
     }
 }

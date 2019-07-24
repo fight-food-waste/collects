@@ -73,7 +73,7 @@
                                 <tbody>
                                 @foreach ($bundles->reverse() as $bundle)
                                     <tr>
-                                        <th scope="row"><a href="bundles/{{ $bundle->id }}">
+                                        <th scope="row"><a href="{{ route('admin.bundles.show', $bundle->id) }}">
                                                 <h4 class="h6 g-mb-2">#{{ $bundle->id }}</h4>
                                             </a></th>
                                         <td>{{ $bundle->getStatusName() }}</td>
@@ -84,14 +84,23 @@
                                         </td>
                                         <td>{{ $bundle->donor->address->getFormatted() }}</td>
                                         <td style="display: flex;">
-                                            <form action="{{ route('admin.collection_rounds.bundles.remove', $collectionRound->id) }}"
-                                                  method="POST">
-                                                @csrf
-                                                <input type="hidden" name="bundle_id" value="{{ $bundle->id  }}">
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="fas fa-times"></i>
+                                            @if($collectionRound->status == 0)
+                                                <form action="{{ route('admin.collection_rounds.bundles.remove', $collectionRound->id) }}"
+                                                      method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="collection_round_id"
+                                                           value="{{ $collectionRound->id }}">
+                                                    <input type="hidden" name="bundle_id" value="{{ $bundle->id }}">
+                                                    <button type="submit" class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            <a href="{{ route('admin.bundles.show', $bundle->id) }}">
+                                                <button class="btn btn-sm btn-secondary">
+                                                    <i class="fas fa-eye"></i>
                                                 </button>
-                                            </form>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
