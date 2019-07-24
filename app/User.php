@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Tightenco\Parental\HasChildren;
 
 
@@ -90,9 +91,14 @@ class User extends Authenticatable
 
     public function generateToken()
     {
-        $this->api_token = str_random(60);
+        $this->api_token = Str::random(60);
         $this->save();
 
         return $this->api_token;
+    }
+
+    public function getFullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }
