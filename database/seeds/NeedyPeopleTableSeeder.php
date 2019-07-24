@@ -13,14 +13,13 @@ class NeedyPeopleTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        $faker = Faker\Factory::create('fr_FR');
 
         NeedyPerson::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
             'email' => 'needy@needy.com',
             'password' => Hash::make('qwertyuiop'),
-            'address_id' => 1,
             'aid_application_id' => null,
         ]);
     }

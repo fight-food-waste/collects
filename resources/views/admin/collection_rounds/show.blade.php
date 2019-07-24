@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
 
                 @if (session('success'))
                     <div class="alert alert-success" role="alert">
@@ -16,11 +16,47 @@
                     </div>
                 @endif
 
+                <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+                <link type="text/css" rel="stylesheet"
+                      href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+
+                <script type="text/javascript">
+                    window.onload = function () {
+                        L.mapquest.key = 'yrCvLqrZ5IY2zsIcQqHF1ZlbkGsU7TJ5';
+
+                        var directions = L.mapquest.directions();
+                        directions.route({
+                            start: '242 Rue du Faubourg Saint-Antoine, 75012 Paris',
+                            end: '220 Rue du Faubourg Saint-Antoine, 75012 Paris',
+                            waypoints: [
+                                @foreach ($bundles->reverse() as $bundle)
+                                    '{{ $bundle->donor->address->getFormatted() }}',
+                                @endforeach
+                            ]
+                        }, directionsCallback);
+
+                        function directionsCallback(error, response) {
+                            var map = L.mapquest.map('map', {
+                                center: [0, 0],
+                                layers: L.mapquest.tileLayer('map'),
+                                zoom: 7
+                            });
+
+                            var directionsLayer = L.mapquest.directionsLayer({
+                                directionsResponse: response
+                            }).addTo(map);
+                        }
+                    }
+                </script>
+
+                <div id="map" style="width: 100%; height: 100%;"></div>
+
                 <div class="card card-more">
-                    <div class="card-header">Collection round #{{ $collectionRound->id  }}</div>
-
+                    <div class="card-header" style="font-weight: bold; font-size: large">Collection round
+                        #{{ $collectionRound->id  }}</div>
                     <div class="card-body">
-
+                        Bundle list
+                        <hr>
                         @if (sizeof($bundles) > 0)
                             <table class="table table-bordered">
                                 <thead>
@@ -30,6 +66,7 @@
                                     <th scope="col">Submission date</th>
                                     <th scope="col">Number of products</th>
                                     <th scope="col">Donor</th>
+                                    <th scope="col">Address</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -45,6 +82,7 @@
                                         <td>
                                             {{ $bundle->donor->getFullName() }}
                                         </td>
+                                        <td>{{ $bundle->donor->address->getFormatted() }}</td>
                                         <td style="display: flex;">
                                             <form action="{{ route('admin.collection_rounds.bundles.remove', $collectionRound->id) }}"
                                                   method="POST">

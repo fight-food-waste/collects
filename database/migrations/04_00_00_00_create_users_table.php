@@ -26,9 +26,6 @@ class CreateUsersTable extends Migration
                 ->nullable()
                 ->default(null);
 
-            $table->bigInteger('address_id')->unsigned();
-            $table->foreign('address_id')->references('id')->on('addresses');
-
             $table->bigInteger('agency_id')->unsigned()->nullable();
             $table->foreign('agency_id')->references('id')->on('agencies');
 
