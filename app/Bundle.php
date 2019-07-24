@@ -48,4 +48,22 @@ class Bundle extends Model
     {
         return $this->status != 0;
     }
+
+    public function getStatusName()
+    {
+        switch ($this->status) {
+            case -1:
+                return "Rejected";
+            case 0:
+                return "Waiting approval";
+            case 1:
+                return "Approved";
+            case 2:
+                return "Being collected";
+            case 3:
+                return "Collected";
+            default:
+                return "Unknown";
+        }
+    }
 }

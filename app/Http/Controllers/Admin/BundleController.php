@@ -16,6 +16,6 @@ class BundleController extends Controller
     {
         $bundles = Bundle::all();
 
-        return view('bundle.index', compact('bundles'));
+        return view('admin.bundles.index', compact('bundles'));
     }
 }
