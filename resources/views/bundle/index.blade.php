@@ -45,7 +45,7 @@
                                 </td>
                                 <td class="align-middle">
                                     <h4 class="h6 g-mb-2">
-                                        {{ App\Bundle::bundleUserName($bundle->user_id) }}
+                                        {{ $bundle->donor->getFullName() }}
                                     </h4>
                                 </td>
                                 <td class="align-middle">

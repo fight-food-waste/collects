@@ -62,7 +62,7 @@
                                     {{ __('Profile') }}
                                 </a>
 
-                                @if($user->type == "member")
+                                @if(Auth::user()->type == "member")
                                     <a class="dropdown-item" href="{{ route('membership') }}">
                                         {{ __('Membership') }}
                                     </a>
@@ -72,7 +72,7 @@
                                 {{--                                    {{ __('Services') }}--}}
                                 {{--                                </a>--}}
 
-                                @if($user->type == "admin")
+                                @if(Auth::user()->type == "admin")
                                     <a class="dropdown-item" href="{{ route('admin') }}">
                                         {{ __('Admin') }}
                                     </a>

@@ -29,6 +29,11 @@ class Bundle extends Model
         return $this->belongsTo(CollectionRound::class);
     }
 
+    public function donor()
+    {
+        return $this->belongsTo(Donor::class, 'user_id');
+    }
+
     public function products()
     {
         return $this->hasMany(Product::class);

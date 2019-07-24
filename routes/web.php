@@ -30,6 +30,8 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::get('profile', 'ProfilesController@getProfile')->name('profile');
+
 Route::resource('admin/collection-rounds', 'CollectionRoundsController');
 Route::post('admin/collection-rounds/start', 'CollectionRoundsController@startRound')->name('collection_rounds.start_round');
 Route::post('admin/collection-rounds/close', 'CollectionRoundsController@closeRound')->name('collection_rounds.close_round');
@@ -42,8 +44,6 @@ Route::get('admin/collection-rounds/{id}/journey', 'CollectionRoundAddressesCont
 Route::get('delivery-rounds/new', 'DeliveryRoundsController@store');
 Route::get('delivery-rounds/{id}', 'DeliveryRoundsController@show')->where('id', '[0-9]+');
 
-Route::get('profile', 'ProfilesController@getProfile')->name('profile');
-
-Route::get('admin/bundles', 'BundlesController@index')->name('bundles.index');
+Route::get('admin/bundles', 'Admin\BundleController@index')->name('admin.bundles.index');
 Route::get('admin/bundles/{id}/products/', 'BundleProductsController@productsList')->where('id', '[0-9]+')->name('bundles.products');
 Route::post('admin/bundles/{id}/validate', 'BundlesController@validateBundle')->name('bundles.validate')->where('id', '[0-9]+');

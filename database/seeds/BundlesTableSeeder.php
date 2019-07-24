@@ -50,7 +50,7 @@ class BundlesTableSeeder extends Seeder
             'submitted_at' => Carbon::yesterday()->subWeekday(),
             'validated_at' => Carbon::yesterday()->subWeekday(),
             'status' => 0,
-            'user_id' => 1,
+            'user_id' => 8,
             'collection_round_id' => 2,
         ]);
     }
