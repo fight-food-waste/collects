@@ -4,6 +4,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
+
+                @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                 <div class="card card-more">
                     <div class="card-header">{{ __('Bundles') }}</div>
 
@@ -34,23 +41,26 @@
                                             {{ $bundle->donor->getFullName() }}
                                         </td>
                                         <td style="display: flex;">
-                                            <form action="{{ route('admin.bundles.validate', $bundle->id) }}"
-                                                  method="POST">
-                                                @csrf
-                                                <input type="hidden" name="bundle_id" value="{{ $bundle->id  }}">
-                                                <button type="button" class="btn btn-sm btn-success">
-                                                    <i class="fas fa-check"></i>
-                                                </button>
-                                            </form>
-                                            <form action="{{ route('admin.bundles.reject', $bundle->id) }}"
-                                                  method="POST">
-                                                @csrf
-                                                <input type="hidden" name="bundle_id" value="{{ $bundle->id  }}">
-                                                <button type="button" class="btn btn-sm btn-danger">
-                                                    <i class="fas fa-times"></i>
-                                                </button>
-                                            </form>
-
+                                            @if($bundle->status <= 0)
+                                                <form action="{{ route('admin.bundles.approve', $bundle->id) }}"
+                                                      method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="bundle_id" value="{{ $bundle->id  }}">
+                                                    <button type="submit" class="btn btn-sm btn-success">
+                                                        <i class="fas fa-check"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            @if($bundle->status >= 0)
+                                                <form action="{{ route('admin.bundles.reject', $bundle->id) }}"
+                                                      method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="bundle_id" value="{{ $bundle->id  }}">
+                                                    <button type="submit" class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
