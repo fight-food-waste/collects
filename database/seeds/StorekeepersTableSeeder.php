@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Storekeeper;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,13 +15,12 @@ class StorekeepersTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        User::create([
+        Storekeeper::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
             'email' => 'store@store.com',
             'password' => Hash::make('qwertyuiop'),
             'address_id' => 1,
-            'type' => 'storekeeper',
         ]);
     }
 }
