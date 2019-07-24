@@ -35,7 +35,7 @@ class User extends Authenticatable
     protected $childTypes = [
         'donor' => Donor::class,
         'storekeeper' => Storekeeper::class,
-        'needy_person' => NeedyPerson::class,
+        'needyperson' => NeedyPerson::class,
         'employee' => Employee::class,
     ];
 
