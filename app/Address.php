@@ -24,14 +24,9 @@ class Address extends Model
      * @var array
      */
     protected $fillable = [
-        'line_1',
-        'line_2',
-        'line_3',
-        'city',
-        'county_province',
-        'region',
+        'street',
         'zip_postal_code',
-        'country',
+        'city',
     ];
 
     /**

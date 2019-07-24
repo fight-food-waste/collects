@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Auth;
 
 use App\Address;
 use App\Donor;
+use App\Forms\DonorForm;
+use App\Forms\NeedyPersonForm;
+use App\Forms\StoreKeeperForm;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreDonor;
-use App\Http\Requests\StoreNeedyPerson;
-use App\Http\Requests\StoreStorekeeper;
 use App\NeedyPerson;
 use App\Storekeeper;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
-
+use Kris\LaravelFormBuilder\FormBuilder;
 
 class RegisterController extends Controller
 {
@@ -67,89 +67,140 @@ class RegisterController extends Controller
      */
     public function showRegistrationDispatcher()
     {
-        return view('auth.register.dispatch');
+        return view('register.dispatch');
     }
 
-
-    public function newAddress(Request $request)
+    /**
+     * Show Donor registration form
+     *
+     * @param FormBuilder $formBuilder
+     * @return View
+     */
+    public function createDonor(FormBuilder $formBuilder)
     {
-        return Address::create(request([
-            "line_1",
-            "line_2",
-            "line_3",
-            "city",
-            "county_province",
-            "region",
-            "zip_postal_code",
-            "country",
-        ]));
+        $form = $formBuilder->create(DonorForm::class, [
+            'method' => 'POST',
+            'url' => route('register.donor.store')
+        ]);
+
+        return view('register.form', compact('form'));
+    }
+
+    /**
+     * Show NeedyPerson registration form
+     *
+     * @param FormBuilder $formBuilder
+     * @return View
+     */
+    public function createNeedyPerson(FormBuilder $formBuilder)
+    {
+        $form = $formBuilder->create(DonorForm::class, [
+            'method' => 'POST',
+            'url' => route('register.needyperson.store')
+        ]);
+
+        return view('register.form', compact('form'));
+    }
+
+    /**
+     * Show StoreKeeper registration form
+     *
+     * @param FormBuilder $formBuilder
+     * @return View
+     */
+    public function createStoreKeeper(FormBuilder $formBuilder)
+    {
+        $form = $formBuilder->create(DonorForm::class, [
+            'method' => 'POST',
+            'url' => route('register.storekeeper.store')
+        ]);
+
+        return view('register.form', compact('form'));
+    }
+
+    /**
+     * Store Donor if valid
+     *
+     * @param FormBuilder $formBuilder
+     * @return RedirectResponse
+     */
+    public function storeDonor(FormBuilder $formBuilder)
+    {
+        $form = $formBuilder->create(DonorForm::class);
+
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+
+        $user_attributes = $form->getFieldValues();
+
+        $address = Address::create($user_attributes);
+
+        $user_attributes += ['address_id' => $address->id];
+        $user_attributes['password'] = Hash::make($user_attributes['password']);
+
+        $member = Donor::create($user_attributes);
+
+        Auth::login($member);
+
+        return redirect($this->redirectPath())->with('success', 'Registration successful!');
     }
 
     /**
      * Create a new Donor instance after a valid registration.
      * And redirect to home page
      *
-     * @param StoreDonor $request
+     * @param FormBuilder $formBuilder
      * @return RedirectResponse
      */
-    public function storeDonor(StoreDonor $request)
+    public function storeNeedyPerson(FormBuilder $formBuilder)
     {
+        $form = $formBuilder->create(NeedyPersonForm::class);
 
-        $user_attributes = $request->validated();
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
 
-        $address = $this->newAddress($request);
+        $user_attributes = $form->getFieldValues();
+
+        $address = Address::create($user_attributes);
 
         $user_attributes += ['address_id' => $address->id];
         $user_attributes['password'] = Hash::make($user_attributes['password']);
 
-        Donor::create($user_attributes);
+        $member = NeedyPerson::create($user_attributes);
 
-        return redirect($this->redirectPath())->with('success', 'User created successfully.');
+        Auth::login($member);
+
+        return redirect($this->redirectPath())->with('success', 'Registration successful!');
     }
 
     /**
      * Create a new Donor instance after a valid registration.
      * And redirect to home page
      *
-     * @param StoreNeedyPerson $request
+     * @param FormBuilder $formBuilder
      * @return RedirectResponse
      */
-    public function storeNeedyPerson(StoreNeedyPerson $request)
+    public function storeStorekeeper(FormBuilder $formBuilder)
     {
+        $form = $formBuilder->create(StoreKeeperForm::class);
 
-        $user_attributes = $request->validated();
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
 
-        $address = $this->newAddress($request);
+        $user_attributes = $form->getFieldValues();
+
+        $address = Address::create($user_attributes);
 
         $user_attributes += ['address_id' => $address->id];
-
         $user_attributes['password'] = Hash::make($user_attributes['password']);
 
-        NeedyPerson::create($user_attributes);
+        $member = Storekeeper::create($user_attributes);
 
-        return redirect($this->redirectPath())->with('success', 'User created successfully.');
-    }
+        Auth::login($member);
 
-    /**
-     * Create a new Donor instance after a valid registration.
-     * And redirect to home page
-     *
-     * @param StoreStorekeeper $request
-     * @return RedirectResponse
-     */
-    public function storeStorekeeper(StoreStorekeeper $request)
-    {
-
-        $user_attributes = $request->validated();
-
-        $address = $this->newAddress($request);
-
-        $user_attributes += ['address_id' => $address->id];
-
-        $user_attributes['password'] = Hash::make($user_attributes['password']);
-
-        Storekeeper::create($user_attributes);
-
-        return redirect($this->redirectPath())->with('success', 'User created successfully.');
+        return redirect($this->redirectPath())->with('success', 'Registration successful!');
     }
 }
