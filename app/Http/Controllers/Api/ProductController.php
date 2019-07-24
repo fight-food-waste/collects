@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Bundle;
 use App\Http\Controllers\Controller;
 use App\Product;
+use Carbon\Carbon;
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Collection;
@@ -56,6 +58,11 @@ class ProductController extends Controller
         }
 
         $data = $validator->attributes();
+        try {
+            $data['expiration_date'] = new Carbon($data['expiration_date']);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Invalid expiration date format'], 400);
+        }
 
         $bundle = Bundle::find($data['bundle_id']);
         if ($bundle->isClosed()) {
