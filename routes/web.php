@@ -41,9 +41,12 @@ Route::prefix('admin')->group(function () {
         ->where('id', '[0-9]+')->name('admin.bundles.show');
     Route::post('bundles/product/reject', 'Admin\BundleController@rejectProduct')->name('admin.bundles.product.reject');
 
-    Route::get('collection-rounds', 'Admin\CollectionRoundController@index')->name('collection_rounds.index');
+    Route::get('collection-rounds', 'Admin\CollectionRoundController@index')->name('admin.collection_rounds.index');
+    Route::post('collection-rounds', 'Admin\CollectionRoundController@store')->name('admin.collection_rounds.store');
     Route::get('collection-rounds/{id}', 'Admin\CollectionRoundController@show')
-        ->where('id', '[0-9]+')->name('collection_rounds.show');
+        ->where('id', '[0-9]+')->name('admin.collection_rounds.show');
+    Route::post('collection-rounds/{id}/bundles/remove', 'Admin\CollectionRoundController@removeBundle')
+        ->where('id', '[0-9]+')->name('admin.collection_rounds.bundles.remove');
 });
 
 //Route::resource('admin/collection-rounds', 'CollectionRoundsController');

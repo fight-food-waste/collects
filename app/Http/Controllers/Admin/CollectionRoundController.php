@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Bundle;
 use App\CollectionRound;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -26,8 +27,25 @@ class CollectionRoundController extends Controller
         $bundles = $collectionRound->bundles;
 
         return view('admin.collection_rounds.show', [
-            'bundle' => $collectionRound,
-            '$bundles' => $bundles,
+            'collectionRound' => $collectionRound,
+            'bundles' => $bundles,
         ]);
+    }
+
+    public function store()
+    {
+        CollectionRound::create();
+
+        return redirect()->back()->with('success', 'A new collection round has been created');
+    }
+
+    public function removeBundle(Request $request)
+    {
+        $bundle = Bundle::find($request->input('bundle_id'));
+
+        $bundle->collection_round_id = null;
+        $bundle->save();
+
+        return redirect()->back()->with('success', 'The bundle has been removed from this collection round.');
     }
 }

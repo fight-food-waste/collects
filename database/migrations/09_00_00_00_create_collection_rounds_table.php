@@ -18,7 +18,7 @@ class CreateCollectionRoundsTable extends Migration
             $table->timestamp('round_date');
             $table->timestamp('started_at')->nullable();
             $table->integer('status')->default(0);
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

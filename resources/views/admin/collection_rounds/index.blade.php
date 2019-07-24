@@ -12,7 +12,14 @@
                 @endif
 
                 <div class="card card-more">
-                    <div class="card-header">{{ __('Collection Rounds') }}</div>
+                    <div class="card-header">{{ __('Collection Rounds') }}
+                        <form action="{{ route('admin.collection_rounds.store') }}" method="POST" class="fa-pull-right">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-secondary">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </form>
+                    </div>
 
                     <div class="card-body">
 
@@ -39,8 +46,8 @@
                                         <td>{{  date('d/m/Y', strtotime($collectionRound->created_at)) }}</td>
                                         <td>{{ count($collectionRound->bundles)  }}</td>
                                         <td>
-                                            <a href="collection-rounds/{{ $collectionRound->id }}">
-                                                <button class="btn btn-secondary">
+                                            <a href="{{ route('admin.collection_rounds.show', $collectionRound->id) }}">
+                                                <button class="btn btn-secondary edit-btn-table">
                                                     <i class="far fa-edit"></i>
                                                 </button>
                                             </a>
@@ -50,7 +57,7 @@
                                 </tbody>
                             </table>
                         @else
-                            There is no bundle in the database.
+                            There is no collection round in the database.
                         @endif
                     </div>
                 </div>
