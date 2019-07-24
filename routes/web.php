@@ -47,4 +47,5 @@ Route::get('delivery-rounds/{id}', 'DeliveryRoundsController@show')->where('id',
 Route::get('admin/bundles', 'Admin\BundleController@index')->name('admin.bundles.index');
 Route::post('admin/bundles/approve', 'Admin\BundleController@approve')->name('admin.bundles.approve');
 Route::post('admin/bundles/reject', 'Admin\BundleController@reject')->name('admin.bundles.reject');
-Route::get('admin/bundles/{id}/products/', 'BundleProductsController@productsList')->where('id', '[0-9]+')->name('bundles.products');
+Route::get('admin/bundles/{id}', 'Admin\BundleController@show')->where('id', '[0-9]+')->name('admin.bundles.show');
+Route::post('admin/bundles/product/reject', 'Admin\BundleController@rejectProduct')->name('admin.bundles.product.reject');

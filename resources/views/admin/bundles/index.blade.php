@@ -31,7 +31,7 @@
                                 <tbody>
                                 @foreach ($bundles->reverse() as $bundle)
                                     <tr>
-                                        <th scope="row"><a href="bundles/{{ $bundle->id }}/products">
+                                        <th scope="row"><a href="bundles/{{ $bundle->id }}">
                                                 <h4 class="h6 g-mb-2">#{{ $bundle->id }}</h4>
                                             </a></th>
                                         <td>{{ $bundle->getStatusName() }}</td>
@@ -42,7 +42,7 @@
                                         </td>
                                         <td style="display: flex;">
                                             @if($bundle->status <= 0)
-                                                <form action="{{ route('admin.bundles.approve', $bundle->id) }}"
+                                                <form action="{{ route('admin.bundles.approve') }}"
                                                       method="POST">
                                                     @csrf
                                                     <input type="hidden" name="bundle_id" value="{{ $bundle->id  }}">
@@ -52,7 +52,7 @@
                                                 </form>
                                             @endif
                                             @if($bundle->status >= 0)
-                                                <form action="{{ route('admin.bundles.reject', $bundle->id) }}"
+                                                <form action="{{ route('admin.bundles.reject') }}"
                                                       method="POST">
                                                     @csrf
                                                     <input type="hidden" name="bundle_id" value="{{ $bundle->id  }}">
