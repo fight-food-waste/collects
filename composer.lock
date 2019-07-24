@@ -4,72 +4,72 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-  "content-hash": "126a1280fe33cc4de57344d64985d458",
+    "content-hash": "c9a849ab6c381ae80ccf8af2a0f14111",
     "packages": [
         {
-          "name": "axlon/laravel-postal-code-validation",
-          "version": "v2.0.0",
-          "source": {
-            "type": "git",
-            "url": "https://github.com/axlon/laravel-postal-code-validation.git",
-            "reference": "9abe87cb6a0c7349226b1ff4d7489096349b613e"
-          },
-          "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/axlon/laravel-postal-code-validation/zipball/9abe87cb6a0c7349226b1ff4d7489096349b613e",
-            "reference": "9abe87cb6a0c7349226b1ff4d7489096349b613e",
-            "shasum": ""
-          },
-          "require": {
-            "illuminate/contracts": ">=5.1,<5.9",
-            "illuminate/http": ">=5.1,<5.9",
-            "illuminate/support": ">=5.1,<5.9",
-            "illuminate/validation": ">=5.1,<5.9",
-            "php": "^7.1"
-          },
-          "require-dev": {
-            "guzzlehttp/guzzle": "^6.3",
-            "illuminate/filesystem": ">=5.1,<5.9",
-            "illuminate/translation": ">=5.1,<5.9",
-            "ocramius/package-versions": "^1.4",
-            "phpunit/phpunit": "^5.2 || ^6.0 || ^7.0",
-            "psr/http-message": "^1.0"
-          },
-          "type": "library",
-          "extra": {
-            "laravel": {
-              "providers": [
-                "\\Axlon\\PostalCodeValidation\\ValidationServiceProvider"
-              ]
-            }
-          },
-          "autoload": {
-            "psr-4": {
-              "Axlon\\PostalCodeValidation\\": "src/"
-            }
-          },
-          "notification-url": "https://packagist.org/downloads/",
-          "license": [
-            "MIT"
-          ],
-          "authors": [
-            {
-              "name": "Choraimy Kroonstuiver",
-              "email": "choraimy@live.nl"
-            }
-          ],
-          "description": "Worldwide postal code validation for Laravel",
-          "keywords": [
-            "laravel",
-            "lumen",
-            "post code",
-            "postal code",
-            "validation",
-            "zip code"
-          ],
-          "time": "2019-07-06T15:17:04+00:00"
+            "name": "axlon/laravel-postal-code-validation",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/axlon/laravel-postal-code-validation.git",
+                "reference": "9abe87cb6a0c7349226b1ff4d7489096349b613e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/axlon/laravel-postal-code-validation/zipball/9abe87cb6a0c7349226b1ff4d7489096349b613e",
+                "reference": "9abe87cb6a0c7349226b1ff4d7489096349b613e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": ">=5.1,<5.9",
+                "illuminate/http": ">=5.1,<5.9",
+                "illuminate/support": ">=5.1,<5.9",
+                "illuminate/validation": ">=5.1,<5.9",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.3",
+                "illuminate/filesystem": ">=5.1,<5.9",
+                "illuminate/translation": ">=5.1,<5.9",
+                "ocramius/package-versions": "^1.4",
+                "phpunit/phpunit": "^5.2 || ^6.0 || ^7.0",
+                "psr/http-message": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "\\Axlon\\PostalCodeValidation\\ValidationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Axlon\\PostalCodeValidation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Choraimy Kroonstuiver",
+                    "email": "choraimy@live.nl"
+                }
+            ],
+            "description": "Worldwide postal code validation for Laravel",
+            "keywords": [
+                "laravel",
+                "lumen",
+                "post code",
+                "postal code",
+                "validation",
+                "zip code"
+            ],
+            "time": "2019-07-06T15:17:04+00:00"
         },
-      {
+        {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
             "source": {
@@ -629,64 +629,6 @@
             "time": "2019-07-01T23:21:34+00:00"
         },
         {
-            "name": "itsgoingd/clockwork",
-            "version": "v4.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "f6c5af53ca6a70a357ed79d9a7413053a0dace8b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/f6c5af53ca6a70a357ed79d9a7413053a0dace8b",
-                "reference": "f6c5af53ca6a70a357ed79d9a7413053a0dace8b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5",
-                "psr/log": "1.*"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Clockwork\\Support\\Laravel\\ClockworkServiceProvider"
-                    ],
-                    "aliases": {
-                        "Clockwork": "Clockwork\\Support\\Laravel\\Facade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Clockwork\\": "Clockwork/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "itsgoingd",
-                    "email": "itsgoingd@luzer.sk",
-                    "homepage": "https://twitter.com/itsgoingd"
-                }
-            ],
-            "description": "php dev tools integrated to your browser",
-            "homepage": "https://underground.works/clockwork",
-            "keywords": [
-                "Devtools",
-                "debugging",
-                "laravel",
-                "logging",
-                "lumen",
-                "profiling",
-                "slim"
-            ],
-            "time": "2019-07-18T22:03:23+00:00"
-        },
-        {
             "name": "jakub-onderka/php-console-color",
             "version": "v0.2",
             "source": {
@@ -775,73 +717,73 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
-          "name": "kris/laravel-form-builder",
-          "version": "1.20.0",
-          "source": {
-            "type": "git",
-            "url": "https://github.com/kristijanhusak/laravel-form-builder.git",
-            "reference": "4080568ed181b0ae7fa8b0846741ca787fce5b8d"
-          },
-          "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/kristijanhusak/laravel-form-builder/zipball/4080568ed181b0ae7fa8b0846741ca787fce5b8d",
-            "reference": "4080568ed181b0ae7fa8b0846741ca787fce5b8d",
-            "shasum": ""
-          },
-          "require": {
-            "illuminate/database": "5.*@dev",
-            "illuminate/validation": "5.*@dev",
-            "laravelcollective/html": "5.*",
-            "php": ">=5.6.0"
-          },
-          "require-dev": {
-            "orchestra/testbench": "~3.4",
-            "phpunit/phpunit": "~5.0"
-          },
-          "type": "library",
-          "extra": {
-            "branch-alias": {
-              "dev-master": "1.16.x-dev"
+            "name": "kris/laravel-form-builder",
+            "version": "1.20.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kristijanhusak/laravel-form-builder.git",
+                "reference": "4080568ed181b0ae7fa8b0846741ca787fce5b8d"
             },
-            "laravel": {
-              "providers": [
-                "Kris\\LaravelFormBuilder\\FormBuilderServiceProvider"
-              ],
-              "aliases": {
-                "FormBuilder": "Kris\\LaravelFormBuilder\\Facades\\FormBuilder"
-              }
-            }
-          },
-          "autoload": {
-            "psr-0": {
-              "Kris\\LaravelFormBuilder": "src/"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kristijanhusak/laravel-form-builder/zipball/4080568ed181b0ae7fa8b0846741ca787fce5b8d",
+                "reference": "4080568ed181b0ae7fa8b0846741ca787fce5b8d",
+                "shasum": ""
             },
-            "classmap": [
-              "tests/FormBuilderTestCase.php"
+            "require": {
+                "illuminate/database": "5.*@dev",
+                "illuminate/validation": "5.*@dev",
+                "laravelcollective/html": "5.*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.4",
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.16.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Kris\\LaravelFormBuilder\\FormBuilderServiceProvider"
+                    ],
+                    "aliases": {
+                        "FormBuilder": "Kris\\LaravelFormBuilder\\Facades\\FormBuilder"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Kris\\LaravelFormBuilder": "src/"
+                },
+                "classmap": [
+                    "tests/FormBuilderTestCase.php"
+                ],
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
             ],
-            "files": [
-              "src/helpers.php"
-            ]
-          },
-          "notification-url": "https://packagist.org/downloads/",
-          "license": [
-            "MIT"
-          ],
-          "authors": [
-            {
-              "name": "Kristijan Husak",
-              "email": "husakkristijan@gmail.com"
-            }
-          ],
-          "description": "Laravel form builder - symfony like",
-          "keywords": [
-            "builder",
-            "form",
-            "laravel"
-          ],
-          "time": "2019-02-27T20:23:16+00:00"
+            "authors": [
+                {
+                    "name": "Kristijan Husak",
+                    "email": "husakkristijan@gmail.com"
+                }
+            ],
+            "description": "Laravel form builder - symfony like",
+            "keywords": [
+                "builder",
+                "form",
+                "laravel"
+            ],
+            "time": "2019-02-27T20:23:16+00:00"
         },
-      {
+        {
             "name": "laravel/framework",
             "version": "v5.8.29",
             "source": {
@@ -1114,74 +1056,74 @@
             "time": "2018-10-12T19:39:35+00:00"
         },
         {
-          "name": "laravelcollective/html",
-          "version": "v5.8.0",
-          "source": {
-            "type": "git",
-            "url": "https://github.com/LaravelCollective/html.git",
-            "reference": "0e360143d3476fe4141d267a260c140569fa207b"
-          },
-          "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/LaravelCollective/html/zipball/0e360143d3476fe4141d267a260c140569fa207b",
-            "reference": "0e360143d3476fe4141d267a260c140569fa207b",
-            "shasum": ""
-          },
-          "require": {
-            "illuminate/http": "5.8.*",
-            "illuminate/routing": "5.8.*",
-            "illuminate/session": "5.8.*",
-            "illuminate/support": "5.8.*",
-            "illuminate/view": "5.8.*",
-            "php": ">=7.1.3"
-          },
-          "require-dev": {
-            "illuminate/database": "5.8.*",
-            "mockery/mockery": "~1.0",
-            "phpunit/phpunit": "~7.1"
-          },
-          "type": "library",
-          "extra": {
-            "branch-alias": {
-              "dev-master": "5.8-dev"
+            "name": "laravelcollective/html",
+            "version": "v5.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "0e360143d3476fe4141d267a260c140569fa207b"
             },
-            "laravel": {
-              "providers": [
-                "Collective\\Html\\HtmlServiceProvider"
-              ],
-              "aliases": {
-                "Form": "Collective\\Html\\FormFacade",
-                "Html": "Collective\\Html\\HtmlFacade"
-              }
-            }
-          },
-          "autoload": {
-            "psr-4": {
-              "Collective\\Html\\": "src/"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/0e360143d3476fe4141d267a260c140569fa207b",
+                "reference": "0e360143d3476fe4141d267a260c140569fa207b",
+                "shasum": ""
             },
-            "files": [
-              "src/helpers.php"
-            ]
-          },
-          "notification-url": "https://packagist.org/downloads/",
-          "license": [
-            "MIT"
-          ],
-          "authors": [
-            {
-              "name": "Taylor Otwell",
-              "email": "taylorotwell@gmail.com"
+            "require": {
+                "illuminate/http": "5.8.*",
+                "illuminate/routing": "5.8.*",
+                "illuminate/session": "5.8.*",
+                "illuminate/support": "5.8.*",
+                "illuminate/view": "5.8.*",
+                "php": ">=7.1.3"
             },
-            {
-              "name": "Adam Engebretson",
-              "email": "adam@laravelcollective.com"
-            }
-          ],
-          "description": "HTML and Form Builders for the Laravel Framework",
-          "homepage": "https://laravelcollective.com",
-          "time": "2019-03-01T22:53:41+00:00"
+            "require-dev": {
+                "illuminate/database": "5.8.*",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.8-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Collective\\Html\\HtmlServiceProvider"
+                    ],
+                    "aliases": {
+                        "Form": "Collective\\Html\\FormFacade",
+                        "Html": "Collective\\Html\\HtmlFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "https://laravelcollective.com",
+            "time": "2019-03-01T22:53:41+00:00"
         },
-      {
+        {
             "name": "league/flysystem",
             "version": "1.0.53",
             "source": {
