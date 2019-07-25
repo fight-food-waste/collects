@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Bundle;
 use App\CollectionRound;
+use App\Forms\CollectionRoundForm;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
+use Kris\LaravelFormBuilder\FormBuilder;
 
 class CollectionRoundController extends Controller
 {
@@ -15,11 +17,16 @@ class CollectionRoundController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(FormBuilder $formBuilder)
     {
         $collectionRounds = CollectionRound::all();
 
-        return view('admin.collection_rounds.index', compact('collectionRounds'));
+        $form = $formBuilder->create(CollectionRoundForm::class, [
+            'method' => 'POST',
+            'url' => route('admin.collection_rounds.store')
+        ]);
+
+        return view('admin.collection_rounds.index', compact('collectionRounds', 'form'));
     }
 
     public function show(Request $request)
@@ -33,9 +40,19 @@ class CollectionRoundController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(FormBuilder $formBuilder)
     {
-        CollectionRound::create();
+        $form = $formBuilder->create(CollectionRoundForm::class);
+
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+
+        $attr = $form->getFieldValues();
+
+        CollectionRound::create([
+            'warehouse_id' => $attr['warehouse'],
+        ]);
 
         return redirect()->back()->with('success', 'A new collection round has been created');
     }

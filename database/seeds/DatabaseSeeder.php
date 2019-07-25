@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
              EmployeesTableSeeder::class,
              DonorsTableSeeder::class,
              AddressesTableSeeder::class,
+             WarehousesTableSeeder::class,
+             ShelvesTableSeeder::class,
              CollectionRoundsTableSeeder::class,
              BundlesTableSeeder::class,
              ProductsTableSeeder::class,
-             WarehousesTableSeeder::class,
-             ShelvesTableSeeder::class,
          ]);
     }
 }

@@ -17,10 +17,8 @@ class AddressesTableSeeder extends Seeder
         for ($i = 1; $i <= 10; $i++) {
             Address::create([
                 'street' => $faker->streetAddress,
-                'city' => 'Paris',
-//                'city' => $faker->city,
-                'zip_postal_code' => '75000',
-//                'zip_postal_code' => $faker->postcode,
+                'city' => $faker->city,
+                'zip_postal_code' => $faker->postcode,
                 'user_id' => $i
             ]);
         }

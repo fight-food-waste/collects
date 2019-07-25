@@ -20,13 +20,18 @@ use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
  */
 class CollectionRound extends Model
 {
-    protected $fillable = ['round_date', 'user_id'];
+    protected $fillable = ['round_date', 'user_id', 'warehouse_id'];
 
     private $max_weight = 100000; // 100 kg
 
     public function employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class);
     }
 
     public function bundles()

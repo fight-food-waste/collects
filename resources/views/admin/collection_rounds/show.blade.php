@@ -98,7 +98,8 @@
                             </div>
 
                             <p>This collection round contains {{ count($collectionRound->bundles)  }} bundles for a
-                                total of {{ $collectionRound->weightAsMass()->toUnit('kg') }} kg.</p>
+                                total of {{ $collectionRound->weightAsMass()->toUnit('kg') }} kg. It is attached to
+                                the {{ $collectionRound->warehouse->name }} warehouse.</p>
 
                             <div style="display: inline">
                                 Bundles
