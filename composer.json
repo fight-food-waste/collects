@@ -17,7 +17,8 @@
         "laravel/telescope": "^2.0",
         "laravel/tinker": "^1.0",
         "thedevsaddam/laravel-schema": "^2.0",
-        "tightenco/parental": "0.7"
+        "tightenco/parental": "0.7",
+        "ext-json": "*"
     },
     "require-dev": {
         "ajthinking/tinx": "^2.3",

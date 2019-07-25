@@ -75,7 +75,17 @@ class ProductController extends Controller
             $response = $client->request('GET', $url);
             $product_details = (string)$response->getBody();
 
+            $product_info = json_decode($product_details, true)['product'];
+
+            // Get product weight if available, else default to 200g
+            if (array_key_exists('product_quantity', $product_info)) {
+                $product_weight = intval($product_info['product_quantity']);
+            } else {
+                $product_weight = 200;
+            }
+
             $data['details'] = $product_details;
+            $data['weight'] = $product_weight;
 
             $product = Product::create($data);
 

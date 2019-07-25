@@ -24,6 +24,7 @@ class ProductsTableSeeder extends Seeder
             'bundle_id' => 1,
             'shelf_id' => null,
             'delivery_round_id' => null,
+            'weight' => 500,
         ]);
 
         // Products to be collected
@@ -37,6 +38,7 @@ class ProductsTableSeeder extends Seeder
             'bundle_id' => 2,
             'shelf_id' => null,
             'delivery_round_id' => null,
+            'weight' => 500,
         ]);
 
         // Products being collecting
@@ -50,6 +52,7 @@ class ProductsTableSeeder extends Seeder
             'bundle_id' => 3,
             'shelf_id' => null,
             'delivery_round_id' => null,
+            'weight' => 500,
         ]);
 
         // Collected stored
@@ -63,6 +66,7 @@ class ProductsTableSeeder extends Seeder
             'bundle_id' => 4,
             'shelf_id' => null,
             'delivery_round_id' => null,
+            'weight' => 500,
         ]);
     }
 }

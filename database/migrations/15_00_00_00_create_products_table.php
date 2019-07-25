@@ -32,6 +32,7 @@ class CreateProductsTable extends Migration
 
             $table->integer('status')->default(0);
             $table->integer('quantity')->default(1);
+            $table->integer('weight')->unsigned();
 
             $table->timestamps();
         });

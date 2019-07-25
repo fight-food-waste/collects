@@ -28,7 +28,8 @@ class Product extends Model
         'name',
         'bundle_id',
         'status',
-        'quantity'
+        'quantity',
+        'weight',
     ];
 
     public function bundle()
