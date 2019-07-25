@@ -22,12 +22,12 @@
                           href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
                     <script type="text/javascript">
                         window.onload = function () {
-                            L.mapquest.key = 'yrCvLqrZ5IY2zsIcQqHF1ZlbkGsU7TJ5';
+                            L.mapquest.key = '{{ config('app.mapquest_api_key') }}';
 
                             var directions = L.mapquest.directions();
                             directions.route({
-                                start: '242 Rue du Faubourg Saint-Antoine, 75012 Paris',
-                                end: '220 Rue du Faubourg Saint-Antoine, 75012 Paris',
+                                start: '{{ $collectionRound->warehouse->address }}',
+                                end: '{{ $collectionRound->warehouse->address }}',
                                 waypoints: [
                                     @foreach ($bundles->reverse() as $bundle)
                                         '{{ $bundle->donor->address->getFormatted() }}',
@@ -98,7 +98,8 @@
                             </div>
 
                             <p>This collection round contains {{ count($collectionRound->bundles)  }} bundles for a
-                                total of {{ $collectionRound->weightAsMass()->toUnit('kg') }} kg.</p>
+                                total of {{ $collectionRound->weightAsMass()->toUnit('kg') }} kg. It is attached to
+                                the {{ $collectionRound->warehouse->name }} warehouse.</p>
 
                             <div style="display: inline">
                                 Bundles

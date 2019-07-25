@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Warehouse extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'address'];
 
     public function shelves()
     {

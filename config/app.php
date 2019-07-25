@@ -2,6 +2,9 @@
 
 return [
 
+    // Custom env
+    'mapquest_api_key' => env('MAPQUEST_API_KEY', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -161,12 +164,13 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
+
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
 
         /*
          * Application Service Providers...

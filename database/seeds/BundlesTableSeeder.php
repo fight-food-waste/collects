@@ -26,7 +26,7 @@ class BundlesTableSeeder extends Seeder
             'validated_at' => now(),
             'status' => 1,
             'user_id' => 8,
-            'collection_round_id' => 1,
+            'collection_round_id' => null,
         ]);
 
         Bundle::create([
@@ -34,7 +34,7 @@ class BundlesTableSeeder extends Seeder
             'validated_at' => now(),
             'status' => 1,
             'user_id' => 9,
-            'collection_round_id' => 1,
+            'collection_round_id' => null,
         ]);
 
         Bundle::create([
@@ -42,7 +42,7 @@ class BundlesTableSeeder extends Seeder
             'validated_at' => Carbon::yesterday()->subWeekday(),
             'status' => 1,
             'user_id' => 8,
-            'collection_round_id' => 1,
+            'collection_round_id' => null,
         ]);
     }
 }

@@ -13,6 +13,18 @@
 
                 <div class="card card-more">
                     <div class="card-header" style="font-weight: bold; font-size: large">
+                        Create new collection round
+                    </div>
+
+                    <div class="card-body">
+
+                        {!! form($form) !!}
+                    </div>
+                </div>
+
+
+                <div class="card card-more">
+                    <div class="card-header" style="font-weight: bold; font-size: large">
                         {{ __('Collection Rounds') }}
                         <form action="{{ route('admin.collection_rounds.store') }}" method="POST" class="fa-pull-right">
                             @csrf
@@ -23,13 +35,13 @@
                     </div>
 
                     <div class="card-body">
-
                         @if (sizeof($collectionRounds) > 0)
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Warehouse</th>
                                     <th scope="col">Creation date</th>
                                     <th scope="col">Number of bundles</th>
                                     <th scope="col">Weight</th>
@@ -45,6 +57,7 @@
                                             </a>
                                         </th>
                                         <td>{{ $collectionRound->getStatusName() }}</td>
+                                        <td>{{ $collectionRound->warehouse->name }}</td>
                                         <td>{{  date('d/m/Y', strtotime($collectionRound->created_at)) }}</td>
                                         <td>{{ count($collectionRound->bundles)  }}</td>
                                         <td>{{ $collectionRound->weightAsMass()->toUnit('kg') }} kg</td>
