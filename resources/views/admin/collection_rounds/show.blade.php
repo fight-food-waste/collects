@@ -97,11 +97,20 @@
                                 <br>
                             </div>
 
-
                             <p>This collection round contains {{ count($collectionRound->bundles)  }} bundles for a
                                 total of {{ $collectionRound->weightAsMass()->toUnit('kg') }} kg.</p>
 
-                            Bundles
+                            <div style="display: inline">
+                                Bundles
+                                <form action="{{ route('admin.collection_rounds.auto_add_bundles', $collectionRound->id) }}"
+                                      method="POST" class="fa-pull-right">
+                                    @csrf
+                                    <button type="submit"
+                                            class="btn btn-sm btn-primary"
+                                            style="margin-left: 5px">Automatically add bundles
+                                    </button>
+                                </form>
+                            </div>
                             <hr>
                             <table class="table table-bordered">
                                 <thead>
@@ -155,6 +164,16 @@
                             </table>
                         @else
                             There is no bundle in this collection round.
+                            <div style="display: inline">
+                                <form action="{{ route('admin.collection_rounds.auto_add_bundles', $collectionRound->id) }}"
+                                      method="POST" class="fa-pull-right">
+                                    @csrf
+                                    <button type="submit"
+                                            class="btn btn-sm btn-primary"
+                                            style="margin-left: 5px">Automatically add bundles
+                                    </button>
+                                </form>
+                            </div>
                         @endif
                     </div>
                 </div>
