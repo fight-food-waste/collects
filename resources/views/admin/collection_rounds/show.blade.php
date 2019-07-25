@@ -16,54 +16,57 @@
                     </div>
                 @endif
 
-                <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
-                <link type="text/css" rel="stylesheet"
-                      href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+                @if (sizeof($bundles) > 0)
+                    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+                    <link type="text/css" rel="stylesheet"
+                          href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+                    <script type="text/javascript">
+                        window.onload = function () {
+                            L.mapquest.key = 'yrCvLqrZ5IY2zsIcQqHF1ZlbkGsU7TJ5';
 
-                <script type="text/javascript">
-                    window.onload = function () {
-                        L.mapquest.key = 'yrCvLqrZ5IY2zsIcQqHF1ZlbkGsU7TJ5';
+                            var directions = L.mapquest.directions();
+                            directions.route({
+                                start: '242 Rue du Faubourg Saint-Antoine, 75012 Paris',
+                                end: '220 Rue du Faubourg Saint-Antoine, 75012 Paris',
+                                waypoints: [
+                                    @foreach ($bundles->reverse() as $bundle)
+                                        '{{ $bundle->donor->address->getFormatted() }}',
+                                    @endforeach
+                                ]
+                            }, directionsCallback);
 
-                        var directions = L.mapquest.directions();
-                        directions.route({
-                            start: '242 Rue du Faubourg Saint-Antoine, 75012 Paris',
-                            end: '220 Rue du Faubourg Saint-Antoine, 75012 Paris',
-                            waypoints: [
-                                @foreach ($bundles->reverse() as $bundle)
-                                    '{{ $bundle->donor->address->getFormatted() }}',
-                                @endforeach
-                            ]
-                        }, directionsCallback);
+                            function directionsCallback(error, response) {
+                                var map = L.mapquest.map('map', {
+                                    center: [0, 0],
+                                    layers: L.mapquest.tileLayer('map'),
+                                    zoom: 7
+                                });
 
-                        function directionsCallback(error, response) {
-                            var map = L.mapquest.map('map', {
-                                center: [0, 0],
-                                layers: L.mapquest.tileLayer('map'),
-                                zoom: 7
-                            });
+                                var directionsLayer = L.mapquest.directionsLayer({
+                                    directionsResponse: response
+                                }).addTo(map);
+                            }
+                        };
 
-                            var directionsLayer = L.mapquest.directionsLayer({
-                                directionsResponse: response
-                            }).addTo(map);
+                        function toggleMap() {
+                            if (document.getElementById('mapquest').style.display !== 'none') {
+                                document.getElementById('mapquest').style.display = 'none';
+                            } else {
+                                document.getElementById('mapquest').style.display = '';
+                            }
                         }
-                    };
-
-                    function toggleMap() {
-                        if (document.getElementById('mapquest').style.display !== 'none') {
-                            document.getElementById('mapquest').style.display = 'none';
-                        } else {
-                            document.getElementById('mapquest').style.display = '';
-                        }
-                    }
-                </script>
+                    </script>
+                @endif
 
                 <div class="card card-more">
                     <div class="card-header" style="font-weight: bold; font-size: large">Collection round
                         #{{ $collectionRound->id  }}
-                        <button class="btn btn-sm btn-primary"
-                                onclick="toggleMap()">
-                            <i class="fas fa-map"></i>
-                        </button>
+                        @if (sizeof($bundles) > 0)
+                            <button class="btn btn-sm btn-primary"
+                                    onclick="toggleMap()">
+                                <i class="fas fa-map"></i>
+                            </button>
+                        @endif
                         <a href="{{ route('admin.collection_rounds.index') }}">
                             <button class="btn btn-sm btn-primary">
                                 <i class="fas fa-arrow-left"></i>
@@ -85,14 +88,13 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <div id="mapquest">Map
-                            <hr>
-                            <div id="map" style="width: 100%; height: 400px;"></div>
-                            <br>
-                        </div>
-                        Bundle list
-                        <hr>
                         @if (sizeof($bundles) > 0)
+                            <div id="mapquest">Map
+                                <hr>
+                                <div id="map" style="width: 100%; height: 400px;"></div>
+                                <br>
+                            </div>
+
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
