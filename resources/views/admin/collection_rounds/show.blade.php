@@ -60,10 +60,15 @@
                 <div class="card card-more">
                     <div class="card-header" style="font-weight: bold; font-size: large">Collection round
                         #{{ $collectionRound->id  }}
-                        <button type="submit" class="btn btn-sm btn-primary"
+                        <button class="btn btn-sm btn-primary"
                                 onclick="toggleMap()">
                             <i class="fas fa-map"></i>
                         </button>
+                        <a href="{{ route('admin.collection_rounds.index') }}">
+                            <button class="btn btn-sm btn-primary">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                        </a>
                         <form action="{{ route('admin.collection_rounds.destroy') }}" method="POST"
                               class="fa-pull-right">
                             @csrf
