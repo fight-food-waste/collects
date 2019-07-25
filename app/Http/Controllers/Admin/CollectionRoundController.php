@@ -173,14 +173,17 @@ class CollectionRoundController extends Controller
 
     public function addBundles(Request $request)
     {
+
         $collectionRound = CollectionRound::find($request->route('id'));
 
-        $bundles = $this->getAvailableBundles($collectionRound);
+        if ($request->input('closest') === "true") {
+            $bundles = $this->getCloseAvailableBundles($collectionRound);
+        } else {
+            $bundles = $this->getAvailableBundles($collectionRound);
+        }
 
-        return view('admin.collection_rounds.add_bundles', [
-            'collectionRound' => $collectionRound,
-            'bundles' => $bundles,
-        ]);
+        return view('admin.collection_rounds.add_bundles',
+            compact('collectionRound', 'bundles', 'request'));
     }
 
     public function addBundle(Request $request)

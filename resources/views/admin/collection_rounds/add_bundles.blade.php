@@ -18,8 +18,13 @@
                                 <i class="fas fa-arrow-left"></i>
                             </button>
                         </a>
-                        Add bundles to <a href="{{ route('admin.collection_rounds.show', $collectionRound->id) }}">
-                            collection round #{{ $collectionRound->id }}</a>
+                        Add bundles to collection round #{{ $collectionRound->id }}
+                        <a href="{{ $request->input('closest') === 'true' ? $request->fullUrlWithQuery(['closest' => 'false']) : $request->fullUrlWithQuery(['closest' => 'true']) }}"
+                           class="fa-pull-right">
+                            <button type="submit" class="btn btn-sm btn-secondary">
+                                {{ $request->input('closest') === 'true' ? 'Show all available bundles' : 'Show closest bundles' }}
+                            </button>
+                        </a>
                     </div>
 
                     <div class="card-body">
