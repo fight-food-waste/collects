@@ -26,6 +26,7 @@
                                     <th scope="col">Status</th>
                                     <th scope="col">Submission date</th>
                                     <th scope="col">Number of products</th>
+                                    <th scope="col">Weight</th>
                                     <th scope="col">Donor</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -39,6 +40,7 @@
                                         <td>{{ $bundle->getStatusName() }}</td>
                                         <td>{{  date('d/m/Y', strtotime($bundle->created_at)) }}</td>
                                         <td>{{ count($bundle->products)  }}</td>
+                                        <td>{{ $bundle->weightAsMass()->toUnit('kg') }} kg</td>
                                         <td>
                                             {{ $bundle->donor->getFullName() }}
                                         </td>
