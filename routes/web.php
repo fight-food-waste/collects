@@ -17,14 +17,14 @@ Route::get('home', 'HomeController@show')->name('home');
 
 Route::get('3d-demo', 'WebGLController@demo')->name('3d_demo');
 
-Route::get('/register', 'Auth\RegisterController@showRegistrationDispatcher')->name('register');
-Route::name('register.')->group(function () {
-    Route::get('donor', 'Auth\RegisterController@createDonor')->name('donor.create');
-    Route::post('donor', 'Auth\RegisterController@storeDonor')->name('donor.store');
-    Route::get('needyperson', 'Auth\RegisterController@createNeedyPerson')->name('needyperson.create');
-    Route::post('needyperson', 'Auth\RegisterController@storeNeedyPerson')->name('needyperson.store');
-    Route::get('storekeeper', 'Auth\RegisterController@createStorekeeper')->name('storekeeper.create');
-    Route::post('storekeeper', 'Auth\RegisterController@storeStorekeeper')->name('storekeeper.store');
+Route::prefix('register')->group(function () {
+    Route::get('/', 'Auth\RegisterController@showRegistrationDispatcher')->name('register');
+    Route::get('donor', 'Auth\RegisterController@createDonor')->name('register.donor.create');
+    Route::post('donor', 'Auth\RegisterController@storeDonor')->name('register.donor.store');
+    Route::get('needyperson', 'Auth\RegisterController@createNeedyPerson')->name('register.needyperson.create');
+    Route::post('needyperson', 'Auth\RegisterController@storeNeedyPerson')->name('register.needyperson.store');
+    Route::get('storekeeper', 'Auth\RegisterController@createStorekeeper')->name('register.storekeeper.create');
+    Route::post('storekeeper', 'Auth\RegisterController@storeStorekeeper')->name('register.storekeeper.store');
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -47,6 +47,7 @@ Route::prefix('admin')->group(function () {
         ->where('id', '[0-9]+')->name('admin.collection_rounds.show');
     Route::post('collection-rounds/{id}/bundles/remove', 'Admin\CollectionRoundController@removeBundle')
         ->where('id', '[0-9]+')->name('admin.collection_rounds.bundles.remove');
+    Route::post('collection-rounds/bundles/delete', 'Admin\CollectionRoundController@destroy')->name('admin.collection_rounds.destroy');
 });
 
 //Route::resource('admin/collection-rounds', 'CollectionRoundsController');

@@ -53,7 +53,16 @@
 
                 <div class="card card-more">
                     <div class="card-header" style="font-weight: bold; font-size: large">Collection round
-                        #{{ $collectionRound->id  }}</div>
+                        #{{ $collectionRound->id  }}
+                        <form action="{{ route('admin.collection_rounds.destroy') }}" method="POST"
+                              class="fa-pull-right">
+                            @csrf
+                            <input type="hidden" name="collection_round_id" value="{{ $collectionRound->id }}">
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
                     <div class="card-body">
                         Bundle list
                         <hr>
