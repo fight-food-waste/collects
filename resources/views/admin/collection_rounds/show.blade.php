@@ -46,14 +46,24 @@
                                 directionsResponse: response
                             }).addTo(map);
                         }
+                    };
+
+                    function toggleMap() {
+                        if (document.getElementById('mapquest').style.display !== 'none') {
+                            document.getElementById('mapquest').style.display = 'none';
+                        } else {
+                            document.getElementById('mapquest').style.display = '';
+                        }
                     }
                 </script>
-
-                <div id="map" style="width: 100%; height: 100%;"></div>
 
                 <div class="card card-more">
                     <div class="card-header" style="font-weight: bold; font-size: large">Collection round
                         #{{ $collectionRound->id  }}
+                        <button type="submit" class="btn btn-sm btn-primary"
+                                onclick="toggleMap()">
+                            <i class="fas fa-map"></i>
+                        </button>
                         <form action="{{ route('admin.collection_rounds.destroy') }}" method="POST"
                               class="fa-pull-right">
                             @csrf
@@ -70,6 +80,11 @@
                         </a>
                     </div>
                     <div class="card-body">
+                        <div id="mapquest">Map
+                            <hr>
+                            <div id="map" style="width: 100%; height: 400px;"></div>
+                            <br>
+                        </div>
                         Bundle list
                         <hr>
                         @if (sizeof($bundles) > 0)
