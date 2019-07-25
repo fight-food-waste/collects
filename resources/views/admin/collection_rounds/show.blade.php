@@ -62,6 +62,12 @@
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
+                        <a href="{{ route('admin.collection_rounds.add_bundles', $collectionRound->id) }}"
+                           class="fa-pull-right">
+                            <button type="submit" class="btn btn-sm btn-secondary">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </a>
                     </div>
                     <div class="card-body">
                         Bundle list

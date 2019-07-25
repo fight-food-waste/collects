@@ -80,4 +80,28 @@ class CollectionRoundController extends Controller
             return redirect()->back()->with('error', 'The collection round can\'t be modified anymore.');
         }
     }
+
+    public function addBundles(Request $request)
+    {
+        $bundles = Bundle::where('status', 1)->get();
+        $collectionRound = CollectionRound::find($request->route('id'));
+
+        return view('admin.collection_rounds.add_bundles', [
+            'collectionRound' => $collectionRound,
+            'bundles' => $bundles,
+        ]);
+    }
+
+    public function addBundle(Request $request)
+    {
+        $collectionRound = CollectionRound::find($request->input('collection_round_id'));
+        $bundle = Bundle::find($request->input('bundle_id'));
+
+        $bundle->collection_round_id = $collectionRound->id;
+        $bundle->status = 2;
+        $bundle->save();
+
+        return redirect()->route('admin.collection_rounds.add_bundles', $collectionRound->id)
+            ->with('success', 'The bundle has been added to the collection round.');
+    }
 }
