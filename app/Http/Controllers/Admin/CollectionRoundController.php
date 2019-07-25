@@ -60,6 +60,33 @@ class CollectionRoundController extends Controller
         return redirect()->back()->with('success', 'A new collection round has been created');
     }
 
+    public function update(Request $request)
+    {
+        $collectionRound = CollectionRound::find($request->route('id'));
+
+//        if ($request->input('collection_round_status') == 2) {
+////         The collection round has been started
+////         Send mail to donors here.
+//
+//         $users = ...
+//             foreach($users as $user) {
+//                 Mail::send('mail_view', [], function ($message) {
+//                     $message->from('noreply@fightfoodwaste.com', 'Fight Food Waste');
+//                     $message->to($user->email);
+//                 });
+//             }
+//        }
+
+        if ($request->input('collection_round_status') == 3) {
+            // Collection round is done. Automatically handle supply.
+        }
+
+        $collectionRound->status = $request->input('collection_round_status');
+        $collectionRound->save();
+
+        return redirect()->back()->with('success', 'The collection round status has been updated.');
+    }
+
     public function removeBundle(Request $request)
     {
         $collectionRound = CollectionRound::find($request->input('collection_round_id'));
