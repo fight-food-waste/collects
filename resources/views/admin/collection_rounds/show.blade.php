@@ -22,7 +22,7 @@
                           href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
                     <script type="text/javascript">
                         window.onload = function () {
-                            L.mapquest.key = 'yrCvLqrZ5IY2zsIcQqHF1ZlbkGsU7TJ5';
+                            L.mapquest.key = '{{ config('app.mapquest_api_key') }}';
 
                             var directions = L.mapquest.directions();
                             directions.route({

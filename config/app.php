@@ -2,6 +2,9 @@
 
 return [
 
+    // Custom env
+    'mapquest_api_key' => env('MAPQUEST_API_KEY', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

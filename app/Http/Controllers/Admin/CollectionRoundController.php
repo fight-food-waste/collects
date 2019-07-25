@@ -6,7 +6,10 @@ use App\Bundle;
 use App\CollectionRound;
 use App\Forms\CollectionRoundForm;
 use App\Http\Controllers\Controller;
+use App\Warehouse;
 use Exception;
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 
@@ -106,7 +109,62 @@ class CollectionRoundController extends Controller
 
         foreach ($bundles as $bundle) {
             if ($bundle->weight() > $collectionRound->availabeWeight()) {
-                $bundles->forget($bundle);
+                $bundles->forget($bundle->id);
+            }
+        }
+
+        return $bundles;
+    }
+
+    private function getDistance(String $origin, String $destination)
+    {
+        $client = new Client();
+        $url = "http://www.mapquestapi.com/directions/v2/routematrix?key=" . config('app.mapquest_api_key');
+        $responseStream = $client->post($url, [
+            RequestOptions::JSON => ['locations' => [
+                $origin,
+                $destination,
+            ]]
+        ]);
+        $responseString = (string)$responseStream->getBody();
+
+        $distance = json_decode($responseString, true)['distance'][1];
+
+        return $distance;
+    }
+
+    private function getCloseAvailableBundles(CollectionRound $collectionRound)
+    {
+        $bundles = $this->getAvailableBundles($collectionRound);
+        $warehouses = Warehouse::all();
+
+        foreach ($bundles as $bundle) {
+
+            $closestWarehouse = [];
+            $closestWarehouse['id'] = null;
+            $closestWarehouse['distance'] = null;
+
+            $destination = $bundle->donor->address->getFormatted();
+
+            foreach ($warehouses as $warehouse) {
+                $origin = $warehouse->address;
+                $distance = $this->getDistance($origin, $destination);
+
+                // First item only
+                if ($closestWarehouse['distance'] == null) {
+                    $closestWarehouse['distance'] = $distance;
+                    $closestWarehouse['id'] = $warehouse->id;
+
+                } elseif ($distance < $closestWarehouse['distance']) {
+                    $closestWarehouse['distance'] = $distance;
+                    $closestWarehouse['id'] = $warehouse->id;
+                }
+            }
+
+            if ($collectionRound->warehouse->id != $closestWarehouse['id']) {
+                // Bundle is closer to another warehouse, this it should not be in this collection round
+
+                $bundles = $bundles->except($bundle->id);
             }
         }
 
@@ -140,8 +198,9 @@ class CollectionRoundController extends Controller
 
     public function autoAddBundles(Request $request)
     {
+
         $collectionRound = CollectionRound::find($request->route('id'));
-        $bundles = $this->getAvailableBundles($collectionRound);
+        $bundles = $this->getCloseAvailableBundles($collectionRound);
 
         if (count($bundles) > 0) {
             foreach ($bundles as $bundle) {

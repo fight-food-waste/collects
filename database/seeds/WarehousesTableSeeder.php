@@ -41,5 +41,10 @@ class WarehousesTableSeeder extends Seeder
             'name' => 'Nantes',
             'address' => '16 Rue Dufour, 44000 Nantes, France',
         ]);
+
+        Warehouse::create([
+            'name' => 'Paris',
+            'address' => '220 Rue du Faubourg Saint-Antoine, 75012 Paris'
+        ]);
     }
 }

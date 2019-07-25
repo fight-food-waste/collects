@@ -17,7 +17,7 @@ class CollectionRoundsTableSeeder extends Seeder
         CollectionRound::create([
             'round_date' => Carbon::tomorrow(),
             'user_id' => Employee::where('email', 'employee1@employee1.com')->value('id'),
-            'warehouse_id' => 1,
+            'warehouse_id' => 6,
         ]);
 
         CollectionRound::create([
