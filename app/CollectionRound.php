@@ -22,6 +22,8 @@ class CollectionRound extends Model
 {
     protected $fillable = ['round_date', 'user_id'];
 
+    private $max_weight = 100000; // 100 kg
+
     public function employee()
     {
         return $this->belongsTo(Employee::class);
@@ -62,5 +64,9 @@ class CollectionRound extends Model
     public function weightAsMass()
     {
         return new Mass($this->weight(), 'g');
+    }
+
+    public function availabeWeight() {
+        return $this->max_weight - $this->weight();
     }
 }

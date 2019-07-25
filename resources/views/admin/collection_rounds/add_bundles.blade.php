@@ -73,7 +73,9 @@
                                 </tbody>
                             </table>
                         @else
-                            There is no bundle in the database.
+                            There is no available bundle.<br>
+                            Either there isn't any approved bundle not assigned to a collection round, or there isn't
+                            enough free weight left in this collection round.
                         @endif
                     </div>
                 </div>

@@ -83,8 +83,17 @@ class CollectionRoundController extends Controller
 
     public function addBundles(Request $request)
     {
-        $bundles = Bundle::where('status', 1)->get();
         $collectionRound = CollectionRound::find($request->route('id'));
+
+        $bundles = Bundle::where('status', 1)
+            ->where('collection_round_id', null)
+            ->get();
+
+        foreach ($bundles as $bundle) {
+            if ($bundle->weight() > $collectionRound->availabeWeight()) {
+                $bundles->forget($bundle);
+            }
+        }
 
         return view('admin.collection_rounds.add_bundles', [
             'collectionRound' => $collectionRound,
