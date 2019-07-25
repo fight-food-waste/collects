@@ -12,9 +12,15 @@
                 @endif
 
                 <div class="card card-more">
-                    <div class="card-header">Add bundles to <a
-                                href="{{ route('admin.collection_rounds.show', $collectionRound->id) }}">collection
-                            round #{{ $collectionRound->id }}</a></div>
+                    <div class="card-header" style="font-weight: bold; font-size: large">
+                        <a href="{{ route('admin.collection_rounds.show', $collectionRound->id) }}">
+                            <button class="btn btn-sm btn-primary" style="margin-right:5px">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                        </a>
+                        Add bundles to <a href="{{ route('admin.collection_rounds.show', $collectionRound->id) }}">
+                            collection round #{{ $collectionRound->id }}</a>
+                    </div>
 
                     <div class="card-body">
 
@@ -26,6 +32,7 @@
                                     <th scope="col">Status</th>
                                     <th scope="col">Submission date</th>
                                     <th scope="col">Number of products</th>
+                                    <th scope="col">Weight</th>
                                     <th scope="col">Donor</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -39,6 +46,7 @@
                                         <td>{{ $bundle->getStatusName() }}</td>
                                         <td>{{  date('d/m/Y', strtotime($bundle->created_at)) }}</td>
                                         <td>{{ count($bundle->products)  }}</td>
+                                        <td>{{ $bundle->weightAsMass()->toUnit('kg') }} kg</td>
                                         <td>
                                             {{ $bundle->donor->getFullName() }}
                                         </td>
@@ -71,7 +79,9 @@
                                 </tbody>
                             </table>
                         @else
-                            There is no bundle in the database.
+                            There is no available bundle.<br>
+                            Either there isn't any approved bundle not assigned to a collection round, or there isn't
+                            enough free weight left in this collection round.
                         @endif
                     </div>
                 </div>

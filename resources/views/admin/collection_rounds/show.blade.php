@@ -59,19 +59,21 @@
                 @endif
 
                 <div class="card card-more">
-                    <div class="card-header" style="font-weight: bold; font-size: large">Collection round
-                        #{{ $collectionRound->id  }}
+                    <div class="card-header" style="font-weight: bold; font-size: large">
+                        <a href="{{ route('admin.collection_rounds.index') }}">
+                            <button class="btn btn-sm btn-primary" style="margin-right:5px">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                        </a>
+                        Collection round #{{ $collectionRound->id  }}
+
                         @if (sizeof($bundles) > 0)
                             <button class="btn btn-sm btn-primary"
                                     onclick="toggleMap()">
                                 <i class="fas fa-map"></i>
                             </button>
                         @endif
-                        <a href="{{ route('admin.collection_rounds.index') }}">
-                            <button class="btn btn-sm btn-primary">
-                                <i class="fas fa-arrow-left"></i>
-                            </button>
-                        </a>
+
                         <form action="{{ route('admin.collection_rounds.destroy') }}" method="POST"
                               class="fa-pull-right">
                             @csrf
@@ -95,6 +97,21 @@
                                 <br>
                             </div>
 
+                            <p>This collection round contains {{ count($collectionRound->bundles)  }} bundles for a
+                                total of {{ $collectionRound->weightAsMass()->toUnit('kg') }} kg.</p>
+
+                            <div style="display: inline">
+                                Bundles
+                                <form action="{{ route('admin.collection_rounds.auto_add_bundles', $collectionRound->id) }}"
+                                      method="POST" class="fa-pull-right">
+                                    @csrf
+                                    <button type="submit"
+                                            class="btn btn-sm btn-primary"
+                                            style="margin-left: 5px">Automatically add bundles
+                                    </button>
+                                </form>
+                            </div>
+                            <hr>
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
@@ -102,6 +119,7 @@
                                     <th scope="col">Status</th>
                                     <th scope="col">Submission date</th>
                                     <th scope="col">Number of products</th>
+                                    <th scope="col">Weight</th>
                                     <th scope="col">Donor</th>
                                     <th scope="col">Address</th>
                                     <th scope="col">Action</th>
@@ -116,6 +134,7 @@
                                         <td>{{ $bundle->getStatusName() }}</td>
                                         <td>{{  date('d/m/Y', strtotime($bundle->created_at)) }}</td>
                                         <td>{{ count($bundle->products)  }}</td>
+                                        <td>{{ $bundle->weightAsMass()->toUnit('g') }} g</td>
                                         <td>
                                             {{ $bundle->donor->getFullName() }}
                                         </td>
@@ -145,6 +164,16 @@
                             </table>
                         @else
                             There is no bundle in this collection round.
+                            <div style="display: inline">
+                                <form action="{{ route('admin.collection_rounds.auto_add_bundles', $collectionRound->id) }}"
+                                      method="POST" class="fa-pull-right">
+                                    @csrf
+                                    <button type="submit"
+                                            class="btn btn-sm btn-primary"
+                                            style="margin-left: 5px">Automatically add bundles
+                                    </button>
+                                </form>
+                            </div>
                         @endif
                     </div>
                 </div>

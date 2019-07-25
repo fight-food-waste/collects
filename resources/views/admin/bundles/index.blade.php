@@ -12,7 +12,8 @@
                 @endif
 
                 <div class="card card-more">
-                    <div class="card-header">{{ __('Bundles') }}</div>
+                    <div class="card-header" style="font-weight: bold; font-size: large">
+                        {{ __('Bundles') }}</div>
 
                     <div class="card-body">
 
@@ -24,6 +25,7 @@
                                     <th scope="col">Status</th>
                                     <th scope="col">Submission date</th>
                                     <th scope="col">Number of products</th>
+                                    <th scope="col">Weight</th>
                                     <th scope="col">Donor</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -31,15 +33,14 @@
                                 <tbody>
                                 @foreach ($bundles->reverse() as $bundle)
                                     <tr>
-                                        <th scope="row"><a href="bundles/{{ $bundle->id }}">
+                                        <th scope="row"><a href="{{ route('admin.bundles.show', $bundle->id) }}">
                                                 <h4 class="h6 g-mb-2">#{{ $bundle->id }}</h4>
                                             </a></th>
                                         <td>{{ $bundle->getStatusName() }}</td>
                                         <td>{{  date('d/m/Y', strtotime($bundle->created_at)) }}</td>
                                         <td>{{ count($bundle->products)  }}</td>
-                                        <td>
-                                            {{ $bundle->donor->getFullName() }}
-                                        </td>
+                                        <td>{{ $bundle->weightAsMass()->toUnit('kg') }} kg</td>
+                                        <td>{{ $bundle->donor->getFullName() }}</td>
                                         <td style="display: flex;">
                                             @if($bundle->status <= 0)
                                                 <form action="{{ route('admin.bundles.approve') }}"

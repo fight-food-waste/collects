@@ -6,6 +6,7 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
 
 /**
  * App\CollectionRound
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
 class CollectionRound extends Model
 {
     protected $fillable = ['round_date', 'user_id'];
+
+    private $max_weight = 100000; // 100 kg
 
     public function employee()
     {
@@ -45,5 +48,25 @@ class CollectionRound extends Model
             default:
                 return "Unknown";
         }
+    }
+
+    public function weight()
+    {
+        $weight = 0;
+
+        foreach ($this->bundles as $bundle) {
+            $weight += $bundle->weight();
+        }
+
+        return $weight;
+    }
+
+    public function weightAsMass()
+    {
+        return new Mass($this->weight(), 'g');
+    }
+
+    public function availabeWeight() {
+        return $this->max_weight - $this->weight();
     }
 }

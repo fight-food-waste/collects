@@ -17,9 +17,21 @@
                 @endif
 
                 <div class="card card-more">
-                    <div class="card-header">Bundle {{ $bundle->id  }}</div>
+                    <div class="card-header" style="font-weight: bold; font-size: large">
+                        <a href="{{ route('admin.bundles.index') }}">
+                            <button class="btn btn-sm btn-primary" style="margin-right:5px">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                        </a>
+                        Bundle #{{ $bundle->id  }}
+
+                    </div>
+
 
                     <div class="card-body">
+
+                        <p>This bundle contains {{ count($bundle->products)  }} products for a total
+                            of {{ $bundle->weightAsMass()->toUnit('kg') }} kg.</p>
 
                         @if (sizeof($products) > 0)
                             <table class="table table-bordered">
@@ -29,6 +41,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Expiration Date</th>
                                     <th scope="col">Quantity</th>
+                                    <th scope="col">Weight</th>
                                     <th scope="col">Remove</th>
                                 </tr>
                                 </thead>
@@ -41,7 +54,8 @@
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->expiration_date }}</td>
                                         <td>{{ $product->quantity }}</td>
-                                        <td style="display: flex;">
+                                        <td>{{ $bundle->weightAsMass()->toUnit('g') }} g</td>
+                                        <td>
                                             <form action="{{ route('admin.bundles.product.reject') }}"
                                                   method="POST">
                                                 @csrf

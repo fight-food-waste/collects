@@ -81,10 +81,26 @@ class CollectionRoundController extends Controller
         }
     }
 
+    private function getAvailableBundles(CollectionRound $collectionRound)
+    {
+        $bundles = Bundle::where('status', 1)
+            ->where('collection_round_id', null)
+            ->get();
+
+        foreach ($bundles as $bundle) {
+            if ($bundle->weight() > $collectionRound->availabeWeight()) {
+                $bundles->forget($bundle);
+            }
+        }
+
+        return $bundles;
+    }
+
     public function addBundles(Request $request)
     {
-        $bundles = Bundle::where('status', 1)->get();
         $collectionRound = CollectionRound::find($request->route('id'));
+
+        $bundles = $this->getAvailableBundles($collectionRound);
 
         return view('admin.collection_rounds.add_bundles', [
             'collectionRound' => $collectionRound,
@@ -103,5 +119,25 @@ class CollectionRoundController extends Controller
 
         return redirect()->route('admin.collection_rounds.add_bundles', $collectionRound->id)
             ->with('success', 'The bundle has been added to the collection round.');
+    }
+
+    public function autoAddBundles(Request $request)
+    {
+        $collectionRound = CollectionRound::find($request->route('id'));
+        $bundles = $this->getAvailableBundles($collectionRound);
+
+        if (count($bundles) > 0) {
+            foreach ($bundles as $bundle) {
+                $bundle->collection_round_id = $collectionRound->id;
+                $bundle->status = 2;
+                $bundle->save();
+            }
+
+            return redirect()->route('admin.collection_rounds.show', $collectionRound->id)
+                ->with('success', count($bundles) . ' bundles have been added to the collection round.');
+        } else {
+            return redirect()->route('admin.collection_rounds.show', $collectionRound->id)
+                ->with('error', 'No available bundle was found...');
+        }
     }
 }
