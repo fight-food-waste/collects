@@ -5,6 +5,7 @@ namespace App;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
 
 /**
  * App\Product
@@ -45,5 +46,10 @@ class Product extends Model
     public function deliveryRound()
     {
         return $this->belongsTo(DeliveryRound::class);
+    }
+
+    public function weightAsMass()
+    {
+        return new Mass($this->weight, 'g');
     }
 }
