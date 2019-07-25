@@ -54,6 +54,8 @@ Route::prefix('admin')->group(function () {
         ->name('admin.collection_rounds.add_bundle');
     Route::post('collection-rounds/{id}/auto-add', 'Admin\CollectionRoundController@autoAddBundles')
         ->where('id', '[0-9]+')->name('admin.collection_rounds.auto_add_bundles');
+    Route::put('collection-rounds/{id}', 'Admin\CollectionRoundController@update')
+        ->where('id', '[0-9]+')->name('admin.collection_rounds.update');
 });
 
 //Route::resource('admin/collection-rounds', 'CollectionRoundsController');

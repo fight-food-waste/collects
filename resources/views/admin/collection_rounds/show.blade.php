@@ -65,7 +65,7 @@
                                 <i class="fas fa-arrow-left"></i>
                             </button>
                         </a>
-                        Collection round #{{ $collectionRound->id  }}
+                        Collection round #{{ $collectionRound->id  }} ({{ $collectionRound->getStatusName() }})
 
                         @if (sizeof($bundles) > 0)
                             <button class="btn btn-sm btn-primary"
@@ -74,20 +74,72 @@
                             </button>
                         @endif
 
-                        <form action="{{ route('admin.collection_rounds.destroy') }}" method="POST"
-                              class="fa-pull-right">
-                            @csrf
-                            <input type="hidden" name="collection_round_id" value="{{ $collectionRound->id }}">
-                            <button type="submit" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
-                        <a href="{{ route('admin.collection_rounds.add_bundles', $collectionRound->id) }}"
-                           class="fa-pull-right">
-                            <button type="submit" class="btn btn-sm btn-secondary">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </a>
+                        @if($collectionRound->status === 0)
+                            <form action="{{ route('admin.collection_rounds.destroy') }}" method="POST"
+                                  class="fa-pull-right">
+                                @csrf
+                                <input type="hidden" name="collection_round_id" value="{{ $collectionRound->id }}">
+                                <button type="submit" class="btn btn-sm btn-danger"
+                                        style="margin-left: 5px">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                            <a href="{{ route('admin.collection_rounds.add_bundles', $collectionRound->id) }}"
+                               class="fa-pull-right">
+                                <button type="submit" class="btn btn-sm btn-secondary"
+                                        style="margin-left: 5px">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </a>
+
+                            <form action="{{ route('admin.collection_rounds.update', $collectionRound->id) }}"
+                                  method="POST" class="fa-pull-right">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="collection_round_status" value="1">
+                                <button type="submit"
+                                        class="btn btn-sm btn-primary"
+                                        style="margin-left: 5px">
+                                    Close
+                                </button>
+                            </form>
+                        @elseif($collectionRound->status === 1)
+                            <form action="{{ route('admin.collection_rounds.update', $collectionRound->id) }}"
+                                  method="POST" class="fa-pull-right">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="collection_round_status" value="2">
+                                <button type="submit"
+                                        class="btn btn-sm btn-primary"
+                                        style="margin-left: 5px">
+                                    Start collect
+                                </button>
+                            </form>
+                            <form action="{{ route('admin.collection_rounds.update', $collectionRound->id) }}"
+                                  method="POST" class="fa-pull-right">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="collection_round_status" value="0">
+                                <button type="submit"
+                                        class="btn btn-sm btn-primary"
+                                        style="margin-left: 5px">
+                                    Reopen
+                                </button>
+                            </form>
+                        @elseif($collectionRound->status === 2)
+                            <form action="{{ route('admin.collection_rounds.update', $collectionRound->id) }}"
+                                  method="POST" class="fa-pull-right">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="collection_round_status" value="3">
+                                <button type="submit"
+                                        class="btn btn-sm btn-primary"
+                                        style="margin-left: 5px">
+                                    Terminate collect (store products)
+                                </button>
+                            </form>
+                        @endif
+
                     </div>
                     <div class="card-body">
                         @if (sizeof($bundles) > 0)
@@ -103,14 +155,16 @@
 
                             <div style="display: inline">
                                 Bundles
-                                <form action="{{ route('admin.collection_rounds.auto_add_bundles', $collectionRound->id) }}"
-                                      method="POST" class="fa-pull-right">
-                                    @csrf
-                                    <button type="submit"
-                                            class="btn btn-sm btn-primary"
-                                            style="margin-left: 5px">Automatically add bundles
-                                    </button>
-                                </form>
+                                @if($collectionRound->status === 0)
+                                    <form action="{{ route('admin.collection_rounds.auto_add_bundles', $collectionRound->id) }}"
+                                          method="POST" class="fa-pull-right">
+                                        @csrf
+                                        <button type="submit"
+                                                class="btn btn-sm btn-primary"
+                                                style="margin-left: 5px">Automatically add bundles
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                             <hr>
                             <table class="table table-bordered">
