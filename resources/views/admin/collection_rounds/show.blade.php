@@ -60,12 +60,13 @@
 
                 <div class="card card-more">
                     <div class="card-header" style="font-weight: bold; font-size: large">
-                        <a href="{{ route('admin.collection_rounds.index') }}">
+                        <a href="{{ URL::previous() }}">
                             <button class="btn btn-sm btn-primary" style="margin-right:5px">
                                 <i class="fas fa-arrow-left"></i>
                             </button>
-                        </a>Collection round
-                        #{{ $collectionRound->id  }}
+                        </a>
+                        Collection round #{{ $collectionRound->id  }}
+
                         @if (sizeof($bundles) > 0)
                             <button class="btn btn-sm btn-primary"
                                     onclick="toggleMap()">

@@ -33,7 +33,7 @@
                                 <tbody>
                                 @foreach ($bundles->reverse() as $bundle)
                                     <tr>
-                                        <th scope="row"><a href="bundles/{{ $bundle->id }}">
+                                        <th scope="row"><a href="{{ route('admin.bundles.show', $bundle->id) }}">
                                                 <h4 class="h6 g-mb-2">#{{ $bundle->id }}</h4>
                                             </a></th>
                                         <td>{{ $bundle->getStatusName() }}</td>

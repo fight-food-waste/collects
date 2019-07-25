@@ -18,7 +18,7 @@
 
                 <div class="card card-more">
                     <div class="card-header" style="font-weight: bold; font-size: large">
-                        <a href="{{ route('admin.bundles.index') }}">
+                        <a href="{{ URL::previous() }}">
                             <button class="btn btn-sm btn-primary" style="margin-right:5px">
                                 <i class="fas fa-arrow-left"></i>
                             </button>
@@ -55,7 +55,7 @@
                                         <td>{{ $product->expiration_date }}</td>
                                         <td>{{ $product->quantity }}</td>
                                         <td>{{ $bundle->weightAsMass()->toUnit('g') }} g</td>
-                                        <td style="display: flex;">
+                                        <td>
                                             <form action="{{ route('admin.bundles.product.reject') }}"
                                                   method="POST">
                                                 @csrf
