@@ -13,14 +13,13 @@ class EmployeesTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        $faker = Faker\Factory::create('fr_FR');
 
         Employee::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
             'email' => 'employee1@employee1.com',
             'password' => Hash::make('qwertyuiop'),
-            'address_id' => 1,
         ]);
 
         Employee::create([
@@ -28,7 +27,6 @@ class EmployeesTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'employee2@employee2.com',
             'password' => Hash::make('qwertyuiop'),
-            'address_id' => 1,
         ]);
 
         Employee::create([
@@ -36,7 +34,6 @@ class EmployeesTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'employee3@employee3.com',
             'password' => Hash::make('qwertyuiop'),
-            'address_id' => 1,
         ]);
 
         Employee::create([
@@ -44,7 +41,6 @@ class EmployeesTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'employee4@employee4.com',
             'password' => Hash::make('qwertyuiop'),
-            'address_id' => 1,
         ]);
     }
 }

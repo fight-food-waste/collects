@@ -15360,3 +15360,9 @@ a.text-dark:focus, a.text-dark:hover {
 .card-more {
     margin-top: 20px
 }
+
+.edit-btn-table {
+    margin-left: auto;
+    margin-right: auto;
+    display: block
+}

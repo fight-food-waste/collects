@@ -37,17 +37,8 @@ class Address extends Model
         return $this->belongsTo('App\User');
     }
 
-    public static function fullAddress($id)
+    public function getFormatted()
     {
-        $address = Address::where('id', $id)->value('line_1') . ' ';
-        $address .= Address::where('id', $id)->value('line_2') . ' ';
-        $address .= Address::where('id', $id)->value('line_3') . ' ';
-        $address .= Address::where('id', $id)->value('city') . ' ';
-        $address .= Address::where('id', $id)->value('county_province') . ' ';
-        $address .= Address::where('id', $id)->value('region') . ' ';
-        $address .= Address::where('id', $id)->value('zip_postal_code') . ' ';
-        $address .= Address::where('id', $id)->value('country');
-
-        return $address;
+        return $this->street . ', ' . $this->zip_postal_code . ' ' . $this->city . ', France';
     }
 }

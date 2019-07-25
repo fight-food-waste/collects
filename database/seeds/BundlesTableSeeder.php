@@ -1,7 +1,6 @@
 <?php
 
 use App\Bundle;
-use App\CollectionRound;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -14,8 +13,6 @@ class BundlesTableSeeder extends Seeder
      */
     public function run()
     {
-        // Bundle to be validated
-
         Bundle::create([
             'submitted_at' => now(),
             'validated_at' => null,
@@ -24,34 +21,28 @@ class BundlesTableSeeder extends Seeder
             'collection_round_id' => null,
         ]);
 
-        // Bundle to be collected
-
         Bundle::create([
             'submitted_at' => Carbon::yesterday(),
             'validated_at' => now(),
-            'status' => 0,
+            'status' => 1,
             'user_id' => 8,
-            'collection_round_id' => null,
+            'collection_round_id' => 1,
         ]);
-
-        // Bundle being collected
 
         Bundle::create([
             'submitted_at' => Carbon::yesterday(),
             'validated_at' => now(),
-            'status' => 0,
+            'status' => 1,
             'user_id' => 9,
-            'collection_round_id' => CollectionRound::first()->id,
+            'collection_round_id' => 1,
         ]);
-
-        // Bundle collected
 
         Bundle::create([
             'submitted_at' => Carbon::yesterday()->subWeekday(),
             'validated_at' => Carbon::yesterday()->subWeekday(),
-            'status' => 0,
+            'status' => 1,
             'user_id' => 8,
-            'collection_round_id' => 2,
+            'collection_round_id' => 1,
         ]);
     }
 }

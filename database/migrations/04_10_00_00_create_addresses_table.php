@@ -18,6 +18,10 @@ class CreateAddressesTable extends Migration
             $table->string('street', 100);
             $table->string('zip_postal_code', 10);
             $table->string('city', 60);
+
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

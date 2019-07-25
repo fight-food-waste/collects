@@ -12,30 +12,17 @@ class AddressesTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
+        $faker = Faker\Factory::create('fr_FR');
 
-        Address::create([
-            'street' => $faker->streetAddress,
-            'city' => $faker->city,
-            'zip_postal_code' => $faker->postcode,
-        ]);
-
-        Address::create([
-            'street' => $faker->streetAddress,
-            'city' => $faker->city,
-            'zip_postal_code' => $faker->postcode,
-        ]);
-
-        Address::create([
-            'street' => $faker->streetAddress,
-            'city' => $faker->city,
-            'zip_postal_code' => $faker->postcode,
-        ]);
-
-        Address::create([
-            'street' => $faker->streetAddress,
-            'city' => $faker->city,
-            'zip_postal_code' => $faker->postcode,
-        ]);
+        for ($i = 1; $i <= 10; $i++) {
+            Address::create([
+                'street' => $faker->streetAddress,
+                'city' => 'Paris',
+//                'city' => $faker->city,
+                'zip_postal_code' => '75000',
+//                'zip_postal_code' => $faker->postcode,
+                'user_id' => $i
+            ]);
+        }
     }
 }
