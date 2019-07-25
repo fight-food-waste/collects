@@ -45,8 +45,8 @@ Route::prefix('admin')->group(function () {
     Route::post('collection-rounds', 'Admin\CollectionRoundController@store')->name('admin.collection_rounds.store');
     Route::get('collection-rounds/{id}', 'Admin\CollectionRoundController@show')
         ->where('id', '[0-9]+')->name('admin.collection_rounds.show');
-    Route::post('collection-rounds/{id}/bundles/remove', 'Admin\CollectionRoundController@removeBundle')
-        ->where('id', '[0-9]+')->name('admin.collection_rounds.bundles.remove');
+    Route::post('collection-rounds/bundles/remove', 'Admin\CollectionRoundController@removeBundle')
+        ->name('admin.collection_rounds.bundles.remove');
     Route::post('collection-rounds/bundles/delete', 'Admin\CollectionRoundController@destroy')->name('admin.collection_rounds.destroy');
 });
 

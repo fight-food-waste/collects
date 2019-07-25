@@ -94,7 +94,7 @@
                                         <td>{{ $bundle->donor->address->getFormatted() }}</td>
                                         <td style="display: flex;">
                                             @if($collectionRound->status == 0)
-                                                <form action="{{ route('admin.collection_rounds.bundles.remove', $collectionRound->id) }}"
+                                                <form action="{{ route('admin.collection_rounds.bundles.remove') }}"
                                                       method="POST">
                                                     @csrf
                                                     <input type="hidden" name="collection_round_id"
