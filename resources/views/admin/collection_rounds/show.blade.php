@@ -26,8 +26,8 @@
 
                             var directions = L.mapquest.directions();
                             directions.route({
-                                start: '242 Rue du Faubourg Saint-Antoine, 75012 Paris',
-                                end: '220 Rue du Faubourg Saint-Antoine, 75012 Paris',
+                                start: '{{ $collectionRound->warehouse->address }}',
+                                end: '{{ $collectionRound->warehouse->address }}',
                                 waypoints: [
                                     @foreach ($bundles->reverse() as $bundle)
                                         '{{ $bundle->donor->address->getFormatted() }}',
