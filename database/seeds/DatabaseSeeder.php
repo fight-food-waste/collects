@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
              CollectionRoundsTableSeeder::class,
              BundlesTableSeeder::class,
              ProductsTableSeeder::class,
+             WarehousesTableSeeder::class,
+             ShelvesTableSeeder::class,
          ]);
     }
 }
