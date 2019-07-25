@@ -60,7 +60,7 @@
 
                 <div class="card card-more">
                     <div class="card-header" style="font-weight: bold; font-size: large">
-                        <a href="{{ URL::previous() }}">
+                        <a href="{{ route('admin.collection_rounds.index') }}">
                             <button class="btn btn-sm btn-primary" style="margin-right:5px">
                                 <i class="fas fa-arrow-left"></i>
                             </button>
