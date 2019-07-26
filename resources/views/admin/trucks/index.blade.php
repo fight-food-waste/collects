@@ -23,6 +23,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Warehouse</th>
+                                    <th scope="col">Capacity</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Collection Round</th>
                                 </tr>
@@ -34,6 +35,7 @@
                                             {{ $truck->id }}
                                         </th>
                                         <td>{{ $truck->warehouse->name }}</td>
+                                        <td>{{ $truck->capacity }} kg</td>
                                         <td>{{ $truck->collection_round_id == null ? 'Available' : 'Ongoing' }}</td>
                                         <td>
                                             @if($truck->collection_round_id == null)
