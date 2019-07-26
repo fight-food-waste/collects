@@ -66,9 +66,11 @@
                                     Account
                                 </a>
 
+                                @if(Auth::user()->type == "donor")
                                 <a class="dropdown-item" href="{{ route('bundle.index') }}">
                                     Bundles
                                 </a>
+                                @endif
 
                                 @if(Auth::user()->type == "member")
                                     <a class="dropdown-item" href="{{ route('membership') }}">

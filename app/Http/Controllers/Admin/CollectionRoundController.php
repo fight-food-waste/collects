@@ -146,6 +146,7 @@ class CollectionRoundController extends Controller
 
         if ($collectionRound->status == 0) {
             $bundle->collection_round_id = null;
+            $bundle->status = 1;
             $bundle->save();
 
             return redirect()->back()->with('success', 'The bundle has been removed from this collection round.');

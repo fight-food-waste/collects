@@ -43,7 +43,7 @@
                                         <td>
                                             <a href="{{ route('admin.bundles.show', $product->bundle_id) }}">{{ $product->bundle_id }}</a>
                                         </td>
-                                        <td>{{ $product->shelf == null ? '-' : $product->shelf }}</td>
+                                        <td>{{ $product->shelf == null ? '-' : $product->shelf->id }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

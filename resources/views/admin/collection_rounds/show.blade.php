@@ -92,17 +92,19 @@
                                 </button>
                             </a>
 
-                            <form action="{{ route('admin.collection_rounds.update', $collectionRound->id) }}"
-                                  method="POST" class="fa-pull-right">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="collection_round_status" value="1">
-                                <button type="submit"
-                                        class="btn btn-sm btn-primary"
-                                        style="margin-left: 5px">
-                                    Close
-                                </button>
-                            </form>
+                            @if(sizeof($bundles) > 0)
+                                <form act   ion="{{ route('admin.collection_rounds.update', $collectionRound->id) }}"
+                                      method="POST" class="fa-pull-right">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="collection_round_status" value="1">
+                                    <button type="submit"
+                                            class="btn btn-sm btn-primary"
+                                            style="margin-left: 5px">
+                                        Close
+                                    </button>
+                                </form>
+                            @endif
                         @elseif($collectionRound->status === 1)
                             <form action="{{ route('admin.collection_rounds.update', $collectionRound->id) }}"
                                   method="POST" class="fa-pull-right">
