@@ -6,10 +6,7 @@ use App\Bundle;
 use App\CollectionRound;
 use App\Forms\CollectionRoundForm;
 use App\Http\Controllers\Controller;
-use App\Warehouse;
 use Exception;
-use GuzzleHttp\Client;
-use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 
@@ -17,7 +14,7 @@ class CollectionRoundController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'admin']);
     }
 
     public function index(FormBuilder $formBuilder)
