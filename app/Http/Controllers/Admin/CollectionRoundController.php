@@ -37,10 +37,14 @@ class CollectionRoundController extends Controller
         $collectionRound = CollectionRound::find($request->route('id'));
         $bundles = $collectionRound->bundles;
 
-        return view('admin.collection_rounds.show', [
-            'collectionRound' => $collectionRound,
-            'bundles' => $bundles,
-        ]);
+        // Get all products in this CollectionRound
+        $products = collect();
+        foreach ($bundles as $bundle) {
+            $products = $products->merge($bundle->products);
+        }
+
+        return view('admin.collection_rounds.show',
+            compact('collectionRound', 'bundles', 'products'));
     }
 
     public function store(FormBuilder $formBuilder)
@@ -63,6 +67,7 @@ class CollectionRoundController extends Controller
     public function update(Request $request)
     {
         $collectionRound = CollectionRound::find($request->route('id'));
+        $bundles = $collectionRound->bundles;
 
 //        if ($request->input('collection_round_status') == 2) {
 ////         The collection round has been started
@@ -79,6 +84,34 @@ class CollectionRoundController extends Controller
 
         if ($request->input('collection_round_status') == 3) {
             // Collection round is done. Automatically handle supply.
+
+            if ($collectionRound->warehouse->availableWeight() < $collectionRound->weight()) {
+                return redirect()->back()->with('error', 'There is not enough free space available in the warehouse!');
+            }
+
+            // Get all products in this CollectionRound
+            $products = collect();
+            foreach ($bundles as $bundle) {
+                // Set bundle as "collected" while we're at it
+                $bundle->status = 3;
+                $bundle->save();
+
+                $products = $products->merge($bundle->products);
+            }
+
+            // Get a free shelf for each product
+            foreach ($products as $product) {
+                foreach ($collectionRound->warehouse->shelves as $shelf) {
+                    if ($product->weight <= $shelf->availabeWeight()) {
+                        $product->shelf_id = $shelf->id;
+                        $product->status = 1; // Product is in supply
+                        $product->save();
+
+                        // Update next product
+                        break;
+                    }
+                }
+            }
         }
 
         $collectionRound->status = $request->input('collection_round_status');

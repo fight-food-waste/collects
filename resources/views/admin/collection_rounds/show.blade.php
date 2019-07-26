@@ -143,7 +143,7 @@
                     </div>
                     <div class="card-body">
                         @if (sizeof($bundles) > 0)
-                            <div id="mapquest">Map
+                            <div id="mapquest"><h4>Map</h4>
                                 <hr>
                                 <div id="map" style="width: 100%; height: 400px;"></div>
                                 <br>
@@ -154,7 +154,7 @@
                                 the {{ $collectionRound->warehouse->name }} warehouse.</p>
 
                             <div style="display: inline">
-                                Bundles
+                                <h4>Bundles</h4>
                                 @if($collectionRound->status === 0)
                                     <form action="{{ route('admin.collection_rounds.auto_add_bundles', $collectionRound->id) }}"
                                           method="POST" class="fa-pull-right">
@@ -229,6 +229,36 @@
                                     </button>
                                 </form>
                             </div>
+                        @endif
+                        @if($collectionRound->status == 3)
+                            <h4>Products</h4>
+                            <hr>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Barcode</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Expiration Date</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Weight</th>
+                                    <th scope="col">Shelf</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($products as $product)
+                                    <tr>
+                                        <th scope="row">
+                                            {{ $product->barcode }}
+                                        </th>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->expiration_date }}</td>
+                                        <td>{{ $product->quantity }}</td>
+                                        <td>{{ $product->weightAsMass()->toUnit('g') }} g</td>
+                                        <td>{{ $product->shelf_id }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         @endif
                     </div>
                 </div>
