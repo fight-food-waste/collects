@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
 
                 @if (session('success'))
                     <div class="alert alert-success" role="alert">
@@ -27,6 +27,7 @@
                                     <th scope="col">Number of products</th>
                                     <th scope="col">Weight</th>
                                     <th scope="col">Donor</th>
+                                    <th scope="col">Address</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -41,6 +42,7 @@
                                         <td>{{ count($bundle->products)  }}</td>
                                         <td>{{ $bundle->weightAsMass()->toUnit('kg') }} kg</td>
                                         <td>{{ $bundle->donor->getFullName() }}</td>
+                                        <td>{{ $bundle->donor->address->getFormatted() }}</td>
                                         <td style="display: flex;">
                                             @if($bundle->status <= 0)
                                                 <form action="{{ route('admin.bundles.approve') }}"
