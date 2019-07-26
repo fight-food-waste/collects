@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Bundle;
 use App\CollectionRound;
+use App\Exports\CollectionRoundExport;
 use App\Forms\CollectionRoundForm;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CollectionRoundController extends Controller
 {
@@ -236,5 +238,12 @@ class CollectionRoundController extends Controller
             return redirect()->route('admin.collection_rounds.show', $collectionRound->id)
                 ->with('error', 'No available bundle was found...');
         }
+    }
+
+    public function export(Request $request)
+    {
+        $collectionRound = CollectionRound::find($request->route('id'));
+
+        return Excel::download(new CollectionRoundExport($collectionRound), 'addresses.xlsx');
     }
 }
