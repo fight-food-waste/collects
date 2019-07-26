@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
              CollectionRoundsTableSeeder::class,
              BundlesTableSeeder::class,
              ProductsTableSeeder::class,
+             TrucksTableSeeder::class,
          ]);
     }
 }
