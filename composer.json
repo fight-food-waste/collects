@@ -17,6 +17,7 @@
         "laravel/framework": "5.8.*",
         "laravel/telescope": "^2.0",
         "laravel/tinker": "^1.0",
+        "maatwebsite/excel": "^3.1",
         "php-units-of-measure/php-units-of-measure": "^2.1",
         "thedevsaddam/laravel-schema": "^2.0",
         "tightenco/parental": "0.7"

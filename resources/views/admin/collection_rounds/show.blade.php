@@ -154,7 +154,14 @@
                                 the {{ $collectionRound->warehouse->name }} warehouse.</p>
 
                             <div style="display: inline">
-                                <h4>Bundles</h4>
+                                <h4>Bundles
+                                    <a href="{{ route('admin.collection_rounds.export', $collectionRound->id) }}">
+                                        <button type="button" class="btn btn-sm btn-secondary"
+                                                style="margin-left: 10px">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </a>
+                                </h4>
                                 @if($collectionRound->status === 0)
                                     <form action="{{ route('admin.collection_rounds.auto_add_bundles', $collectionRound->id) }}"
                                           method="POST" class="fa-pull-right">
