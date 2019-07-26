@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Bundle;
-use Carbon\Carbon;
+use App\Product;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class BundlesController extends Controller
 {
@@ -21,32 +23,40 @@ class BundlesController extends Controller
      */
     public function index()
     {
-        $bundles = Bundle::all();
+        $bundles = Bundle::all()->where('user_id', Auth::user()->id);
 
         return view('bundle.index', compact('bundles'));
     }
 
-    public function validateBundle($id)
+    public function show(Request $request)
     {
-        $bundle = Bundle::where('id', $id)->first();
+        $bundle = Bundle::find($request->route('id'));
 
-        $bundle->validated_at = now();
-        $bundle->lifecycle_status = 'to_collect';
+        if ($bundle->user_id !== Auth::user()->id) {
+            return redirect()->route('bundle.index')->with('error', "Access forbidden: you are not allowed to see this bundle.");
+        }
 
-        $bundle->save();
+        $products = $bundle->products;
 
-        return redirect()->route('bundles.index');
+        return view('bundle.show', [
+            'bundle' => $bundle,
+            'products' => $products,
+        ]);
     }
-
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Request $request
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $bundle = Bundle::find($request->input('bundle_id'));
+
+        $bundle->products->each->delete();
+        $bundle->delete();
+
+        return redirect()->back()->with('success', "The bundle has been successfully deleted.");
     }
 }
