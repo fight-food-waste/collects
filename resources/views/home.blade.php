@@ -15,6 +15,12 @@
                         @endif
 
                         You are logged in!
+
+                        @if(Auth::user()->type == "employee")
+                            Go to the<a href="{{ route('admin.index') }}">
+                                {{ __('Admin') }}.
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>

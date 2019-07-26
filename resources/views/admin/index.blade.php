@@ -16,7 +16,7 @@
                         <h3>Admin</h3></div>
 
                     <div class="card-body">
-                        <p>Welcome!</p>
+                        <p>Click a link below to manage donations.</p>
 
                         <ul>
                             <li><a href="{{ route('admin.bundles.index') }}">Bundles</a></li>

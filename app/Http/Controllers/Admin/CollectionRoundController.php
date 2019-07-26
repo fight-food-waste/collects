@@ -122,7 +122,7 @@ class CollectionRoundController extends Controller
             foreach ($products as $product) {
                 foreach ($collectionRound->warehouse->shelves as $shelf) {
                     if ($product->weight <= $shelf->availabeWeight()) {
-                        $product->shelf_id = $shelf->id;
+                        $product->shelf_id = $shelf->number;
                         $product->status = 1; // Product is in supply
                         $product->save();
 
