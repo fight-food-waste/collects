@@ -6,7 +6,7 @@
 composer install
 cp .env.example .env
 php artisan key:generate
-php artisan migreate:fresh
+php artisan migrate:fresh
 php artisan db:seed
 ```
 
