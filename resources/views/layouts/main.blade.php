@@ -62,6 +62,14 @@
                                     {{ __('Profile') }}
                                 </a>
 
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    Account
+                                </a>
+
+                                <a class="dropdown-item" href="{{ route('bundle.index') }}">
+                                    Bundles
+                                </a>
+
                                 @if(Auth::user()->type == "member")
                                     <a class="dropdown-item" href="{{ route('membership') }}">
                                         {{ __('Membership') }}

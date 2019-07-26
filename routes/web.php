@@ -32,6 +32,7 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('profile', 'ProfilesController@getProfile')->name('profile');
+Route::get('profile/edit', 'ProfilesController@edit')->name('profile.edit');
 
 Route::prefix('admin')->group(function () {
     Route::get('bundles', 'Admin\BundleController@index')->name('admin.bundles.index');
@@ -55,6 +56,14 @@ Route::prefix('admin')->group(function () {
     Route::post('collection-rounds/{id}/auto-add', 'Admin\CollectionRoundController@autoAddBundles')
         ->where('id', '[0-9]+')->name('admin.collection_rounds.auto_add_bundles');
 });
+
+Route::get('bundles', 'BundlesController@index')->name('bundle.index');
+Route::get('bundles/{id}', 'BundlesController@show')->name('bundle.show')->where('id', '[0-9]+');
+Route::post('bundles/destroy', 'BundlesController@destroy')->name('bundle.destroy');
+
+Route::post('products', 'ProductsController@destroy')->name('product.destroy');
+
+Route::get('/user/{id}/renew', 'MembershipsController@renew')->name('membership.renew')->where('id', '[0-9]+');
 
 //Route::resource('admin/collection-rounds', 'CollectionRoundsController');
 //Route::post('admin/collection-rounds/start', 'CollectionRoundsController@startRound')->name('collection_rounds.start_round');

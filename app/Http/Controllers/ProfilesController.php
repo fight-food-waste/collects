@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Bundle;
+use App\Forms\DonorForm;
 use Illuminate\Support\Facades\Auth;
+use Kris\LaravelFormBuilder\FormBuilder;
 
 class ProfilesController extends Controller
 {
@@ -27,5 +29,24 @@ class ProfilesController extends Controller
                 exit();
             }
         }
+    }
+
+    public function edit(FormBuilder $formBuilder)
+    {
+        $user = Auth::user();
+//        $userType = $user->type;
+
+//        if ($userType === 'donor') {
+//            $form = $formBuilder->create(DonorForm::class, [
+//                'model' => $user,
+//            ]);
+//        } else {
+//        }
+
+        $form = $formBuilder->create(DonorForm::class, [
+            'model' => $user,
+        ]);
+
+        return view('user.account', compact('form'));
     }
 }
