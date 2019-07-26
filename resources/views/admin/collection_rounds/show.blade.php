@@ -153,11 +153,11 @@
                                 total of {{ $collectionRound->weightAsMass()->toUnit('kg') }} kg. It is attached to
                                 the {{ $collectionRound->warehouse->name }} warehouse.</p>
 
-                            <div style="display: inline">
+                            <div style="display: flex">
                                 <h4>Bundles
                                     <a href="{{ route('admin.collection_rounds.export', $collectionRound->id) }}">
                                         <button type="button" class="btn btn-sm btn-secondary"
-                                                style="margin-left: 10px">
+                                                style="margin-left: 5px">
                                             <i class="fas fa-download"></i>
                                         </button>
                                     </a>
@@ -215,7 +215,8 @@
                                                 </form>
                                             @endif
                                             <a href="{{ route('admin.bundles.show', $bundle->id) }}">
-                                                <button class="btn btn-sm btn-secondary">
+                                                <button class="btn btn-sm btn-secondary"
+                                                        style="margin-left: 5px">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                             </a>
