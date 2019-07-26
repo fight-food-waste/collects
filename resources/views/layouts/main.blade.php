@@ -72,11 +72,11 @@
                                 {{--                                    {{ __('Services') }}--}}
                                 {{--                                </a>--}}
 
-                                {{--                                @if(Auth::user()->type == "employee")--}}
-                                {{--                                    <a class="dropdown-item" href="{{ route('admin') }}">--}}
-                                {{--                                        {{ __('Admin') }}--}}
-                                {{--                                    </a>--}}
-                                {{--                                @endif--}}
+                                                                @if(Auth::user()->type == "employee")
+                                                                    <a class="dropdown-item" href="{{ route('admin.index') }}">
+                                                                        {{ __('Admin') }}
+                                                                    </a>
+                                                                @endif
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

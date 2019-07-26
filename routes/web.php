@@ -34,6 +34,8 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('profile', 'ProfilesController@getProfile')->name('profile');
 
 Route::prefix('admin')->group(function () {
+    Route::get('/', 'Admin\AdminController@index')->name('admin.index');
+
     Route::get('bundles', 'Admin\BundleController@index')->name('admin.bundles.index');
     Route::post('bundles/approve', 'Admin\BundleController@approve')->name('admin.bundles.approve');
     Route::post('bundles/reject', 'Admin\BundleController@reject')->name('admin.bundles.reject');
