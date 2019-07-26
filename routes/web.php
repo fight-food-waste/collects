@@ -64,6 +64,8 @@ Route::prefix('admin')->group(function () {
     Route::get('products', 'Admin\ProductsController@index')->name('admin.products.index');
 
     Route::get('trucks', 'Admin\TruckController@index')->name('admin.trucks.index');
+
+    Route::get('warehouses', 'Admin\WarehouseController@index')->name('admin.warehouses.index');
 });
 
 //Route::resource('admin/collection-rounds', 'CollectionRoundsController');

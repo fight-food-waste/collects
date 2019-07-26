@@ -13,7 +13,7 @@ class ShelvesTableSeeder extends Seeder
     public function run()
     {
         // Create 50 shelves for the 6 warehouses
-        for ($i = 1; $i <= 6; $i++) {
+        for ($i = 1; $i <= 7; $i++) {
             for ($j = 1; $j <= 50; $j++) {
                 Shelf::create([
                     'number' => $j,

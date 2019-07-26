@@ -23,6 +23,7 @@
                             <li><a href="{{ route('admin.products.index') }}">Products</a></li>
                             <li><a href="{{ route('admin.collection_rounds.index') }}">Collections Rounds</a></li>
                             <li><a href="{{ route('admin.trucks.index') }}">Trucks</a></li>
+                            <li><a href="{{ route('admin.warehouses.index') }}">Warehouses</a></li>
                         </ul>
 
                     </div>
