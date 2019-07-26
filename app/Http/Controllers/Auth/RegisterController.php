@@ -136,6 +136,10 @@ class RegisterController extends Controller
 
         $address = Address::create($user_attributes);
 
+        // Compute closest warehouse
+        $address->closest_warehouse_id = $address->computeClosestWarehouse();
+        $address->save();
+
         $user_attributes += ['address_id' => $address->id];
         $user_attributes['password'] = Hash::make($user_attributes['password']);
 

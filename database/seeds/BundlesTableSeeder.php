@@ -44,5 +44,13 @@ class BundlesTableSeeder extends Seeder
             'user_id' => 8,
             'collection_round_id' => null,
         ]);
+
+        Bundle::create([
+            'submitted_at' => Carbon::yesterday()->subWeekday(),
+            'validated_at' => Carbon::yesterday()->subWeekday(),
+            'status' => 1,
+            'user_id' => 10,
+            'collection_round_id' => null,
+        ]);
     }
 }
