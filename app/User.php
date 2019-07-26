@@ -50,7 +50,6 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
-        'address_id',
         'type',
         'api_token',
     ];

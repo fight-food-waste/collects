@@ -22,6 +22,9 @@ class CreateAddressesTable extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
+            $table->bigInteger('closest_warehouse_id')->unsigned()->nullable();
+            $table->foreign('closest_warehouse_id')->references('id')->on('warehouses');
+
             $table->timestamps();
         });
     }

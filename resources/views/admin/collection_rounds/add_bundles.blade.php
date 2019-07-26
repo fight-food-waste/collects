@@ -39,6 +39,7 @@
                                     <th scope="col">Number of products</th>
                                     <th scope="col">Weight</th>
                                     <th scope="col">Donor</th>
+                                    <th scope="col">City</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -55,6 +56,7 @@
                                         <td>
                                             {{ $bundle->donor->getFullName() }}
                                         </td>
+                                        <td>{{ $bundle->donor->address->city }}</td>
                                         <td style="display: flex;">
                                             @if($bundle->status <= 0)
                                                 <form action="{{ route('admin.bundles.approve') }}"

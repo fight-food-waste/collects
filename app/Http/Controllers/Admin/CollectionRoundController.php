@@ -176,52 +176,13 @@ class CollectionRoundController extends Controller
         return $bundles;
     }
 
-    private function getDistance(String $origin, String $destination)
-    {
-        $client = new Client();
-        $url = "http://www.mapquestapi.com/directions/v2/routematrix?key=" . config('app.mapquest_api_key');
-        $responseStream = $client->post($url, [
-            RequestOptions::JSON => ['locations' => [
-                $origin,
-                $destination,
-            ]]
-        ]);
-        $responseString = (string)$responseStream->getBody();
-
-        $distance = json_decode($responseString, true)['distance'][1];
-
-        return $distance;
-    }
-
     private function getCloseAvailableBundles(CollectionRound $collectionRound)
     {
         $bundles = $this->getAvailableBundles($collectionRound);
-        $warehouses = Warehouse::all();
 
         foreach ($bundles as $bundle) {
 
-            $closestWarehouse = [];
-            $closestWarehouse['id'] = null;
-            $closestWarehouse['distance'] = null;
-
-            $destination = $bundle->donor->address->getFormatted();
-
-            foreach ($warehouses as $warehouse) {
-                $origin = $warehouse->address;
-                $distance = $this->getDistance($origin, $destination);
-
-                // First item only
-                if ($closestWarehouse['distance'] == null) {
-                    $closestWarehouse['distance'] = $distance;
-                    $closestWarehouse['id'] = $warehouse->id;
-
-                } elseif ($distance < $closestWarehouse['distance']) {
-                    $closestWarehouse['distance'] = $distance;
-                    $closestWarehouse['id'] = $warehouse->id;
-                }
-            }
-
-            if ($collectionRound->warehouse->id != $closestWarehouse['id']) {
+            if ($collectionRound->warehouse->id != $bundle->donor->address->closest_warehouse_id) {
                 // Bundle is closer to another warehouse, this it should not be in this collection round
 
                 $bundles = $bundles->except($bundle->id);

@@ -13,7 +13,7 @@ class WarehousesTableSeeder extends Seeder
     public function run()
     {
         Warehouse::create([
-            'name' => 'Lilles',
+            'name' => 'Lille',
             'address' => '14 Rue de Fleurus, 59000 Lille, France',
         ]);
 
