@@ -7,6 +7,7 @@ use App\CollectionRound;
 use App\Exports\CollectionRoundExport;
 use App\Forms\CollectionRoundForm;
 use App\Http\Controllers\Controller;
+use App\Truck;
 use Exception;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
@@ -34,6 +35,7 @@ class CollectionRoundController extends Controller
     public function show(Request $request)
     {
         $collectionRound = CollectionRound::find($request->route('id'));
+
         $bundles = $collectionRound->bundles;
 
         // Get all products in this CollectionRound
@@ -68,10 +70,10 @@ class CollectionRoundController extends Controller
         $collectionRound = CollectionRound::find($request->route('id'));
         $bundles = $collectionRound->bundles;
 
-//        if ($request->input('collection_round_status') == 2) {
-////         The collection round has been started
-////         Send mail to donors here.
-//
+        if ($request->input('collection_round_status') == 2) {
+//         The collection round has been started
+//         Send mail to donors here.
+
 //         $users = ...
 //             foreach($users as $user) {
 //                 Mail::send('mail_view', [], function ($message) {
@@ -79,7 +81,20 @@ class CollectionRoundController extends Controller
 //                     $message->to($user->email);
 //                 });
 //             }
-//        }
+
+            // Assign a truck to this collection round
+            $truckResult = Truck::where('collection_round_id', null)
+                ->where('warehouse_id', $collectionRound->warehouse->id)
+                ->get();
+            if ($truckResult->isEmpty()) {
+                return redirect()->back()->with('error', 'There is no available truck at the moment.');
+            } else {
+                $truck = $truckResult->first();
+
+                $truck->collection_round_id = $collectionRound->id;
+                $truck->save();
+            }
+        }
 
         if ($request->input('collection_round_status') == 3) {
             // Collection round is done. Automatically handle supply.
@@ -87,6 +102,11 @@ class CollectionRoundController extends Controller
             if ($collectionRound->warehouse->availableWeight() < $collectionRound->weight()) {
                 return redirect()->back()->with('error', 'There is not enough free space available in the warehouse!');
             }
+
+            // Free truck
+            $truck = $collectionRound->truck;
+            $truck->collection_round_id = null;
+            $truck->save();
 
             // Get all products in this CollectionRound
             $products = collect();

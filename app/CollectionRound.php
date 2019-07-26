@@ -39,6 +39,11 @@ class CollectionRound extends Model
         return $this->hasMany(Bundle::class);
     }
 
+    public function truck()
+    {
+        return $this->hasOne(Truck::class);
+    }
+
     public function getStatusName()
     {
         switch ($this->status) {
@@ -71,7 +76,8 @@ class CollectionRound extends Model
         return new Mass($this->weight(), 'g');
     }
 
-    public function availabeWeight() {
+    public function availabeWeight()
+    {
         return $this->max_weight - $this->weight();
     }
 }

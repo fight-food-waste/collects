@@ -152,6 +152,10 @@
                             <p>This collection round contains {{ count($collectionRound->bundles)  }} bundles for a
                                 total of {{ $collectionRound->weightAsMass()->toUnit('kg') }} kg. It is attached to
                                 the {{ $collectionRound->warehouse->name }} warehouse.</p>
+                            @if($collectionRound->status == 2)
+                                <p>The collection round is currently ongoing with truck
+                                    #{{ $collectionRound->truck->id }}.</p>
+                            @endif
 
                             <div style="display: flex">
                                 <h4>Bundles
