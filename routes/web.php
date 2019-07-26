@@ -60,6 +60,8 @@ Route::prefix('admin')->group(function () {
         ->where('id', '[0-9]+')->name('admin.collection_rounds.update');
 
     Route::get('products', 'Admin\ProductsController@index')->name('admin.products.index');
+
+    Route::get('trucks', 'Admin\TruckController@index')->name('admin.trucks.index');
 });
 
 //Route::resource('admin/collection-rounds', 'CollectionRoundsController');

@@ -16,4 +16,9 @@ class Truck extends Model
     {
         return $this->belongsTo(CollectionRound::class);
     }
+
+    public function warehouse()
+    {
+        return $this->belongsTo(Warehouse::class);
+    }
 }
