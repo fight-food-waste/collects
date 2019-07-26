@@ -54,7 +54,7 @@
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->expiration_date }}</td>
                                         <td>{{ $product->quantity }}</td>
-                                        <td>{{ $bundle->weightAsMass()->toUnit('g') }} g</td>
+                                        <td>{{ $product->weightAsMass()->toUnit('g') }} g</td>
                                         <td>
                                             <form action="{{ route('admin.bundles.product.reject') }}"
                                                   method="POST">
