@@ -33,13 +33,6 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -152,7 +145,7 @@ class RegisterController extends Controller
 
         Auth::login($member);
 
-        return redirect($this->redirectPath())->with('success', 'Registration successful!');
+        return redirect(route('home'))->with('success', 'Registration successful!');
     }
 
     /**
@@ -182,7 +175,7 @@ class RegisterController extends Controller
 
         Auth::login($member);
 
-        return redirect($this->redirectPath())->with('success', 'Registration successful!');
+        return redirect(route('home'))->with('success', 'Registration successful!');
     }
 
     /**
@@ -212,6 +205,6 @@ class RegisterController extends Controller
 
         Auth::login($member);
 
-        return redirect($this->redirectPath())->with('success', 'Registration successful!');
+        return redirect(route('home'))->with('success', 'Registration successful!');
     }
 }
