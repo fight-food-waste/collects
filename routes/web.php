@@ -32,16 +32,11 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('profile', 'ProfileController@getProfile')->name('profile');
-Route::get('profile/edit', 'ProfileController@edit')->name('profile.edit');
-
 Route::get('bundles', 'BundleController@index')->name('bundle.index');
 Route::get('bundles/{id}', 'BundleController@show')->where('id', '[0-9]+')->name('bundle.show');
 Route::post('bundles/destroy', 'BundleController@destroy')->name('bundle.destroy');
 
 Route::post('products', 'ProductController@destroy')->name('product.destroy');
-
-Route::get('/user/{id}/renew', 'MembershipsController@renew')->name('membership.renew')->where('id', '[0-9]+');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'Admin\AdminController@index')->name('admin.index');

@@ -58,18 +58,15 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('profile') }}">
-                                    {{ __('Profile') }}
-                                </a>
 
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                <a class="dropdown-item" href="">
                                     Account
                                 </a>
 
                                 @if(Auth::user()->type == "donor")
-                                <a class="dropdown-item" href="{{ route('bundle.index') }}">
-                                    Bundles
-                                </a>
+                                    <a class="dropdown-item" href="{{ route('bundle.index') }}">
+                                        Bundles
+                                    </a>
                                 @endif
 
                                 @if(Auth::user()->type == "member")
@@ -78,15 +75,12 @@
                                     </a>
                                 @endif
 
-                                {{--                                <a class="dropdown-item" href="{{ route('services') }}">--}}
-                                {{--                                    {{ __('Services') }}--}}
-                                {{--                                </a>--}}
 
-                                                                @if(Auth::user()->type == "employee")
-                                                                    <a class="dropdown-item" href="{{ route('admin.index') }}">
-                                                                        {{ __('Admin') }}
-                                                                    </a>
-                                                                @endif
+                                @if(Auth::user()->type == "employee")
+                                    <a class="dropdown-item" href="{{ route('admin.index') }}">
+                                        {{ __('Admin') }}
+                                    </a>
+                                @endif
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
