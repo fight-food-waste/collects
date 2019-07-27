@@ -9,20 +9,24 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Illuminate\Support\Collection;
 
-/**
- * @property int volunteer_id
- */
 class CollectionRoundExport implements FromCollection, WithHeadings, WithMapping
 {
+    /**
+     * CollectionRoundExport constructor.
+     *
+     * @param CollectionRound $collectionRound
+     */
     public function __construct(CollectionRound $collectionRound)
     {
         $this->collection_round = $collectionRound;
     }
 
     /**
+     * Get all Donors
+     *
      * @return Collection
      */
-    public function collection()
+    public function collection(): Collection
     {
         $donors_id = collect();
         $bundles = $this->collection_round->bundles;
@@ -34,6 +38,13 @@ class CollectionRoundExport implements FromCollection, WithHeadings, WithMapping
         return Donor::whereIn('id', $donors_id->toArray())->get();
     }
 
+    /**
+     * Map a Donor to each row
+     *
+     * @param mixed $donor
+     *
+     * @return array
+     */
     public function map($donor): array
     {
         return [
@@ -42,6 +53,11 @@ class CollectionRoundExport implements FromCollection, WithHeadings, WithMapping
         ];
     }
 
+    /**
+     * Define headings
+     *
+     * @return array
+     */
     public function headings(): array
     {
         return [

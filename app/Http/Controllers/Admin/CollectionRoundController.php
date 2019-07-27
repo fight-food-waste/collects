@@ -12,6 +12,12 @@ use Exception;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
 
 class CollectionRoundController extends Controller
 {
@@ -20,6 +26,13 @@ class CollectionRoundController extends Controller
         $this->middleware(['auth', 'admin']);
     }
 
+    /**
+     * Show all CollectionRounds and form to create a new one
+     *
+     * @param FormBuilder $formBuilder
+     *
+     * @return Factory|View
+     */
     public function index(FormBuilder $formBuilder)
     {
         $collectionRounds = CollectionRound::all();
@@ -32,6 +45,13 @@ class CollectionRoundController extends Controller
         return view('admin.collection_rounds.index', compact('collectionRounds', 'form'));
     }
 
+    /**
+     * Display a CollectionRound with all its bundles and products
+     *
+     * @param Request $request
+     *
+     * @return Factory|View
+     */
     public function show(Request $request)
     {
         $collectionRound = CollectionRound::find($request->route('id'));
@@ -48,6 +68,13 @@ class CollectionRoundController extends Controller
             compact('collectionRound', 'bundles', 'products'));
     }
 
+    /**
+     * Create new CollectionRound
+     *
+     * @param FormBuilder $formBuilder
+     *
+     * @return RedirectResponse
+     */
     public function store(FormBuilder $formBuilder)
     {
         $form = $formBuilder->create(CollectionRoundForm::class);
@@ -65,6 +92,13 @@ class CollectionRoundController extends Controller
         return redirect()->back()->with('success', 'A new collection round has been created');
     }
 
+    /**
+     * Update CollectionRound status and lifecycle
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
     public function update(Request $request)
     {
         $collectionRound = CollectionRound::find($request->route('id'));
@@ -139,6 +173,13 @@ class CollectionRoundController extends Controller
         return redirect()->back()->with('success', 'The collection round status has been updated.');
     }
 
+    /**
+     * Remove Bundle form CollectionRound
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
     public function removeBundle(Request $request)
     {
         $collectionRound = CollectionRound::find($request->input('collection_round_id'));
@@ -155,6 +196,13 @@ class CollectionRoundController extends Controller
         }
     }
 
+    /**
+     * Delete CollectionRound and detach all Bundles
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
     public function destroy(Request $request)
     {
         $collectionRound = CollectionRound::find($request->input('collection_round_id'));
@@ -182,9 +230,15 @@ class CollectionRoundController extends Controller
         }
     }
 
+    /**
+     * Display view with available Bundles to add to CollectionRound
+     *
+     * @param Request $request
+     *
+     * @return Factory|View
+     */
     public function addBundles(Request $request)
     {
-
         $collectionRound = CollectionRound::find($request->route('id'));
 
         if ($request->input('closest') === "true") {
@@ -197,6 +251,13 @@ class CollectionRoundController extends Controller
             compact('collectionRound', 'bundles', 'request'));
     }
 
+    /**
+     * Get Bundles that are closer the CollectionRound's Warehouse than other Warehouses
+     *
+     * @param CollectionRound $collectionRound
+     *
+     * @return Builder[]|Collection
+     */
     private function getCloseAvailableBundles(CollectionRound $collectionRound)
     {
         $bundles = $this->getAvailableBundles($collectionRound);
@@ -213,6 +274,13 @@ class CollectionRoundController extends Controller
         return $bundles;
     }
 
+    /**
+     * Get Bundle that are available and that are lightweight enough for this CollectionRound
+     *
+     * @param CollectionRound $collectionRound
+     *
+     * @return Builder[]|Collection
+     */
     private function getAvailableBundles(CollectionRound $collectionRound)
     {
         $bundles = Bundle::where('status', 1)
@@ -228,6 +296,13 @@ class CollectionRoundController extends Controller
         return $bundles;
     }
 
+    /**
+     * Attach a Bundle to a CollectionRound
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
     public function addBundle(Request $request)
     {
         $collectionRound = CollectionRound::find($request->input('collection_round_id'));
@@ -241,9 +316,15 @@ class CollectionRoundController extends Controller
             ->with('success', 'The bundle has been added to the collection round.');
     }
 
+    /**
+     * Attach all close Bundles to the CollectionRound
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
     public function autoAddBundles(Request $request)
     {
-
         $collectionRound = CollectionRound::find($request->route('id'));
         $bundles = $this->getCloseAvailableBundles($collectionRound);
 
@@ -262,6 +343,15 @@ class CollectionRoundController extends Controller
         }
     }
 
+    /**
+     * Returns an Excel export of all the CollectionRound's Bundles' Donor's Address
+     *
+     * @param Request $request
+     *
+     * @return \Maatwebsite\Excel\BinaryFileResponse|BinaryFileResponse
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     */
     public function export(Request $request)
     {
         $collectionRound = CollectionRound::find($request->route('id'));

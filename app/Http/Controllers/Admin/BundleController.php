@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
 
 class BundleController extends Controller
 {
@@ -15,6 +18,11 @@ class BundleController extends Controller
         $this->middleware(['auth', 'admin']);
     }
 
+    /**
+     * Show all bundles
+     *
+     * @return Factory|View
+     */
     public function index()
     {
         $bundles = Bundle::all();
@@ -22,6 +30,13 @@ class BundleController extends Controller
         return view('admin.bundles.index', compact('bundles'));
     }
 
+    /**
+     * Approve a Bundle
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
     public function approve(Request $request)
     {
         $bundle = Bundle::find($request->input('bundle_id'));
@@ -32,6 +47,13 @@ class BundleController extends Controller
             ->with('success', 'Bundle ' . $request->input('bundle_id') . ' has been approved.');
     }
 
+    /**
+     * Reject a Bundle
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
     public function reject(Request $request)
     {
         $bundle = Bundle::find($request->input('bundle_id'));
@@ -42,6 +64,13 @@ class BundleController extends Controller
             ->with('success', 'Bundle ' . $request->input('bundle_id') . ' has been rejected.');
     }
 
+    /**
+     * Show view for a Bundle
+     *
+     * @param Request $request
+     *
+     * @return Factory|View
+     */
     public function show(Request $request)
     {
         $bundle = Bundle::find($request->route('id'));
@@ -53,6 +82,13 @@ class BundleController extends Controller
         ]);
     }
 
+    /**
+     * Delete product
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
     public function rejectProduct(Request $request)
     {
         try {

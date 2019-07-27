@@ -62,7 +62,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Show the registration dispacther (choose user type)
+     * Show the registration dispatcher (choose user type)
      *
      * @return View
      */
