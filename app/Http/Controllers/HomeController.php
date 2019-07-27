@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     /**
      * Show the home page.
      *
+     * @param Request $request
      * @return View.
      */
 
-    public function show()
+    public function show(Request $request)
     {
-        if (Auth::check()) {
-            $currentUserId = Auth::user()->id;
-            $currentUser = User::findOrFail($currentUserId);
-
-            return view('home', ['user' => $currentUser]);
+        if ($request->user()) {
+            return view('home', ['user' => $request->user()]);
         } else {
             return view('welcome');
         }
