@@ -15,14 +15,15 @@ class CreateCollectionRoundsTable extends Migration
     {
         Schema::create('collection_rounds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamp('round_date');
-            $table->timestamp('started_at')->nullable();
+            $table->timestamps();
+
             $table->integer('status')->default(0);
+
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+
             $table->unsignedBigInteger('warehouse_id');
             $table->foreign('warehouse_id')->references('id')->on('warehouses');
-            $table->timestamps();
         });
     }
 

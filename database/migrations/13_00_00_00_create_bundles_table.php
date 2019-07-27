@@ -15,8 +15,7 @@ class CreateBundlesTable extends Migration
     {
         Schema::create('bundles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamp('submitted_at');
-            $table->timestamp('validated_at')->nullable();
+            $table->timestamps();
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
@@ -26,7 +25,6 @@ class CreateBundlesTable extends Migration
 
             $table->integer('status')->default(0);
 
-            $table->timestamps();
         });
     }
 
