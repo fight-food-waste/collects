@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Str;
 
 class LoginController extends Controller
 {
@@ -21,11 +20,7 @@ class LoginController extends Controller
     {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
 
-            $token = Str::random(60);
-
-            $request->user()->forceFill([
-                'api_token' => hash('sha256', $token),
-            ])->save();
+            $token = $request->user()->renewToken();
 
             return ['token' => $token];
         } else {

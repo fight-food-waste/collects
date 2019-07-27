@@ -70,10 +70,12 @@ class User extends Authenticatable
      */
     public function renewToken(): string
     {
-        $this->api_token = Str::random(60);
+        $token = Str::random(60);
+
+        $this->api_token = hash('sha256', $token);
         $this->save();
 
-        return $this->api_token;
+        return $token;
     }
 
     public function getFullName(): string
