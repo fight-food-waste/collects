@@ -32,14 +32,14 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('profile', 'ProfilesController@getProfile')->name('profile');
-Route::get('profile/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::get('profile', 'ProfileController@getProfile')->name('profile');
+Route::get('profile/edit', 'ProfileController@edit')->name('profile.edit');
 
-Route::get('bundles', 'BundlesController@index')->name('bundle.index');
-Route::get('bundles/{id}', 'BundlesController@show')->name('bundle.show')->where('id', '[0-9]+');
-Route::post('bundles/destroy', 'BundlesController@destroy')->name('bundle.destroy');
+Route::get('bundles', 'BundleController@index')->name('bundle.index');
+Route::get('bundles/{id}', 'BundleController@show')->name('bundle.show')->where('id', '[0-9]+');
+Route::post('bundles/destroy', 'BundleController@destroy')->name('bundle.destroy');
 
-Route::post('products', 'ProductsController@destroy')->name('product.destroy');
+Route::post('products', 'ProductController@destroy')->name('product.destroy');
 
 Route::get('/user/{id}/renew', 'MembershipsController@renew')->name('membership.renew')->where('id', '[0-9]+');
 

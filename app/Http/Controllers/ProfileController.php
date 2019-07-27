@@ -7,7 +7,7 @@ use App\Forms\DonorForm;
 use Illuminate\Support\Facades\Auth;
 use Kris\LaravelFormBuilder\FormBuilder;
 
-class ProfilesController extends Controller
+class ProfileController extends Controller
 {
 
     public function getProfile()
