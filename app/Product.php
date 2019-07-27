@@ -2,23 +2,9 @@
 
 namespace App;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
 
-/**
- * App\Product
- *
- * @property-read Bundle $bundle
- * @property-read DeliveryRound $deliveryRound
- * @property-read ProductStatus $productStatus
- * @property-read Shelf $shelf
- * @method static Builder|Product newModelQuery()
- * @method static Builder|Product newQuery()
- * @method static Builder|Product query()
- * @mixin Eloquent
- */
 class Product extends Model
 {
 

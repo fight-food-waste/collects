@@ -2,23 +2,8 @@
 
 namespace App;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Notifications\DatabaseNotificationCollection;
 use Tightenco\Parental\HasParent;
 
-/**
- * App\Storekeeper
- *
- * @property-read Collection|StorekeeperMembership[] $memberships
- * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
- * @method static Builder|Storekeeper newModelQuery()
- * @method static Builder|Storekeeper newQuery()
- * @method static Builder|Storekeeper query()
- * @mixin Eloquent
- */
 class Storekeeper extends User
 {
     use HasParent;
