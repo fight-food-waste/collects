@@ -19,10 +19,10 @@ class AidApplication extends Model
     ];
 
     /**
-     * Get the user that owns the application.
+     * Get the NeedyPerson that owns the application.
      */
-    public function aidApplication()
+    public function needyPerson()
     {
-        return $this->belongsTo(AidApplication::class);
+        return $this->belongsTo(NeedyPerson::class);
     }
 }
