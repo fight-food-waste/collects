@@ -36,7 +36,7 @@ Route::get('profile', 'ProfileController@getProfile')->name('profile');
 Route::get('profile/edit', 'ProfileController@edit')->name('profile.edit');
 
 Route::get('bundles', 'BundleController@index')->name('bundle.index');
-Route::get('bundles/{id}', 'BundleController@show')->name('bundle.show')->where('id', '[0-9]+');
+Route::get('bundles/{id}', 'BundleController@show')->where('id', '[0-9]+')->name('bundle.show');
 Route::post('bundles/destroy', 'BundleController@destroy')->name('bundle.destroy');
 
 Route::post('products', 'ProductController@destroy')->name('product.destroy');
