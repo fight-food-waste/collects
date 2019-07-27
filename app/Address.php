@@ -29,6 +29,11 @@ class Address extends Model
         return $this->belongsTo('App\User');
     }
 
+    /**
+     * Compare distances and return the closest Warehouse to this Address
+     *
+     * @return |null
+     */
     public function computeClosestWarehouse()
     {
         $warehouses = Warehouse::all();
@@ -37,11 +42,8 @@ class Address extends Model
         $closestWarehouse['id'] = null;
         $closestWarehouse['distance'] = null;
 
-        $destination = $this->getFormatted();
-
         foreach ($warehouses as $warehouse) {
-            $origin = $warehouse->address;
-            $distance = $this->getDistance($origin, $destination);
+            $distance = $this->getDistance($warehouse->address);
 
             // First item only
             if ($closestWarehouse['distance'] == null) {
@@ -57,25 +59,37 @@ class Address extends Model
         return $closestWarehouse['id'];
     }
 
+    /**
+     * Return formatted address as string
+     *
+     * @return string
+     */
     public function getFormatted()
     {
         return $this->street . ', ' . $this->zip_postal_code . ' ' . $this->city . ', France';
     }
 
-    public function getDistance(String $origin, String $destination)
+    /**
+     * Returns distance to a location
+     *
+     * @param String $location
+     *
+     * @return int
+     */
+    public function getDistance(String $location): int
     {
         $client = new Client();
         $url = "http://www.mapquestapi.com/directions/v2/routematrix?key=" . config('app.mapquest_api_key');
         $responseStream = $client->post($url, [
             RequestOptions::JSON => ['locations' => [
-                $origin,
-                $destination,
+                $this->getFormatted(),
+                $location,
             ]],
         ]);
-        $responseString = (string) $responseStream->getBody();
+        $response = (string) $responseStream->getBody();
 
-        $distance = json_decode($responseString, true)['distance'][1];
+        $distance = json_decode($response, true)['distance'][1];
 
-        return $distance;
+        return intval($distance);
     }
 }

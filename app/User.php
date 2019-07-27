@@ -72,7 +72,13 @@ class User extends Authenticatable
         return $this->hasOne('App\Agency');
     }
 
-    public function generateToken()
+
+    /**
+     * Generate random token, save it and return it
+     *
+     * @return string
+     */
+    public function renewToken(): string
     {
         $this->api_token = Str::random(60);
         $this->save();
@@ -80,7 +86,7 @@ class User extends Authenticatable
         return $this->api_token;
     }
 
-    public function getFullName()
+    public function getFullName(): string
     {
         return $this->first_name . ' ' . $this->last_name;
     }

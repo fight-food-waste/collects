@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
+use PhpUnitsOfMeasure\Exception\NonStringUnitName;
+use PhpUnitsOfMeasure\Exception\NonNumericValue;
 
 class CollectionRound extends Model
 {
@@ -31,7 +33,12 @@ class CollectionRound extends Model
         return $this->hasOne(Truck::class);
     }
 
-    public function getStatusName()
+    /**
+     * Get a human-readable name for all possible statuses
+     *
+     * @return string
+     */
+    public function getStatusName(): string
     {
         switch ($this->status) {
             case 0:
@@ -47,11 +54,23 @@ class CollectionRound extends Model
         }
     }
 
+    /**
+     * Convert weight integer as a Mass object in grams
+     *
+     * @return Mass
+     * @throws NonNumericValue
+     * @throws NonStringUnitName
+     */
     public function weightAsMass()
     {
         return new Mass($this->weight(), 'g');
     }
 
+    /**
+     * Get total CollectionRound weight by adding up all the Bundles' weight
+     *
+     * @return int
+     */
     public function weight()
     {
         $weight = 0;
@@ -63,7 +82,12 @@ class CollectionRound extends Model
         return $weight;
     }
 
-    public function availabeWeight()
+    /**
+     * Calculate available weight
+     *
+     * @return int
+     */
+    public function availableWeight(): int
     {
         return $this->max_weight - $this->weight();
     }

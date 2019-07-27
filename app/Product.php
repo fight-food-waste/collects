@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
+use PhpUnitsOfMeasure\Exception\NonStringUnitName;
+use PhpUnitsOfMeasure\Exception\NonNumericValue;
 
 class Product extends Model
 {
@@ -34,6 +36,13 @@ class Product extends Model
         return $this->belongsTo(DeliveryRound::class);
     }
 
+    /**
+     * Convert weight integer as a Mass object in grams
+     *
+     * @return Mass
+     * @throws NonNumericValue
+     * @throws NonStringUnitName
+     */
     public function weightAsMass()
     {
         return new Mass($this->weight, 'g');

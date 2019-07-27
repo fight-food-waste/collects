@@ -155,7 +155,7 @@ class CollectionRoundController extends Controller
             // Get a free shelf for each product
             foreach ($products as $product) {
                 foreach ($collectionRound->warehouse->shelves as $shelf) {
-                    if ($product->weight <= $shelf->availabeWeight()) {
+                    if ($product->weight <= $shelf->availableWeight()) {
                         $product->shelf_id = $shelf->number;
                         $product->status = 1; // Product is in supply
                         $product->save();
@@ -288,7 +288,7 @@ class CollectionRoundController extends Controller
             ->get();
 
         foreach ($bundles as $bundle) {
-            if ($bundle->weight() > $collectionRound->availabeWeight()) {
+            if ($bundle->weight() > $collectionRound->availableWeight()) {
                 $bundles->forget($bundle->id);
             }
         }

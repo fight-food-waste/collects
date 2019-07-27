@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
+use PhpUnitsOfMeasure\Exception\NonStringUnitName;
+use PhpUnitsOfMeasure\Exception\NonNumericValue;
 
 
 class Shelf extends Model
 {
-    public static $max_weight = 1000;
+    public static $max_weight = 1000; // grams
     protected $fillable = ['number', 'warehouse_id'];
 
     public function warehouse()
@@ -21,12 +23,24 @@ class Shelf extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function weightAsMass()
+    /**
+     * Convert weight integer as a Mass object in grams
+     *
+     * @return Mass
+     * @throws NonNumericValue
+     * @throws NonStringUnitName
+     */
+    public function weightAsMass(): Mass
     {
         return new Mass($this->weight(), 'g');
     }
 
-    public function weight()
+    /**
+     * Get total weight on the Shelf by adding up all the products' weight
+     *
+     * @return int
+     */
+    public function weight(): int
     {
         $weight = 0;
 
@@ -37,7 +51,7 @@ class Shelf extends Model
         return $weight;
     }
 
-    public function availabeWeight()
+    public function availableWeight(): int
     {
         return Shelf::$max_weight - $this->weight();
     }
