@@ -45,6 +45,7 @@ class LoginController extends Controller
      * Override AuthenticatesUsers->logout for success message
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function logout(Request $request)
@@ -55,6 +56,6 @@ class LoginController extends Controller
 
         $request->session()->flash('success', 'Logged out successfully.');
 
-        return $this->loggedOut($request) ?: redirect('/');
+        return $this->loggedOut($request) ? : redirect('/');
     }
 }

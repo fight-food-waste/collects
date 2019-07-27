@@ -14,6 +14,7 @@ class LoginController extends Controller
      * Generate new token and sent it back to user if auth is successful
      *
      * @param Request $request
+     *
      * @return array|JsonResponse
      */
     public function login(Request $request)

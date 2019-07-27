@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Address;
-use Illuminate\Http\Request;
 
 class CollectionRoundAddressesController extends Controller
 {

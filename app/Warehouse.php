@@ -14,6 +14,11 @@ class Warehouse extends Model
         return $this->hasMany(Shelf::class);
     }
 
+    public function weightAsMass()
+    {
+        return new Mass($this->weight(), 'g');
+    }
+
     public function weight()
     {
         $weight = 0;
@@ -25,18 +30,13 @@ class Warehouse extends Model
         return $weight;
     }
 
-    public function weightAsMass()
+    public function availableWeight()
     {
-        return new Mass($this->weight(), 'g');
+        return $this->maxWeight() - $this->weight();
     }
 
     public function maxWeight()
     {
         return count($this->shelves) * Shelf::$max_weight;
-    }
-
-    public function availableWeight()
-    {
-        return $this->maxWeight() - $this->weight();
     }
 }

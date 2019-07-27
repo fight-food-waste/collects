@@ -20,7 +20,7 @@ class Storekeeper extends User
         'password',
         'address_id',
         'type',
-        'membership'
+        'membership',
     ];
 
     public function memberships()

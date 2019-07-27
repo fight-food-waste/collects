@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Bundle;
-use App\Product;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -48,6 +46,7 @@ class BundlesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function destroy(Request $request)

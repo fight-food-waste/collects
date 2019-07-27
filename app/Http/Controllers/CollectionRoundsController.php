@@ -8,8 +8,6 @@ use App\CollectionRound;
 use App\Employee;
 use App\Product;
 use App\ProductStatus;
-use Auth;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -43,6 +41,7 @@ class CollectionRoundsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
@@ -70,12 +69,12 @@ class CollectionRoundsController extends Controller
 
         $bundles = Bundle::where('round_id', $roundId);
 
-        foreach($bundles as $bundle) {
+        foreach ($bundles as $bundle) {
             $bundle->bundle_status_id = BundleStatus::where('name', 'Being collected')->value('id');
 
             $products = Product::where('bundle_id', $bundle->id);
 
-            foreach($products as $product) {
+            foreach ($products as $product) {
                 $product->product_status_id = ProductStatus::where('name', 'Being collected')->value('id');
             }
         }
@@ -89,12 +88,12 @@ class CollectionRoundsController extends Controller
 
         $bundles = Bundle::where('round_id', $roundId);
 
-        foreach($bundles as $bundle) {
+        foreach ($bundles as $bundle) {
             $bundle->bundle_status_id = BundleStatus::where('name', 'Collected')->value('id');
 
             $products = Product::where('bundle_id', $bundle->id);
 
-            foreach($products as $product) {
+            foreach ($products as $product) {
                 $product->product_status_id = ProductStatus::where('name', 'Stored')->value('id');
             }
         }
@@ -105,7 +104,8 @@ class CollectionRoundsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)

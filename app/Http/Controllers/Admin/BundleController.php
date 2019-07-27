@@ -57,7 +57,8 @@ class BundleController extends Controller
     {
         try {
             Product::find($request->input('product_id'))->delete();
-        } catch (Exception $e) {
+        }
+        catch (Exception $e) {
             return redirect()->back()->with('error', 'The product couldn\'t be deleted.');
         }
 

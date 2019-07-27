@@ -47,6 +47,11 @@ class CollectionRound extends Model
         }
     }
 
+    public function weightAsMass()
+    {
+        return new Mass($this->weight(), 'g');
+    }
+
     public function weight()
     {
         $weight = 0;
@@ -56,11 +61,6 @@ class CollectionRound extends Model
         }
 
         return $weight;
-    }
-
-    public function weightAsMass()
-    {
-        return new Mass($this->weight(), 'g');
     }
 
     public function availabeWeight()

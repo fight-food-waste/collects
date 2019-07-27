@@ -20,7 +20,7 @@ class NeedyPerson extends User
         'password',
         'address_id',
         'type',
-        'aid_application_id'
+        'aid_application_id',
     ];
 
     public function deliveryRounds()

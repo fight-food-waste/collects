@@ -4,10 +4,10 @@ namespace App\Exports;
 
 use App\CollectionRound;
 use App\Donor;
-use App\Forms\DonorForm;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Illuminate\Support\Collection;
 
 /**
  * @property int volunteer_id
@@ -20,7 +20,7 @@ class CollectionRoundExport implements FromCollection, WithHeadings, WithMapping
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function collection()
     {

@@ -8,9 +8,8 @@ use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
 
 class Shelf extends Model
 {
-    protected $fillable = ['number', 'warehouse_id'];
-
     public static $max_weight = 1000;
+    protected $fillable = ['number', 'warehouse_id'];
 
     public function warehouse()
     {
@@ -22,6 +21,11 @@ class Shelf extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function weightAsMass()
+    {
+        return new Mass($this->weight(), 'g');
+    }
+
     public function weight()
     {
         $weight = 0;
@@ -31,11 +35,6 @@ class Shelf extends Model
         }
 
         return $weight;
-    }
-
-    public function weightAsMass()
-    {
-        return new Mass($this->weight(), 'g');
     }
 
     public function availabeWeight()

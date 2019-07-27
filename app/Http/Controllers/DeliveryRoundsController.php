@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\DeliveryRound;
 use App\NeedyPerson;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -39,6 +38,7 @@ class DeliveryRoundsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
@@ -59,6 +59,7 @@ class DeliveryRoundsController extends Controller
      * Display the specified resource.
      *
      * @param $id
+     *
      * @return Response
      */
     public function show($id)
@@ -81,7 +82,8 @@ class DeliveryRoundsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function edit($id)
@@ -93,7 +95,8 @@ class DeliveryRoundsController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int     $id
+     *
      * @return Response
      */
     public function update(Request $request, $id)
@@ -104,7 +107,8 @@ class DeliveryRoundsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)

@@ -55,6 +55,11 @@ class Bundle extends Model
         }
     }
 
+    public function weightAsMass()
+    {
+        return new Mass($this->weight(), 'g');
+    }
+
     public function weight()
     {
         $weight = 0;
@@ -64,10 +69,5 @@ class Bundle extends Model
         }
 
         return $weight;
-    }
-
-    public function weightAsMass()
-    {
-        return new Mass($this->weight(), 'g');
     }
 }

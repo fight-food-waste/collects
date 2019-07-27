@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Bundle;
 use App\Product;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class BundleProductsController extends Controller
@@ -34,7 +32,8 @@ class BundleProductsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function show($id)
@@ -45,7 +44,8 @@ class BundleProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)

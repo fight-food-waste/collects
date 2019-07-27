@@ -29,29 +29,8 @@ class Address extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function getFormatted()
+    public function computeClosestWarehouse()
     {
-        return $this->street . ', ' . $this->zip_postal_code . ' ' . $this->city . ', France';
-    }
-
-    public function getDistance(String $origin, String $destination)
-    {
-        $client = new Client();
-        $url = "http://www.mapquestapi.com/directions/v2/routematrix?key=" . config('app.mapquest_api_key');
-        $responseStream = $client->post($url, [
-            RequestOptions::JSON => ['locations' => [
-                $origin,
-                $destination,
-            ]]
-        ]);
-        $responseString = (string)$responseStream->getBody();
-
-        $distance = json_decode($responseString, true)['distance'][1];
-
-        return $distance;
-    }
-
-    public function computeClosestWarehouse() {
         $warehouses = Warehouse::all();
 
         $closestWarehouse = [];
@@ -76,5 +55,27 @@ class Address extends Model
         }
 
         return $closestWarehouse['id'];
+    }
+
+    public function getFormatted()
+    {
+        return $this->street . ', ' . $this->zip_postal_code . ' ' . $this->city . ', France';
+    }
+
+    public function getDistance(String $origin, String $destination)
+    {
+        $client = new Client();
+        $url = "http://www.mapquestapi.com/directions/v2/routematrix?key=" . config('app.mapquest_api_key');
+        $responseStream = $client->post($url, [
+            RequestOptions::JSON => ['locations' => [
+                $origin,
+                $destination,
+            ]],
+        ]);
+        $responseString = (string) $responseStream->getBody();
+
+        $distance = json_decode($responseString, true)['distance'][1];
+
+        return $distance;
     }
 }

@@ -19,11 +19,11 @@ class ProfilesController extends Controller
 
             if ($userType == 'donor') {
                 return view('user.profile', ['user' => $user, 'bundles' => $bundles]);
-            } else if ($userType == 'storekeeper') {
+            } elseif ($userType == 'storekeeper') {
                 return view('user.profile', ['user' => $user, 'bundles' => $bundles]);
-            } else if ($userType == 'need_people') {
+            } elseif ($userType == 'need_people') {
                 return view('user.profile', compact('user'));
-            } else if ($userType == 'employee') {
+            } elseif ($userType == 'employee') {
                 return view('user.profile', compact('user'));
             } else {
                 exit();

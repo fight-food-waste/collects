@@ -26,7 +26,7 @@ class CollectionRoundController extends Controller
 
         $form = $formBuilder->create(CollectionRoundForm::class, [
             'method' => 'POST',
-            'url' => route('admin.collection_rounds.store')
+            'url' => route('admin.collection_rounds.store'),
         ]);
 
         return view('admin.collection_rounds.index', compact('collectionRounds', 'form'));
@@ -170,7 +170,8 @@ class CollectionRoundController extends Controller
 
             try {
                 $collectionRound->delete();
-            } catch (Exception $e) {
+            }
+            catch (Exception $e) {
                 return redirect()->back()->with('error', 'Something went wrong while deleting the collection round.');
             }
 
@@ -181,19 +182,19 @@ class CollectionRoundController extends Controller
         }
     }
 
-    private function getAvailableBundles(CollectionRound $collectionRound)
+    public function addBundles(Request $request)
     {
-        $bundles = Bundle::where('status', 1)
-            ->where('collection_round_id', null)
-            ->get();
 
-        foreach ($bundles as $bundle) {
-            if ($bundle->weight() > $collectionRound->availabeWeight()) {
-                $bundles->forget($bundle->id);
-            }
+        $collectionRound = CollectionRound::find($request->route('id'));
+
+        if ($request->input('closest') === "true") {
+            $bundles = $this->getCloseAvailableBundles($collectionRound);
+        } else {
+            $bundles = $this->getAvailableBundles($collectionRound);
         }
 
-        return $bundles;
+        return view('admin.collection_rounds.add_bundles',
+            compact('collectionRound', 'bundles', 'request'));
     }
 
     private function getCloseAvailableBundles(CollectionRound $collectionRound)
@@ -212,19 +213,19 @@ class CollectionRoundController extends Controller
         return $bundles;
     }
 
-    public function addBundles(Request $request)
+    private function getAvailableBundles(CollectionRound $collectionRound)
     {
+        $bundles = Bundle::where('status', 1)
+            ->where('collection_round_id', null)
+            ->get();
 
-        $collectionRound = CollectionRound::find($request->route('id'));
-
-        if ($request->input('closest') === "true") {
-            $bundles = $this->getCloseAvailableBundles($collectionRound);
-        } else {
-            $bundles = $this->getAvailableBundles($collectionRound);
+        foreach ($bundles as $bundle) {
+            if ($bundle->weight() > $collectionRound->availabeWeight()) {
+                $bundles->forget($bundle->id);
+            }
         }
 
-        return view('admin.collection_rounds.add_bundles',
-            compact('collectionRound', 'bundles', 'request'));
+        return $bundles;
     }
 
     public function addBundle(Request $request)

@@ -9,7 +9,7 @@ class Truck extends Model
     protected $fillable = [
         'warehouse_id',
         'collection_round_id',
-        'capacity'
+        'capacity',
     ];
 
     public function collectionRound()
