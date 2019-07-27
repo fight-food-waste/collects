@@ -66,7 +66,7 @@ class Address extends Model
      */
     public function getFormatted()
     {
-        return $this->street . ', ' . $this->zip_postal_code . ' ' . $this->city . ', France';
+        return "{$this->street}, {$this->zip_postal_code} {$this->city}, France";
     }
 
     /**

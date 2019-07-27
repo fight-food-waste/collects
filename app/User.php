@@ -35,7 +35,6 @@ class User extends Authenticatable
         'email',
         'password',
         'type',
-        'api_token',
     ];
 
     /**
@@ -65,15 +64,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the address record associated with the user.
-     */
-    public function agency()
-    {
-        return $this->hasOne('App\Agency');
-    }
-
-
-    /**
      * Generate random token, save it and return it
      *
      * @return string
@@ -88,6 +78,6 @@ class User extends Authenticatable
 
     public function getFullName(): string
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return "{$this->first_name} {$this->last_name}";
     }
 }
