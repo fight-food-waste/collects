@@ -21,6 +21,15 @@ class Product extends Model
         'weight',
     ];
 
+    /**
+     * Automatically cast these attributes to Carbon instances
+     *
+     * @var array
+     */
+    protected $dates = [
+        'expiration_date',
+    ];
+
     public function bundle()
     {
         return $this->belongsTo(Bundle::class);
