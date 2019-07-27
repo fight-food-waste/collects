@@ -21,7 +21,7 @@
 
                     <div class="card-body">
 
-                        @if (sizeof($products) > 0)
+                        @if (sizeof($bundle->products) > 0)
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
@@ -33,7 +33,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($products as $product)
+                                @foreach ($bundle->products as $product)
                                     <tr>
                                         <th scope="row">
                                             {{ $product->barcode }}

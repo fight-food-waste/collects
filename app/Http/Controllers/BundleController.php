@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Bundle;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Exception;
 
 class BundleController extends Controller
 {
@@ -14,47 +17,58 @@ class BundleController extends Controller
         $this->middleware('auth');
     }
 
+
     /**
-     * Display a listing of the resource.
+     * Show the Donor's Bundles
      *
-     * @return Response
+     * @param Request $request
+     * @return Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bundles = Bundle::all()->where('user_id', Auth::user()->id);
-
-        return view('bundle.index', compact('bundles'));
-    }
-
-    public function show(Request $request)
-    {
-        $bundle = Bundle::find($request->route('id'));
-
-        if ($bundle->user_id !== Auth::user()->id) {
-            return redirect()->route('bundle.index')->with('error', "Access forbidden: you are not allowed to see this bundle.");
-        }
-
-        $products = $bundle->products;
-
-        return view('bundle.show', [
-            'bundle' => $bundle,
-            'products' => $products,
+        return view('bundle.index', [
+            'bundles' => $request->user()->bundles,
         ]);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Show a specific Bundle
+     *
+     * @param Request $request
+     * @return Factory|RedirectResponse|View
+     */
+    public function show(Request $request)
+    {
+        $bundle = Bundle::find($request->route('id'));
+
+        if (! $request->user()->bundles->contains($bundle->id)) {
+            return redirect()->route('bundle.index')
+                ->with('error', "Access forbidden: you are not allowed to see this bundle.");
+        }
+
+        return view('bundle.show', compact('bundle'));
+    }
+
+    /**
+     * Delete Bundle and all its Products
      *
      * @param Request $request
      *
      * @return Response
+     * @throws Exception
      */
     public function destroy(Request $request)
     {
         $bundle = Bundle::find($request->input('bundle_id'));
 
         $bundle->products->each->delete();
-        $bundle->delete();
+
+        try {
+            $bundle->delete();
+        }
+        catch (Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong while deleting the bundle.');
+        }
 
         return redirect()->back()->with('success', "The bundle has been successfully deleted.");
     }
