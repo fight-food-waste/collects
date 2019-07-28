@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function show(Request $request)
     {
-        $product = Product::find($request->route('id'));
+        $product = Product::findOrFail($request->route('id'));
 
         if ($product->bundle()->value('user_id') == $request->user()->value('id')) {
             return $product;
@@ -67,7 +67,7 @@ class ProductController extends Controller
             return response()->json(['error' => 'Invalid expiration date format'], 400);
         }
 
-        $bundle = Bundle::find($data['bundle_id']);
+        $bundle = Bundle::findOrFail($data['bundle_id']);
         if ($bundle->isClosed()) {
             return response()->json(['error' => 'You can\'t add products to this bundle anymore'], 400);
         }

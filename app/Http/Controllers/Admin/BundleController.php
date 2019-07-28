@@ -39,7 +39,7 @@ class BundleController extends Controller
      */
     public function approve(Request $request)
     {
-        $bundle = Bundle::find($request->input('bundle_id'));
+        $bundle = Bundle::findOrFail($request->input('bundle_id'));
         $bundle->status = 1;
         $bundle->save();
 
@@ -56,7 +56,7 @@ class BundleController extends Controller
      */
     public function reject(Request $request)
     {
-        $bundle = Bundle::find($request->input('bundle_id'));
+        $bundle = Bundle::findOrFail($request->input('bundle_id'));
         $bundle->status = -1;
         $bundle->save();
 
@@ -73,7 +73,7 @@ class BundleController extends Controller
      */
     public function show(Request $request)
     {
-        $bundle = Bundle::find($request->route('id'));
+        $bundle = Bundle::findOrFail($request->route('id'));
         $products = $bundle->products;
 
         return view('admin.bundles.show', [
@@ -92,7 +92,7 @@ class BundleController extends Controller
     public function rejectProduct(Request $request)
     {
         try {
-            Product::find($request->input('product_id'))->delete();
+            Product::findOrFail($request->input('product_id'))->delete();
         }
         catch (Exception $e) {
             return redirect()->back()->with('error', 'The product couldn\'t be deleted.');

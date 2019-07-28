@@ -54,7 +54,7 @@ class CollectionRoundController extends Controller
      */
     public function show(Request $request)
     {
-        $collectionRound = CollectionRound::find($request->route('id'));
+        $collectionRound = CollectionRound::findOrFail($request->route('id'));
 
         $bundles = $collectionRound->bundles;
 
@@ -101,7 +101,7 @@ class CollectionRoundController extends Controller
      */
     public function update(Request $request)
     {
-        $collectionRound = CollectionRound::find($request->route('id'));
+        $collectionRound = CollectionRound::findOrFail($request->route('id'));
         $bundles = $collectionRound->bundles;
 
         if ($request->input('collection_round_status') == 2) {
@@ -182,8 +182,8 @@ class CollectionRoundController extends Controller
      */
     public function removeBundle(Request $request)
     {
-        $collectionRound = CollectionRound::find($request->input('collection_round_id'));
-        $bundle = Bundle::find($request->input('bundle_id'));
+        $collectionRound = CollectionRound::findOrFail($request->input('collection_round_id'));
+        $bundle = Bundle::findOrFail($request->input('bundle_id'));
 
         if ($collectionRound->status == 0) {
             $bundle->collection_round_id = null;
@@ -205,7 +205,7 @@ class CollectionRoundController extends Controller
      */
     public function destroy(Request $request)
     {
-        $collectionRound = CollectionRound::find($request->input('collection_round_id'));
+        $collectionRound = CollectionRound::findOrFail($request->input('collection_round_id'));
 
         if ($collectionRound->status == 0) {
             $bundles = $collectionRound->bundles;
@@ -239,7 +239,7 @@ class CollectionRoundController extends Controller
      */
     public function addBundles(Request $request)
     {
-        $collectionRound = CollectionRound::find($request->route('id'));
+        $collectionRound = CollectionRound::findOrFail($request->route('id'));
 
         if ($request->input('closest') === "true") {
             $bundles = $this->getCloseAvailableBundles($collectionRound);
@@ -305,8 +305,8 @@ class CollectionRoundController extends Controller
      */
     public function addBundle(Request $request)
     {
-        $collectionRound = CollectionRound::find($request->input('collection_round_id'));
-        $bundle = Bundle::find($request->input('bundle_id'));
+        $collectionRound = CollectionRound::findOrFail($request->input('collection_round_id'));
+        $bundle = Bundle::findOrFail($request->input('bundle_id'));
 
         $bundle->collection_round_id = $collectionRound->id;
         $bundle->status = 2;
@@ -325,7 +325,7 @@ class CollectionRoundController extends Controller
      */
     public function autoAddBundles(Request $request)
     {
-        $collectionRound = CollectionRound::find($request->route('id'));
+        $collectionRound = CollectionRound::findOrFail($request->route('id'));
         $bundles = $this->getCloseAvailableBundles($collectionRound);
 
         if (count($bundles) > 0) {
@@ -354,7 +354,7 @@ class CollectionRoundController extends Controller
      */
     public function export(Request $request)
     {
-        $collectionRound = CollectionRound::find($request->route('id'));
+        $collectionRound = CollectionRound::findOrFail($request->route('id'));
 
         return Excel::download(new CollectionRoundExport($collectionRound), 'addresses.xlsx');
     }

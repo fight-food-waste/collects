@@ -38,7 +38,7 @@ class BundleController extends Controller
      */
     public function show(Request $request)
     {
-        $bundle = Bundle::find($request->route('id'));
+        $bundle = Bundle::findOrFail($request->route('id'));
 
         if ($request->user()->bundles->contains($bundle)) {
             return $bundle;

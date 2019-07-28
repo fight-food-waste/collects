@@ -17,7 +17,6 @@ class BundleController extends Controller
         $this->middleware('auth');
     }
 
-
     /**
      * Show the Donor's Bundles
      *
@@ -39,7 +38,7 @@ class BundleController extends Controller
      */
     public function show(Request $request)
     {
-        $bundle = Bundle::find($request->route('id'));
+        $bundle = Bundle::findOrFail($request->route('id'));
 
         if (! $request->user()->bundles->contains($bundle->id)) {
             return redirect()->route('bundle.index')
@@ -59,7 +58,7 @@ class BundleController extends Controller
      */
     public function destroy(Request $request)
     {
-        $bundle = Bundle::find($request->input('bundle_id'));
+        $bundle = Bundle::findOrFail($request->input('bundle_id'));
 
         $bundle->products->each->delete();
 
