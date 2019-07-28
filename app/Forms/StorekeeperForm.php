@@ -5,7 +5,7 @@ namespace App\Forms;
 use Kris\LaravelFormBuilder\Field;
 use Kris\LaravelFormBuilder\Form;
 
-class StoreKeeperForm extends Form
+class StorekeeperForm extends Form
 {
     public function buildForm()
     {
