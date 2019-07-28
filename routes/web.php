@@ -20,12 +20,12 @@ Route::get('webgl', function () {
 
 Route::prefix('register')->group(function () {
     Route::get('/', 'Auth\RegisterController@showRegistrationDispatcher')->name('register');
-    Route::get('donor', 'Auth\RegisterController@createDonor')->name('register.donor.create');
-    Route::post('donor', 'Auth\RegisterController@storeDonor')->name('register.donor.store');
-    Route::get('needyperson', 'Auth\RegisterController@createNeedyPerson')->name('register.needyperson.create');
-    Route::post('needyperson', 'Auth\RegisterController@storeNeedyPerson')->name('register.needyperson.store');
-    Route::get('storekeeper', 'Auth\RegisterController@createStorekeeper')->name('register.storekeeper.create');
-    Route::post('storekeeper', 'Auth\RegisterController@storeStorekeeper')->name('register.storekeeper.store');
+    Route::get('donor', 'Auth\RegisterController@createUser')->defaults('slug', 'donor')->name('register.donor.create');
+    Route::post('donor', 'Auth\RegisterController@storeUser')->defaults('slug', 'donor')->name('register.donor.store');
+    Route::get('needyperson', 'Auth\RegisterController@createUser')->defaults('slug', 'needyperson')->name('register.needyperson.create');
+    Route::post('needyperson', 'Auth\RegisterController@storeUser')->defaults('slug', 'needyperson')->name('register.needyperson.store');
+    Route::get('storekeeper', 'Auth\RegisterController@createUser')->defaults('slug', 'storekeeper')->name('register.storekeeper.create');
+    Route::post('storekeeper', 'Auth\RegisterController@storeUser')->defaults('slug', 'storekeeper')->name('register.storekeeper.store');
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

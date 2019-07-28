@@ -6,7 +6,7 @@ use App\Address;
 use App\Donor;
 use App\Forms\DonorForm;
 use App\Forms\NeedyPersonForm;
-use App\Forms\StoreKeeperForm;
+use App\Forms\StorekeeperForm;
 use App\Http\Controllers\Controller;
 use App\NeedyPerson;
 use App\Storekeeper;
@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Kris\LaravelFormBuilder\FormBuilder;
+use Illuminate\Routing\Redirector;
+use Kris\LaravelFormBuilder\Form;
 
 class RegisterController extends Controller
 {
@@ -53,66 +55,59 @@ class RegisterController extends Controller
     }
 
     /**
-     * Show Donor registration form
+     * Workaround to create Form based on slug
+     *
+     * @param FormBuilder $formBuilder
+     * @return Form|null
+     */
+    private function createForm(FormBuilder $formBuilder): ?Form
+    {
+        // Not very pretty...
+        // See https://github.com/kristijanhusak/laravel-form-builder/issues/544
+        $tmpForm = $formBuilder->plain();
+        $request = $tmpForm->getRequest();
+
+        switch ($request->route('slug')) {
+            case "donor":
+                $form = $formBuilder->create(DonorForm::class);
+                break;
+            case "storekeeper";
+                $form = $formBuilder->create(StorekeeperForm::class);
+                break;
+            case "needyperson":
+                $form = $formBuilder->create(NeedyPersonForm::class);
+                break;
+        }
+
+        return $form;
+    }
+
+    /**
+     * Display User registration form based on slug
      *
      * @param FormBuilder $formBuilder
      *
      * @return View
      */
-    public function createDonor(FormBuilder $formBuilder)
+    public function createUser(FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create(DonorForm::class, [
-            'method' => 'POST',
-            'url' => route('register.donor.store'),
-        ]);
+        $form = $this->createForm($formBuilder);
+
+        $form->setMethod('POST');
+        $form->setUrl(route("register.{$form->getRequest()->route('slug')}.store"));
 
         return view('auth.register.form', compact('form'));
     }
 
     /**
-     * Show NeedyPerson registration form
+     * Store User based on slug
      *
      * @param FormBuilder $formBuilder
-     *
-     * @return View
+     * @return RedirectResponse|Redirector
      */
-    public function createNeedyPerson(FormBuilder $formBuilder)
+    public function storeUser(FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create(DonorForm::class, [
-            'method' => 'POST',
-            'url' => route('register.needyperson.store'),
-        ]);
-
-        return view('auth.register.form', compact('form'));
-    }
-
-    /**
-     * Show StoreKeeper registration form
-     *
-     * @param FormBuilder $formBuilder
-     *
-     * @return View
-     */
-    public function createStoreKeeper(FormBuilder $formBuilder)
-    {
-        $form = $formBuilder->create(DonorForm::class, [
-            'method' => 'POST',
-            'url' => route('register.storekeeper.store'),
-        ]);
-
-        return view('auth.register.form', compact('form'));
-    }
-
-    /**
-     * Store Donor if valid
-     *
-     * @param FormBuilder $formBuilder
-     *
-     * @return RedirectResponse
-     */
-    public function storeDonor(FormBuilder $formBuilder)
-    {
-        $form = $formBuilder->create(DonorForm::class);
+        $form = $this->createForm($formBuilder);
 
         if (! $form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
@@ -133,85 +128,19 @@ class RegisterController extends Controller
         $user_attributes += ['address_id' => $address->id];
         $user_attributes['password'] = Hash::make($user_attributes['password']);
 
-        $member = Donor::create($user_attributes);
-
-        Auth::login($member);
-
-        return redirect(route('home'))->with('success', 'Registration successful!');
-    }
-
-    /**
-     * Create a new Donor instance after a valid registration.
-     * And redirect to home page
-     *
-     * @param FormBuilder $formBuilder
-     *
-     * @return RedirectResponse
-     */
-    public function storeNeedyPerson(FormBuilder $formBuilder)
-    {
-        $form = $formBuilder->create(NeedyPersonForm::class);
-
-        if (! $form->isValid()) {
-            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        switch ($form->getRequest()->route('slug')) {
+            case "donor":
+                $user = Donor::create($user_attributes);
+                break;
+            case "storekeeper";
+                $user = Storekeeper::create($user_attributes);
+                break;
+            case "needyperson":
+                $user = NeedyPerson::create($user_attributes);
+                break;
         }
 
-        $user_attributes = $form->getFieldValues();
-
-        $address = new Address($user_attributes);
-
-        if (! $address->isReal()) {
-            return redirect()->back()->with('error', 'The address you entered does not seem real.')->withInput();
-        }
-
-        // Compute closest warehouse
-        $address->closest_warehouse_id = $address->computeClosestWarehouse();
-        $address->save();
-
-        $user_attributes += ['address_id' => $address->id];
-        $user_attributes['password'] = Hash::make($user_attributes['password']);
-
-        $member = NeedyPerson::create($user_attributes);
-
-        Auth::login($member);
-
-        return redirect(route('home'))->with('success', 'Registration successful!');
-    }
-
-    /**
-     * Create a new Donor instance after a valid registration.
-     * And redirect to home page
-     *
-     * @param FormBuilder $formBuilder
-     *
-     * @return RedirectResponse
-     */
-    public function storeStorekeeper(FormBuilder $formBuilder)
-    {
-        $form = $formBuilder->create(StoreKeeperForm::class);
-
-        if (! $form->isValid()) {
-            return redirect()->back()->withErrors($form->getErrors())->withInput();
-        }
-
-        $user_attributes = $form->getFieldValues();
-
-        $address = new Address($user_attributes);
-
-        if (! $address->isReal()) {
-            return redirect()->back()->with('error', 'The address you entered does not seem real.')->withInput();
-        }
-
-        // Compute closest warehouse
-        $address->closest_warehouse_id = $address->computeClosestWarehouse();
-        $address->save();
-
-        $user_attributes += ['address_id' => $address->id];
-        $user_attributes['password'] = Hash::make($user_attributes['password']);
-
-        $member = Storekeeper::create($user_attributes);
-
-        Auth::login($member);
+        Auth::login($user);
 
         return redirect(route('home'))->with('success', 'Registration successful!');
     }
