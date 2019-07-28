@@ -21,6 +21,7 @@ class NeedyPeopleTableSeeder extends Seeder
             'email' => 'needy@needy.com',
             'password' => Hash::make('qwertyuiop'),
             'aid_application_id' => null,
+            'address_id' => 9,
         ]);
     }
 }

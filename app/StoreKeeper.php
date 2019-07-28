@@ -19,6 +19,7 @@ class Storekeeper extends User
         'email',
         'password',
         'type',
+        'address_id',
         'membership',
     ];
 

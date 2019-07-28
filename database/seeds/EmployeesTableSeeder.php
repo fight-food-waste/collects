@@ -20,6 +20,7 @@ class EmployeesTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'employee1@employee1.com',
             'password' => Hash::make('qwertyuiop'),
+            'address_id' => 5,
         ]);
 
         Employee::create([
@@ -27,6 +28,7 @@ class EmployeesTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'employee2@employee2.com',
             'password' => Hash::make('qwertyuiop'),
+            'address_id' => 6,
         ]);
 
         Employee::create([
@@ -34,6 +36,7 @@ class EmployeesTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'employee3@employee3.com',
             'password' => Hash::make('qwertyuiop'),
+            'address_id' => 7,
         ]);
 
         Employee::create([
@@ -41,6 +44,7 @@ class EmployeesTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'employee4@employee4.com',
             'password' => Hash::make('qwertyuiop'),
+            'address_id' => 8,
         ]);
     }
 }

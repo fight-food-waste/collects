@@ -9,7 +9,10 @@ use PhpUnitsOfMeasure\Exception\NonNumericValue;
 
 class CollectionRound extends Model
 {
-    protected $fillable = ['round_date', 'user_id', 'warehouse_id'];
+    protected $fillable = [
+        'user_id',
+        'warehouse_id',
+    ];
 
     private $max_weight = 100000; // 100 kg
 
