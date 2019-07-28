@@ -2,21 +2,11 @@
 
 namespace App;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
+use PhpUnitsOfMeasure\Exception\NonStringUnitName;
+use PhpUnitsOfMeasure\Exception\NonNumericValue;
 
-/**
- * App\Warehouse
- *
- * @property-read Collection|Shelf[] $shelves
- * @method static Builder|Warehouse newModelQuery()
- * @method static Builder|Warehouse newQuery()
- * @method static Builder|Warehouse query()
- * @mixin Eloquent
- */
 class Warehouse extends Model
 {
     protected $fillable = ['name', 'address'];
@@ -26,7 +16,24 @@ class Warehouse extends Model
         return $this->hasMany(Shelf::class);
     }
 
-    public function weight()
+    /**
+     * Convert weight integer as a Mass object in grams
+     *
+     * @return Mass
+     * @throws NonNumericValue
+     * @throws NonStringUnitName
+     */
+    public function weightAsMass(): Mass
+    {
+        return new Mass($this->weight(), 'g');
+    }
+
+    /**
+     * Get total weight in the Warehouse by adding up all the shelves' weight
+     *
+     * @return int
+     */
+    public function weight(): int
     {
         $weight = 0;
 
@@ -37,18 +44,18 @@ class Warehouse extends Model
         return $weight;
     }
 
-    public function weightAsMass()
-    {
-        return new Mass($this->weight(), 'g');
-    }
-
-    public function maxWeight()
-    {
-        return count($this->shelves) * Shelf::$max_weight;
-    }
-
-    public function availableWeight()
+    public function availableWeight(): int
     {
         return $this->maxWeight() - $this->weight();
+    }
+
+    /**
+     * Calculate the maximum weight according to the number of shelves and their maximum weight
+     *
+     * @return int
+     */
+    public function maxWeight(): int
+    {
+        return count($this->shelves) * Shelf::$max_weight;
     }
 }

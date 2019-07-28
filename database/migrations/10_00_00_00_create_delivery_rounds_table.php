@@ -15,10 +15,6 @@ class CreateDeliveryRoundsTable extends Migration
     {
         Schema::create('delivery_rounds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamp('round_date');
-            // employee_id
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

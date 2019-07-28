@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Product;
+use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
 
 class ProductsController extends Controller
 {
@@ -12,6 +14,11 @@ class ProductsController extends Controller
         $this->middleware(['auth', 'admin']);
     }
 
+    /**
+     * Display view with all the Products
+     *
+     * @return Factory|View
+     */
     public function index()
     {
         $products = Product::all();

@@ -2,23 +2,11 @@
 
 namespace App;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
+use PhpUnitsOfMeasure\Exception\NonStringUnitName;
+use PhpUnitsOfMeasure\Exception\NonNumericValue;
 
-/**
- * App\Product
- *
- * @property-read Bundle $bundle
- * @property-read DeliveryRound $deliveryRound
- * @property-read ProductStatus $productStatus
- * @property-read Shelf $shelf
- * @method static Builder|Product newModelQuery()
- * @method static Builder|Product newQuery()
- * @method static Builder|Product query()
- * @mixin Eloquent
- */
 class Product extends Model
 {
 
@@ -31,6 +19,15 @@ class Product extends Model
         'status',
         'quantity',
         'weight',
+    ];
+
+    /**
+     * Automatically cast these attributes to Carbon instances
+     *
+     * @var array
+     */
+    protected $dates = [
+        'expiration_date',
     ];
 
     public function bundle()
@@ -48,6 +45,13 @@ class Product extends Model
         return $this->belongsTo(DeliveryRound::class);
     }
 
+    /**
+     * Convert weight integer as a Mass object in grams
+     *
+     * @return Mass
+     * @throws NonNumericValue
+     * @throws NonStringUnitName
+     */
     public function weightAsMass()
     {
         return new Mass($this->weight, 'g');

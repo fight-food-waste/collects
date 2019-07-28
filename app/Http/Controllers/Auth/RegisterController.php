@@ -33,13 +33,6 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -50,78 +43,71 @@ class RegisterController extends Controller
     }
 
     /**
-     * Show the application registration form.
-     *
-     * @param string $userType
-     * @return View
-     */
-    public function showRegistrationForm(string $userType)
-    {
-        return view('auth.register.' . $userType);
-    }
-
-    /**
-     * Show the registration dispacther (choose user type)
+     * Show the registration dispatcher (choose user type)
      *
      * @return View
      */
     public function showRegistrationDispatcher()
     {
-        return view('register.dispatch');
+        return view('auth.register.dispatch');
     }
 
     /**
      * Show Donor registration form
      *
      * @param FormBuilder $formBuilder
+     *
      * @return View
      */
     public function createDonor(FormBuilder $formBuilder)
     {
         $form = $formBuilder->create(DonorForm::class, [
             'method' => 'POST',
-            'url' => route('register.donor.store')
+            'url' => route('register.donor.store'),
         ]);
 
-        return view('register.form', compact('form'));
+        return view('auth.register.form', compact('form'));
     }
 
     /**
      * Show NeedyPerson registration form
      *
      * @param FormBuilder $formBuilder
+     *
      * @return View
      */
     public function createNeedyPerson(FormBuilder $formBuilder)
     {
         $form = $formBuilder->create(DonorForm::class, [
             'method' => 'POST',
-            'url' => route('register.needyperson.store')
+            'url' => route('register.needyperson.store'),
         ]);
 
-        return view('register.form', compact('form'));
+        return view('auth.register.form', compact('form'));
     }
 
     /**
      * Show StoreKeeper registration form
      *
      * @param FormBuilder $formBuilder
+     *
      * @return View
      */
     public function createStoreKeeper(FormBuilder $formBuilder)
     {
         $form = $formBuilder->create(DonorForm::class, [
             'method' => 'POST',
-            'url' => route('register.storekeeper.store')
+            'url' => route('register.storekeeper.store'),
         ]);
 
-        return view('register.form', compact('form'));
+        return view('auth.register.form', compact('form'));
     }
 
     /**
      * Store Donor if valid
      *
      * @param FormBuilder $formBuilder
+     *
      * @return RedirectResponse
      */
     public function storeDonor(FormBuilder $formBuilder)
@@ -147,7 +133,7 @@ class RegisterController extends Controller
 
         Auth::login($member);
 
-        return redirect($this->redirectPath())->with('success', 'Registration successful!');
+        return redirect(route('home'))->with('success', 'Registration successful!');
     }
 
     /**
@@ -155,6 +141,7 @@ class RegisterController extends Controller
      * And redirect to home page
      *
      * @param FormBuilder $formBuilder
+     *
      * @return RedirectResponse
      */
     public function storeNeedyPerson(FormBuilder $formBuilder)
@@ -176,7 +163,7 @@ class RegisterController extends Controller
 
         Auth::login($member);
 
-        return redirect($this->redirectPath())->with('success', 'Registration successful!');
+        return redirect(route('home'))->with('success', 'Registration successful!');
     }
 
     /**
@@ -184,6 +171,7 @@ class RegisterController extends Controller
      * And redirect to home page
      *
      * @param FormBuilder $formBuilder
+     *
      * @return RedirectResponse
      */
     public function storeStorekeeper(FormBuilder $formBuilder)
@@ -205,6 +193,6 @@ class RegisterController extends Controller
 
         Auth::login($member);
 
-        return redirect($this->redirectPath())->with('success', 'Registration successful!');
+        return redirect(route('home'))->with('success', 'Registration successful!');
     }
 }

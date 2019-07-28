@@ -2,22 +2,11 @@
 
 namespace App;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
+use PhpUnitsOfMeasure\Exception\NonStringUnitName;
+use PhpUnitsOfMeasure\Exception\NonNumericValue;
 
-/**
- * App\CollectionRound
- *
- * @property-read Collection|Bundle[] $bundles
- * @property-read Employee $employee
- * @method static Builder|CollectionRound newModelQuery()
- * @method static Builder|CollectionRound newQuery()
- * @method static Builder|CollectionRound query()
- * @mixin Eloquent
- */
 class CollectionRound extends Model
 {
     protected $fillable = ['round_date', 'user_id', 'warehouse_id'];
@@ -44,7 +33,12 @@ class CollectionRound extends Model
         return $this->hasOne(Truck::class);
     }
 
-    public function getStatusName()
+    /**
+     * Get a human-readable name for all possible statuses
+     *
+     * @return string
+     */
+    public function getStatusName(): string
     {
         switch ($this->status) {
             case 0:
@@ -60,6 +54,23 @@ class CollectionRound extends Model
         }
     }
 
+    /**
+     * Convert weight integer as a Mass object in grams
+     *
+     * @return Mass
+     * @throws NonNumericValue
+     * @throws NonStringUnitName
+     */
+    public function weightAsMass()
+    {
+        return new Mass($this->weight(), 'g');
+    }
+
+    /**
+     * Get total CollectionRound weight by adding up all the Bundles' weight
+     *
+     * @return int
+     */
     public function weight()
     {
         $weight = 0;
@@ -71,12 +82,12 @@ class CollectionRound extends Model
         return $weight;
     }
 
-    public function weightAsMass()
-    {
-        return new Mass($this->weight(), 'g');
-    }
-
-    public function availabeWeight()
+    /**
+     * Calculate available weight
+     *
+     * @return int
+     */
+    public function availableWeight(): int
     {
         return $this->max_weight - $this->weight();
     }

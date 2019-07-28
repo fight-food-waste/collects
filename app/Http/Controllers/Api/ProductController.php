@@ -22,17 +22,18 @@ class ProductController extends Controller
      * Show product information only if it was originally the user's
      *
      * @param Request $request
+     *
      * @return Product|Product[]|Collection|Model|JsonResponse|null
      */
     public function show(Request $request)
     {
-        $product = Product::find($request->route('id'));
+        $product = Product::findOrFail($request->route('id'));
 
         if ($product->bundle()->value('user_id') == $request->user()->value('id')) {
             return $product;
         } else {
             return response()->json([
-                'error' => 'You are not authorised to access this product'
+                'error' => 'You are not authorised to access this product',
             ], 403);
         }
     }
@@ -41,6 +42,7 @@ class ProductController extends Controller
      * Store product and add to open bundle if valid
      *
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function store(Request $request)
@@ -60,11 +62,12 @@ class ProductController extends Controller
         $data = $validator->attributes();
         try {
             $data['expiration_date'] = new Carbon($data['expiration_date']);
-        } catch (Exception $e) {
+        }
+        catch (Exception $e) {
             return response()->json(['error' => 'Invalid expiration date format'], 400);
         }
 
-        $bundle = Bundle::find($data['bundle_id']);
+        $bundle = Bundle::findOrFail($data['bundle_id']);
         if ($bundle->isClosed()) {
             return response()->json(['error' => 'You can\'t add products to this bundle anymore'], 400);
         }
@@ -73,7 +76,7 @@ class ProductController extends Controller
             $client = new Client();
             $url = "https://world.openfoodfacts.org/api/v0/product/" . $data['barcode'] . "json";
             $response = $client->request('GET', $url);
-            $product_details = (string)$response->getBody();
+            $product_details = (string) $response->getBody();
 
             $product_info = json_decode($product_details, true)['product'];
 
@@ -90,9 +93,10 @@ class ProductController extends Controller
             $product = Product::create($data);
 
             return response()->json(['success' => true, 'id' => $product->id], 200);
-        } catch (GuzzleException $e) {
+        }
+        catch (GuzzleException $e) {
             return response()->json([
-                'error' => 'Something went wrong when contacting the Open Food Facts API'
+                'error' => 'Something went wrong when contacting the Open Food Facts API',
             ], 500);
         }
     }

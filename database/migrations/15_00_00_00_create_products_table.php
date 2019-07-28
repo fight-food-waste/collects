@@ -15,6 +15,8 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->timestamps();
+
             $table->json('details');
 
             $table->date('expiration_date');
@@ -34,7 +36,6 @@ class CreateProductsTable extends Migration
             $table->integer('quantity')->default(1);
             $table->integer('weight')->unsigned();
 
-            $table->timestamps();
         });
     }
 

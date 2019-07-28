@@ -16,7 +16,7 @@ class CollectionRoundForm extends Form
             ->add('warehouse', Field::SELECT, [
                 'rules' => 'required|int|exists:warehouses,id',
                 'choices' => $warehouses,
-                'empty_value' => 'Select a warehouse'
+                'empty_value' => 'Select a warehouse',
             ])
             ->add('New collection round', Field::BUTTON_SUBMIT);
     }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Truck;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
 
 class TruckController extends Controller
 {
@@ -12,6 +14,11 @@ class TruckController extends Controller
         $this->middleware(['auth', 'admin']);
     }
 
+    /**
+     * Display view with all the Trucks
+     *
+     * @return Factory|View
+     */
     public function index()
     {
         $trucks = Truck::all();

@@ -2,25 +2,13 @@
 
 namespace App;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
+use PhpUnitsOfMeasure\Exception\NonStringUnitName;
+use PhpUnitsOfMeasure\Exception\NonNumericValue;
 
-/**
- * App\Bundle
- *
- * @property-read CollectionRound $collectionRound
- * @property-read Collection|Product[] $products
- * @method static Builder|Bundle newModelQuery()
- * @method static Builder|Bundle newQuery()
- * @method static Builder|Bundle query()
- * @mixin Eloquent
- */
 class Bundle extends Model
 {
-
     protected $fillable = [
         'user_id',
     ];
@@ -40,17 +28,22 @@ class Bundle extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function isOpen()
-    {
-        return $this->status == 0;
-    }
-
-    public function isClosed()
+    /**
+     * Is the bundle read-only?
+     *
+     * @return bool
+     */
+    public function isClosed(): bool
     {
         return $this->status != 0;
     }
 
-    public function getStatusName()
+    /**
+     * Get a human-readable name for all possible statuses
+     *
+     * @return string
+     */
+    public function getStatusName(): string
     {
         switch ($this->status) {
             case -1:
@@ -68,7 +61,24 @@ class Bundle extends Model
         }
     }
 
-    public function weight()
+    /**
+     * Convert weight integer as a Mass object in grams
+     *
+     * @return Mass
+     * @throws NonNumericValue
+     * @throws NonStringUnitName
+     */
+    public function weightAsMass(): Mass
+    {
+        return new Mass($this->weight(), 'g');
+    }
+
+    /**
+     * Get total Bundle weight by adding up all the products' weight
+     *
+     * @return int
+     */
+    public function weight(): int
     {
         $weight = 0;
 
@@ -77,10 +87,5 @@ class Bundle extends Model
         }
 
         return $weight;
-    }
-
-    public function weightAsMass()
-    {
-        return new Mass($this->weight(), 'g');
     }
 }

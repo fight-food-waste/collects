@@ -15,6 +15,7 @@ class BundleController extends Controller
      * Create bundle
      *
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function store(Request $request)
@@ -32,17 +33,18 @@ class BundleController extends Controller
      * Return bundle if it belongs to the user
      *
      * @param Request $request
+     *
      * @return Bundle|Bundle[]|Collection|Model|JsonResponse|null
      */
     public function show(Request $request)
     {
-        $bundle = Bundle::find($request->route('id'));
+        $bundle = Bundle::findOrFail($request->route('id'));
 
         if ($request->user()->bundles->contains($bundle)) {
             return $bundle;
         } else {
             return response()->json([
-                'error' => 'You are not authorised to access this bundle'
+                'error' => 'You are not authorised to access this bundle',
             ], 403);
         }
     }

@@ -12,10 +12,11 @@
 */
 
 
-Route::get('/', 'HomeController@show');
-Route::get('home', 'HomeController@show')->name('home');
+Route::get('/', 'HomeController@show')->name('home');
 
-Route::get('3d-demo', 'WebGLController@demo')->name('3d_demo');
+Route::get('webgl', function () {
+    return view('webgl');
+});
 
 Route::prefix('register')->group(function () {
     Route::get('/', 'Auth\RegisterController@showRegistrationDispatcher')->name('register');
@@ -31,8 +32,11 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('profile', 'ProfilesController@getProfile')->name('profile');
-Route::get('profile/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::get('bundles', 'BundleController@index')->name('bundle.index');
+Route::get('bundles/{id}', 'BundleController@show')->where('id', '[0-9]+')->name('bundle.show');
+Route::post('bundles/destroy', 'BundleController@destroy')->name('bundle.destroy');
+
+Route::post('products', 'ProductController@destroy')->name('product.destroy');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'Admin\AdminController@index')->name('admin.index');
@@ -68,23 +72,3 @@ Route::prefix('admin')->group(function () {
 
     Route::get('warehouses', 'Admin\WarehouseController@index')->name('admin.warehouses.index');
 });
-
-Route::get('bundles', 'BundlesController@index')->name('bundle.index');
-Route::get('bundles/{id}', 'BundlesController@show')->name('bundle.show')->where('id', '[0-9]+');
-Route::post('bundles/destroy', 'BundlesController@destroy')->name('bundle.destroy');
-
-Route::post('products', 'ProductsController@destroy')->name('product.destroy');
-
-Route::get('/user/{id}/renew', 'MembershipsController@renew')->name('membership.renew')->where('id', '[0-9]+');
-
-//Route::resource('admin/collection-rounds', 'CollectionRoundsController');
-//Route::post('admin/collection-rounds/start', 'CollectionRoundsController@startRound')->name('collection_rounds.start_round');
-//Route::post('admin/collection-rounds/close', 'CollectionRoundsController@closeRound')->name('collection_rounds.close_round');
-//
-//Route::get('admin/collection-rounds/{id}/bundles', 'CollectionRoundBundlesController@bundlesList')->where('id', '[0-9]+')->name('collection-rounds.bundles');
-//Route::get('admin/collection-rounds/{id}/journey', 'CollectionRoundAddressesController@addressesList')->where('id', '[0-9]+')->name('collection-rounds.addresses');
-//
-////Route::resource('delivery_rounds', 'DeliveryRoundsController');
-//// Routes tests pour les delivery_rounds
-//Route::get('delivery-rounds/new', 'DeliveryRoundsController@store');
-//Route::get('delivery-rounds/{id}', 'DeliveryRoundsController@show')->where('id', '[0-9]+');

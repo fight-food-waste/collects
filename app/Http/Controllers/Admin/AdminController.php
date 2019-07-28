@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Product;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
 
 class AdminController extends Controller
 {
@@ -13,6 +13,11 @@ class AdminController extends Controller
         $this->middleware(['auth', 'admin']);
     }
 
+    /**
+     * Show admin index view
+     *
+     * @return Factory|View
+     */
     public function index()
     {
         return view('admin.index');
