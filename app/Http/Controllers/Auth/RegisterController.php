@@ -114,13 +114,17 @@ class RegisterController extends Controller
     {
         $form = $formBuilder->create(DonorForm::class);
 
-        if (!$form->isValid()) {
+        if (! $form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
         $user_attributes = $form->getFieldValues();
 
-        $address = Address::create($user_attributes);
+        $address = new Address($user_attributes);
+
+        if (! $address->isReal()) {
+            return redirect()->back()->with('error', 'The address you entered does not seem real.')->withInput();
+        }
 
         // Compute closest warehouse
         $address->closest_warehouse_id = $address->computeClosestWarehouse();
@@ -148,13 +152,21 @@ class RegisterController extends Controller
     {
         $form = $formBuilder->create(NeedyPersonForm::class);
 
-        if (!$form->isValid()) {
+        if (! $form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
         $user_attributes = $form->getFieldValues();
 
-        $address = Address::create($user_attributes);
+        $address = new Address($user_attributes);
+
+        if (! $address->isReal()) {
+            return redirect()->back()->with('error', 'The address you entered does not seem real.')->withInput();
+        }
+
+        // Compute closest warehouse
+        $address->closest_warehouse_id = $address->computeClosestWarehouse();
+        $address->save();
 
         $user_attributes += ['address_id' => $address->id];
         $user_attributes['password'] = Hash::make($user_attributes['password']);
@@ -178,13 +190,21 @@ class RegisterController extends Controller
     {
         $form = $formBuilder->create(StoreKeeperForm::class);
 
-        if (!$form->isValid()) {
+        if (! $form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
         $user_attributes = $form->getFieldValues();
 
-        $address = Address::create($user_attributes);
+        $address = new Address($user_attributes);
+
+        if (! $address->isReal()) {
+            return redirect()->back()->with('error', 'The address you entered does not seem real.')->withInput();
+        }
+
+        // Compute closest warehouse
+        $address->closest_warehouse_id = $address->computeClosestWarehouse();
+        $address->save();
 
         $user_attributes += ['address_id' => $address->id];
         $user_attributes['password'] = Hash::make($user_attributes['password']);
