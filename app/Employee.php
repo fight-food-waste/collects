@@ -18,7 +18,7 @@ class Employee extends User
         'last_name',
         'email',
         'password',
-        'agency_id',
+        'address_id',
     ];
 
     public function collectionRounds()

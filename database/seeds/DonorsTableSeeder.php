@@ -20,6 +20,7 @@ class DonorsTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'donor1@donor1.com',
             'password' => Hash::make('qwertyuiop'),
+            'address_id' => 1,
         ]);
 
         Donor::create([
@@ -27,6 +28,7 @@ class DonorsTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'donor2@donor2.com',
             'password' => Hash::make('qwertyuiop'),
+            'address_id' => 2,
         ]);
 
         Donor::create([
@@ -34,6 +36,7 @@ class DonorsTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'donor3@donor3.com',
             'password' => Hash::make('qwertyuiop'),
+            'address_id' => 3,
         ]);
 
         Donor::create([
@@ -41,6 +44,7 @@ class DonorsTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'donor4@donor4.com',
             'password' => Hash::make('qwertyuiop'),
+            'address_id' => 4,
         ]);
     }
 }

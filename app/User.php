@@ -35,6 +35,7 @@ class User extends Authenticatable
         'email',
         'password',
         'type',
+        'address_id',
     ];
 
     /**
@@ -60,7 +61,7 @@ class User extends Authenticatable
      */
     public function address()
     {
-        return $this->hasOne('App\Address');
+        return $this->belongsTo('App\Address');
     }
 
     /**

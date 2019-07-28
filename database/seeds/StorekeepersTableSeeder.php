@@ -20,6 +20,7 @@ class StorekeepersTableSeeder extends Seeder
             'last_name' => $faker->lastName,
             'email' => 'store@store.com',
             'password' => Hash::make('qwertyuiop'),
+            'address_id' => 10,
         ]);
     }
 }

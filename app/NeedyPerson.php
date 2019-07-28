@@ -19,6 +19,7 @@ class NeedyPerson extends User
         'email',
         'password',
         'type',
+        'address_id',
         'aid_application_id',
     ];
 

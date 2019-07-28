@@ -21,10 +21,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('api_token', 80)
-                ->unique()
-                ->nullable()
-                ->default(null);
+            $table->string('api_token', 80)->unique()->nullable()->default(null);
+
+            $table->bigInteger('address_id')->unsigned()->nullable();
+            $table->foreign('address_id')->references('id')->on('addresses');
 
             $table->bigInteger('agency_id')->unsigned()->nullable();
             $table->foreign('agency_id')->references('id')->on('agencies');
