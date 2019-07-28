@@ -43,25 +43,13 @@ class RegisterController extends Controller
     }
 
     /**
-     * Show the application registration form.
-     *
-     * @param string $userType
-     *
-     * @return View
-     */
-    public function showRegistrationForm(string $userType)
-    {
-        return view('auth.register.' . $userType);
-    }
-
-    /**
      * Show the registration dispatcher (choose user type)
      *
      * @return View
      */
     public function showRegistrationDispatcher()
     {
-        return view('register.dispatch');
+        return view('auth.register.dispatch');
     }
 
     /**
@@ -78,7 +66,7 @@ class RegisterController extends Controller
             'url' => route('register.donor.store'),
         ]);
 
-        return view('register.form', compact('form'));
+        return view('auth.register.form', compact('form'));
     }
 
     /**
@@ -95,7 +83,7 @@ class RegisterController extends Controller
             'url' => route('register.needyperson.store'),
         ]);
 
-        return view('register.form', compact('form'));
+        return view('auth.register.form', compact('form'));
     }
 
     /**
@@ -112,7 +100,7 @@ class RegisterController extends Controller
             'url' => route('register.storekeeper.store'),
         ]);
 
-        return view('register.form', compact('form'));
+        return view('auth.register.form', compact('form'));
     }
 
     /**
