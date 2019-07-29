@@ -121,8 +121,6 @@ class RegisterController extends Controller
             return redirect()->back()->with('error', 'The address you entered does not seem real.')->withInput();
         }
 
-        // Compute closest warehouse
-        $address->closest_warehouse_id = $address->computeClosestWarehouse();
         $address->save();
 
         $user_attributes += ['address_id' => $address->id];
