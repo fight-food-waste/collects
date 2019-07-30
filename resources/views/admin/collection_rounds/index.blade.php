@@ -48,7 +48,7 @@
                             </th>
                             <td>{{ $collectionRound->getStatusName() }}</td>
                             <td>{{ $collectionRound->warehouse->name }}</td>
-                            <td>{{  date('d/m/Y', strtotime($collectionRound->created_at)) }}</td>
+                            <td>{{ $collectionRound->created_at->diffForHumans() }}</td>
                             <td>{{ count($collectionRound->bundles)  }}</td>
                             <td>{{ $collectionRound->weightAsMass()->toUnit('kg') }} kg</td>
                             <td>

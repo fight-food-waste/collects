@@ -26,7 +26,7 @@
                                     <h4 class="h6 g-mb-2">#{{ $bundle->id }}</h4>
                                 </a></th>
                             <td>{{ $bundle->getStatusName() }}</td>
-                            <td>{{  date('d/m/Y', strtotime($bundle->created_at)) }}</td>
+                            <td>{{ $bundle->created_at->diffForHumans() }}</td>
                             <td>{{ count($bundle->products)  }}</td>
                             <td>
                                 {{ $bundle->donor->getFullName() }}
