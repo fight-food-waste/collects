@@ -15,6 +15,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Validator;
 use App\Category;
+use App\CategoryTranslation;
 
 class ProductController extends Controller
 {
@@ -96,10 +97,19 @@ class ProductController extends Controller
                 $categoryName = $categoryAttributes[1];
 
                 // Store category if it doesn't already exist
-                $cat = Category::firstOrCreate([
+                $translation = CategoryTranslation::firstOrNew([
                     'name' => $categoryName,
                     'lang' => $categoryLang,
                 ]);
+
+                if ($translation->category_id === null) {
+                    $cat = Category::create();
+
+                    $translation->category_id = $cat->id;
+                    $translation->save();
+                } else {
+                    $cat = Category::findOrFail($translation->category_id);
+                }
 
                 array_push($categories, $cat->id);
             }
