@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Validator;
+use App\Category;
+use App\CategoryTranslation;
 
 class ProductController extends Controller
 {
@@ -87,10 +89,37 @@ class ProductController extends Controller
                 $product_weight = 200;
             }
 
+            $categories = [];
+
+            foreach ($product_info['categories_tags'] as $category) {
+                $categoryAttributes = explode(':', $category);
+                $categoryLang = $categoryAttributes[0];
+                $categoryName = $categoryAttributes[1];
+
+                // Store category if it doesn't already exist
+                $translation = CategoryTranslation::firstOrNew([
+                    'name' => $categoryName,
+                    'lang' => $categoryLang,
+                ]);
+
+                if ($translation->category_id === null) {
+                    $cat = Category::create();
+
+                    $translation->category_id = $cat->id;
+                    $translation->save();
+                } else {
+                    $cat = Category::findOrFail($translation->category_id);
+                }
+
+                array_push($categories, $cat->id);
+            }
+
             $data['details'] = $product_details;
             $data['weight'] = $product_weight;
 
             $product = Product::create($data);
+
+            $product->categories()->attach($categories);
 
             return response()->json(['success' => true, 'id' => $product->id], 200);
         }

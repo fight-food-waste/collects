@@ -64,6 +64,11 @@ class Product extends Model
         return $this->belongsTo(DeliveryRound::class);
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany('App\Category');
+    }
+
     /**
      * Convert weight integer as a Mass object in grams
      *
