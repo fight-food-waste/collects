@@ -28,7 +28,7 @@
                             <td>{{ $user->getFullName() }}</td>
                             <td>{{ $user->email }} kg</td>
                             <td>{{ $user->address->getFormatted() }}</td>
-                            <td>{{ $user->status }}</td>
+                            <td>{{ $user->getStatusName() }}</td>
                             <td>{{ $user->type }}</td>
                         </tr>
                     @endforeach
@@ -67,7 +67,7 @@
                             <td>{{ $user->getFullName() }}</td>
                             <td>{{ $user->email }} kg</td>
                             <td>{{ $user->address->getFormatted() }}</td>
-                            <td>{{ $user->status }}</td>
+                            <td>{{ $user->getStatusName() }}</td>
                             <td>{{ $user->type }}</td>
                         </tr>
                     @endforeach

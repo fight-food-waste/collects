@@ -84,4 +84,23 @@ class User extends Authenticatable
     {
         return "{$this->first_name} {$this->last_name}";
     }
+
+    /**
+     * Get a human-readable name for all possible statuses
+     *
+     * @return string
+     */
+    public function getStatusName(): string
+    {
+        switch ($this->status) {
+            case -1:
+                return "Rejected";
+            case 0:
+                return "Waiting approval";
+            case 1:
+                return "Approved";
+            default:
+                return "Unknown";
+        }
+    }
 }
