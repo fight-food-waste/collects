@@ -7,6 +7,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use App\User;
 use App\NeedyPerson;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
@@ -27,5 +29,39 @@ class UserController extends Controller
         $unapprovedNeedyPeople = NeedyPerson::where('status', 0)->get();
 
         return view('admin.users.index', compact('users', 'unapprovedNeedyPeople'));
+    }
+
+    /**
+     * Approve a User
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function approve(Request $request)
+    {
+        $user = User::findOrFail($request->input('user_id'));
+        $user->status = 1;
+        $user->save();
+
+        return redirect()->back()
+            ->with('success', 'User ' . $request->input('user_id') . ' has been approved.');
+    }
+
+    /**
+     * Reject a User
+     *
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function reject(Request $request)
+    {
+        $user = User::findOrFail($request->input('user_id'));
+        $user->status = -1;
+        $user->save();
+
+        return redirect()->back()
+            ->with('success', 'User ' . $request->input('user_id') . ' has been rejected.');
     }
 }

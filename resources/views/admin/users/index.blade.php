@@ -56,6 +56,7 @@
                         <th scope="col">Address</th>
                         <th scope="col">Status</th>
                         <th scope="col">Type</th>
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -69,12 +70,34 @@
                             <td>{{ $user->address->getFormatted() }}</td>
                             <td>{{ $user->getStatusName() }}</td>
                             <td>{{ $user->type }}</td>
+                            <td style="display: flex;">
+                                @if($user->status <= 0)
+                                    <form action="{{ route('admin.users.approve') }}"
+                                          method="POST">
+                                        @csrf
+                                        <input type="hidden" name="user_id" value="{{ $user->id  }}">
+                                        <button type="submit" class="btn btn-sm btn-success">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                    </form>
+                                @endif
+                                @if($user->status >= 0)
+                                    <form action="{{ route('admin.users.reject') }}"
+                                          method="POST">
+                                        @csrf
+                                        <input type="hidden" name="user_id" value="{{ $user->id  }}">
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
             @else
-                There is no truck in the database.
+                There is no needy person waiting for approval.
             @endif
         </div>
     </div>

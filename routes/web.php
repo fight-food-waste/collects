@@ -75,4 +75,6 @@ Route::prefix('admin')->group(function () {
     Route::get('warehouses', 'Admin\WarehouseController@index')->name('admin.warehouses.index');
 
     Route::get('users', 'Admin\UserController@index')->name('admin.users.index');
+    Route::post('users/approve', 'Admin\UserController@approve')->name('admin.users.approve');
+    Route::post('users/reject', 'Admin\UserController@reject')->name('admin.users.reject');
 });
