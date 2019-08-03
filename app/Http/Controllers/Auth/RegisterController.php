@@ -134,6 +134,12 @@ class RegisterController extends Controller
                 $user = Storekeeper::create($user_attributes);
                 break;
             case "needyperson":
+                // Upload application file
+                $application_file = $user_attributes['application_file'];
+                $filename = uniqid() . ".pdf";
+                $application_file->storeAs('application_files', $filename);
+                $user_attributes['application_filename'] = $filename;
+
                 $user = NeedyPerson::create($user_attributes);
                 break;
         }

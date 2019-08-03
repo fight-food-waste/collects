@@ -16,6 +16,9 @@ class NeedyPersonForm extends Form
             ->add('last_name', Field::TEXT, [
                 'rules' => 'required|string|min:3',
             ])
+            ->add('application_file', Field::FILE, [
+                'rules' => 'required|file|mimes:pdf',
+            ])
             ->add('street', Field::TEXT, [
                 'rules' => 'required|string|min:10',
             ])

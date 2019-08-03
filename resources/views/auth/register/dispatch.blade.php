@@ -10,7 +10,7 @@
                 <ul>
                     <li><a href="{{ route('register.donor.create') }}">Donor</a></li>
                     <li><a href="{{ route('register.storekeeper.create') }}">Storekeeper</a></li>
-                    <li><a href="{{ route('register.storekeeper.create') }}">Needy Person</a></li>
+                    <li><a href="{{ route('register.needyperson.create') }}">Needy Person</a></li>
                 </ul>
             </div>
         </div>

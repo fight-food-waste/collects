@@ -22,15 +22,13 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('api_token', 80)->unique()->nullable()->default(null);
+            $table->string('application_filename')->nullable();
 
             $table->bigInteger('address_id')->unsigned()->nullable();
             $table->foreign('address_id')->references('id')->on('addresses');
 
             $table->bigInteger('agency_id')->unsigned()->nullable();
             $table->foreign('agency_id')->references('id')->on('agencies');
-
-            $table->bigInteger('aid_application_id')->unsigned()->nullable();
-            $table->foreign('aid_application_id')->references('id')->on('aid_applications');
 
             $table->string('type');
             $table->timestamps();
