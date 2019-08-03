@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->string('application_filename')->nullable();
+            $table->integer('status')->default(0);
 
             $table->bigInteger('address_id')->unsigned()->nullable();
             $table->foreign('address_id')->references('id')->on('addresses');

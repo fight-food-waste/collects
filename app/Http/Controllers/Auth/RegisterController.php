@@ -128,6 +128,7 @@ class RegisterController extends Controller
 
         switch ($form->getRequest()->route('slug')) {
             case "donor":
+                $user_attributes['status'] = 1; // approved by default
                 $user = Donor::create($user_attributes);
                 break;
             case "storekeeper";
