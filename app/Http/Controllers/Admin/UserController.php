@@ -9,6 +9,7 @@ use App\User;
 use App\NeedyPerson;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class UserController extends Controller
 {
@@ -63,5 +64,19 @@ class UserController extends Controller
 
         return redirect()->back()
             ->with('success', 'User ' . $request->input('user_id') . ' has been rejected.');
+    }
+
+    /**
+     * Download an application PDF
+     *
+     * @param Request $request
+     * @return BinaryFileResponse
+     */
+    public function downloadApplication(Request $request)
+    {
+        $filename = $request->route('id') . '.pdf';
+        $filepath = storage_path('app' . DIRECTORY_SEPARATOR . 'application_files' . DIRECTORY_SEPARATOR . $filename);
+
+        return response()->file($filepath);
     }
 }

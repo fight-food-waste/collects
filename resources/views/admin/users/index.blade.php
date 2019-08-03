@@ -56,6 +56,7 @@
                         <th scope="col">Address</th>
                         <th scope="col">Status</th>
                         <th scope="col">Type</th>
+                        <th scope="col">Application file</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
@@ -70,6 +71,13 @@
                             <td>{{ $user->address->getFormatted() }}</td>
                             <td>{{ $user->getStatusName() }}</td>
                             <td>{{ $user->type }}</td>
+                            <td>
+                                <a href="{{ route('admin.users.application_files.download', $user->application_filename) }}">
+                                    <button type="button" class="btn btn-sm btn-secondary">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                </a>
+                            </td>
                             <td style="display: flex;">
                                 @if($user->status <= 0)
                                     <form action="{{ route('admin.users.approve') }}"
