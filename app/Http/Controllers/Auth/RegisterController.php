@@ -128,12 +128,19 @@ class RegisterController extends Controller
 
         switch ($form->getRequest()->route('slug')) {
             case "donor":
+                $user_attributes['status'] = 1; // approved by default
                 $user = Donor::create($user_attributes);
                 break;
             case "storekeeper";
                 $user = Storekeeper::create($user_attributes);
                 break;
             case "needyperson":
+                // Upload application file
+                $application_file = $user_attributes['application_file'];
+                $filename = uniqid() . ".pdf";
+                $application_file->storeAs('application_files', $filename);
+                $user_attributes['application_filename'] = $filename;
+
                 $user = NeedyPerson::create($user_attributes);
                 break;
         }

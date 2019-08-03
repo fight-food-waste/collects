@@ -73,4 +73,10 @@ Route::prefix('admin')->group(function () {
     Route::get('trucks', 'Admin\TruckController@index')->name('admin.trucks.index');
 
     Route::get('warehouses', 'Admin\WarehouseController@index')->name('admin.warehouses.index');
+
+    Route::get('users', 'Admin\UserController@index')->name('admin.users.index');
+    Route::get('users/application_files/{id}.pdf', 'Admin\UserController@downloadApplication')
+        ->where('id', '^[a-zA-Z0-9_]*$')->name('admin.users.application_files.download');
+    Route::post('users/approve', 'Admin\UserController@approve')->name('admin.users.approve');
+    Route::post('users/reject', 'Admin\UserController@reject')->name('admin.users.reject');
 });
