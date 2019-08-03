@@ -15,6 +15,7 @@
                 <li><a href="{{ route('admin.trucks.index') }}">Trucks</a></li>
                 <li><a href="{{ route('admin.warehouses.index') }}">Warehouses</a></li>
                 <li><a href="{{ route('admin.categories.index') }}">Categories</a></li>
+                <li><a href="{{ route('admin.users.index') }}">Users</a></li>
             </ul>
 
         </div>
