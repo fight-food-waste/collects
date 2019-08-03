@@ -10,6 +10,6 @@ class Donor extends User
 
     public function bundles()
     {
-        return $this->hasMany('App\Bundle');
+        return $this->hasMany(Bundle::class);
     }
 }
