@@ -40,6 +40,7 @@ Route::get('delivery-requests', 'DeliveryRequestController@index')->name('delive
 Route::get('delivery-requests/{id}', 'DeliveryRequestController@show')->where('id', '[0-9]+')
     ->name('delivery_requests.show');
 Route::post('delivery-requests', 'DeliveryRequestController@store')->name('delivery_requests.store');
+Route::delete('delivery-requests', 'DeliveryRequestController@destroy')->name('delivery_requests.destroy');
 
 Route::post('products', 'ProductController@destroy')->name('product.destroy');
 

@@ -45,9 +45,11 @@
                                     <i class="fas fa-shopping-basket"></i>
                                 </a>
                                 @if($deliveryRequest->status >= 0)
-                                    <form action="{{ route('bundle.destroy', $deliveryRequest->id) }}" method="POST">
+                                    <form action="{{ route('delivery_requests.destroy') }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="bundle_id" value="{{ $deliveryRequest->id }}">
+                                        @method('DELETE')
+                                        <input type="hidden" name="delivery_request_id"
+                                               value="{{ $deliveryRequest->id }}">
                                         <button type="submit" class="btn btn-sm btn-danger">
                                             <i class="fas fa-times"></i>
                                         </button>

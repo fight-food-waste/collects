@@ -50,11 +50,17 @@ class DeliveryRequestController extends Controller
 
     public function store(Request $request)
     {
-        // TODO: Check that there is no other open DeliveryRequest
 
-        DeliveryRequest::create(['user_id' => $request->user()->id]);
+        $openDeliveryRequests = DeliveryRequest::where(['user_id' => $request->user()->id])->where('status', 0)->get();
 
-        return redirect()->back()->with('success', "The delivery request has been created.");
+        if ($openDeliveryRequests->isEmpty()) {
+
+            DeliveryRequest::create(['user_id' => $request->user()->id]);
+
+            return redirect()->back()->with('success', "The delivery request has been created.");
+        } else {
+            return redirect()->back()->with('error', "There is already an open delivery request");
+        }
     }
 
     /**
@@ -68,8 +74,6 @@ class DeliveryRequestController extends Controller
     public function destroy(Request $request)
     {
         $deliveryRequest = DeliveryRequest::findOrFail($request->input('delivery_request_id'));
-
-        $deliveryRequest->products->each->delete();
 
         try {
             $deliveryRequest->delete();
