@@ -36,6 +36,11 @@ Route::get('bundles', 'BundleController@index')->name('bundle.index');
 Route::get('bundles/{id}', 'BundleController@show')->where('id', '[0-9]+')->name('bundle.show');
 Route::post('bundles/destroy', 'BundleController@destroy')->name('bundle.destroy');
 
+Route::get('delivery-requests', 'DeliveryRequestController@index')->name('delivery_requests.index');
+Route::get('delivery-requests/{id}', 'DeliveryRequestController@show')->where('id', '[0-9]+')
+    ->name('delivery_requests.show');
+Route::post('delivery-requests', 'DeliveryRequestController@store')->name('delivery_requests.store');
+
 Route::post('products', 'ProductController@destroy')->name('product.destroy');
 
 Route::prefix('admin')->group(function () {
