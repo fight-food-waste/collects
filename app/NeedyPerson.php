@@ -23,8 +23,18 @@ class NeedyPerson extends User
         'application_filename',
     ];
 
-    public function deliveryRounds()
+    public function deliveryRequests()
     {
-        return $this->belongsToMany(DeliveryRound::class, 'delivery_round_needy_person')->withTimestamps();
+        return $this->hasMany(DeliveryRequest::class);
+    }
+
+    public function hasOneOpenDeliveryRequest(): bool
+    {
+        return $this->deliveryRequests->where('status', 0)->isNotEmpty();
+    }
+
+    public function getOpenDeliveryRequest()
+    {
+        return $this->deliveryRequests->where('status', 0)->first();
     }
 }

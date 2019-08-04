@@ -36,7 +36,16 @@ Route::get('bundles', 'BundleController@index')->name('bundle.index');
 Route::get('bundles/{id}', 'BundleController@show')->where('id', '[0-9]+')->name('bundle.show');
 Route::post('bundles/destroy', 'BundleController@destroy')->name('bundle.destroy');
 
-Route::post('products', 'ProductController@destroy')->name('product.destroy');
+Route::get('delivery-requests', 'DeliveryRequestController@index')->name('delivery_requests.index');
+Route::get('delivery-requests/{id}', 'DeliveryRequestController@show')->where('id', '[0-9]+')
+    ->name('delivery_requests.show');
+Route::post('delivery-requests', 'DeliveryRequestController@store')->name('delivery_requests.store');
+Route::delete('delivery-requests', 'DeliveryRequestController@destroy')->name('delivery_requests.destroy');
+
+Route::get('products', 'ProductController@index')->name('products.index');
+Route::post('products', 'ProductController@destroy')->name('products.destroy');
+Route::post('products/delivery-request/add', 'ProductController@addToDeliveryRequest')->name('products.delivery_request.add');
+Route::post('products/delivery-request/remove', 'ProductController@removeFromDeliveryRequest')->name('products.delivery_request.remove');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'Admin\AdminController@index')->name('admin.index');

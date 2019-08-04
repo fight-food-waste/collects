@@ -29,8 +29,8 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('shelf_id')->nullable();
             $table->foreign('shelf_id')->references('id')->on('shelves');
 
-            $table->unsignedBigInteger('delivery_round_id')->nullable();
-            $table->foreign('delivery_round_id')->references('id')->on('delivery_rounds');
+            $table->unsignedBigInteger('delivery_request_id')->nullable();
+            $table->foreign('delivery_request_id')->references('id')->on('delivery_requests');
 
             $table->integer('status')->default(0);
             $table->integer('quantity')->default(1);

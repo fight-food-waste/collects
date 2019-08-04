@@ -69,6 +69,16 @@
                                     </a>
                                 @endif
 
+                                @if(Auth::user()->type == "needyperson")
+                                    <a class="dropdown-item" href="{{ route('delivery_requests.index') }}">
+                                        Delivery Requests
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('products.index') }}">
+                                        Products
+                                    </a>
+                                @endif
+
                                 @if(Auth::user()->type == "member")
                                     <a class="dropdown-item" href="{{ route('membership') }}">
                                         {{ __('Membership') }}

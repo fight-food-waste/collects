@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="card card-more">
-        <div class="card-header">Bundle {{ $bundle->id  }}</div>
+        <div class="card-header">Delivery Request {{ $deliveryRequest->id  }}</div>
 
         <div class="card-body">
 
-            @if (sizeof($bundle->products) > 0)
+            @if (sizeof($deliveryRequest->products) > 0)
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -18,7 +18,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($bundle->products as $product)
+                    @foreach ($deliveryRequest->products as $product)
                         <tr>
                             <th scope="row">
                                 {{ $product->barcode }}
@@ -27,21 +27,25 @@
                             <td>{{ $product->expiration_date }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>
-                                <form action="{{ route('products.destroy') }}"
-                                      method="POST">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id  }}">
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </form>
+                                @if($deliveryRequest->status == 0)
+                                    <form action="{{ route('products.delivery_request.remove') }}"
+                                          method="POST">
+                                        @csrf
+                                        <input type="hidden" name="delivery_request_id"
+                                               value="{{ $deliveryRequest->id }}">
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
             @else
-                There is no product in this bundle.
+                There is no product in this delivery request.
             @endif
         </div>
     </div>

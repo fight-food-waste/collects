@@ -23,7 +23,6 @@ class ProductsTableSeeder extends Seeder
             'status' => 0,
             'bundle_id' => 1,
             'shelf_id' => null,
-            'delivery_round_id' => null,
             'weight' => 500,
         ]);
 
@@ -37,7 +36,6 @@ class ProductsTableSeeder extends Seeder
             'barcode' => "3248832960025",
             'bundle_id' => 2,
             'shelf_id' => null,
-            'delivery_round_id' => null,
             'weight' => 500,
         ]);
 
@@ -51,7 +49,6 @@ class ProductsTableSeeder extends Seeder
             'barcode' => "3080920986650",
             'bundle_id' => 3,
             'shelf_id' => null,
-            'delivery_round_id' => null,
             'weight' => 500,
         ]);
 
@@ -65,7 +62,6 @@ class ProductsTableSeeder extends Seeder
             'barcode' => "3242272251255",
             'bundle_id' => 4,
             'shelf_id' => null,
-            'delivery_round_id' => null,
             'weight' => 500,
         ]);
     }
