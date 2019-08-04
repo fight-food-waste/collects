@@ -27,7 +27,7 @@
                             <td>{{ $product->expiration_date }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>
-                                <form action="{{ route('product.destroy') }}"
+                                <form action="{{ route('products.destroy') }}"
                                       method="POST">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id  }}">

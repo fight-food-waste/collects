@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card card-more">
-        <div class="card-header">{{ __('Bundles') }}
+        <div class="card-header">{{ __('Delivery requests') }}
             <form action="{{ route('delivery_requests.store') }}" method="POST"
                   class="fa-pull-right">
                 @csrf
@@ -61,7 +61,7 @@
                     </tbody>
                 </table>
             @else
-                There is no bundle in the database.
+                You haven't made any delivery request yet.
             @endif
         </div>
     </div>

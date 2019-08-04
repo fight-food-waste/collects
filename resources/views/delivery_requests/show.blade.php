@@ -27,14 +27,18 @@
                             <td>{{ $product->expiration_date }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>
-                                <form action="{{ route('product.destroy') }}"
-                                      method="POST">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id  }}">
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </form>
+                                @if($deliveryRequest->status == 0)
+                                    <form action="{{ route('products.delivery_request.remove') }}"
+                                          method="POST">
+                                        @csrf
+                                        <input type="hidden" name="delivery_request_id"
+                                               value="{{ $deliveryRequest->id }}">
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

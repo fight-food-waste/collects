@@ -27,4 +27,14 @@ class NeedyPerson extends User
     {
         return $this->hasMany(DeliveryRequest::class);
     }
+
+    public function hasOneOpenDeliveryRequest(): bool
+    {
+        return $this->deliveryRequests->where('status', 0)->isNotEmpty();
+    }
+
+    public function getOpenDeliveryRequest()
+    {
+        return $this->deliveryRequests->where('status', 0)->first();
+    }
 }

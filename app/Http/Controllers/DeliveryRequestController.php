@@ -75,6 +75,12 @@ class DeliveryRequestController extends Controller
     {
         $deliveryRequest = DeliveryRequest::findOrFail($request->input('delivery_request_id'));
 
+        foreach ($deliveryRequest->products as $product) {
+            $product->status = 1;
+            $product->delivery_request_id = null;
+            $product->save();
+        }
+
         try {
             $deliveryRequest->delete();
         }
