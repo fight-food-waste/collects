@@ -24,6 +24,9 @@ class AddTrucksTable extends Migration
 
             $table->unsignedBigInteger('collection_round_id')->nullable();
             $table->foreign('collection_round_id')->references('id')->on('collection_rounds');
+
+            $table->unsignedBigInteger('delivery_round_id')->nullable();
+            $table->foreign('delivery_round_id')->references('id')->on('delivery_rounds');
         });
     }
 
