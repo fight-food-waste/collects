@@ -64,8 +64,7 @@ class ProductController extends Controller
         $data = $validator->attributes();
         try {
             $data['expiration_date'] = new Carbon($data['expiration_date']);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['error' => 'Invalid expiration date format'], 400);
         }
 
@@ -122,8 +121,7 @@ class ProductController extends Controller
             $product->categories()->attach($categories);
 
             return response()->json(['success' => true, 'id' => $product->id], 200);
-        }
-        catch (GuzzleException $e) {
+        } catch (GuzzleException $e) {
             return response()->json([
                 'error' => 'Something went wrong when contacting the Open Food Facts API',
             ], 500);

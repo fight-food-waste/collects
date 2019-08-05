@@ -39,8 +39,7 @@ class ProductController extends Controller
     {
         try {
             Product::findOrFail($request->input('product_id'))->delete();
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back()->with('error', "The product could not be deleted.");
         }
 

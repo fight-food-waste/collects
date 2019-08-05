@@ -218,8 +218,7 @@ class CollectionRoundController extends Controller
 
             try {
                 $collectionRound->delete();
-            }
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 return redirect()->back()->with('error', 'Something went wrong while deleting the collection round.');
             }
 

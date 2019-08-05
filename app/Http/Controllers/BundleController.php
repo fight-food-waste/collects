@@ -40,7 +40,7 @@ class BundleController extends Controller
     {
         $bundle = Bundle::findOrFail($request->route('id'));
 
-        if (! $request->user()->bundles->contains($bundle->id)) {
+        if (!$request->user()->bundles->contains($bundle->id)) {
             return redirect()->route('bundle.index')
                 ->with('error', "Access forbidden: you are not allowed to see this bundle.");
         }
@@ -64,8 +64,7 @@ class BundleController extends Controller
 
         try {
             $bundle->delete();
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong while deleting the bundle.');
         }
 

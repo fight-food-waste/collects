@@ -43,8 +43,7 @@ class Product extends Model
     {
         try {
             return (new Carbon($value))->format('d/m/y');
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return $value;
         }
     }

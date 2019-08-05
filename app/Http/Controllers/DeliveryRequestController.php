@@ -40,7 +40,7 @@ class DeliveryRequestController extends Controller
     {
         $deliveryRequest = DeliveryRequest::findOrFail($request->route('id'));
 
-        if (! $request->user()->deliveryRequests->contains($deliveryRequest->id)) {
+        if (!$request->user()->deliveryRequests->contains($deliveryRequest->id)) {
             return redirect()->route('delivery_requests.index')
                 ->with('error', "Access forbidden: you are not allowed to see this delivery request.");
         }
@@ -83,8 +83,7 @@ class DeliveryRequestController extends Controller
 
         try {
             $deliveryRequest->delete();
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong while deleting the delivery request.');
         }
 
