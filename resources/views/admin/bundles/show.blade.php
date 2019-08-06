@@ -8,26 +8,25 @@
                     <i class="fas fa-arrow-left"></i>
                 </button>
             </a>
-            Bundle #{{ $bundle->id  }}
+            {{ __('admin.products.bundle') }} #{{ $bundle->id  }}
 
         </div>
 
 
         <div class="card-body">
 
-            <p>This bundle contains {{ count($bundle->products)  }} products for a total
-                of {{ $bundle->weightAsMass()->toUnit('kg') }} kg.</p>
+            <p>{{ __('admin.products.bundle_detail', ['count' => count($bundle->products), 'weight' => $bundle->weightAsMass()->toUnit('kg')]) }}</p>
 
             @if (sizeof($products) > 0)
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">Barcode</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Expiration Date</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Remove</th>
+                        <th scope="col">{{ __('admin.products.columns.barcode') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.name') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.expiration_date') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.quantity') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.weight') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.remove') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,7 +54,7 @@
                     </tbody>
                 </table>
             @else
-                There is no product in this bundle.
+                {{ __('admin.products.no_product_message') }}
             @endif
         </div>
     </div>

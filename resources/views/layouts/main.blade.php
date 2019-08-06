@@ -43,11 +43,11 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('main.login') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('main.register') }}</a>
                             </li>
                         @endif
                     @else
@@ -60,42 +60,42 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                 <a class="dropdown-item" href="">
-                                    Account
+                                    {{ __('main.account') }}
                                 </a>
 
                                 @if(Auth::user()->type == "donor")
                                     <a class="dropdown-item" href="{{ route('bundle.index') }}">
-                                        Bundles
+                                        {{ __('main.bundles') }}
                                     </a>
                                 @endif
 
                                 @if(Auth::user()->type == "needyperson")
                                     <a class="dropdown-item" href="{{ route('delivery_requests.index') }}">
-                                        Delivery Requests
+                                        {{ __('main.delivery_requests') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('products.index') }}">
-                                        Products
+                                        {{ __('main.products') }}
                                     </a>
                                 @endif
 
                                 @if(Auth::user()->type == "member")
                                     <a class="dropdown-item" href="{{ route('membership') }}">
-                                        {{ __('Membership') }}
+                                        {{ __('main.membership') }}
                                     </a>
                                 @endif
 
 
                                 @if(Auth::user()->type == "employee")
                                     <a class="dropdown-item" href="{{ route('admin.index') }}">
-                                        {{ __('Admin') }}
+                                        {{ __('main.admin') }}
                                     </a>
                                 @endif
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('main.logout') }}
                                 </a>
 
 

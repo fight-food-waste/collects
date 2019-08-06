@@ -3,7 +3,7 @@
 @section('content')
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('Trucks') }}</div>
+            {{ __('admin.index.trucks') }}</div>
 
         <div class="card-body">
 
@@ -12,10 +12,10 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Warehouse</th>
-                        <th scope="col">Capacity</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Collection Round</th>
+                        <th scope="col">{{ __('admin.trucks.columns.warehouse') }}</th>
+                        <th scope="col">{{ __('admin.trucks.columns.capacity') }}</th>
+                        <th scope="col">{{ __('admin.trucks.columns.status') }}</th>
+                        <th scope="col">{{ __('admin.trucks.columns.collection_round') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,10 +26,10 @@
                             </th>
                             <td>{{ $truck->warehouse->name }}</td>
                             <td>{{ $truck->capacity }} kg</td>
-                            <td>{{ $truck->collection_round_id == null ? 'Available' : 'Ongoing' }}</td>
+                            <td>{{ $truck->collection_round_id == null ? __('admin.trucks.statuses.available') : __('admin.trucks.statuses.ongoing') }}</td>
                             <td>
                                 @if($truck->collection_round_id == null)
-                                    None
+                                    {{ __('admin.trucks.statuses.none') }}
                                 @else
                                     <a href="{{ route('admin.collection_rounds.show', $truck->collection_round_id) }}">#{{ $truck->collection_round_id }}</a>
                                 @endif
@@ -39,7 +39,7 @@
                     </tbody>
                 </table>
             @else
-                There is no truck in the database.
+                {{ __('admin.trucks.no_truck_message') }}
             @endif
         </div>
     </div>

@@ -13,11 +13,11 @@ class CollectionRoundForm extends Form
         $warehouses = Warehouse::get(['id', 'name'])->pluck('name', 'id')->all();
 
         $this
-            ->add('warehouse', Field::SELECT, [
+            ->add(__('admin.collection_rounds.warehouse'), Field::SELECT, [
                 'rules' => 'required|int|exists:warehouses,id',
                 'choices' => $warehouses,
-                'empty_value' => 'Select a warehouse',
+                'empty_value' => __('admin.collection_rounds.select_warehouse'),
             ])
-            ->add('New collection round', Field::BUTTON_SUBMIT);
+            ->add(__('admin.collection_rounds.new_collection_round_button'), Field::BUTTON_SUBMIT);
     }
 }

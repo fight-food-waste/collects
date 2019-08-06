@@ -50,7 +50,7 @@
                     <i class="fas fa-arrow-left"></i>
                 </button>
             </a>
-            Collection round #{{ $collectionRound->id  }} ({{ $collectionRound->getStatusName() }})
+            {{ __('admin.collection_rounds.collection_round') }} #{{ $collectionRound->id  }} ({{ $collectionRound->getStatusName() }})
 
             @if (sizeof($bundles) > 0)
                 <button class="btn btn-sm btn-primary"
@@ -86,7 +86,7 @@
                         <button type="submit"
                                 class="btn btn-sm btn-primary"
                                 style="margin-left: 5px">
-                            Close
+                            {{ __('admin.collection_rounds.actions.close') }}
                         </button>
                     </form>
                 @endif
@@ -99,7 +99,7 @@
                     <button type="submit"
                             class="btn btn-sm btn-primary"
                             style="margin-left: 5px">
-                        Start collect
+                        {{ __('admin.collection_rounds.actions.start_collect') }}
                     </button>
                 </form>
                 <form action="{{ route('admin.collection_rounds.update', $collectionRound->id) }}"
@@ -110,7 +110,7 @@
                     <button type="submit"
                             class="btn btn-sm btn-primary"
                             style="margin-left: 5px">
-                        Reopen
+                        {{ __('admin.collection_rounds.actions.reopen') }}
                     </button>
                 </form>
             @elseif($collectionRound->status === 2)
@@ -122,7 +122,7 @@
                     <button type="submit"
                             class="btn btn-sm btn-primary"
                             style="margin-left: 5px">
-                        Terminate collect (store products)
+                        {{ __('admin.collection_rounds.actions.terminate_collect') }}
                     </button>
                 </form>
             @endif
@@ -130,18 +130,15 @@
         </div>
         <div class="card-body">
             @if (sizeof($bundles) > 0)
-                <div id="mapquest"><h4>Map</h4>
+                <div id="mapquest"><h4>{{ __('admin.collection_rounds.map') }}</h4>
                     <hr>
                     <div id="map" style="width: 100%; height: 400px;"></div>
                     <br>
                 </div>
 
-                <p>This collection round contains {{ count($collectionRound->bundles)  }} bundles for a
-                    total of {{ $collectionRound->weightAsMass()->toUnit('kg') }} kg. It is attached to
-                    the {{ $collectionRound->warehouse->name }} warehouse.</p>
+                <p>{{ __('admin.collection_rounds.collection_round_detail', ['count' => count($collectionRound->bundles), 'weight' => $collectionRound->weightAsMass()->toUnit('kg'), 'name' => $collectionRound->warehouse->name]) }}</p>
                 @if($collectionRound->status == 2)
-                    <p>The collection round is currently ongoing with truck
-                        #{{ $collectionRound->truck->id }}.</p>
+                    <p>{{ __('admin.collection_rounds.on_going_truck', ['truck' => $collectionRound->truck->id ]) }}</p>
                 @endif
 
                 <div style="display: flex">
@@ -160,7 +157,7 @@
                             @csrf
                             <button type="submit"
                                     class="btn btn-sm btn-primary"
-                                    style="margin-left: 5px">Automatically add bundles
+                                    style="margin-left: 5px">{{ __('admin.collection_rounds.auto_add_bundles') }}
                             </button>
                         </form>
                     @endif
@@ -170,13 +167,13 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Submission date</th>
-                        <th scope="col">Number of products</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Donor</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{{ __('admin.bundles.columns.status') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.submission_date') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.number_of_products') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.weight') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.donor') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.address') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -218,7 +215,7 @@
                     </tbody>
                 </table>
             @else
-                There is no bundle in this collection round.
+                {{ __('admin.collection_rounds.no_bundle_message') }}
                 <div style="display: inline">
                     <form
                         action="{{ route('admin.collection_rounds.auto_add_bundles', $collectionRound->id) }}"
@@ -226,23 +223,23 @@
                         @csrf
                         <button type="submit"
                                 class="btn btn-sm btn-primary"
-                                style="margin-left: 5px">Automatically add bundles
+                                style="margin-left: 5px">{{ __('admin.collection_rounds.auto_add_bundles') }}
                         </button>
                     </form>
                 </div>
             @endif
             @if($collectionRound->status == 3)
-                <h4>Products</h4>
+                <h4>{{ __('admin.index.products') }}</h4>
                 <hr>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">Barcode</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Expiration Date</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Shelf</th>
+                        <th scope="col">{{ __('admin.products.columns.barcode') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.name') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.expiration_date') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.quantity') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.weight') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.shelf') }}</th>
                     </tr>
                     </thead>
                     <tbody>

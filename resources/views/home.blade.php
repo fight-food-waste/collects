@@ -5,11 +5,11 @@
         <div class="card-header">Dashboard</div>
 
         <div class="card-body">
-            You are logged in!
+            {{ __('home.message') }}
 
             @if(Auth::user()->type == "employee")
-                Go to the<a href="{{ route('admin.index') }}">
-                    {{ __('Admin') }}.
+                {{ __('home.goto') }}<a href="{{ route('admin.index') }}">
+                    {{ __('home.admin_panel') }}.
                 </a>
             @endif
         </div>
