@@ -42,7 +42,7 @@ class BundleController extends Controller
 
         if (!$request->user()->bundles->contains($bundle->id)) {
             return redirect()->route('bundle.index')
-                ->with('error', "Access forbidden: you are not allowed to see this bundle.");
+                ->with('error', __('flash.bundle_controller.access_forbidden'));
         }
 
         return view('bundle.show', compact('bundle'));
@@ -65,9 +65,9 @@ class BundleController extends Controller
         try {
             $bundle->delete();
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong while deleting the bundle.');
+            return redirect()->back()->with('error', __('flash.bundle_controller.destroy_error'));
         }
 
-        return redirect()->back()->with('success', "The bundle has been successfully deleted.");
+        return redirect()->back()->with('success', __('flash.bundle_controller.destroy_success'));
     }
 }
