@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'message' => 'You are logged in!',
-    'goto' => 'Go to the',
-    'admin_panel' => 'administration panel',
+    'message' => "Vous êtes connectés !",
+    'goto' => 'Se rendre dans le',
+    'admin_panel' => 'back office',
 ];

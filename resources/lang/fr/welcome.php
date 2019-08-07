@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'home' => 'Home',
-    'login' => 'Login',
-    'register' => 'Register',
-    'links' => 'Collects and deliveries',
+    'home' => 'Accueil',
+    'login' => 'Se connecter',
+    'register' => "S'inscrire",
+    'links' => "Collectes et livraisons",
 ];

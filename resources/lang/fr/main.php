@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'login' => 'Login',
-    'register' => 'Register',
-    'bundles' => 'Bundles',
-    'products' => 'Products',
-    'delivery_requests' => 'Delivery Requests',
-    'account' => 'Account',
+    'login' => 'Se connecter',
+    'register' => 'S\'inscrire',
+    'bundles' => 'Lots',
+    'products' => 'Produits',
+    'delivery_requests' => 'Demandes de distribution',
+    'account' => 'Compte',
     'admin' => 'Admin',
-    'logout' => 'Logout',
+    'logout' => 'Se déconnecter',
 ];
