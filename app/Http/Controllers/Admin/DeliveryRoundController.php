@@ -102,7 +102,7 @@ class DeliveryRoundController extends Controller
     public function update(Request $request)
     {
         $deliveryRound = DeliveryRound::findOrFail($request->route('id'));
-        $deliveryRequests = $deliveryRound->deliveryRequests();
+        $deliveryRequests = $deliveryRound->deliveryRequests;
 
         if ($request->input('delivery_round_status') == 2) {
             // Assign a truck to this delivery round
@@ -120,14 +120,23 @@ class DeliveryRoundController extends Controller
             }
 
             foreach ($deliveryRequests as $deliveryRequest) {
-                $deliveryRequest->status = 3;
-                $deliveryRequest->save();
-
                 foreach ($deliveryRequest->products as $product) {
                     $product->shelf_id = null;
                     $product->status = 3;
                     $product->save();
                 }
+            }
+        }
+
+        if ($request->input('delivery_round_status') == 3) {
+            // Release truck
+            $truck = $deliveryRound->truck;
+            $truck->delivery_round_id = null;
+            $truck->save();
+
+            foreach ($deliveryRequests as $deliveryRequest) {
+                $deliveryRequest->status = 3;
+                $deliveryRequest->save();
             }
         }
 
