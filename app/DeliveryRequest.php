@@ -13,10 +13,10 @@ class DeliveryRequest extends Model
         'user_id',
     ];
 
-//    public function deliveryRound()
-//    {
-//        return $this->belongsTo(DeliveryRound::class);
-//    }
+    public function deliveryRound()
+    {
+        return $this->belongsTo(DeliveryRound::class);
+    }
 
     public function needyPerson()
     {
