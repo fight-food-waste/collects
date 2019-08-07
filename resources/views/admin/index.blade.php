@@ -16,6 +16,7 @@
                 <li><a href="{{ route('admin.warehouses.index') }}">Warehouses</a></li>
                 <li><a href="{{ route('admin.categories.index') }}">Categories</a></li>
                 <li><a href="{{ route('admin.users.index') }}">Users</a></li>
+                <li><a href="{{ route('admin.delivery_requests.index') }}">Delivery Requests</a></li>
                 <li><a href="{{ route('admin.delivery_rounds.index') }}">Delivery Rounds</a></li>
             </ul>
 
