@@ -66,6 +66,12 @@ Route::prefix('admin')->group(function () {
     Route::post('collection-rounds/{id}/auto-add', 'Admin\CollectionRoundController@autoAddBundles')->where('id', '[0-9]+')->name('admin.collection_rounds.auto_add_bundles');
     Route::put('collection-rounds/{id}', 'Admin\CollectionRoundController@update')->where('id', '[0-9]+')->name('admin.collection_rounds.update');
 
+    Route::get('delivery-requests', 'Admin\DeliveryRequestController@index')->name('admin.delivery_requests.index');
+    Route::post('delivery-requests/approve', 'Admin\DeliveryRequestController@approve')->name('admin.delivery_requests.approve');
+    Route::post('delivery-requests/reject', 'Admin\DeliveryRequestController@reject')->name('admin.delivery_requests.reject');
+    Route::get('delivery-requests/{id}', 'Admin\DeliveryRequestController@show')->where('id', '[0-9]+')->name('admin.delivery_requests.show');
+    Route::post('delivery-requests/product/reject', 'Admin\DeliveryRequestController@rejectProduct')->name('admin.delivery_requests.product.reject');
+
     Route::get('delivery-rounds', 'Admin\DeliveryRoundController@index')->name('admin.delivery_rounds.index');
     Route::post('delivery-rounds', 'Admin\DeliveryRoundController@store')->name('admin.delivery_rounds.store');
     Route::get('delivery-rounds/{id}', 'Admin\DeliveryRoundController@show')->where('id', '[0-9]+')->name('admin.delivery_rounds.show');
