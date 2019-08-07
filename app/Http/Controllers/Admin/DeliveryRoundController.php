@@ -4,15 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\DeliveryRequest;
 use App\DeliveryRound;
-use App\Exports\DeliveryRoundExport;
 use App\Forms\DeliveryRoundForm;
 use App\Http\Controllers\Controller;
 use App\Truck;
 use Exception;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
-use Maatwebsite\Excel\Facades\Excel;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Builder;
@@ -315,18 +312,12 @@ class DeliveryRoundController extends Controller
     }
 
     /**
-     * Returns an Excel export of all the DeliveryRound's DeliveryRequests' NeedyPerson's Address
+     * Returns PDF with addresses
      *
      * @param Request $request
-     *
-     * @return \Maatwebsite\Excel\BinaryFileResponse|BinaryFileResponse
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
     public function export(Request $request)
     {
-        $deliveryRound = DeliveryRound::findOrFail($request->route('id'));
-
-        return Excel::download(new DeliveryRoundExport($deliveryRound), 'addresses.xlsx');
+        // TODO
     }
 }
