@@ -16,6 +16,8 @@
                 <li><a href="{{ route('admin.warehouses.index') }}">{{ __('admin.index.warehouses') }}</a></li>
                 <li><a href="{{ route('admin.categories.index') }}">{{ __('admin.index.categories') }}</a></li>
                 <li><a href="{{ route('admin.users.index') }}">{{ __('admin.index.users') }}</a></li>
+                <li><a href="{{ route('admin.delivery_requests.index') }}">{{ __('admin.index.delivery_requests') }}</a></li>
+                <li><a href="{{ route('admin.delivery_rounds.index') }}">{{ __('admin.index.delivery_rounds') }}</a></li>
             </ul>
 
         </div>

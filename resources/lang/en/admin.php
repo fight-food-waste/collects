@@ -9,6 +9,7 @@ return [
         'products' => 'Products',
         'collection_rounds' => 'Collection rounds',
         'delivery_rounds' => 'Delivery Rounds',
+        'delivery_requests' => 'Delivery Requests',
         'trucks' => 'Trucks',
         'warehouses' => 'Warehouses',
         'categories' => 'Categories',
