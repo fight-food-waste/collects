@@ -57,4 +57,7 @@ return [
         'add_to_delivery_request_success' => "Le produit a bien été ajouté à la demande de distribution.",
         'remove_from_delivery_request_success' => "Le produit a bien été été supprimé de la demande de distribution.",
     ],
+    'localization_controller' => [
+        'locale_not_exist_error' => 'Cette langue n\'est pas supportée.',
+    ],
 ];

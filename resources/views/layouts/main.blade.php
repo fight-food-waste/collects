@@ -92,11 +92,12 @@
                                     </a>
                                 @endif
 
-                                @if(App::isLocale('fr'))
-                                    <a href="lang/en" class="dropdown-item">English</a>
-                                @else
-                                    <a href="lang/fr" class="dropdown-item">Français</a>
-                                @endif
+                                @foreach (Config::get('languages') as $locale => $language)
+                                    @if ($locale != App::getLocale())
+                                        <a class="dropdown-item"
+                                           href="{{ route('lang.switch', $locale) }}">{{$language}}</a>
+                                    @endif
+                                @endforeach
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

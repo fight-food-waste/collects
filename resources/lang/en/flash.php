@@ -57,4 +57,7 @@ return [
         'add_to_delivery_request_success' => 'The product has been added to the delivery request.',
         'remove_from_delivery_request_success' => 'The product has been removed from the delivery request.',
     ],
+    'localization_controller' => [
+        'locale_not_exist_error' => 'This language is not supported.',
+    ],
 ];
