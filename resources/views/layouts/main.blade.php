@@ -92,6 +92,12 @@
                                     </a>
                                 @endif
 
+                                @if(App::isLocale('fr'))
+                                    <a href="lang/en" class="dropdown-item">English</a>
+                                @else
+                                    <a href="lang/fr" class="dropdown-item">Français</a>
+                                @endif
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

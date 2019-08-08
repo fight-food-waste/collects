@@ -49,7 +49,7 @@ return [
         'store_success' => 'The delivery request has been created.',
         'store_error' => 'There is already an open delivery request.',
         'destroy_success' => 'The delivery request has been successfully deleted.',
-        'destroy_error' => 'The delivery request has been successfully deleted.',
+        'destroy_error' => 'The delivery request can\'t be deleted.',
     ],
     'product_controller' => [
         'destroy_success' => 'The product has been successfully deleted.',
