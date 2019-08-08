@@ -11,6 +11,7 @@
         "php": "^7.3",
         "ext-json": "*",
         "axlon/laravel-postal-code-validation": "^2.0",
+        "barryvdh/laravel-dompdf": "^0.8.4",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
         "kris/laravel-form-builder": "^1.20",
