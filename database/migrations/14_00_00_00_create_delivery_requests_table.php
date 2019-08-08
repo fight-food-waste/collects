@@ -20,8 +20,8 @@ class CreateDeliveryRequestsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
-//            $table->unsignedBigInteger('delivery_round_id')->nullable();
-//            $table->foreign('delivery_round_id')->references('id')->on('delivery_rounds');
+            $table->unsignedBigInteger('delivery_round_id')->nullable();
+            $table->foreign('delivery_round_id')->references('id')->on('delivery_rounds');
 
             $table->integer('status')->default(0);
         });

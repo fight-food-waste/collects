@@ -39,8 +39,7 @@ Route::get('bundles/{id}', 'BundleController@show')->where('id', '[0-9]+')->name
 Route::post('bundles/destroy', 'BundleController@destroy')->name('bundle.destroy');
 
 Route::get('delivery-requests', 'DeliveryRequestController@index')->name('delivery_requests.index');
-Route::get('delivery-requests/{id}', 'DeliveryRequestController@show')->where('id', '[0-9]+')
-    ->name('delivery_requests.show');
+Route::get('delivery-requests/{id}', 'DeliveryRequestController@show')->where('id', '[0-9]+')->name('delivery_requests.show');
 Route::post('delivery-requests', 'DeliveryRequestController@store')->name('delivery_requests.store');
 Route::delete('delivery-requests', 'DeliveryRequestController@destroy')->name('delivery_requests.destroy');
 
@@ -55,27 +54,36 @@ Route::prefix('admin')->group(function () {
     Route::get('bundles', 'Admin\BundleController@index')->name('admin.bundles.index');
     Route::post('bundles/approve', 'Admin\BundleController@approve')->name('admin.bundles.approve');
     Route::post('bundles/reject', 'Admin\BundleController@reject')->name('admin.bundles.reject');
-    Route::get('bundles/{id}', 'Admin\BundleController@show')
-        ->where('id', '[0-9]+')->name('admin.bundles.show');
+    Route::get('bundles/{id}', 'Admin\BundleController@show')->where('id', '[0-9]+')->name('admin.bundles.show');
     Route::post('bundles/product/reject', 'Admin\BundleController@rejectProduct')->name('admin.bundles.product.reject');
 
     Route::get('collection-rounds', 'Admin\CollectionRoundController@index')->name('admin.collection_rounds.index');
     Route::post('collection-rounds', 'Admin\CollectionRoundController@store')->name('admin.collection_rounds.store');
-    Route::get('collection-rounds/{id}', 'Admin\CollectionRoundController@show')
-        ->where('id', '[0-9]+')->name('admin.collection_rounds.show');
-    Route::get('collection-rounds/{id}/export', 'Admin\CollectionRoundController@export')
-        ->where('id', '[0-9]+')->name('admin.collection_rounds.export');
-    Route::post('collection-rounds/bundles/remove', 'Admin\CollectionRoundController@removeBundle')
-        ->name('admin.collection_rounds.bundles.remove');
+    Route::get('collection-rounds/{id}', 'Admin\CollectionRoundController@show')->where('id', '[0-9]+')->name('admin.collection_rounds.show');
+    Route::get('collection-rounds/{id}/export', 'Admin\CollectionRoundController@export')->where('id', '[0-9]+')->name('admin.collection_rounds.export');
+    Route::post('collection-rounds/bundles/remove', 'Admin\CollectionRoundController@removeBundle')->name('admin.collection_rounds.bundles.remove');
     Route::post('collection-rounds/bundles/delete', 'Admin\CollectionRoundController@destroy')->name('admin.collection_rounds.destroy');
-    Route::get('collection-rounds/{id}/add', 'Admin\CollectionRoundController@addBundles')
-        ->where('id', '[0-9]+')->name('admin.collection_rounds.add_bundles');
-    Route::post('collection-rounds/bundles/add', 'Admin\CollectionRoundController@addBundle')
-        ->name('admin.collection_rounds.add_bundle');
-    Route::post('collection-rounds/{id}/auto-add', 'Admin\CollectionRoundController@autoAddBundles')
-        ->where('id', '[0-9]+')->name('admin.collection_rounds.auto_add_bundles');
-    Route::put('collection-rounds/{id}', 'Admin\CollectionRoundController@update')
-        ->where('id', '[0-9]+')->name('admin.collection_rounds.update');
+    Route::get('collection-rounds/{id}/add', 'Admin\CollectionRoundController@addBundles')->where('id', '[0-9]+')->name('admin.collection_rounds.add_bundles');
+    Route::post('collection-rounds/bundles/add', 'Admin\CollectionRoundController@addBundle')->name('admin.collection_rounds.add_bundle');
+    Route::post('collection-rounds/{id}/auto-add', 'Admin\CollectionRoundController@autoAddBundles')->where('id', '[0-9]+')->name('admin.collection_rounds.auto_add_bundles');
+    Route::put('collection-rounds/{id}', 'Admin\CollectionRoundController@update')->where('id', '[0-9]+')->name('admin.collection_rounds.update');
+
+    Route::get('delivery-requests', 'Admin\DeliveryRequestController@index')->name('admin.delivery_requests.index');
+    Route::post('delivery-requests/approve', 'Admin\DeliveryRequestController@approve')->name('admin.delivery_requests.approve');
+    Route::post('delivery-requests/reject', 'Admin\DeliveryRequestController@reject')->name('admin.delivery_requests.reject');
+    Route::get('delivery-requests/{id}', 'Admin\DeliveryRequestController@show')->where('id', '[0-9]+')->name('admin.delivery_requests.show');
+    Route::post('delivery-requests/product/reject', 'Admin\DeliveryRequestController@rejectProduct')->name('admin.delivery_requests.product.reject');
+
+    Route::get('delivery-rounds', 'Admin\DeliveryRoundController@index')->name('admin.delivery_rounds.index');
+    Route::post('delivery-rounds', 'Admin\DeliveryRoundController@store')->name('admin.delivery_rounds.store');
+    Route::get('delivery-rounds/{id}', 'Admin\DeliveryRoundController@show')->where('id', '[0-9]+')->name('admin.delivery_rounds.show');
+    Route::get('delivery-rounds/{id}/export', 'Admin\DeliveryRoundController@export')->where('id', '[0-9]+')->name('admin.delivery_rounds.export');
+    Route::post('delivery-rounds/delivery-request/remove', 'Admin\DeliveryRoundController@removeDeliveryRequest')->name('admin.delivery_rounds.delivery_round.remove');
+    Route::delete('delivery-rounds', 'Admin\DeliveryRoundController@destroy')->name('admin.delivery_rounds.destroy');
+    Route::get('delivery-rounds/{id}/add', 'Admin\DeliveryRoundController@addDeliveryRequests')->where('id', '[0-9]+')->name('admin.delivery_rounds.add_delivery_requests');
+    Route::post('delivery-rounds/delivery-request/add', 'Admin\DeliveryRoundController@addDeliveryRequest')->name('admin.delivery_rounds.add_delivery_request');
+    Route::post('delivery-rounds/{id}/auto-add', 'Admin\DeliveryRoundController@autoAddDeliveryRequests')->where('id', '[0-9]+')->name('admin.delivery_rounds.auto_add_delivery_requests');
+    Route::put('delivery-rounds/{id}', 'Admin\DeliveryRoundController@update')->where('id', '[0-9]+')->name('admin.delivery_rounds.update');
 
     Route::get('products', 'Admin\ProductsController@index')->name('admin.products.index');
 
@@ -86,8 +94,7 @@ Route::prefix('admin')->group(function () {
     Route::get('warehouses', 'Admin\WarehouseController@index')->name('admin.warehouses.index');
 
     Route::get('users', 'Admin\UserController@index')->name('admin.users.index');
-    Route::get('users/application_files/{id}.pdf', 'Admin\UserController@downloadApplication')
-        ->where('id', '^[a-zA-Z0-9_]*$')->name('admin.users.application_files.download');
+    Route::get('users/application_files/{id}.pdf', 'Admin\UserController@downloadApplication')->where('id', '^[a-zA-Z0-9_]*$')->name('admin.users.application_files.download');
     Route::post('users/approve', 'Admin\UserController@approve')->name('admin.users.approve');
     Route::post('users/reject', 'Admin\UserController@reject')->name('admin.users.reject');
 });
