@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Http\Response;
 
 class DeliveryRoundController extends Controller
 {
@@ -312,12 +314,16 @@ class DeliveryRoundController extends Controller
     }
 
     /**
-     * Returns PDF with addresses
+     * Returns PDF with delivery requests
      *
      * @param Request $request
+     * @return Response
      */
     public function export(Request $request)
     {
-        // TODO
+        $deliveryRequests = DeliveryRound::findOrFail($request->route('id'))->first()->deliveryRequests;
+        $pdf = PDF::loadView('exports.delivery_round', compact('deliveryRequests'));
+
+        return $pdf->download('invoice.pdf');
     }
 }

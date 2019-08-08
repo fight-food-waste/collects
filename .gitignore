@@ -4,6 +4,7 @@
 /public/hot
 /public/storage
 /public/vendor
+storage/fonts/*
 /storage/*.key
 /storage/debugbar
 /storage/clockwork
