@@ -24,6 +24,24 @@ return [
             'auto_add_bundles_success' => ":count lot(s) ont été ajoutés à la collecte.",
             'auto_add_bundles_error' => "Aucun lot n'a été trouvé...",
         ],
+        'delivery_request_controller' => [
+            'approve_success' => "Delivery request :delivery_request has been approved.",
+            'reject_success' => "Delivery request :delivery_request has been rejected.",
+            'reject_product_success' => "The product has been deleted from the delivery request.",
+        ],
+        'delivery_round_controller' => [
+            'store_success' => "A new delivery round has been created",
+            'update_error' => "There is no available truck at the moment.",
+            'update_success' => "The delivery round status has been updated.",
+            'remove_delivery_request_success' => "The delivery request has been removed from this delivery round.",
+            'remove_delivery_request_error' => "The delivery round can't be modified anymore.",
+            'destroy_error' => "Something went wrong while deleting the delivery round.",
+            'destroy_error_2' => "The delivery round can't be modified anymore.",
+            'destroy_success' => "The delivery round has been deleted.",
+            'add_delivery_request_success' => "The delivery request has been added to the delivery round.",
+            'auto_add_delivery_requests_success' => " delivery requests have been added to the collection round.",
+            'auto_add_delivery_requests_error' => "No available delivery request was found...",
+        ],
         'products_controller' => [],
         'truck_controller' => [],
         'user_controller' => [
@@ -51,6 +69,7 @@ return [
         'destroy_success' => "La demande de distribution a bien été annulée.",
         'destroy_error' => "La demande de distribution ne peut pas être annulée.",
     ],
+
     'product_controller' => [
         'destroy_success' => "Le produit a bien été supprimé.",
         'destroy_error' => "Le produit n'a pas pu être supprimé.",

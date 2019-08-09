@@ -18,6 +18,6 @@ class DeliveryRoundForm extends Form
                 'choices' => $warehouses,
                 'empty_value' => 'Select a warehouse',
             ])
-            ->add('New delivery round', Field::BUTTON_SUBMIT);
+            ->add(__('admin.delivery_rounds.new_delivery_round'), Field::BUTTON_SUBMIT);
     }
 }

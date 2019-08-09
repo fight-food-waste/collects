@@ -8,11 +8,11 @@
                     <i class="fas fa-arrow-left"></i>
                 </button>
             </a>
-            Add delivery request to delivery round #{{ $deliveryRound->id }}
+            {{ __('admin.delivery_requests.add_message') }} #{{ $deliveryRound->id }}
             <a href="{{ $request->input('closest') === 'true' ? $request->fullUrlWithQuery(['closest' => 'false']) : $request->fullUrlWithQuery(['closest' => 'true']) }}"
                class="fa-pull-right">
                 <button type="submit" class="btn btn-sm btn-secondary">
-                    {{ $request->input('closest') === 'true' ? 'Show all available delivery requests' : 'Show closest delivery requests' }}
+                    {{ $request->input('closest') === 'true' ? __('admin.delivery_requests.show_all_message') : __('admin.delivery_requests.show_closest_message') }}
                 </button>
             </a>
         </div>
@@ -24,13 +24,13 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Submission date</th>
-                        <th scope="col">Number of products</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Requester</th>
-                        <th scope="col">City</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.status') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.submission_date') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.number_of_products') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.weight') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.requester') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.city') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -67,9 +67,7 @@
                     </tbody>
                 </table>
             @else
-                There is no available delivery request.<br>
-                Either there isn't any approved delivery request not assigned to a delivery round, or there isn't
-                enough free weight left in this delivery round.
+                {{ __('admin.delivery_requests.no_available') }}
             @endif
         </div>
     </div>

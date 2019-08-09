@@ -47,17 +47,17 @@ class DeliveryRequest extends Model
     {
         switch ($this->status) {
             case -1:
-                return "Rejected";
+                return __('admin.delivery_requests.statuses.rejected');
             case 0:
-                return "Waiting approval";
+                return __('admin.delivery_requests.statuses.waiting_approval');
             case 1:
-                return "Approved";
+                return __('admin.delivery_requests.statuses.approved');
             case 2:
-                return "Being delivered";
+                return __('admin.delivery_requests.statuses.being_delivered');
             case 3:
-                return "Delivered";
+                return __('admin.delivery_requests.statuses.delivered');
             default:
-                return "Unknown";
+                return __('admin.delivery_requests.statuses.unknown');
         }
     }
 
