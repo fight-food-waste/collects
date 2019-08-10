@@ -10,31 +10,31 @@ class NeedyPersonForm extends Form
     public function buildForm()
     {
         $this
-            ->add('first_name', Field::TEXT, [
+            ->add(__('signup.first_name'), Field::TEXT, [
                 'rules' => 'required|string|min:3',
             ])
-            ->add('last_name', Field::TEXT, [
+            ->add(__('signup.last_name'), Field::TEXT, [
                 'rules' => 'required|string|min:3',
             ])
-            ->add('application_file', Field::FILE, [
+            ->add(__('signup.application_file'), Field::FILE, [
                 'rules' => 'required|file|mimes:pdf',
             ])
-            ->add('street', Field::TEXT, [
+            ->add(__('signup.street'), Field::TEXT, [
                 'rules' => 'required|string|min:10',
             ])
-            ->add('zip_postal_code', Field::TEXT, [
+            ->add(__('signup.zip_postal_code'), Field::TEXT, [
                 'rules' => 'required|postal_code:FR',
             ])
-            ->add('city', Field::TEXT, [
+            ->add(__('signup.city'), Field::TEXT, [
                 'rules' => 'required|string|min:2',
             ])
-            ->add('email', Field::EMAIL, [
+            ->add(__('signup.email'), Field::EMAIL, [
                 'rules' => 'required|email',
             ])
-            ->add('password', Field::PASSWORD, [
+            ->add(__('signup.password'), Field::PASSWORD, [
                 'rules' => 'required|string|min:8|confirmed',
             ])
-            ->add('password_confirmation', Field::PASSWORD)
-            ->add('submit', Field::BUTTON_SUBMIT);
+            ->add(__('signup.password_confirmation'), Field::PASSWORD)
+            ->add(__('signup.submit'), Field::BUTTON_SUBMIT);
     }
 }

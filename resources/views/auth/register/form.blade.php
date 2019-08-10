@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">{{ __('Register') }}</div>
+        <div class="card-header">{{ __('signup.register') }}</div>
 
         <div class="card-body">
             {!! form($form) !!}

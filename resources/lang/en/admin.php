@@ -15,6 +15,20 @@ return [
         'categories' => 'Categories',
         'users' => 'Users',
     ],
+    'singular' => [
+        'bundle' => 'Bundle',
+        'product' => 'Product',
+        'collection_round' => 'Collection round',
+        'delivery_round' => 'Delivery Round',
+        'delivery_request' => 'Delivery Request',
+        'truck' => 'Truck',
+        'warehouse' => 'Warehouse',
+        'category' => 'Category',
+        'user' => 'User',
+        'donor' => 'Donor',
+        'storekeeper' => 'Storekeeper',
+        'needy_person' => 'Needy Person'
+    ],
     'bundles' => [
         'columns' => [
             'status' => 'Status',
