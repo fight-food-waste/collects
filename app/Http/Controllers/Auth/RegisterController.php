@@ -18,6 +18,7 @@ use Illuminate\View\View;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Illuminate\Routing\Redirector;
 use Kris\LaravelFormBuilder\Form;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -57,16 +58,12 @@ class RegisterController extends Controller
     /**
      * Workaround to create Form based on slug
      *
+     * @param Request     $request
      * @param FormBuilder $formBuilder
      * @return Form|null
      */
-    private function createForm(FormBuilder $formBuilder): ?Form
+    private function createForm(Request $request, FormBuilder $formBuilder): ?Form
     {
-        // Not very pretty...
-        // See https://github.com/kristijanhusak/laravel-form-builder/issues/544
-        $tmpForm = $formBuilder->plain();
-        $request = $tmpForm->getRequest();
-
         switch ($request->route('slug')) {
             case "donor":
                 $form = $formBuilder->create(DonorForm::class);
@@ -85,13 +82,14 @@ class RegisterController extends Controller
     /**
      * Display User registration form based on slug
      *
+     * @param Request     $request
      * @param FormBuilder $formBuilder
      *
      * @return View
      */
-    public function createUser(FormBuilder $formBuilder)
+    public function createUser(Request $request, FormBuilder $formBuilder)
     {
-        $form = $this->createForm($formBuilder);
+        $form = $this->createForm($request, $formBuilder);
 
         $form->setMethod('POST');
         $form->setUrl(route("register.{$form->getRequest()->route('slug')}.store"));
@@ -102,12 +100,13 @@ class RegisterController extends Controller
     /**
      * Store User based on slug
      *
+     * @param Request     $request
      * @param FormBuilder $formBuilder
      * @return RedirectResponse|Redirector
      */
-    public function storeUser(FormBuilder $formBuilder)
+    public function storeUser(Request $request, FormBuilder $formBuilder)
     {
-        $form = $this->createForm($formBuilder);
+        $form = $this->createForm($request, $formBuilder);
 
         if (!$form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
