@@ -7,7 +7,7 @@ use App\Product;
 use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
 
-class ProductsController extends Controller
+class ProductController extends Controller
 {
     public function __construct()
     {

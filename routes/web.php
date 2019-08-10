@@ -85,7 +85,7 @@ Route::prefix('admin')->group(function () {
     Route::post('delivery-rounds/{id}/auto-add', 'Admin\DeliveryRoundController@autoAddDeliveryRequests')->where('id', '[0-9]+')->name('admin.delivery_rounds.auto_add_delivery_requests');
     Route::put('delivery-rounds/{id}', 'Admin\DeliveryRoundController@update')->where('id', '[0-9]+')->name('admin.delivery_rounds.update');
 
-    Route::get('products', 'Admin\ProductsController@index')->name('admin.products.index');
+    Route::get('products', 'Admin\ProductController@index')->name('admin.products.index');
 
     Route::get('categories', 'Admin\CategoryController@index')->name('admin.categories.index');
 
