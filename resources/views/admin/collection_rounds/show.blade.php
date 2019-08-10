@@ -63,6 +63,7 @@
                 <form action="{{ route('admin.collection_rounds.destroy') }}" method="POST"
                       class="fa-pull-right">
                     @csrf
+                    @method('DELETE')
                     <input type="hidden" name="collection_round_id" value="{{ $collectionRound->id }}">
                     <button type="submit" class="btn btn-sm btn-danger"
                             style="margin-left: 5px">

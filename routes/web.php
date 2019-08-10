@@ -59,10 +59,10 @@ Route::prefix('admin')->group(function () {
 
     Route::get('collection-rounds', 'Admin\CollectionRoundController@index')->name('admin.collection_rounds.index');
     Route::post('collection-rounds', 'Admin\CollectionRoundController@store')->name('admin.collection_rounds.store');
+    Route::delete('collection-rounds', 'Admin\CollectionRoundController@destroy')->name('admin.collection_rounds.destroy');
     Route::get('collection-rounds/{id}', 'Admin\CollectionRoundController@show')->where('id', '[0-9]+')->name('admin.collection_rounds.show');
     Route::get('collection-rounds/{id}/export', 'Admin\CollectionRoundController@export')->where('id', '[0-9]+')->name('admin.collection_rounds.export');
     Route::post('collection-rounds/bundles/remove', 'Admin\CollectionRoundController@removeBundle')->name('admin.collection_rounds.bundles.remove');
-    Route::post('collection-rounds/bundles/delete', 'Admin\CollectionRoundController@destroy')->name('admin.collection_rounds.destroy');
     Route::get('collection-rounds/{id}/add', 'Admin\CollectionRoundController@addBundles')->where('id', '[0-9]+')->name('admin.collection_rounds.add_bundles');
     Route::post('collection-rounds/bundles/add', 'Admin\CollectionRoundController@addBundle')->name('admin.collection_rounds.add_bundle');
     Route::post('collection-rounds/{id}/auto-add', 'Admin\CollectionRoundController@autoAddBundles')->where('id', '[0-9]+')->name('admin.collection_rounds.auto_add_bundles');

@@ -223,7 +223,7 @@ class CollectionRoundController extends Controller
             }
 
             return redirect()->route('admin.collection_rounds.index')
-                ->with('success', __('flash.admin.collection_round_controller.destroy_error'));
+                ->with('success', __('flash.admin.collection_round_controller.destroy_success'));
         } else {
             return redirect()->back()->with('error', __('flash.admin.collection_round_controller.modify_error'));
         }
