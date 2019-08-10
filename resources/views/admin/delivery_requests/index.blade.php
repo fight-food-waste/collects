@@ -3,7 +3,7 @@
 @section('content')
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('Delivery Requests') }}</div>
+            {{ __('admin.index.delivery_requests') }}</div>
 
         <div class="card-body">
 
@@ -12,13 +12,13 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Submission date</th>
-                        <th scope="col">Number of products</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Requester</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.status') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.submission_date') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.number_of_products') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.weight') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.requester') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.address') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -68,7 +68,7 @@
                     </tbody>
                 </table>
             @else
-                There is no bundle in the database.
+                {{ __('admin.delivery_requests.no_bundle_message') }}
             @endif
         </div>
     </div>

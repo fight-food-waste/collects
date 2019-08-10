@@ -44,7 +44,7 @@ class BundleController extends Controller
         $bundle->save();
 
         return redirect()->back()
-            ->with('success', 'Bundle ' . $request->input('bundle_id') . ' has been approved.');
+            ->with('success', __('flash.admin.bundle_controller.approve_success', ['bundle' => $request->input('bundle_id')]));
     }
 
     /**
@@ -61,7 +61,7 @@ class BundleController extends Controller
         $bundle->save();
 
         return redirect()->back()
-            ->with('success', 'Bundle ' . $request->input('bundle_id') . ' has been rejected.');
+            ->with('success', __('flash.admin.bundle_controller.reject_success', ['bundle' => $request->input('bundle_id')]));
     }
 
     /**
@@ -94,9 +94,9 @@ class BundleController extends Controller
         try {
             Product::findOrFail($request->input('product_id'))->delete();
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'The product couldn\'t be deleted.');
+            return redirect()->back()->with('error', __('flash.admin.bundle_controller.reject_product_error'));
         }
 
-        return redirect()->back()->with('success', 'The product has been deleted from the bundle.');
+        return redirect()->back()->with('success', __('flash.admin.bundle_controller.reject_product_success'));
     }
 }

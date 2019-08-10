@@ -3,7 +3,7 @@
 @section('content')
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            Create new delivery round
+            {{ __('admin.delivery_rounds.create_new_delivery_round') }}
         </div>
 
         <div class="card-body">
@@ -15,7 +15,7 @@
 
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('Delivery Rounds') }}
+            {{ __('admin.index.delivery_rounds') }}
             <form action="{{ route('admin.delivery_rounds.store') }}" method="POST" class="fa-pull-right">
                 @csrf
                 <button type="submit" class="btn btn-sm btn-secondary">
@@ -30,12 +30,12 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Warehouse</th>
-                        <th scope="col">Creation date</th>
-                        <th scope="col">Number of delivery requests</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.status') }}</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.warehouse') }}</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.creation_date') }}</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.number_of_delivery_requests') }}</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.weight') }}</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -63,7 +63,7 @@
                     </tbody>
                 </table>
             @else
-                There is no delivery round in the database.
+                {{ __('admin.delivery_rounds.no_delivery_round_message') }}
             @endif
         </div>
     </div>

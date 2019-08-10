@@ -40,10 +40,10 @@ class ProductController extends Controller
         try {
             Product::findOrFail($request->input('product_id'))->delete();
         } catch (Exception $e) {
-            return redirect()->back()->with('error', "The product could not be deleted.");
+            return redirect()->back()->with('error', __('flash.product_controller.destroy_error'));
         }
 
-        return redirect()->back()->with('success', "The product has been successfully deleted.");
+        return redirect()->back()->with('success', __('flash.product_controller.destroy_success'));
     }
 
     public function addToDeliveryRequest(Request $request)
@@ -57,7 +57,7 @@ class ProductController extends Controller
             $product->status = 2;
             $product->save();
 
-            return redirect()->back()->with('success', "The product has been added to the delivery request.");
+            return redirect()->back()->with('success', __('flash.product_controller.add_to_delivery_request_success'));
         }
     }
 
@@ -69,6 +69,6 @@ class ProductController extends Controller
         $product->status = 1;
         $product->save();
 
-        return redirect()->back()->with('success', "The product has been removed from the delivery request.");
+        return redirect()->back()->with('success', __('flash.product_controller.remove_from_delivery_request_success'));
     }
 }

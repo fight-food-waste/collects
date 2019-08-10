@@ -88,7 +88,7 @@ class DeliveryRoundController extends Controller
             'warehouse_id' => $attr['warehouse'],
         ]);
 
-        return redirect()->back()->with('success', 'A new delivery round has been created');
+        return redirect()->back()->with('success', __('flash.admin.delivery_round_controller.store_success'));
     }
 
     /**
@@ -110,7 +110,7 @@ class DeliveryRoundController extends Controller
                 ->where('warehouse_id', $deliveryRound->warehouse->id)
                 ->get();
             if ($truckResult->isEmpty()) {
-                return redirect()->back()->with('error', 'There is no available truck at the moment.');
+                return redirect()->back()->with('error', __('flash.admin.delivery_round_controller.update_error'));
             } else {
                 $truck = $truckResult->first();
 
@@ -142,7 +142,7 @@ class DeliveryRoundController extends Controller
         $deliveryRound->status = $request->input('delivery_round_status');
         $deliveryRound->save();
 
-        return redirect()->back()->with('success', 'The delivery round status has been updated.');
+        return redirect()->back()->with('success', __('flash.admin.delivery_round_controller.update_success'));
     }
 
     /**
@@ -162,9 +162,9 @@ class DeliveryRoundController extends Controller
             $deliveryRequest->status = 1;
             $deliveryRequest->save();
 
-            return redirect()->back()->with('success', 'The delivery request has been removed from this delivery round.');
+            return redirect()->back()->with('success', __('flash.admin.delivery_round_controller.remove_delivery_request_success'));
         } else {
-            return redirect()->back()->with('error', 'The delivery round can\'t be modified anymore.');
+            return redirect()->back()->with('error', __('flash.admin.delivery_round_controller.remove_delivery_request_error'));
         }
     }
 
@@ -192,13 +192,13 @@ class DeliveryRoundController extends Controller
                 $deliveryRound->delete();
             }
             catch (Exception $e) {
-                return redirect()->back()->with('error', 'Something went wrong while deleting the delivery round.');
+                return redirect()->back()->with('error', __('flash.admin.delivery_round_controller.destroy_error'));
             }
 
             return redirect()->route('admin.delivery_rounds.index')
-                ->with('success', 'The delivery round has been deleted.');
+                ->with('success', __('flash.admin.delivery_round_controller.destroy_success'));
         } else {
-            return redirect()->back()->with('error', 'The delivery round can\'t be modified anymore.');
+            return redirect()->back()->with('error', __('flash.admin.delivery_round_controller.destroy_error_2'));
         }
     }
 
@@ -283,7 +283,7 @@ class DeliveryRoundController extends Controller
         $deliveryRequest->save();
 
         return redirect()->route('admin.delivery_rounds.add_delivery_requests', $deliveryRound->id)
-            ->with('success', 'The delivery request has been added to the delivery round.');
+            ->with('success', __('flash.admin.delivery_round_controller.add_delivery_request_success'));
     }
 
     /**
@@ -306,10 +306,10 @@ class DeliveryRoundController extends Controller
             }
 
             return redirect()->route('admin.delivery_rounds.show', $deliveryRound->id)
-                ->with('success', count($deliveryRequests) . ' delivery requests have been added to the collection round.');
+                ->with('success', count($deliveryRequests) . __('flash.admin.delivery_round_controller.auto_add_delivery_requests_success'));
         } else {
             return redirect()->route('admin.delivery_rounds.show', $deliveryRound->id)
-                ->with('error', 'No available delivery request was found...');
+                ->with('error', __('flash.admin.delivery_round_controller.auto_add_delivery_requests_error'));
         }
     }
 

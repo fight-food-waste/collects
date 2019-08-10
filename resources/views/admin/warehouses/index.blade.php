@@ -3,7 +3,7 @@
 @section('content')
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('Warehouses') }}</div>
+            {{ __('admin.index.warehouses') }}</div>
 
         <div class="card-body">
 
@@ -12,10 +12,10 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Number of shelves</th>
-                        <th scope="col">Used weight</th>
+                        <th scope="col">{{ __('admin.warehouses.columns.name') }}</th>
+                        <th scope="col">{{ __('admin.warehouses.columns.address') }}</th>
+                        <th scope="col">{{ __('admin.warehouses.columns.number_of_shelves') }}</th>
+                        <th scope="col">{{ __('admin.warehouses.columns.used_weight') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,7 +33,7 @@
                     </tbody>
                 </table>
             @else
-                There is no product in the database.
+                {{ __('admin.warehouses.no_warehouse_message') }}
             @endif
         </div>
     </div>

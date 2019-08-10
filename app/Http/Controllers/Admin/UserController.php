@@ -46,7 +46,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->back()
-            ->with('success', 'User ' . $request->input('user_id') . ' has been approved.');
+            ->with('success', __('flash.admin.user_controller.approve_success', ['user' => $request->input('user_id')]));
     }
 
     /**
@@ -63,7 +63,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->back()
-            ->with('success', 'User ' . $request->input('user_id') . ' has been rejected.');
+            ->with('success', __('flash.admin.user_controller.reject_success', ['user' => $request->input('user_id')]));
     }
 
     /**

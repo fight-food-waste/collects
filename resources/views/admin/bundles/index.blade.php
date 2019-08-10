@@ -3,7 +3,7 @@
 @section('content')
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('Bundles') }}</div>
+            {{ __('admin.index.bundles') }}</div>
 
         <div class="card-body">
 
@@ -12,13 +12,13 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Submission date</th>
-                        <th scope="col">Number of products</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Donor</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{{ __('admin.bundles.columns.status') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.submission_date') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.number_of_products') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.weight') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.donor') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.address') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -60,7 +60,7 @@
                     </tbody>
                 </table>
             @else
-                There is no bundle in the database.
+                {{ __('admin.bundles.no_bundle_message') }}
             @endif
         </div>
     </div>

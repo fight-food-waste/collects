@@ -28,7 +28,7 @@ class DeliveryRequestController extends Controller
         $deliveryRequest->save();
 
         return redirect()->back()
-            ->with('success', 'Delivery request ' . $deliveryRequest->id . ' has been approved.');
+            ->with('success', __('flash.admin.delivery_request_controller.approve_success', ['delivery_request' => $deliveryRequest->id]));
     }
 
     public function reject(Request $request)
@@ -38,7 +38,7 @@ class DeliveryRequestController extends Controller
         $deliveryRequest->save();
 
         return redirect()->back()
-            ->with('success', 'Delivery request ' . $deliveryRequest->id . ' has been rejected.');
+            ->with('success', __('flash.admin.delivery_request_controller.reject_success', ['delivery_request' => $deliveryRequest->id]));
     }
 
     public function show(Request $request)
@@ -57,6 +57,6 @@ class DeliveryRequestController extends Controller
         $product = Product::findOrFail($request->input('product_id'));
         $product->delivery_request_id = null;
 
-        return redirect()->back()->with('success', 'The product has been deleted from the delivery request.');
+        return redirect()->back()->with('success', __('flash.admin.delivery_request_controller.reject_product_success'));
     }
 }

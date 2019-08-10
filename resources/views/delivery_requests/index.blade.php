@@ -19,11 +19,11 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Submission date</th>
-                        <th scope="col">Number of products</th>
-                        <th scope="col">Donor</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.status') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.submission_date') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.number_of_products') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.donor') }}</th>
+                        <th scope="col">{{ __('admin.delivery_requests.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -61,7 +61,7 @@
                     </tbody>
                 </table>
             @else
-                You haven't made any delivery request yet.
+                {{ __('admin.delivery_requests.no_delivery_request') }}
             @endif
         </div>
     </div>

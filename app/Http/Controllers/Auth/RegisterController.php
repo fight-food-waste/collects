@@ -109,7 +109,7 @@ class RegisterController extends Controller
     {
         $form = $this->createForm($formBuilder);
 
-        if (! $form->isValid()) {
+        if (!$form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
@@ -117,8 +117,8 @@ class RegisterController extends Controller
 
         $address = new Address($user_attributes);
 
-        if (! $address->isReal()) {
-            return redirect()->back()->with('error', 'The address you entered does not seem real.')->withInput();
+        if (!$address->isReal()) {
+            return redirect()->back()->with('error', __('flash.register_controller.address_not_real'))->withInput();
         }
 
         $address->save();
@@ -147,6 +147,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('home'))->with('success', 'Registration successful!');
+        return redirect(route('home'))->with('success', __('flash.register_controller.register_success'));
     }
 }

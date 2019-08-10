@@ -42,7 +42,7 @@ class DeliveryRequestController extends Controller
 
         if (!$request->user()->deliveryRequests->contains($deliveryRequest->id)) {
             return redirect()->route('delivery_requests.index')
-                ->with('error', "Access forbidden: you are not allowed to see this delivery request.");
+                ->with('error', __('flash.delivery_request_controller.access_forbidden'));
         }
 
         return view('delivery_requests.show', compact('deliveryRequest'));
@@ -57,9 +57,9 @@ class DeliveryRequestController extends Controller
 
             DeliveryRequest::create(['user_id' => $request->user()->id]);
 
-            return redirect()->back()->with('success', "The delivery request has been created.");
+            return redirect()->back()->with('success', __('flash.delivery_request_controller.store_success'));
         } else {
-            return redirect()->back()->with('error', "There is already an open delivery request");
+            return redirect()->back()->with('error', __('flash.delivery_request_controller.store_error'));
         }
     }
 
@@ -84,9 +84,9 @@ class DeliveryRequestController extends Controller
         try {
             $deliveryRequest->delete();
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong while deleting the delivery request.');
+            return redirect()->back()->with('error', __('flash.delivery_request_controller.destroy_error'));
         }
 
-        return redirect()->back()->with('success', "The delivery request has been successfully deleted.");
+        return redirect()->back()->with('success', __('flash.delivery_request_controller.destroy_success'));
     }
 }

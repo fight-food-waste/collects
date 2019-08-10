@@ -3,7 +3,7 @@
 @section('content')
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('Categories') }}</div>
+            {{ __('admin.index.categories') }}</div>
 
         <div class="card-body">
 
@@ -29,7 +29,7 @@
                     </tbody>
                 </table>
             @else
-                There is no category in the database.
+                {{ __('admin.categories.no_category_message') }}
             @endif
         </div>
     </div>

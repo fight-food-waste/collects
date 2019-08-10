@@ -45,15 +45,15 @@ class DeliveryRound extends Model
     {
         switch ($this->status) {
             case 0:
-                return "Not ready";
+                return __('admin.delivery_rounds.statuses.not_ready');
             case 1:
-                return "Ready";
+                return __('admin.delivery_rounds.statuses.ready');
             case 2:
-                return "In progress";
+                return __('admin.delivery_rounds.statuses.in_progress');
             case 3:
-                return "Done";
+                return __('admin.delivery_rounds.statuses.done');
             default:
-                return "Unknown";
+                return __('admin.delivery_rounds.statuses.unknown');
         }
     }
 

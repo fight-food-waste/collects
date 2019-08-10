@@ -137,12 +137,9 @@
                     <br>
                 </div>
 
-                <p>This delivery round contains {{ count($deliveryRound->deliveryRequests)  }} delivery requests for a
-                    total of {{ $deliveryRound->weightAsMass()->toUnit('kg') }} kg. It is attached to
-                    the {{ $deliveryRound->warehouse->name }} warehouse.</p>
+                <p>{{ __('admin.delivery_rounds.delivery_round_detail', ['count' => count($deliveryRound->deliveryRequests), 'weight' => $deliveryRound->weightAsMass()->toUnit('kg'), 'name' => $deliveryRound->warehouse->name]) }}</p>
                 @if($deliveryRound->status == 2)
-                    <p>The delivery round is currently ongoing with truck
-                        #{{ $deliveryRound->truck->id }}.</p>
+                    <p>{{ __('admin.delivery_rounds.no_delivery_round_with_truck') }} #{{ $deliveryRound->truck->id }}.</p>
                 @endif
 
                 <div style="display: flex">
@@ -171,13 +168,13 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Submission date</th>
-                        <th scope="col">Number of products</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Requester</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.status') }}</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.submission_date') }}</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.number_of_products') }}</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.weight') }}</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.requester') }}</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.address') }}</th>
+                        <th scope="col">{{ __('admin.delivery_rounds.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -220,7 +217,7 @@
                     </tbody>
                 </table>
             @else
-                There is no delivery request in this delivery round.
+                {{ __('admin.delivery_rounds.no_delivery_request_message') }}
                 <div style="display: inline">
                     <form
                         action="{{ route('admin.delivery_rounds.auto_add_delivery_requests', $deliveryRound->id) }}"
@@ -228,7 +225,7 @@
                         @csrf
                         <button type="submit"
                                 class="btn btn-sm btn-primary"
-                                style="margin-left: 5px">Automatically add delivery requests
+                                style="margin-left: 5px">{{ __('admin.delivery_rounds.auto_add_delivery_requests') }}
                         </button>
                     </form>
                 </div>

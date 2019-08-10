@@ -3,7 +3,7 @@
 @section('content')
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            Create new collection round
+            {{ __('admin.collection_rounds.create_new_collection_round') }}
         </div>
 
         <div class="card-body">
@@ -30,12 +30,12 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Warehouse</th>
-                        <th scope="col">Creation date</th>
-                        <th scope="col">Number of bundles</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{{ __('admin.collection_rounds.columns.status') }}</th>
+                        <th scope="col">{{ __('admin.collection_rounds.columns.warehouse') }}</th>
+                        <th scope="col">{{ __('admin.collection_rounds.columns.creation_date') }}</th>
+                        <th scope="col">{{ __('admin.collection_rounds.columns.number_of_bundles') }}</th>
+                        <th scope="col">{{ __('admin.collection_rounds.columns.weight') }}</th>
+                        <th scope="col">{{ __('admin.collection_rounds.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -63,7 +63,7 @@
                     </tbody>
                 </table>
             @else
-                There is no collection round in the database.
+                {{ __('admin.collection_rounds.no_collection_round_message') }}
             @endif
         </div>
     </div>

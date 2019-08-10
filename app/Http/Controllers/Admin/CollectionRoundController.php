@@ -89,7 +89,7 @@ class CollectionRoundController extends Controller
             'warehouse_id' => $attr['warehouse'],
         ]);
 
-        return redirect()->back()->with('success', 'A new collection round has been created');
+        return redirect()->back()->with('success', __('flash.admin.collection_round_controller.store_success'));
     }
 
     /**
@@ -121,7 +121,7 @@ class CollectionRoundController extends Controller
                 ->where('warehouse_id', $collectionRound->warehouse->id)
                 ->get();
             if ($truckResult->isEmpty()) {
-                return redirect()->back()->with('error', 'There is no available truck at the moment.');
+                return redirect()->back()->with('error', __('flash.admin.collection_round_controller.update_truck_error'));
             } else {
                 $truck = $truckResult->first();
 
@@ -134,7 +134,7 @@ class CollectionRoundController extends Controller
             // Collection round is done. Automatically handle supply.
 
             if ($collectionRound->warehouse->availableWeight() < $collectionRound->weight()) {
-                return redirect()->back()->with('error', 'There is not enough free space available in the warehouse!');
+                return redirect()->back()->with('error', __('flash.admin.collection_round_controller.update_status_error'));
             }
 
             // Free truck
@@ -170,7 +170,7 @@ class CollectionRoundController extends Controller
         $collectionRound->status = $request->input('collection_round_status');
         $collectionRound->save();
 
-        return redirect()->back()->with('success', 'The collection round status has been updated.');
+        return redirect()->back()->with('success', __('flash.admin.collection_round_controller.update_success'));
     }
 
     /**
@@ -190,9 +190,9 @@ class CollectionRoundController extends Controller
             $bundle->status = 1;
             $bundle->save();
 
-            return redirect()->back()->with('success', 'The bundle has been removed from this collection round.');
+            return redirect()->back()->with('success', __('flash.admin.collection_round_controller.remove_bundle_success'));
         } else {
-            return redirect()->back()->with('error', 'The collection round can\'t be modified anymore.');
+            return redirect()->back()->with('error', __('flash.admin.collection_round_controller.remove_bundle_error'));
         }
     }
 
@@ -219,13 +219,13 @@ class CollectionRoundController extends Controller
             try {
                 $collectionRound->delete();
             } catch (Exception $e) {
-                return redirect()->back()->with('error', 'Something went wrong while deleting the collection round.');
+                return redirect()->back()->with('error', __('flash.admin.collection_round_controller.destroy_error'));
             }
 
             return redirect()->route('admin.collection_rounds.index')
-                ->with('success', 'The collection round has been deleted.');
+                ->with('success', __('flash.admin.collection_round_controller.destroy_error'));
         } else {
-            return redirect()->back()->with('error', 'The collection round can\'t be modified anymore.');
+            return redirect()->back()->with('error', __('flash.admin.collection_round_controller.modify_error'));
         }
     }
 
@@ -312,7 +312,7 @@ class CollectionRoundController extends Controller
         $bundle->save();
 
         return redirect()->route('admin.collection_rounds.add_bundles', $collectionRound->id)
-            ->with('success', 'The bundle has been added to the collection round.');
+            ->with('success', __('flash.admin.collection_round_controller.add_bundle_success'));
     }
 
     /**
@@ -335,10 +335,10 @@ class CollectionRoundController extends Controller
             }
 
             return redirect()->route('admin.collection_rounds.show', $collectionRound->id)
-                ->with('success', count($bundles) . ' bundles have been added to the collection round.');
+                ->with('success', __('flash.admin.collection_round_controller.auto_add_bundles_success', ['count' => count($bundles)]));
         } else {
             return redirect()->route('admin.collection_rounds.show', $collectionRound->id)
-                ->with('error', 'No available bundle was found...');
+                ->with('error', __('flash.admin.collection_round_controller.auto_add_bundles_error'));
         }
     }
 
