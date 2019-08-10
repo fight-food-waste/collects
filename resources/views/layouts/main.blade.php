@@ -50,6 +50,13 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('main.register') }}</a>
                             </li>
                         @endif
+                        @foreach (Config::get('languages') as $locale => $language)
+                            @if ($locale != App::getLocale())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('lang.switch', $locale) }}">{{$language}}</a>
+                                </li>
+                            @endif
+                        @endforeach
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
