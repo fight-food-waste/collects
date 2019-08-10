@@ -100,6 +100,9 @@ return [
     ],
     'delivery_rounds' => [
         'delivery_round' => "Delivery round",
+        'warehouse' => 'Warehouse',
+        'select_warehouse' => 'Select a warehouse',
+        'create_new_delivery_round' => "Create new delivery round",
         'new_delivery_round' => "New delivery round",
         'statuses' => [
             'not_ready' => "Not ready",

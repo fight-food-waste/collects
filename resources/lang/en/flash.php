@@ -39,7 +39,7 @@ return [
             'destroy_error_2' => "The delivery round can't be modified anymore.",
             'destroy_success' => "The delivery round has been deleted.",
             'add_delivery_request_success' => "The delivery request has been added to the delivery round.",
-            'auto_add_delivery_requests_success' => " delivery requests have been added to the collection round.",
+            'auto_add_delivery_requests_success' => " delivery requests have been added to the delivery round.",
             'auto_add_delivery_requests_error' => "No available delivery request was found...",
         ],
         'products_controller' => [],

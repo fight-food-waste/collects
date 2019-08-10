@@ -3,7 +3,7 @@
 @section('content')
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            Create new delivery round
+            {{ __('admin.delivery_rounds.create_new_delivery_round') }}
         </div>
 
         <div class="card-body">
@@ -15,7 +15,7 @@
 
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('Delivery Rounds') }}
+            {{ __('admin.index.delivery_rounds') }}
             <form action="{{ route('admin.delivery_rounds.store') }}" method="POST" class="fa-pull-right">
                 @csrf
                 <button type="submit" class="btn btn-sm btn-secondary">

@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'en' => 'English',
-    'fr' => 'Français',
+    'en' => '🇺🇸 English',
+    'fr' => '🇫🇷 Français',
 ];
