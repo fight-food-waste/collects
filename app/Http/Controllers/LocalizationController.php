@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Config;
 
 class LocalizationController extends Controller
 {
-    public function index($locale)
+    public function setLocale($locale)
     {
         if (array_key_exists($locale, Config::get('languages'))) {
             session()->put('locale', $locale);

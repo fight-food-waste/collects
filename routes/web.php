@@ -14,7 +14,7 @@
 
 Route::get('/', 'HomeController@show')->name('home');
 
-Route::get('lang/{locale}', 'LocalizationController@index')->name('lang.switch');
+Route::get('lang/{locale}', 'LocalizationController@setLocale')->name('lang.switch');
 
 Route::get('webgl', function () {
     return view('webgl');
