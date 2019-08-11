@@ -9,7 +9,9 @@ return [
             'reject_product_error' => "The product couldn't be deleted.",
             'reject_product_success' => 'The product has been deleted from the bundle.',
         ],
-        'category_controller' => [],
+        'category_controller' => [
+            'category_updated_success' => 'The category has been updated.',
+        ],
         'collection_round_controller' => [
             'store_success' => 'A new collection round has been created',
             'update_truck_error' => 'There is no available truck at the moment.',

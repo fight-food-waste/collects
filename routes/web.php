@@ -88,6 +88,8 @@ Route::prefix('admin')->group(function () {
     Route::get('products', 'Admin\ProductController@index')->name('admin.products.index');
 
     Route::get('categories', 'Admin\CategoryController@index')->name('admin.categories.index');
+    Route::get('categories/{category}/edit', 'Admin\CategoryController@edit')->where('category', '[0-9]+')->name('admin.categories.edit');
+    Route::patch('categories/{category}', 'Admin\CategoryController@update')->where('category', '^[0-9]+')->name('admin.categories.update');
 
     Route::get('trucks', 'Admin\TruckController@index')->name('admin.trucks.index');
 
