@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use App\Bundle;
+use App\Donor;
+use App\Forms\DonorForm;
+use App\Forms\EmployeeForm;
+use App\Forms\NeedyPersonForm;
+use App\Forms\StorekeeperForm;
 use App\User;
 use Exception;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
+use Kris\LaravelFormBuilder\FormBuilder;
 
 class AccountController extends Controller
 {
@@ -36,14 +44,62 @@ class AccountController extends Controller
      * Show User account edit page
      *
      * @param Request $request
+     * @param FormBuilder $formBuilder
      *
      * @return Factory|View
      */
-    public function edit(Request $request)
+    public function edit(Request $request, FormBuilder $formBuilder)
     {
+        $form = $formBuilder->create($this->getUserFormClass($request->user()->type), [
+            'method' => 'POST',
+            'url' => route('account.update'),
+        ]);
+
         return view('account.edit', [
             'user' => $request->user(),
+            'form' => $form,
         ]);
+    }
+
+    /**
+     * Update User information with data submitted
+     *
+     * @param Request $request
+     * @param FormBuilder $formBuilder
+     *
+     * @return RedirectResponse
+     */
+    public function update(Request $request, FormBuilder $formBuilder)
+    {
+        $form = $formBuilder->create($this->getUserFormClass($request->user()->type));
+
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+
+        $user = $request->user();
+        $attributes = $form->getFieldValues();
+
+        $user->first_name = $attributes['first_name'];
+        $user->last_name = $attributes['last_name'];
+        $user->email = $attributes['email'];
+
+        $newAddress = new Address($attributes);
+
+        if (!$newAddress->isReal()) {
+            return redirect()->back()->with('error', __('flash.register_controller.address_not_real'))->withInput();
+        }
+
+        $newAddress->save();
+
+        $oldAddress = Address::where('user_id', $user->id);
+        $oldAddress->delete();
+
+        $attributes['password'] = Hash::make($attributes['password']);
+
+        $user->save();
+
+        return redirect()->back()->with('success', "Your account has been successfully updated!");
     }
 
     /**
@@ -73,5 +129,28 @@ class AccountController extends Controller
         auth()->logout();
 
         return redirect('login')->with('success', __('flash.account_controller.destroy_success'));
+    }
+
+    /**
+     * Get User Form class according to his or her type
+     *
+     * @param String $userType
+     *
+     * @return string|null
+     */
+    private function getUserFormClass(String $userType)
+    {
+        switch ($userType) {
+            case 'donor':
+                return DonorForm::class;
+            case 'storekeeper';
+                return StorekeeperForm::class;
+            case 'needyperson':
+                return NeedyPersonForm::class;
+            case 'employee':
+                return EmployeeForm::class;
+        }
+
+        return null;
     }
 }

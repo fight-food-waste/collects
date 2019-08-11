@@ -11,7 +11,7 @@
                 <p>{{ __('signup.last_name') }} : {{ $user->last_name }}</p>
                 <p>{{ __('account.full_address') }} : {{ $user->address->getFormatted() }}</p>
             </div>
-            <a href="#" class="btn btn-secondary edit-btn-table">
+            <a href="{{ route('account.edit') }}" class="btn btn-secondary edit-btn-table">
                 <i class="far fa-edit"></i> {{ __('account.edit_account') }}
             </a>
 

@@ -52,7 +52,7 @@ return [
     ],
     'account_controller' => [
         'destroy_error' => "Une erreur s'est produite lors de la suppression de votre compte.",
-        'destroy_success' => "Votre compte a été supprimé avec succès."
+        'destroy_success' => "Votre compte a été supprimé avec succès.",
     ],
     'login_controller' => [
         'logout_success' => "Déconnexion faite avec succès.",

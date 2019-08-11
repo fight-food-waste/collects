@@ -52,7 +52,7 @@ return [
     ],
     'account_controller' => [
         'destroy_error' => "Something went wrong while deleting your account.",
-        'destroy_success' => "Your account has been deleted."
+        'destroy_success' => "Your account has been deleted.",
     ],
     'login_controller' => [
         'logout_success' => 'Logged out successfully.',
