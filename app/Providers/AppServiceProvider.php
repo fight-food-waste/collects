@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Address;
 use Illuminate\Support\ServiceProvider;
 use App\Observers\AddressObserver;
+use App\Product;
+use App\Observers\ProductObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Address::observe(AddressObserver::class);
+        Product::observe(ProductObserver::class);
     }
 }

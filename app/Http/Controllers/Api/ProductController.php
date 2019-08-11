@@ -7,15 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use Carbon\Carbon;
 use Exception;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Validator;
-use App\Category;
-use App\CategoryTranslation;
 
 class ProductController extends Controller
 {
@@ -74,58 +70,12 @@ class ProductController extends Controller
         }
 
         try {
-            $client = new Client();
-            $url = "https://world.openfoodfacts.org/api/v0/product/" . $data['barcode'] . "json";
-            $response = $client->request('GET', $url);
-            $product_details = (string) $response->getBody();
-
-            $product_info = json_decode($product_details, true)['product'];
-
-            // Get product weight if available, else default to 200g
-            if (array_key_exists('product_quantity', $product_info)) {
-                $product_weight = intval($product_info['product_quantity']);
-            } else {
-                $product_weight = 200;
-            }
-
-            $categories = [];
-
-            foreach ($product_info['categories_tags'] as $category) {
-                $categoryAttributes = explode(':', $category);
-                $categoryLang = $categoryAttributes[0];
-                $categoryName = $categoryAttributes[1];
-
-                // Store category if it doesn't already exist
-                $translation = CategoryTranslation::firstOrNew([
-                    'name' => $categoryName,
-                    'lang' => $categoryLang,
-                ]);
-
-                if ($translation->category_id === null) {
-                    $cat = Category::create();
-
-                    $translation->category_id = $cat->id;
-                    $translation->save();
-                } else {
-                    $cat = Category::findOrFail($translation->category_id);
-                }
-
-                array_push($categories, $cat->id);
-            }
-
-            $data['details'] = $product_details;
-            $data['weight'] = $product_weight;
-
             $product = Product::create($data);
-
-            $product->categories()->attach($categories);
-
-            return response()->json(['success' => true, 'id' => $product->id], 200);
-        } catch (GuzzleException $e) {
-            return response()->json([
-                'error' => 'Something went wrong when contacting the Open Food Facts API',
-            ], 500);
+        } catch (Exception $e) {
+            return response()->json(['error' => true, 'message' => $e->getMessage()], 500);
         }
+
+        return response()->json(['success' => true, 'id' => $product->id], 200);
     }
 
     /**

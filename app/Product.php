@@ -13,14 +13,12 @@ class Product extends Model
 {
 
     protected $fillable = [
-        'details',
         'expiration_date',
         'barcode',
         'name',
         'bundle_id',
         'status',
         'quantity',
-        'weight',
     ];
 
     /**
