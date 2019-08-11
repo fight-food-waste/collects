@@ -62,6 +62,8 @@ class ProductObserver
             $categoryLang = $categoryAttributes[0];
             $categoryName = $categoryAttributes[1];
 
+            $categoryName = ucfirst(str_replace('-', ' ', $categoryName));
+
             // Store category if it doesn't already exist
             $translation = CategoryTranslation::firstOrNew([
                 'name' => $categoryName,
