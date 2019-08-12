@@ -13,10 +13,11 @@ class DeliveryRoundForm extends Form
         $warehouses = Warehouse::get(['id', 'name'])->pluck('name', 'id')->all();
 
         $this
-            ->add(__('admin.delivery_rounds.warehouse'), Field::SELECT, [
+            ->add('warehouse', Field::SELECT, [
                 'rules' => 'required|int|exists:warehouses,id',
                 'choices' => $warehouses,
                 'empty_value' => __('admin.delivery_rounds.select_warehouse'),
+                'label' => __('admin.delivery_rounds.select_warehouse'),
             ])
             ->add(__('admin.delivery_rounds.new_delivery_round'), Field::BUTTON_SUBMIT);
     }
