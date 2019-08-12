@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Address;
-use App\Bundle;
-use App\Donor;
 use App\Forms\DonorForm;
 use App\Forms\EmployeeForm;
 use App\Forms\NeedyPersonForm;
 use App\Forms\StorekeeperForm;
-use App\User;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Kris\LaravelFormBuilder\FormBuilder;
@@ -105,20 +103,20 @@ class AccountController extends Controller
     /**
      * Delete User with all its Bundles and Products associated
      *
-     * @param Request $request
-     *
      * @return Response
      * @throws Exception
      */
-    public function destroy(Request $request)
+    public function destroy()
     {
-        $user = User::findOrFail($request->input('user_id'));
+        $user = Auth::user();
 
-        foreach ($user->bundles as $bundle) {
-            $bundle->products->each->delete();
+        if ($user->bundles->isNotEmpty()) {
+            foreach ($user->bundles as $bundle) {
+                $bundle->products->each->delete();
+            }
+
+            $user->bundles->each->delete();
         }
-
-        $user->bundles->each->delete();
 
         try {
             $user->delete();

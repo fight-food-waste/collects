@@ -20,7 +20,6 @@
             <form action="{{ route('account.destroy') }}" method="POST">
                 @csrf
                 @method('DELETE')
-                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <button type="submit" class="btn btn-danger edit-btn-table">
                     <i class="fas fa-exclamation-triangle"></i> {{ __('account.delete_account') }}
                 </button>
