@@ -9,7 +9,9 @@ return [
             'reject_product_error' => "Le produit n'a pas pu être supprimé.",
             'reject_product_success' => 'Le produit a bien été supprimé du lot.',
         ],
-        'category_controller' => [],
+        'category_controller' => [
+            'category_updated_success' => 'La catégorie a été mise à jour.',
+        ],
         'collection_round_controller' => [
             'store_success' => 'Une nouvelle collecte a été créée.',
             'update_truck_error' => 'Aucun camion disponible pour le moment.',
