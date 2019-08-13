@@ -31,7 +31,7 @@
                                 {{ $product->barcode }}
                             </th>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->expiration_date }}</td>
+                            <td>{{ $product->expiration_date->format('d/m/y') }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>{{ $product->weightAsMass()->toUnit('g') }} g</td>
                             <td>

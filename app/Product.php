@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use PhpUnitsOfMeasure\PhysicalQuantity\Mass;
 use PhpUnitsOfMeasure\Exception\NonStringUnitName;
 use PhpUnitsOfMeasure\Exception\NonNumericValue;
-use Carbon\Carbon;
-use Exception;
 
 class Product extends Model
 {
@@ -29,22 +27,6 @@ class Product extends Model
     protected $dates = [
         'expiration_date',
     ];
-
-
-    /**
-     * Format expiration_date attribute
-     *
-     * @param $value
-     * @return string
-     */
-    public function getExpirationDateAttribute($value)
-    {
-        try {
-            return (new Carbon($value))->format('d/m/y');
-        } catch (Exception $e) {
-            return $value;
-        }
-    }
 
     public function bundle()
     {
