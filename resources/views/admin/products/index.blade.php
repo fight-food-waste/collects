@@ -22,6 +22,7 @@
                         <th scope="col">{{ __('admin.products.columns.weight') }}</th>
                         <th scope="col">{{ __('admin.products.bundle') }}</th>
                         <th scope="col">{{ __('admin.products.columns.shelf') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,17 @@
                                 <a href="{{ route('admin.bundles.show', $product->bundle_id) }}">{{ $product->bundle_id }}</a>
                             </td>
                             <td>{{ $product->shelf == null ? '-' : $product->shelf->id }}</td>
+                            <td>
+                                @if($product->status == 1)
+                                    <form action="{{ route('admin.products.reject', $product->id) }}"
+                                          method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

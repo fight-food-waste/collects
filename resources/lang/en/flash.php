@@ -44,7 +44,9 @@ return [
             'auto_add_delivery_requests_success' => " delivery requests have been added to the delivery round.",
             'auto_add_delivery_requests_error' => "No available delivery request was found...",
         ],
-        'products_controller' => [],
+        'products_controller' => [
+            'reject_success' => 'The product has been successfully invalidated.',
+        ],
         'truck_controller' => [],
         'user_controller' => [
             'approve_success' => 'User :user has been approved.',

@@ -44,7 +44,9 @@ return [
             'auto_add_delivery_requests_success' => " demande(s) de distribution ajoutée(s) à la distribution avec succès.",
             'auto_add_delivery_requests_error' => "Aucune demande de distribution trouvée...",
         ],
-        'products_controller' => [],
+        'products_controller' => [
+            'reject_success' => 'Le produit a été invalidé.',
+        ],
         'truck_controller' => [],
         'user_controller' => [
             'approve_success' => "L'utilisateur :user a bien approuvé.",

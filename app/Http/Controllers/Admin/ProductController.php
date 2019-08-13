@@ -10,6 +10,7 @@ use App\Forms\ProductsCategoryForm;
 use Kris\LaravelFormBuilder\FormBuilder;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class ProductController extends Controller
 {
@@ -27,7 +28,6 @@ class ProductController extends Controller
      */
     public function index(FormBuilder $formBuilder, Request $request)
     {
-
         $form = $formBuilder->create(ProductsCategoryForm::class, [
             'method' => 'GET',
             'url' => route('admin.products.index'),
@@ -45,5 +45,20 @@ class ProductController extends Controller
         }
 
         return view('admin.products.index', compact('products', 'form'));
+    }
+
+    /**
+     * Throw a product.
+     *
+     * @param Product $product
+     * @return RedirectResponse
+     */
+    public function reject(Product $product)
+    {
+        $product->status = -1;
+        $product->shelf_id = null;
+        $product->save();
+
+        return redirect()->back()->with('success', __('flash.admin.products_controller.reject_success'));
     }
 }
