@@ -3,10 +3,14 @@
 @section('content')
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('admin.index.products') }}</div>
+            {{ __('admin.index.products') }}
+        </div>
 
         <div class="card-body">
+            {!! form($form) !!}
+        </div>
 
+        <div class="card-body">
             @if (sizeof($products) > 0)
                 <table class="table table-bordered">
                     <thead>
