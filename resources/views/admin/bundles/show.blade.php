@@ -8,7 +8,7 @@
                     <i class="fas fa-arrow-left"></i>
                 </button>
             </a>
-            {{ __('admin.products.bundle') }} #{{ $bundle->id  }}
+            {{ __('admin.products.bundle') }} #{{ $bundle->id }}
 
         </div>
 
@@ -36,7 +36,11 @@
                                 {{ $product->barcode }}
                             </th>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->expiration_date->format('d/m/y') }}</td>
+                            <td @if($product->expiration_date->isBefore(\Carbon\Carbon::now()))
+                                style="color: red"
+                                @endif >
+                                {{ $product->expiration_date->format('d/m/y') }}
+                            </td>
                             <td>{{ $product->quantity }}</td>
                             <td>{{ $product->weightAsMass()->toUnit('g') }} g</td>
                             <td>

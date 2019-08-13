@@ -24,7 +24,11 @@
                                 {{ $product->barcode }}
                             </th>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->expiration_date->format('d/m/y') }}</td>
+                            <td @if($product->expiration_date->isBefore(\Carbon\Carbon::now()))
+                                style="color: red"
+                                @endif >
+                                {{ $product->expiration_date->format('d/m/y') }}
+                            </td>
                             <td>{{ $product->quantity }}</td>
                             <td>
                                 <form action="{{ route('products.destroy') }}"
