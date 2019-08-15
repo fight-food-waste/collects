@@ -131,6 +131,11 @@ class RegisterController extends Controller
                 $user = Donor::create($user_attributes);
                 break;
             case "storekeeper";
+                $store_ownership_proof = $user_attributes['store_ownership_proof'];
+                $filename = uniqid() . ".pdf";
+                $store_ownership_proof->storeAs('store_ownership_proofs', $filename);
+                $user_attributes['application_filename'] = $filename;
+
                 $user = Storekeeper::create($user_attributes);
                 break;
             case "needyperson":

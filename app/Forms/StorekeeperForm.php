@@ -19,6 +19,9 @@ class StorekeeperForm extends Form
             ->add(__('signup.store_name'), Field::TEXT, [
                 'rules' => 'required|string|min:3',
             ])
+            ->add(__('signup.store_ownership_proof'), Field::FILE, [
+                'rules' => 'required|file|mimes:pdf',
+            ])
             ->add(__('signup.street'), Field::TEXT, [
                 'rules' => 'required|string|min:10',
             ])

@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->string('application_filename')->nullable();
+            $table->string('store_ownership_proof')->nullable();
             $table->integer('status')->default(0);
             $table->string('store_name')->nullable();
 
