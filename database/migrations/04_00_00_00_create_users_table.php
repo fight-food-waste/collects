@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->string('application_filename')->nullable();
             $table->integer('status')->default(0);
+            $table->string('store_name')->nullable();
 
             $table->bigInteger('address_id')->unsigned()->nullable();
             $table->foreign('address_id')->references('id')->on('addresses');

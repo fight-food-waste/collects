@@ -13,4 +13,5 @@ return [
     'password' => "Password",
     'password_confirmation' => "Confirmation password",
     'submit' => "Submit form",
+    'store_name' => 'Store name',
 ];

@@ -16,6 +16,9 @@ class StorekeeperForm extends Form
             ->add(__('signup.last_name'), Field::TEXT, [
                 'rules' => 'required|string|min:3',
             ])
+            ->add(__('signup.store_name'), Field::TEXT, [
+                'rules' => 'required|string|min:3',
+            ])
             ->add(__('signup.street'), Field::TEXT, [
                 'rules' => 'required|string|min:10',
             ])

@@ -21,6 +21,7 @@ class StorekeepersTableSeeder extends Seeder
             'email' => 'store@store.com',
             'password' => Hash::make('qwertyuiop'),
             'address_id' => 10,
+            'store_name' => 'Maison Doucet',
         ]);
     }
 }
