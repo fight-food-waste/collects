@@ -48,9 +48,20 @@ class AccountController extends Controller
      */
     public function edit(Request $request, FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create($this->getUserFormClass($request->user()->type), [
-            'method' => 'POST',
+        $user = $request->user();
+
+        $address = Address::find($user->address_id);
+
+        $form = $formBuilder->create($this->getUserFormClass($user->type), [
+            'method' => 'PUT',
             'url' => route('account.update'),
+        ], [
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+            'street' => $address->street,
+            'zip_postal_code' => $address->zip_postal_code,
+            'city' => $address->city,
         ]);
 
         return view('account.edit', [
@@ -82,6 +93,8 @@ class AccountController extends Controller
         $user->last_name = $attributes['last_name'];
         $user->email = $attributes['email'];
 
+        $oldAddress = Address::find($user->address_id);
+
         $newAddress = new Address($attributes);
 
         if (!$newAddress->isReal()) {
@@ -90,8 +103,9 @@ class AccountController extends Controller
 
         $newAddress->save();
 
-        $oldAddress = Address::where('user_id', $user->id);
-        $oldAddress->delete();
+        $user->address_id = $newAddress->id;
+
+//        $oldAddress->delete();
 
         $attributes['password'] = Hash::make($attributes['password']);
 
