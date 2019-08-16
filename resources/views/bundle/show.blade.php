@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card card-more">
-        <div class="card-header">Bundle {{ $bundle->id  }}</div>
+        <div class="card-header">{{ __('admin.products.bundle') }} #{{ $bundle->id  }}</div>
 
         <div class="card-body">
 
@@ -10,11 +10,11 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">Barcode</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Expiration Date</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Remove</th>
+                        <th scope="col">{{ __('admin.products.columns.barcode') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.name') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.expiration_date') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.quantity') }}</th>
+                        <th scope="col">{{ __('admin.products.columns.remove') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,7 +41,7 @@
                     </tbody>
                 </table>
             @else
-                There is no product in this bundle.
+                {{ __('admin.products.no_product_message') }}
             @endif
         </div>
     </div>

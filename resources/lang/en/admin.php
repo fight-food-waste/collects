@@ -27,7 +27,8 @@ return [
         'user' => 'User',
         'donor' => 'Donor',
         'storekeeper' => 'Storekeeper',
-        'needy_person' => 'Needy Person'
+        'needy_person' => 'Needy Person',
+        'type' => 'Type',
     ],
     'bundles' => [
         'columns' => [
@@ -169,4 +170,9 @@ return [
     'categories' => [
         'no_category_message' => 'There is no category in the database.',
     ],
+    'needy_people' => [
+        'unapproved_needy_people' => "Unapproved needy people",
+        'application_file' => "Application file",
+        'no_needy_person_message' => "There is no needy person waiting for approval.",
+    ]
 ];
