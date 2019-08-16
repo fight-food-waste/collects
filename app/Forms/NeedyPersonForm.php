@@ -23,7 +23,6 @@ class NeedyPersonForm extends Form
             ->add('application_file', Field::FILE, [
                 'rules' => 'required|file|mimes:pdf',
                 'label' => __('signup.application_file'),
-                'value' => empty($this->data) ? null : $this->data['application_file'],
             ])
             ->add('street', Field::TEXT, [
                 'rules' => 'required|string|min:10',
