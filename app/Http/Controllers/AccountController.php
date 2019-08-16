@@ -41,16 +41,15 @@ class AccountController extends Controller
     /**
      * Show User account edit page
      *
-     * @param Request $request
      * @param FormBuilder $formBuilder
      *
      * @return Factory|View
      */
-    public function edit(Request $request, FormBuilder $formBuilder)
+    public function edit(FormBuilder $formBuilder)
     {
-        $user = $request->user();
+        $user = Auth::user();
 
-        $address = Address::find($user->address_id);
+        $address = $user->address;
 
         $form = $formBuilder->create($this->getUserFormClass($user->type), [
             'method' => 'PUT',
@@ -65,7 +64,7 @@ class AccountController extends Controller
         ]);
 
         return view('account.edit', [
-            'user' => $request->user(),
+            'user' => $user,
             'form' => $form,
         ]);
     }
