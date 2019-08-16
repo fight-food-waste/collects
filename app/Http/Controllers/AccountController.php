@@ -93,8 +93,6 @@ class AccountController extends Controller
         $user->last_name = $attributes['last_name'];
         $user->email = $attributes['email'];
 
-        $oldAddress = Address::find($user->address_id);
-
         $newAddress = new Address($attributes);
 
         if (!$newAddress->isReal()) {
@@ -104,8 +102,6 @@ class AccountController extends Controller
         $newAddress->save();
 
         $user->address_id = $newAddress->id;
-
-//        $oldAddress->delete();
 
         $attributes['password'] = Hash::make($attributes['password']);
 
@@ -124,7 +120,7 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->bundles->isNotEmpty()) {
+        if ($user->bundles && $user->bundles->isNotEmpty()) {
             foreach ($user->bundles as $bundle) {
                 $bundle->products->each->delete();
             }
