@@ -41,13 +41,14 @@ class AccountController extends Controller
     /**
      * Show User account edit page
      *
+     * @param Request $request
      * @param FormBuilder $formBuilder
      *
      * @return Factory|View
      */
-    public function edit(FormBuilder $formBuilder)
+    public function edit(Request $request, FormBuilder $formBuilder)
     {
-        $user = Auth::user();
+        $user = $request->user();
 
         $address = $user->address;
 
@@ -63,10 +64,7 @@ class AccountController extends Controller
             'city' => $address->city,
         ]);
 
-        return view('account.edit', [
-            'user' => $user,
-            'form' => $form,
-        ]);
+        return view('account.edit', compact('user', 'form'));
     }
 
     /**
