@@ -12,11 +12,11 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">email</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Type</th>
+                        <th scope="col">{{ __('admin.products.columns.name') }}</th>
+                        <th scope="col">{{ __('signup.email') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.address') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.status') }}</th>
+                        <th scope="col">{{ __('admin.singular.type') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -35,14 +35,14 @@
                     </tbody>
                 </table>
             @else
-                There is no truck in the database.
+                {{ __('admin.trucks.no_truck_message') }}
             @endif
         </div>
     </div>
 
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('Unapproved needy people') }}</div>
+            {{ __('admin.needy_people.unapproved_needy_people') }}</div>
 
         <div class="card-body">
 
@@ -51,13 +51,13 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">email</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Application file</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">{{ __('admin.products.columns.name') }}</th>
+                        <th scope="col">{{ __('signup.email') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.address') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.status') }}</th>
+                        <th scope="col">{{ __('admin.singular.type') }}</th>
+                        <th scope="col">{{ __('admin.needy_people.application_file') }}</th>
+                        <th scope="col">{{ __('admin.bundles.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -105,7 +105,7 @@
                     </tbody>
                 </table>
             @else
-                There is no needy person waiting for approval.
+                {{ __('admin.needy_people.no_needy_person_message') }}
             @endif
         </div>
     </div>

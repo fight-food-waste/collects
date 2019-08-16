@@ -27,7 +27,8 @@ return [
         'user' => 'Utilisateur',
         'donor' => 'Donateur',
         'storekeeper' => 'Commerçant',
-        'needy_person' => 'Demandeur'
+        'needy_person' => "Demandeur",
+        'type' => 'Type',
     ],
     'bundles' => [
         'columns' => [
@@ -168,4 +169,9 @@ return [
     'categories' => [
         'no_category_message' => "Aucune catégorie en base de données.",
     ],
+    'needy_people' => [
+        'unapproved_needy_people' => "Demandeurs non-approuvés",
+        'application_file' => "Dossier de demande",
+        'no_needy_person_message' => "Aucun demandeur en attente d'approbation.",
+    ]
 ];

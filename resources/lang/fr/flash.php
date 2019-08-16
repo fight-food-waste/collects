@@ -54,6 +54,10 @@ return [
         ],
         'warehouse_controller' => [],
     ],
+    'account_controller' => [
+        'destroy_error' => "Une erreur s'est produite lors de la suppression de votre compte.",
+        'destroy_success' => "Votre compte a été supprimé avec succès.",
+    ],
     'login_controller' => [
         'logout_success' => "Déconnexion faite avec succès.",
     ],
@@ -73,7 +77,6 @@ return [
         'destroy_success' => "La demande de distribution a bien été annulée.",
         'destroy_error' => "La demande de distribution ne peut pas être annulée.",
     ],
-
     'product_controller' => [
         'destroy_success' => "Le produit a bien été supprimé.",
         'destroy_error' => "Le produit n'a pas pu être supprimé.",

@@ -1,11 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.main', ['layout_size' => 8])
 
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">Account</div>
+                    <div class="card-header">{{ __('account.edit_account') }}</div>
 
                     <div class="card-body">
                         {!! form($form) !!}

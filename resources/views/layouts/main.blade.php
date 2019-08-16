@@ -66,10 +66,6 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item" href="">
-                                    {{ __('main.account') }}
-                                </a>
-
                                 @if(Auth::user()->type == "donor")
                                     <a class="dropdown-item" href="{{ route('bundle.index') }}">
                                         {{ __('main.bundles') }}
@@ -105,6 +101,10 @@
                                            href="{{ route('lang.switch', $locale) }}">{{$language}}</a>
                                     @endif
                                 @endforeach
+
+                                <a class="dropdown-item" href="{{ route('account.index') }}">
+                                    {{ __('main.account') }}
+                                </a>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

@@ -34,6 +34,11 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::get('account', 'AccountController@index')->name('account.index');
+Route::get('account/edit', 'AccountController@edit')->name('account.edit');
+Route::delete('account', 'AccountController@destroy')->name('account.destroy');
+Route::put('account', 'AccountController@update')->name('account.update');
+
 Route::get('bundles', 'BundleController@index')->name('bundle.index');
 Route::get('bundles/{id}', 'BundleController@show')->where('id', '[0-9]+')->name('bundle.show');
 Route::post('bundles/destroy', 'BundleController@destroy')->name('bundle.destroy');
