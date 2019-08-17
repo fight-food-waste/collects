@@ -3,7 +3,11 @@
 @section('content')
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('admin.index.warehouses') }}</div>
+            {{ __('admin.index.warehouses') }}
+            <a href="{{ route('admin.warehouses.create') }}" class="btn btn-sm btn-secondary fa-pull-right">
+                <i class="fas fa-plus"></i>
+            </a>
+        </div>
 
         <div class="card-body">
 
@@ -16,6 +20,7 @@
                         <th scope="col">{{ __('admin.warehouses.columns.address') }}</th>
                         <th scope="col">{{ __('admin.warehouses.columns.number_of_shelves') }}</th>
                         <th scope="col">{{ __('admin.warehouses.columns.used_weight') }}</th>
+                        <th scope="col">{{ __('admin.warehouses.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,6 +33,19 @@
                             <td>{{ $warehouse->address }}</td>
                             <td>{{ count($warehouse->shelves) }}</td>
                             <td>{{ $warehouse->weightAsMass()->toUnit('kg') }} kg</td>
+                            <td>
+                                <a href="{{ route('admin.warehouses.edit', $warehouse->id) }}" class="btn btn-sm btn-secondary">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <form action="{{ route('admin.warehouses.destroy') }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="warehouse_id" value="{{ $warehouse->id }}">
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

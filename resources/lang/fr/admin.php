@@ -144,11 +144,15 @@ return [
         'auto_add_delivery_requests' => "Ajouter automatiquement des demandes de distribution",
     ],
     'trucks' => [
+        'create_new_truck' => 'Enregistrer un nouveau camion',
+        'new_truck' => "Nouveau camion",
+        'edit_truck' => "Modifier le camion",
         'columns' => [
             'warehouse' => 'Entrepôt',
             'capacity' => 'Capacité',
             'status' => 'Status',
             'collection_round' => 'Collecte',
+            'action' => "Action",
         ],
         'statuses' => [
             'available' => 'Disponible',
@@ -158,11 +162,16 @@ return [
         'no_truck_message' => "Il n'y a aucun camion en base de données.",
     ],
     'warehouses' => [
+        'edit_warehouse' => "Modifier l'entrepôt",
+        'new_warehouse' => "Nouvel entrepôt",
+        'create_new_warehouse' => 'Enregistrer un nouvel entrepôt',
+        'new_warehouse_button' => "Nouvel entrepôt",
         'columns' => [
             'name' => 'Nom',
             'address' => 'Adresse',
             'number_of_shelves' => 'Nombre d\'étagères.',
             'used_weight' => 'Poids occupé',
+            'action' => "Action",
         ],
         'no_warehouse_message' => "Aucun entrepôt enregistré en base de données.",
     ],

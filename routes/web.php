@@ -98,8 +98,18 @@ Route::prefix('admin')->group(function () {
     Route::patch('categories/{category}', 'Admin\CategoryController@update')->where('category', '^[0-9]+')->name('admin.categories.update');
 
     Route::get('trucks', 'Admin\TruckController@index')->name('admin.trucks.index');
+    Route::get('trucks/create', 'Admin\TruckController@create')->name('admin.trucks.create');
+    Route::post('trucks', 'Admin\TruckController@store')->name('admin.trucks.store');
+    Route::get('trucks/{id}/edit', 'Admin\TruckController@edit')->where('id', '[0-9]+')->name('admin.trucks.edit');
+    Route::put('trucks/{id}/update', 'Admin\TruckController@update')->where('id', '[0-9]+')->name('admin.trucks.update');
+    Route::delete('trucks', 'Admin\TruckController@destroy', )->name('admin.trucks.destroy');
 
     Route::get('warehouses', 'Admin\WarehouseController@index')->name('admin.warehouses.index');
+    Route::get('warehouses/create', 'Admin\WarehouseController@create')->name('admin.warehouses.create');
+    Route::post('warehouses', 'Admin\WarehouseController@store')->name('admin.warehouses.store');
+    Route::get('warehouses/{id}/edit', 'Admin\WarehouseController@edit')->where('id', '[0-9]+')->name('admin.warehouses.edit');
+    Route::put('warehouses/{id}/update', 'Admin\WarehouseController@update')->where('id', '[0-9]+')->name('admin.warehouses.update');
+    Route::delete('warehouses', 'Admin\WarehouseController@destroy')->name('admin.warehouses.destroy');
 
     Route::get('users', 'Admin\UserController@index')->name('admin.users.index');
     Route::get('users/application_files/{id}.pdf', 'Admin\UserController@downloadApplication')->where('id', '^[a-zA-Z0-9_]*$')->name('admin.users.application_files.download');

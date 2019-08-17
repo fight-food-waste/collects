@@ -16,6 +16,7 @@
                         <th scope="col">{{ __('admin.trucks.columns.capacity') }}</th>
                         <th scope="col">{{ __('admin.trucks.columns.status') }}</th>
                         <th scope="col">{{ __('admin.trucks.columns.collection_round') }}</th>
+                        <th scope="col">{{ __('admin.trucks.columns.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,19 @@
                                 @else
                                     <a href="{{ route('admin.collection_rounds.show', $truck->collection_round_id) }}">#{{ $truck->collection_round_id }}</a>
                                 @endif
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.trucks.edit', $truck->id) }}" class="btn btn-sm btn-secondary">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <form action="{{ route('admin.trucks.destroy') }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="truck_id" value="{{ $truck->id }}">
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
