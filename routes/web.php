@@ -97,12 +97,9 @@ Route::prefix('admin')->group(function () {
     Route::get('categories/{category}/edit', 'Admin\CategoryController@edit')->where('category', '[0-9]+')->name('admin.categories.edit');
     Route::patch('categories/{category}', 'Admin\CategoryController@update')->where('category', '^[0-9]+')->name('admin.categories.update');
 
-    Route::get('trucks', 'Admin\TruckController@index')->name('admin.trucks.index');
-    Route::get('trucks/create', 'Admin\TruckController@create')->name('admin.trucks.create');
-    Route::post('trucks', 'Admin\TruckController@store')->name('admin.trucks.store');
-    Route::get('trucks/{id}/edit', 'Admin\TruckController@edit')->where('id', '[0-9]+')->name('admin.trucks.edit');
-    Route::put('trucks/{id}/update', 'Admin\TruckController@update')->where('id', '[0-9]+')->name('admin.trucks.update');
-    Route::delete('trucks', 'Admin\TruckController@destroy', )->name('admin.trucks.destroy');
+    Route::name('admin.')->group(function() {
+        Route::resource('trucks', 'Admin\TruckController')->except(['show']);
+    });
 
     Route::get('warehouses', 'Admin\WarehouseController@index')->name('admin.warehouses.index');
     Route::get('warehouses/create', 'Admin\WarehouseController@create')->name('admin.warehouses.create');

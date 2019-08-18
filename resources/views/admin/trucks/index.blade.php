@@ -43,10 +43,9 @@
                                 <a href="{{ route('admin.trucks.edit', $truck->id) }}" class="btn btn-sm btn-secondary">
                                     <i class="fas fa-pen"></i>
                                 </a>
-                                <form action="{{ route('admin.trucks.destroy') }}" method="POST">
+                                <form action="{{ route('admin.trucks.destroy', $truck->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="truck_id" value="{{ $truck->id }}">
                                     <button type="submit" class="btn btn-sm btn-danger">
                                         <i class="fas fa-times"></i>
                                     </button>

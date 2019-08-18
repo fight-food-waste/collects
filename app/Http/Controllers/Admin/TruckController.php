@@ -84,7 +84,7 @@ class TruckController extends Controller
      */
     public function edit(Request $request, FormBuilder $formBuilder)
     {
-        $truck = Truck::find($request->route('id'));
+        $truck = Truck::find($request->route('truck'));
 
         $form = $formBuilder->create(TruckForm::class, [
             'method' => 'PUT',
@@ -113,7 +113,7 @@ class TruckController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        $truck = Truck::find($request->route('id'));
+        $truck = Truck::find($request->route('truck'));
         $attributes = $form->getFieldValues();
 
         $truck->warehouse_id = $attributes['warehouse'];
@@ -134,7 +134,7 @@ class TruckController extends Controller
     public function destroy(Request $request)
     {
         try {
-            Truck::find($request->input('truck_id'))->delete();
+            Truck::find($request->route('truck'))->delete();
         } catch (Exception $e) {
             return redirect()->back()->with('error', __('flash.admin.truck_controller.destroy_error'));
         }
