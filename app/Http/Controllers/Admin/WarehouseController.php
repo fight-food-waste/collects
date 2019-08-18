@@ -6,10 +6,8 @@ use App\Forms\WarehouseForm;
 use App\Shelf;
 use App\Warehouse;
 use App\Http\Controllers\Controller;
-use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
 use Kris\LaravelFormBuilder\FormBuilder;
@@ -67,10 +65,7 @@ class WarehouseController extends Controller
 
         $attributes = $form->getFieldValues();
 
-        $warehouse = Warehouse::create([
-            'name' => $attributes['name'],
-            'address' => $attributes['address'],
-        ]);
+        $warehouse = Warehouse::create($attributes);
 
         for ($i = 1; $i <= $attributes['shelves']; $i++) {
             Shelf::create([

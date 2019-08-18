@@ -13,16 +13,16 @@ class TruckForm extends Form
         $warehouses = Warehouse::get(['id', 'name'])->pluck('name', 'id')->all();
 
         $this
-            ->add('warehouse', Field::SELECT, [
+            ->add('warehouse_id', Field::SELECT, [
                 'rules' => 'required|int|exists:warehouses,id',
                 'choices' => $warehouses,
+                'selected' => empty($this->data) ? null : $this->data['warehouse'],
                 'empty_value' => __('admin.collection_rounds.select_warehouse'),
                 'label' => __('admin.trucks.columns.warehouse'),
-                'value' => empty($this->data) ? null : $this->data['warehouse'],
             ])
-            ->add('capacity', Field::TEXT, [
+            ->add('capacity', Field::NUMBER, [
                 'rules' => 'required|int',
-                'label' => __('admin.trucks.columns.capacity'),
+                'label' => __('admin.trucks.columns.capacity') . ' (kg)',
                 'value' => empty($this->data) ? null : $this->data['capacity'],
             ])
             ->add(__('admin.trucks.submit'), Field::BUTTON_SUBMIT);

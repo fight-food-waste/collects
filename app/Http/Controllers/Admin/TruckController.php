@@ -64,12 +64,7 @@ class TruckController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        $attributes = $form->getFieldValues();
-
-        Truck::create([
-            'warehouse_id' => $attributes['warehouse'],
-            'capacity' => $attributes['capacity'],
-        ]);
+        Truck::create($form->getFieldValues());
 
         return redirect(route('admin.trucks.index'))->with('success', __('flash.admin.truck_controller.store_success'));
     }
@@ -113,13 +108,7 @@ class TruckController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        $truck = Truck::find($request->route('truck'));
-        $attributes = $form->getFieldValues();
-
-        $truck->warehouse_id = $attributes['warehouse'];
-        $truck->capacity = $attributes['capacity'];
-
-        $truck->save();
+        Truck::find($request->route('truck'))->update($form->getFieldValues());
 
         return redirect()->back()->with('success', __('flash.admin.truck_controller.update_success'));
     }
