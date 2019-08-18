@@ -47,14 +47,26 @@ return [
         'products_controller' => [
             'reject_success' => 'Le produit a été invalidé.',
         ],
-        'truck_controller' => [],
+        'truck_controller' => [
+            'store_success' => "Le camion a bien été enregistré.",
+            'update_success' => "Le camion a été modifié avec succès !",
+            'destroy_error' => "Une erreur s'est produite durant la modification du camion.",
+            'destroy_success' => "Le camion a bien a été supprimé !",
+        ],
         'user_controller' => [
             'approve_success' => "L'utilisateur :user a bien approuvé.",
             'reject_success' => "L'utilisateur :user a bien rejeté.",
         ],
-        'warehouse_controller' => [],
+        'warehouse_controller' => [
+            'store_success' => "L'entrepôt a bien été enregistré.",
+            'update_error' => "Le nombre d'étagères ne peut être qu'augmenté.",
+            'update_success' => "L'entrepôt a été modifié avec succès !",
+            'destroy_error' => "Une erreur s'est produite durant la suppression de l'entrepôt.",
+            'destroy_success' => "L'entreprôt a bien été supprimé !",
+        ],
     ],
     'account_controller' => [
+        'update_success' => "Votre compte a bien été mis à jour !",
         'destroy_error' => "Une erreur s'est produite lors de la suppression de votre compte.",
         'destroy_success' => "Votre compte a été supprimé avec succès.",
     ],

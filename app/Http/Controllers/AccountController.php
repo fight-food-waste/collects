@@ -104,7 +104,7 @@ class AccountController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', "Your account has been successfully updated!");
+        return redirect()->back()->with('success', __('flash.account_controller.update_success'));
     }
 
     /**

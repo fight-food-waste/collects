@@ -47,14 +47,26 @@ return [
         'products_controller' => [
             'reject_success' => 'The product has been successfully invalidated.',
         ],
-        'truck_controller' => [],
+        'truck_controller' => [
+            'store_success' => "The truck has been created.",
+            'update_success' => "The truck has been successfully updated!",
+            'destroy_error' => "Something went wrong while deleting your truck.",
+            'destroy_success' => "The truck has been successfully deleted!",
+        ],
         'user_controller' => [
             'approve_success' => 'User :user has been approved.',
             'reject_success' => 'User :user has been rejected.',
         ],
-        'warehouse_controller' => [],
+        'warehouse_controller' => [
+            'store_success' => "The warehouse has been created.",
+            'update_error' => "Number of shelves can only be increased.",
+            'update_success' => "The warehouse has been successfully updated!",
+            'destroy_error' => "Something went wrong while deleting the warehouse.",
+            'destroy_success' => "The warehouse has been successfully deleted!",
+        ],
     ],
     'account_controller' => [
+        'update_success' => "Your account has been successfully updated!",
         'destroy_error' => "Something went wrong while deleting your account.",
         'destroy_success' => "Your account has been deleted.",
     ],

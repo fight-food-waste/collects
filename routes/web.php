@@ -97,9 +97,10 @@ Route::prefix('admin')->group(function () {
     Route::get('categories/{category}/edit', 'Admin\CategoryController@edit')->where('category', '[0-9]+')->name('admin.categories.edit');
     Route::patch('categories/{category}', 'Admin\CategoryController@update')->where('category', '^[0-9]+')->name('admin.categories.update');
 
-    Route::get('trucks', 'Admin\TruckController@index')->name('admin.trucks.index');
-
-    Route::get('warehouses', 'Admin\WarehouseController@index')->name('admin.warehouses.index');
+    Route::name('admin.')->group(function() {
+        Route::resource('trucks', 'Admin\TruckController')->except(['show']);
+        Route::resource('warehouses', 'Admin\WarehouseController')->except(['show', 'destroy']);
+    });
 
     Route::get('users', 'Admin\UserController@index')->name('admin.users.index');
     Route::get('users/application_files/{id}.pdf', 'Admin\UserController@downloadApplication')->where('id', '^[a-zA-Z0-9_]*$')->name('admin.users.application_files.download');

@@ -6,12 +6,12 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('account.index') }}">
+                        <a href="{{ route('admin.trucks.index') }}">
                             <button class="btn btn-sm btn-primary" style="margin-right:5px">
                                 <i class="fas fa-arrow-left"></i>
                             </button>
                         </a>
-                        {{ __('account.edit_account') }}
+                        {{ __('admin.trucks.edit_truck') }}
                     </div>
 
                     <div class="card-body">

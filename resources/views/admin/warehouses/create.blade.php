@@ -6,12 +6,12 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('account.index') }}">
+                        <a href="{{ route('admin.warehouses.index') }}">
                             <button class="btn btn-sm btn-primary" style="margin-right:5px">
                                 <i class="fas fa-arrow-left"></i>
                             </button>
                         </a>
-                        {{ __('account.edit_account') }}
+                        {{ __('admin.warehouses.new_warehouse') }}
                     </div>
 
                     <div class="card-body">

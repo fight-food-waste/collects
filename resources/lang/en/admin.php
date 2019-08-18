@@ -145,11 +145,16 @@ return [
         'auto_add_delivery_requests' => "Automatically add delivery requests",
     ],
     'trucks' => [
+        'create_new_truck' => 'Create new truck',
+        'new_truck' => "New truck",
+        'edit_truck' => "Edit truck",
+        'submit' => "Submit form",
         'columns' => [
             'warehouse' => 'Warehouse',
             'capacity' => 'Capacity',
             'status' => 'Status',
             'collection_round' => 'Collection Round',
+            'action' => "Action",
         ],
         'statuses' => [
             'available' => 'Available',
@@ -159,13 +164,20 @@ return [
         'no_truck_message' => 'There is no truck in the database.',
     ],
     'warehouses' => [
+        'edit_warehouse' => "Edit warehouse",
+        'new_warehouse' => "New warehouse",
+        'submit' => "Submit form",
+        'create_new_warehouse' => 'Create new warehouse',
+        'new_warehouse_button' => "New warehouse",
         'columns' => [
             'name' => 'Name',
             'address' => 'Address',
             'number_of_shelves' => 'Number of shelves',
             'used_weight' => 'Used weight',
+            'action' => "Action",
         ],
         'no_warehouse_message' => 'There is no warehouse registered in the database.',
+        'number_of_shelves' => "Number of shelves"
     ],
     'categories' => [
         'no_category_message' => 'There is no category in the database.',
