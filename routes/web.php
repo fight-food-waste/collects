@@ -99,9 +99,6 @@ Route::prefix('admin')->group(function () {
 
     Route::name('admin.')->group(function() {
         Route::resource('trucks', 'Admin\TruckController')->except(['show']);
-    });
-
-    Route::name('admin.')->group(function() {
         Route::resource('warehouses', 'Admin\WarehouseController')->except(['show', 'destroy']);
     });
 
