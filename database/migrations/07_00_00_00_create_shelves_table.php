@@ -17,7 +17,7 @@ class CreateShelvesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('number');
             $table->unsignedBigInteger('warehouse_id');
-            $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade');
+            $table->foreign('warehouse_id')->references('id')->on('warehouses');
             $table->timestamps();
         });
     }

@@ -126,23 +126,4 @@ class WarehouseController extends Controller
 
         return redirect()->back()->with('success', __('flash.admin.warehouse_controller.update_success'));
     }
-
-    /**
-     * Delete Warehouse
-     *
-     * @param Request $request
-     *
-     * @return RedirectResponse|Redirector
-     */
-    public function destroy(Request $request)
-    {
-        try {
-            Warehouse::find($request->input('warehouse_id'))->delete();
-        } catch (Exception $e) {
-            dd($e);
-            return redirect()->back()->with('error', __('flash.admin.warehouse_controller.destroy_error'));
-        }
-
-        return redirect()->back()->with('success', __('flash.admin.warehouse_controller.destroy_success'));
-    }
 }

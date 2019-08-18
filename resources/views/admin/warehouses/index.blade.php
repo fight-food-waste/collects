@@ -37,14 +37,6 @@
                                 <a href="{{ route('admin.warehouses.edit', $warehouse->id) }}" class="btn btn-sm btn-secondary">
                                     <i class="fas fa-pen"></i>
                                 </a>
-                                <form action="{{ route('admin.warehouses.destroy') }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="warehouse_id" value="{{ $warehouse->id }}">
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </form>
                             </td>
                         </tr>
                     @endforeach

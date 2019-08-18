@@ -20,7 +20,7 @@ class CreateAddressesTable extends Migration
             $table->string('city', 60);
 
             $table->bigInteger('closest_warehouse_id')->unsigned()->nullable();
-            $table->foreign('closest_warehouse_id')->references('id')->on('warehouses')->onDelete('cascade');
+            $table->foreign('closest_warehouse_id')->references('id')->on('warehouses');
 
             $table->timestamps();
         });

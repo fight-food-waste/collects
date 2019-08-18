@@ -23,7 +23,7 @@ class CreateDeliveryRoundsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->unsignedBigInteger('warehouse_id');
-            $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade');
+            $table->foreign('warehouse_id')->references('id')->on('warehouses');
         });
     }
 
