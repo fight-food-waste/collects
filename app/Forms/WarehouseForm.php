@@ -20,6 +20,11 @@ class WarehouseForm extends Form
                 'label' => __('admin.warehouses.columns.address'),
                 'value' => empty($this->data) ? null : $this->data['address'],
             ])
+            ->add('shelves', Field::TEXT, [
+                'rules' => 'required|integer',
+                'label' => __('admin.warehouses.number_of_shelves'),
+                'value' => empty($this->data) ? null : $this->data['shelves'],
+            ])
             ->add('submit', Field::BUTTON_SUBMIT, [
                 'label' => __('admin.warehouses.submit'),
             ]);

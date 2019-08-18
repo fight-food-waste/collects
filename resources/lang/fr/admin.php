@@ -176,6 +176,7 @@ return [
             'action' => "Action",
         ],
         'no_warehouse_message' => "Aucun entrepôt enregistré en base de données.",
+        'number_of_shelves' => "Nombre d'étagères"
     ],
     'categories' => [
         'no_category_message' => "Aucune catégorie en base de données.",

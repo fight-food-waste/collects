@@ -59,6 +59,7 @@ return [
         ],
         'warehouse_controller' => [
             'store_success' => "L'entrepôt a bien été enregistré.",
+            'update_error' => "Le nombre d'étagères ne peut être qu'augmenté.",
             'update_success' => "L'entrepôt a été modifié avec succès !",
             'destroy_error' => "Une erreur s'est produite durant la suppression de l'entrepôt.",
             'destroy_success' => "L'entreprôt a bien été supprimé !",

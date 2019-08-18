@@ -177,6 +177,7 @@ return [
             'action' => "Action",
         ],
         'no_warehouse_message' => 'There is no warehouse registered in the database.',
+        'number_of_shelves' => "Number of shelves"
     ],
     'categories' => [
         'no_category_message' => 'There is no category in the database.',

@@ -65,9 +65,14 @@ class WarehouseController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        $warehouse = Warehouse::create($form->getFieldValues());
+        $attributes = $form->getFieldValues();
 
-        for ($i = 1; $i <= 50; $i++) {
+        $warehouse = Warehouse::create([
+            'name' => $attributes['name'],
+            'address' => $attributes['address'],
+        ]);
+
+        for ($i = 1; $i <= $attributes['shelves']; $i++) {
             Shelf::create([
                 'number' => $i,
                 'warehouse_id' => $warehouse->id,
@@ -95,6 +100,7 @@ class WarehouseController extends Controller
         ], [
             'name' => $warehouse->name,
             'address' => $warehouse->address,
+            'shelves' => Shelf::where('warehouse_id', $warehouse->id)->count(),
         ]);
 
         return view('admin.warehouses.edit', compact('form'));
@@ -121,6 +127,20 @@ class WarehouseController extends Controller
 
         $warehouse->name = $attributes['name'];
         $warehouse->address = $attributes['address'];
+
+        $newNumberOfShelves = $attributes['shelves'];
+        $currentNumberOfShelves = Shelf::where('warehouse_id', $warehouse->id)->count();
+
+        if ($newNumberOfShelves < $currentNumberOfShelves) {
+            return redirect()->back()->with('error', __('flash.admin.warehouse_controller.update_error'))->withInput();
+        }
+
+        for ($i = 1; $i <= $newNumberOfShelves - $currentNumberOfShelves; $i++) {
+            Shelf::create([
+                'number' => $i,
+                'warehouse_id' => $warehouse->id,
+            ]);
+        }
 
         $warehouse->save();
 
