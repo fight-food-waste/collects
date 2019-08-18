@@ -60,7 +60,7 @@ return [
         'warehouse_controller' => [
             'store_success' => "The warehouse has been created.",
             'update_success' => "The warehouse has been successfully updated!",
-            'destroy_error' => "Something went wrong while deleting your truck.",
+            'destroy_error' => "Something went wrong while deleting the warehouse.",
             'destroy_success' => "The warehouse has been successfully deleted!",
         ],
     ],

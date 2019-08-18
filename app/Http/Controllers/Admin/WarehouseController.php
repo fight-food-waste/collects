@@ -139,6 +139,7 @@ class WarehouseController extends Controller
         try {
             Warehouse::find($request->input('warehouse_id'))->delete();
         } catch (Exception $e) {
+            dd($e);
             return redirect()->back()->with('error', __('flash.admin.warehouse_controller.destroy_error'));
         }
 

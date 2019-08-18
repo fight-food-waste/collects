@@ -21,7 +21,7 @@ class WarehouseForm extends Form
                 'value' => empty($this->data) ? null : $this->data['address'],
             ])
             ->add('submit', Field::BUTTON_SUBMIT, [
-                'label' => __('admin.warehouses.new_warehouse_button'),
+                'label' => __('admin.warehouses.submit'),
             ]);
     }
 }

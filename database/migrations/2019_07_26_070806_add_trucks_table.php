@@ -20,7 +20,7 @@ class AddTrucksTable extends Migration
             $table->integer('capacity')->default(100);
 
             $table->unsignedBigInteger('warehouse_id');
-            $table->foreign('warehouse_id')->references('id')->on('warehouses');
+            $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade');
 
             $table->unsignedBigInteger('collection_round_id')->nullable();
             $table->foreign('collection_round_id')->references('id')->on('collection_rounds');

@@ -25,6 +25,6 @@ class TruckForm extends Form
                 'label' => __('admin.trucks.columns.capacity'),
                 'value' => empty($this->data) ? null : $this->data['capacity'],
             ])
-            ->add(__('admin.trucks.new_truck'), Field::BUTTON_SUBMIT);
+            ->add(__('admin.trucks.submit'), Field::BUTTON_SUBMIT);
     }
 }

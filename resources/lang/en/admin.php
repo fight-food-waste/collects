@@ -148,6 +148,7 @@ return [
         'create_new_truck' => 'Create new truck',
         'new_truck' => "New truck",
         'edit_truck' => "Edit truck",
+        'submit' => "Submit form",
         'columns' => [
             'warehouse' => 'Warehouse',
             'capacity' => 'Capacity',
@@ -165,6 +166,7 @@ return [
     'warehouses' => [
         'edit_warehouse' => "Edit warehouse",
         'new_warehouse' => "New warehouse",
+        'submit' => "Submit form",
         'create_new_warehouse' => 'Create new warehouse',
         'new_warehouse_button' => "New warehouse",
         'columns' => [

@@ -64,9 +64,14 @@ class TruckController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        TruckForm::create($form->getFieldValues());
+        $attributes = $form->getFieldValues();
 
-        return redirect(route('admin.warehouses.index'))->with('success', __('flash.admin.truck_controller.store_success'));
+        Truck::create([
+            'warehouse_id' => $attributes['warehouse'],
+            'capacity' => $attributes['capacity'],
+        ]);
+
+        return redirect(route('admin.trucks.index'))->with('success', __('flash.admin.truck_controller.store_success'));
     }
 
     /**

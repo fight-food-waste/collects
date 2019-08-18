@@ -147,6 +147,7 @@ return [
         'create_new_truck' => 'Enregistrer un nouveau camion',
         'new_truck' => "Nouveau camion",
         'edit_truck' => "Modifier le camion",
+        'submit' => "Soumettre",
         'columns' => [
             'warehouse' => 'Entrepôt',
             'capacity' => 'Capacité',
@@ -164,6 +165,7 @@ return [
     'warehouses' => [
         'edit_warehouse' => "Modifier l'entrepôt",
         'new_warehouse' => "Nouvel entrepôt",
+        'submit' => "Soumettre",
         'create_new_warehouse' => 'Enregistrer un nouvel entrepôt',
         'new_warehouse_button' => "Nouvel entrepôt",
         'columns' => [

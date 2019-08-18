@@ -3,7 +3,11 @@
 @section('content')
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('admin.index.trucks') }}</div>
+            {{ __('admin.index.trucks') }}
+            <a href="{{ route('admin.trucks.create') }}" class="btn btn-sm btn-secondary fa-pull-right">
+                <i class="fas fa-plus"></i>
+            </a>
+        </div>
 
         <div class="card-body">
 
