@@ -87,7 +87,7 @@ class WarehouseController extends Controller
      */
     public function edit(Request $request, FormBuilder $formBuilder)
     {
-        $warehouse = Warehouse::find($request->route('id'));
+        $warehouse = Warehouse::find($request->route('warehouse'));
 
         $form = $formBuilder->create(WarehouseForm::class, [
             'method' => 'PUT',
@@ -116,7 +116,7 @@ class WarehouseController extends Controller
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
-        $warehouse = Warehouse::find($request->route('id'));
+        $warehouse = Warehouse::find($request->route('warehouse'));
         $attributes = $form->getFieldValues();
 
         $warehouse->name = $attributes['name'];

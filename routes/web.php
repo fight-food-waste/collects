@@ -101,11 +101,9 @@ Route::prefix('admin')->group(function () {
         Route::resource('trucks', 'Admin\TruckController')->except(['show']);
     });
 
-    Route::get('warehouses', 'Admin\WarehouseController@index')->name('admin.warehouses.index');
-    Route::get('warehouses/create', 'Admin\WarehouseController@create')->name('admin.warehouses.create');
-    Route::post('warehouses', 'Admin\WarehouseController@store')->name('admin.warehouses.store');
-    Route::get('warehouses/{id}/edit', 'Admin\WarehouseController@edit')->where('id', '[0-9]+')->name('admin.warehouses.edit');
-    Route::put('warehouses/{id}/update', 'Admin\WarehouseController@update')->where('id', '[0-9]+')->name('admin.warehouses.update');
+    Route::name('admin.')->group(function() {
+        Route::resource('warehouses', 'Admin\WarehouseController')->except(['show', 'destroy']);
+    });
 
     Route::get('users', 'Admin\UserController@index')->name('admin.users.index');
     Route::get('users/application_files/{id}.pdf', 'Admin\UserController@downloadApplication')->where('id', '^[a-zA-Z0-9_]*$')->name('admin.users.application_files.download');
