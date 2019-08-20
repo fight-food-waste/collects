@@ -13,4 +13,6 @@ return [
     'password' => "Mot de passe",
     'password_confirmation' => "Mot de passe de confirmation",
     'submit' => "Soumettre le formulaire",
+    'store_name' => 'Nom du magasin',
+    'store_ownership_proof' => 'Preuve de détention du magasin',
 ];

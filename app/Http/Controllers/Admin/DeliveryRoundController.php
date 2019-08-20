@@ -324,6 +324,6 @@ class DeliveryRoundController extends Controller
         $deliveryRequests = DeliveryRound::findOrFail($request->route('id'))->first()->deliveryRequests;
         $pdf = PDF::loadView('exports.delivery_round', compact('deliveryRequests'));
 
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('delivery_requests.pdf');
     }
 }

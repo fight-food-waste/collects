@@ -13,4 +13,6 @@ return [
     'password' => "Password",
     'password_confirmation' => "Confirmation password",
     'submit' => "Submit form",
+    'store_name' => 'Store name',
+    'store_ownership_proof' => 'Proof of store ownership',
 ];
