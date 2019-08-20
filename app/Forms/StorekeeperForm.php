@@ -20,11 +20,13 @@ class StorekeeperForm extends Form
                 'label' => __('signup.last_name'),
                 'value' => empty($this->data) ? null : $this->data['last_name'],
             ])
-            ->add(__('signup.store_name'), Field::TEXT, [
+            ->add('store_name', Field::TEXT, [
                 'rules' => 'required|string|min:3',
+                'label' => __('signup.store_name'),
             ])
-            ->add(__('signup.store_ownership_proof'), Field::FILE, [
+            ->add('store_ownership_proof', Field::FILE, [
                 'rules' => 'required|file|mimes:pdf',
+                'label' => __('signup.store_ownership_proof'),
             ])
             ->add('street', Field::TEXT, [
                 'rules' => 'required|string|min:10',
