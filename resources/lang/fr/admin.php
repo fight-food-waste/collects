@@ -52,6 +52,7 @@ return [
             'quantity' => 'Quantité',
             'weight' => 'Poids',
             'shelf' => 'Étagère',
+            'status' => 'Statut',
             'remove' => 'Supprimer',
         ],
         'no_product_message' => "Ce lot ne contient aucun produit.",

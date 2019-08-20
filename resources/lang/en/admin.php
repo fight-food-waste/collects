@@ -52,6 +52,7 @@ return [
             'quantity' => 'Quantity',
             'weight' => 'Weight',
             'shelf' => 'Shelf',
+            'status' => 'Status',
             'remove' => 'Remove',
             'action' => 'Action',
         ],
