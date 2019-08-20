@@ -10,11 +10,15 @@ class StorekeeperForm extends Form
     public function buildForm()
     {
         $this
-            ->add(__('signup.first_name'), Field::TEXT, [
+            ->add('first_name', Field::TEXT, [
                 'rules' => 'required|string|min:3',
+                'label' => __('signup.first_name'),
+                'value' => empty($this->data) ? null : $this->data['first_name'],
             ])
-            ->add(__('signup.last_name'), Field::TEXT, [
+            ->add('last_name', Field::TEXT, [
                 'rules' => 'required|string|min:3',
+                'label' => __('signup.last_name'),
+                'value' => empty($this->data) ? null : $this->data['last_name'],
             ])
             ->add(__('signup.store_name'), Field::TEXT, [
                 'rules' => 'required|string|min:3',
@@ -22,22 +26,35 @@ class StorekeeperForm extends Form
             ->add(__('signup.store_ownership_proof'), Field::FILE, [
                 'rules' => 'required|file|mimes:pdf',
             ])
-            ->add(__('signup.street'), Field::TEXT, [
+            ->add('street', Field::TEXT, [
                 'rules' => 'required|string|min:10',
+                'label' => __('signup.street'),
+                'value' => empty($this->data) ? null : $this->data['street'],
             ])
-            ->add(__('signup.zip_postal_code'), Field::TEXT, [
+            ->add('zip_postal_code', Field::TEXT, [
                 'rules' => 'required|postal_code:FR',
+                'label' => __('signup.zip_postal_code'),
+                'value' => empty($this->data) ? null : $this->data['zip_postal_code'],
             ])
-            ->add(__('signup.city'), Field::TEXT, [
+            ->add('city', Field::TEXT, [
                 'rules' => 'required|string|min:2',
+                'label' => __('signup.city'),
+                'value' => empty($this->data) ? null : $this->data['city'],
             ])
-            ->add(__('signup.email'), Field::EMAIL, [
+            ->add('email', Field::EMAIL, [
                 'rules' => 'required|email',
+                'label' => __('signup.email'),
+                'value' => empty($this->data) ? null : $this->data['email'],
             ])
-            ->add(__('signup.password'), Field::PASSWORD, [
+            ->add('password', Field::PASSWORD, [
                 'rules' => 'required|string|min:8|confirmed',
+                'label' => __('signup.password'),
             ])
-            ->add(__('signup.password_confirmation'), Field::PASSWORD)
-            ->add(__('signup.submit'), Field::BUTTON_SUBMIT);
+            ->add('password_confirmation', Field::PASSWORD, [
+                'label' => __('signup.password_confirmation'),
+            ])
+            ->add('submit', Field::BUTTON_SUBMIT, [
+                'label' => __('signup.submit'),
+            ]);
     }
 }

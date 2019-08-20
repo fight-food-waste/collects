@@ -15,7 +15,7 @@
 
     <div class="card card-more">
         <div class="card-header" style="font-weight: bold; font-size: large">
-            {{ __('Collection Rounds') }}
+            {{ __('admin.index.collection_rounds') }}
             <form action="{{ route('admin.collection_rounds.store') }}" method="POST" class="fa-pull-right">
                 @csrf
                 <button type="submit" class="btn btn-sm btn-secondary">

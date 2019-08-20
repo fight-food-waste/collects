@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">Dashboard</div>
+        <div class="card-header">{{ __('home.dashboard') }}</div>
 
         <div class="card-body">
             {{ __('home.message') }}
