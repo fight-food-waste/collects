@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DeliveryRequest;
 use App\Product;
+use Illuminate\Support\Facades\Mail;
 
 class DeliveryRequestController extends Controller
 {
@@ -27,6 +28,13 @@ class DeliveryRequestController extends Controller
         $deliveryRequest->status = 1;
         $deliveryRequest->save();
 
+        Mail::raw('Your delivery request #' . $deliveryRequest->id . ' has been approved.',
+            function ($message) use ($deliveryRequest) {
+                $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                    ->to($deliveryRequest->needyPerson()->email)
+                    ->subject('Your delivery request has been approved');
+            });
+
         return redirect()->back()
             ->with('success', __('flash.admin.delivery_request_controller.approve_success', ['delivery_request' => $deliveryRequest->id]));
     }
@@ -36,6 +44,13 @@ class DeliveryRequestController extends Controller
         $deliveryRequest = DeliveryRequest::findOrFail($request->input('delivery_request_id'));
         $deliveryRequest->status = -1;
         $deliveryRequest->save();
+
+        Mail::raw('Your delivery request #' . $deliveryRequest->id . ' has been rejected.',
+            function ($message) use ($deliveryRequest) {
+                $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                    ->to($deliveryRequest->needyPerson()->email)
+                    ->subject('Your delivery request has been rejected');
+            });
 
         return redirect()->back()
             ->with('success', __('flash.admin.delivery_request_controller.reject_success', ['delivery_request' => $deliveryRequest->id]));
