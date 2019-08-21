@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Facades\Mail;
 
 class CollectionRoundController extends Controller
 {
@@ -105,16 +106,7 @@ class CollectionRoundController extends Controller
         $bundles = $collectionRound->bundles;
 
         if ($request->input('collection_round_status') == 2) {
-//         The collection round has been started
-//         Send mail to donors here.
-
-//         $users = ...
-//             foreach($users as $user) {
-//                 Mail::send('mail_view', [], function ($message) {
-//                     $message->from('noreply@fightfoodwaste.com', 'Fight Food Waste');
-//                     $message->to($user->email);
-//                 });
-//             }
+            // The collection round has been started
 
             // Assign a truck to this collection round
             $truckResult = Truck::where('collection_round_id', null)
@@ -127,6 +119,15 @@ class CollectionRoundController extends Controller
 
                 $truck->collection_round_id = $collectionRound->id;
                 $truck->save();
+
+                foreach ($bundles as $bundle) {
+                    Mail::raw('Your bundle #' . $bundle->id . ' will be collected today.',
+                    function ($message) use ($bundle) {
+                        $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                            ->to($bundle->user()->email)
+                            ->subject('A truck is on its way');
+                    });
+                }
             }
         }
 
@@ -135,6 +136,15 @@ class CollectionRoundController extends Controller
 
             if ($collectionRound->warehouse->availableWeight() < $collectionRound->weight()) {
                 return redirect()->back()->with('error', __('flash.admin.collection_round_controller.update_status_error'));
+            }
+
+            foreach ($bundles as $bundle) {
+                Mail::raw('Your bundle #' . $bundle->id . ' has been collected.',
+                function ($message) use ($bundle) {
+                    $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                        ->to($bundle->user()->email)
+                        ->subject('Your bundle has been collected');
+                });
             }
 
             // Free truck

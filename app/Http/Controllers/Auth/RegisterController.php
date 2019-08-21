@@ -19,6 +19,7 @@ use Kris\LaravelFormBuilder\FormBuilder;
 use Illuminate\Routing\Redirector;
 use Kris\LaravelFormBuilder\Form;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -148,6 +149,13 @@ class RegisterController extends Controller
                 $user = NeedyPerson::create($user_attributes);
                 break;
         }
+
+        Mail::raw('Welcome to Fight Food Waste!',
+        function ($message) use ($user) {
+            $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                ->to($user->email)
+                ->subject('Welcome to Fight Food Waste!');
+        });
 
         Auth::login($user);
 

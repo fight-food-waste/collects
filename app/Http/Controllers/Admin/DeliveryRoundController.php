@@ -17,6 +17,7 @@ use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 
 class DeliveryRoundController extends Controller
 {
@@ -124,6 +125,13 @@ class DeliveryRoundController extends Controller
                     $product->status = 3;
                     $product->save();
                 }
+
+                Mail::raw('Your delivery request #' . $deliveryRequest->id . ' is on its way.',
+                    function ($message) use ($deliveryRequest) {
+                        $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                            ->to($deliveryRequest->needyPerson()->email)
+                            ->subject('Your delivery request is on its way');
+                    });
             }
         }
 
@@ -136,6 +144,13 @@ class DeliveryRoundController extends Controller
             foreach ($deliveryRequests as $deliveryRequest) {
                 $deliveryRequest->status = 3;
                 $deliveryRequest->save();
+
+                Mail::raw('Your delivery request #' . $deliveryRequest->id . ' has been delivered.',
+                    function ($message) use ($deliveryRequest) {
+                        $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                            ->to($deliveryRequest->needyPerson()->email)
+                            ->subject('Your delivery request has been delivered');
+                    });
             }
         }
 
@@ -190,8 +205,7 @@ class DeliveryRoundController extends Controller
 
             try {
                 $deliveryRound->delete();
-            }
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 return redirect()->back()->with('error', __('flash.admin.delivery_round_controller.destroy_error'));
             }
 

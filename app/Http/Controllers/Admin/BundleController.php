@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Facades\Mail;
 
 class BundleController extends Controller
 {
@@ -43,6 +44,13 @@ class BundleController extends Controller
         $bundle->status = 1;
         $bundle->save();
 
+        Mail::raw('Hello, your bundle #' . $bundle->id . ' has been approved.',
+        function ($message) use ($bundle) {
+            $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                ->to($bundle->donor->email)
+                ->subject('You bundle has been approved');
+        });
+
         return redirect()->back()
             ->with('success', __('flash.admin.bundle_controller.approve_success', ['bundle' => $request->input('bundle_id')]));
     }
@@ -59,6 +67,13 @@ class BundleController extends Controller
         $bundle = Bundle::findOrFail($request->input('bundle_id'));
         $bundle->status = -1;
         $bundle->save();
+
+        Mail::raw('Hello, your bundle #' . $bundle->id . ' has been rejected.',
+        function ($message) use ($bundle) {
+            $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                ->to($bundle->donor->email)
+                ->subject('You bundle has been rejected');
+        });
 
         return redirect()->back()
             ->with('success', __('flash.admin.bundle_controller.reject_success', ['bundle' => $request->input('bundle_id')]));
