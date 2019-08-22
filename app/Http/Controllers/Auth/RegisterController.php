@@ -146,6 +146,10 @@ class RegisterController extends Controller
                 $application_file->storeAs('application_files', $filename);
                 $user_attributes['application_filename'] = $filename;
 
+                if ($user_attributes['needy_type'] === "nonprofit") {
+                    $user_attributes['nonprofit'] = true;
+                }
+
                 $user = NeedyPerson::create($user_attributes);
                 break;
         }

@@ -26,8 +26,10 @@ return [
         'category' => 'Category',
         'user' => 'User',
         'donor' => 'Donor',
+        'nonprofit' => 'Nonprofit',
         'storekeeper' => 'Storekeeper',
         'needy_person' => 'Needy Person',
+        'needy_person_or_nonprofit' => 'Needy Person or Nonprofit',
         'type' => 'Type',
     ],
     'bundles' => [

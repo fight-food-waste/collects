@@ -15,4 +15,5 @@ return [
     'submit' => "Soumettre le formulaire",
     'store_name' => 'Nom du magasin',
     'store_ownership_proof' => 'Preuve de détention du magasin',
+    'nonprofit_name' => 'Nom de l\'association',
 ];

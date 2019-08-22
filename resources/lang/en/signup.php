@@ -15,4 +15,5 @@ return [
     'submit' => "Submit form",
     'store_name' => 'Store name',
     'store_ownership_proof' => 'Proof of store ownership',
+    'nonprofit_name' => 'Nonprofit name',
 ];

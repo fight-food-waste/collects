@@ -21,6 +21,8 @@ class NeedyPerson extends User
         'type',
         'address_id',
         'application_filename',
+        'nonprofit',
+        'nonprofit_name',
     ];
 
     public function deliveryRequests()

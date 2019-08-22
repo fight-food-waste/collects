@@ -20,6 +20,16 @@ class NeedyPersonForm extends Form
                 'label' => __('signup.last_name'),
                 'value' => empty($this->data) ? null : $this->data['last_name'],
             ])
+            ->add('needy_type', Field::SELECT, [
+                'rules' => 'required',
+                'choices' => [
+                    'needy_person' => __('admin.singular.needy_person'),
+                    'nonprofit' => __('admin.singular.nonprofit')],
+            ])
+            ->add('nonprofit_name', Field::TEXT, [
+                'rules' => 'string|min:3|nullable',
+                'label' => __('signup.nonprofit_name'),
+            ])
             ->add('application_file', Field::FILE, [
                 'rules' => 'required|file|mimes:pdf',
                 'label' => __('signup.application_file'),

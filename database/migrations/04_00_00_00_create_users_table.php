@@ -27,6 +27,9 @@ class CreateUsersTable extends Migration
             $table->integer('status')->default(0);
             $table->string('store_name')->nullable();
 
+            $table->boolean('nonprofit')->default(false);
+            $table->string('nonprofit_name')->nullable();
+
             $table->bigInteger('address_id')->unsigned()->nullable();
             $table->foreign('address_id')->references('id')->on('addresses');
 

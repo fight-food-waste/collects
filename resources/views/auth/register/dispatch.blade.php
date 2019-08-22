@@ -10,7 +10,9 @@
                 <ul>
                     <li><a href="{{ route('register.donor.create') }}">{{ __('admin.singular.donor') }}</a></li>
                     <li><a href="{{ route('register.storekeeper.create') }}">{{ __('admin.singular.storekeeper') }}</a></li>
-                    <li><a href="{{ route('register.needyperson.create') }}">{{ __('admin.singular.needy_person') }}</a></li>
+                    <li>
+                        <a href="{{ route('register.needyperson.create') }}">{{ __('admin.singular.needy_person_or_nonprofit') }}</a>
+                    </li>
                 </ul>
             </div>
         </div>
