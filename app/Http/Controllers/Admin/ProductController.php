@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
-use App\Forms\ProductsCategoryForm;
+use App\Forms\ProductsCategoryAdminForm;
 use Kris\LaravelFormBuilder\FormBuilder;
 use App\Category;
 use Illuminate\Http\Request;
@@ -29,7 +29,7 @@ class ProductController extends Controller
      */
     public function index(FormBuilder $formBuilder, Request $request)
     {
-        $form = $formBuilder->create(ProductsCategoryForm::class, [
+        $form = $formBuilder->create(ProductsCategoryAdminForm::class, [
             'method' => 'GET',
             'url' => route('admin.products.index'),
         ], [

@@ -7,7 +7,7 @@ use Kris\LaravelFormBuilder\Form;
 use App\CategoryTranslation;
 use App\Warehouse;
 
-class ProductsCategoryForm extends Form
+class ProductsCategoryAdminForm extends Form
 {
     public function buildForm()
     {
