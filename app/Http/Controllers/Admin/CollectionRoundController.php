@@ -4,21 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Bundle;
 use App\CollectionRound;
-use App\Exports\CollectionRoundExport;
 use App\Forms\CollectionRoundForm;
 use App\Http\Controllers\Controller;
 use App\Truck;
 use Exception;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
-use Maatwebsite\Excel\Facades\Excel;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\View;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Response;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class CollectionRoundController extends Controller
 {
@@ -353,18 +352,17 @@ class CollectionRoundController extends Controller
     }
 
     /**
-     * Returns an Excel export of all the CollectionRound's Bundles' Donor's Address
+     * Returns PDF with bundles in collection round
      *
      * @param Request $request
-     *
-     * @return \Maatwebsite\Excel\BinaryFileResponse|BinaryFileResponse
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     * @return Response
      */
     public function export(Request $request)
     {
-        $collectionRound = CollectionRound::findOrFail($request->route('id'));
+        $bundles = CollectionRound::findOrFail($request->route('id'))->bundles;
 
-        return Excel::download(new CollectionRoundExport($collectionRound), 'addresses.xlsx');
+        $pdf = PDF::loadView('exports.collection_round', compact('bundles'));
+
+        return $pdf->download('collection_round.pdf');
     }
 }
