@@ -81,6 +81,10 @@ return [
         'access_forbidden' => 'Access forbidden: you are not allowed to see this bundle.',
         'destroy_error' => 'Something went wrong while deleting the bundle.',
         'destroy_success' => 'The bundle has been successfully deleted.',
+        'reject_mail_raw' => "Hello, your bundle #bundle has been rejected.",
+        'bundle_approved' => "Your bundle has been approved",
+        'approve_mail_raw' => "Hello, your bundle #bundle has been approved.",
+        'bundle_rejected' => "You bundle has been rejected",
     ],
     'delivery_request_controller' => [
         'access_forbidden' => 'Access forbidden: you are not allowed to see this delivery request.',
