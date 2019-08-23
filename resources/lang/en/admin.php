@@ -197,5 +197,14 @@ return [
         'unapproved_needy_people' => "Unapproved needy people",
         'application_file' => "Application file",
         'no_needy_person_message' => "There is no needy person waiting for approval.",
-    ]
+    ],
+    'exports' => [
+        'columns' => [
+            'submission_date' => "Submission date",
+            'number_of_products' => "Number of products",
+            'weight' => "Weight",
+            'requester' => "Requester",
+            'address' => "Address",
+        ]
+    ],
 ];
