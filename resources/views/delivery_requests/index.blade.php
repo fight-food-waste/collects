@@ -22,7 +22,6 @@
                         <th scope="col">{{ __('admin.delivery_requests.columns.status') }}</th>
                         <th scope="col">{{ __('admin.delivery_requests.columns.submission_date') }}</th>
                         <th scope="col">{{ __('admin.delivery_requests.columns.number_of_products') }}</th>
-                        <th scope="col">{{ __('admin.delivery_requests.donor') }}</th>
                         <th scope="col">{{ __('admin.delivery_requests.columns.action') }}</th>
                     </tr>
                     </thead>
@@ -35,9 +34,6 @@
                             <td>{{ $deliveryRequest->getStatusName() }}</td>
                             <td>{{ $deliveryRequest->created_at->diffForHumans() }}</td>
                             <td>{{ count($deliveryRequest->products)  }}</td>
-                            <td>
-                                {{ $deliveryRequest->needyPerson->getFullName() }}
-                            </td>
                             <td style="display: flex;">
                                 <a class="btn btn-sm btn-info"
                                    href="{{ route('delivery_requests.show', $deliveryRequest->id) }}"

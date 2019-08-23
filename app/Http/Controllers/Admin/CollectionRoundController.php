@@ -124,7 +124,7 @@ class CollectionRoundController extends Controller
                     Mail::raw('Your bundle #' . $bundle->id . ' will be collected today.',
                     function ($message) use ($bundle) {
                         $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
-                            ->to($bundle->user()->email)
+                            ->to($bundle->donor->email)
                             ->subject('A truck is on its way');
                     });
                 }
@@ -142,7 +142,7 @@ class CollectionRoundController extends Controller
                 Mail::raw('Your bundle #' . $bundle->id . ' has been collected.',
                 function ($message) use ($bundle) {
                     $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
-                        ->to($bundle->user()->email)
+                        ->to($bundle->donor->email)
                         ->subject('Your bundle has been collected');
                 });
             }

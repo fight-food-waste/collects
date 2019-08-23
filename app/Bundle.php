@@ -47,17 +47,17 @@ class Bundle extends Model
     {
         switch ($this->status) {
             case -1:
-                return "Rejected";
+                return __('admin.bundles.statuses.rejected');
             case 0:
-                return "Waiting approval";
+                return __('admin.bundles.statuses.waiting_approval');
             case 1:
-                return "Approved";
+                return __('admin.bundles.statuses.approved');
             case 2:
-                return "Being collected";
+                return __('admin.bundles.statuses.being_collected');
             case 3:
-                return "Collected";
+                return __('admin.bundles.statuses.collected');
             default:
-                return "Unknown";
+                return __('admin.bundles.statuses.unknown');
         }
     }
 

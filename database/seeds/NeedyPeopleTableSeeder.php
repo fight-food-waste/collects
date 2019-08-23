@@ -21,6 +21,7 @@ class NeedyPeopleTableSeeder extends Seeder
             'email' => 'needy@needy.com',
             'password' => Hash::make('qwertyuiop'),
             'address_id' => 9,
+            'application_filename' => 'test.pdf',
         ]);
     }
 }

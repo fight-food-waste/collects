@@ -42,6 +42,14 @@ return [
             'address' => 'Adresse',
             'action' => 'Action',
         ],
+        'statuses' => [
+            'rejected' => "rejetée",
+            'waiting_approval' => "En attente d'approbation",
+            'approved' => "Approuvée",
+            'being_collected' => "En route",
+            'collected' => "Collectée",
+            'unknown' => "Inconnue",
+        ],
         'no_bundle_message' => "Il n'y a pas de lot en base de données.",
     ],
     'products' => [

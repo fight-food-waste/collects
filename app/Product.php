@@ -38,9 +38,9 @@ class Product extends Model
         return $this->belongsTo(Shelf::class);
     }
 
-    public function deliveryRound()
+    public function deliveryRequest()
     {
-        return $this->belongsTo(DeliveryRound::class);
+        return $this->belongsTo(DeliveryRequest::class);
     }
 
     public function categories()
@@ -58,5 +58,14 @@ class Product extends Model
     public function weightAsMass()
     {
         return new Mass($this->weight, 'g');
+    }
+
+    public function getStatusName()
+    {
+        if ($this->deliveryRequest === null) {
+            return $this->bundle->getStatusName();
+        } else {
+            return $this->deliveryRequest->getStatusName();
+        }
     }
 }

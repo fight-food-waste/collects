@@ -45,17 +45,14 @@
                             </td>
                             <td>{{ $product->shelf == null ? '-' : $product->shelf->id }}</td>
                             <td>
-                                @if($product->deliveryRound === null)
-                                    {{ $product->bundle->getStatusName() }}
-                                @else
-                                    {{ $product->deliveryRound->getStatusName() }}
-                                @endif
+                                {{ $product->getStatusName() }}
                             </td>
                             <td>
                                 @if($product->status == 1)
                                     <form action="{{ route('admin.products.reject', $product->id) }}"
                                           method="POST">
                                         @csrf
+
                                         <button type="submit" class="btn btn-sm btn-danger">
                                             <i class="fas fa-times"></i>
                                         </button>
