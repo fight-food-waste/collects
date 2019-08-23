@@ -6,6 +6,10 @@
             {{ __('admin.index.products') }}</div>
 
         <div class="card-body">
+            {!! form($form) !!}
+        </div>
+
+        <div class="card-body">
 
             @if (sizeof($products) > 0)
                 <table class="table table-bordered">

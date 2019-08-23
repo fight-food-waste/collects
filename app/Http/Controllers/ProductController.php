@@ -9,6 +9,9 @@ use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use App\Warehouse;
+use Kris\LaravelFormBuilder\FormBuilder;
+use App\Forms\ProductsCategoryForm;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -23,8 +26,14 @@ class ProductController extends Controller
      * @param Request $request
      * @return Factory|View
      */
-    public function index(Request $request)
+    public function index(FormBuilder $formBuilder, Request $request)
     {
+        $form = $formBuilder->create(ProductsCategoryForm::class, [
+            'method' => 'GET',
+            'url' => route('products.index'),
+        ], [
+            'category_id' => $request->input('category') !== null ? $request->input('category') : null,
+        ]);
 
         $warehouse = Warehouse::findOrFail($request->user()->address->closest_warehouse_id);
 
@@ -32,7 +41,13 @@ class ProductController extends Controller
             ->whereIn('shelf_id', $warehouse->shelves->pluck('id'))
             ->get();
 
-        return view('products.index', compact('products'));
+        if ($request->input('category') !== null) {
+            $category = Category::findOrFail($request->input('category'));
+
+            $products = $products->intersect($category->products);
+        }
+
+        return view('products.index', compact('products', 'form'));
     }
 
     /**
