@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
+use App\Warehouse;
 
 class ProductController extends Controller
 {
@@ -24,7 +25,12 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::where('status', 1)->get();
+
+        $warehouse = Warehouse::findOrFail($request->user()->address->closest_warehouse_id);
+
+        $products = Product::where('status', 1)
+            ->whereIn('shelf_id', $warehouse->shelves->pluck('id'))
+            ->get();
 
         return view('products.index', compact('products'));
     }
