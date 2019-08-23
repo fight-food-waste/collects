@@ -2,11 +2,11 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Submission date</th>
-        <th scope="col">Number of products</th>
-        <th scope="col">Weight</th>
-        <th scope="col">Requester</th>
-        <th scope="col">Address</th>
+        <th scope="col">{{ __('admin.exports.columns.submission_date') }}</th>
+        <th scope="col">{{ __('admin.exports.columns.number_of_products') }}</th>
+        <th scope="col">{{ __('admin.exports.columns.weight') }}</th>
+        <th scope="col">{{ __('admin.exports.columns.requester') }}</th>
+        <th scope="col">{{ __('admin.exports.columns.address') }}</th>
     </tr>
     </thead>
     <tbody>

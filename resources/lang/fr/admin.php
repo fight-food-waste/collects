@@ -203,4 +203,13 @@ return [
         'subscribe' => "S'abonner",
         'membership_active_until' => "Great, your membership is active until the :date",
     ],
+    'exports' => [
+        'columns' => [
+            'submission_date' => "Date de soumission",
+            'number_of_products' => "Nombre de produits",
+            'weight' => "Poids",
+            'requester' => "Demandeur",
+            'address' => "Adresse",
+        ]
+    ],
 ];

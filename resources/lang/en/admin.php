@@ -204,4 +204,13 @@ return [
         'subscribe' => "S'abonner",
         'membership_active_until' => "Parfait, votre adhésion est active jusqu'au :date",
     ],
+    'exports' => [
+        'columns' => [
+            'submission_date' => "Submission date",
+            'number_of_products' => "Number of products",
+            'weight' => "Weight",
+            'requester' => "Requester",
+            'address' => "Address",
+        ]
+    ],
 ];

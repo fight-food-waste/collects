@@ -81,6 +81,10 @@ return [
         'access_forbidden' => "Accès refusé : vous n'êtes autorisé à voir ce lot.",
         'destroy_error' => "Une erreur s'est produite lors de la suppression de ce lot.",
         'destroy_success' => "Le lot a bien été supprimé.",
+        'reject_mail_raw' => "Bonjour, votre lot #bundle a été refusé.",
+        'bundle_approved' => "Votre lot a été approuvé",
+        'approve_mail_raw' => "Bonjour, votre lot #bundle a été approuvé.",
+        'bundle_rejected' => "Votre lot a été refusé",
     ],
     'delivery_request_controller' => [
         'access_forbidden' => "Accès refusé : vous n'êtes autorisé à voir cette demande de distribution.",
