@@ -26,6 +26,8 @@ class Kernel extends ConsoleKernel
     {
         # https://laravel.com/docs/5.8/telescope#data-pruning
         $schedule->command('telescope:prune')->daily();
+
+        $schedule->command('emails:send-membership-expiration-notice')->dailyAt('10:00');
     }
 
     /**

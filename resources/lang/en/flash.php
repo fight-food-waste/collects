@@ -105,5 +105,6 @@ return [
     'membership_controller' => [
         'renew_success_1' => "Vous disposez déjà d'une adhésion valide",
         'renew_success_2' => "Vous êtes désormais adhérent !",
+        'mail_expire' => "Votre adhésion va bientôt expirer !",
     ],
 ];

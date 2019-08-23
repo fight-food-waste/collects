@@ -105,5 +105,6 @@ return [
     'membership_controller' => [
         'renew_success_1' => "You already have a valid membership",
         'renew_success_2' => "You now have a valid membership",
+        'mail_expire' => "Your membership will expire soon!",
     ],
 ];
