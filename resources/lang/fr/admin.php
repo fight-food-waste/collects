@@ -196,5 +196,14 @@ return [
         'unapproved_needy_people' => "Demandeurs non-approuvés",
         'application_file' => "Dossier de demande",
         'no_needy_person_message' => "Aucun demandeur en attente d'approbation.",
-    ]
+    ],
+    'exports' => [
+        'columns' => [
+            'submission_date' => "Date de soumission",
+            'number_of_products' => "Nombre de produits",
+            'weight' => "Poids",
+            'requester' => "Demandeur",
+            'address' => "Adresse",
+        ]
+    ],
 ];
