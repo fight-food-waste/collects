@@ -98,4 +98,8 @@ return [
     'localization_controller' => [
         'locale_not_exist_error' => 'Cette langue n\'est pas supportée.',
     ],
+    'membership_controller' => [
+        'renew_success_1' => "You already have a valid membership",
+        'renew_success_2' => "You now have a valid membership",
+    ],
 ];

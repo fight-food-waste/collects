@@ -39,6 +39,9 @@ Route::get('account/edit', 'AccountController@edit')->name('account.edit');
 Route::delete('account', 'AccountController@destroy')->name('account.destroy');
 Route::put('account', 'AccountController@update')->name('account.update');
 
+Route::get('membership', 'MembershipController@index')->name('membership');
+Route::get('membership/renew', 'MembershipController@renew')->name('membership.renew');
+
 Route::get('bundles', 'BundleController@index')->name('bundle.index');
 Route::get('bundles/{id}', 'BundleController@show')->where('id', '[0-9]+')->name('bundle.show');
 Route::post('bundles/destroy', 'BundleController@destroy')->name('bundle.destroy');

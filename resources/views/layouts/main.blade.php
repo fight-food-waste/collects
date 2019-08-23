@@ -95,12 +95,11 @@
                                     </a>
                                 @endif
 
-                                @foreach (Config::get('languages') as $locale => $language)
-                                    @if ($locale != App::getLocale())
-                                        <a class="dropdown-item"
-                                           href="{{ route('lang.switch', $locale) }}">{{$language}}</a>
+                                    @if(Auth::user()->type == "storekeeper")
+                                        <a class="dropdown-item" href="{{ route('membership') }}">
+                                            {{ __('main.membership') }}
+                                        </a>
                                     @endif
-                                @endforeach
 
                                 <a class="dropdown-item" href="{{ route('account.index') }}">
                                     {{ __('main.account') }}
@@ -112,6 +111,13 @@
                                     {{ __('main.logout') }}
                                 </a>
 
+
+                                    @foreach (Config::get('languages') as $locale => $language)
+                                        @if ($locale != App::getLocale())
+                                            <a class="dropdown-item"
+                                               href="{{ route('lang.switch', $locale) }}">{{$language}}</a>
+                                        @endif
+                                    @endforeach
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">

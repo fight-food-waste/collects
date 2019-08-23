@@ -8,5 +8,6 @@ return [
     'delivery_requests' => 'Delivery Requests',
     'account' => 'Account',
     'admin' => 'Admin',
+    'membership' => 'Membership',
     'logout' => 'Logout',
 ];

@@ -12,6 +12,12 @@
                     {{ __('home.admin_panel') }}.
                 </a>
             @endif
+
+            @if(Auth::user()->type == "storekeeper")
+                <a href="{{ route('membership') }}">
+                    {{ __('admin.membership.membership_management') }}
+                </a>
+            @endif
         </div>
     </div>
 @endsection

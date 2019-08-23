@@ -197,5 +197,11 @@ return [
         'unapproved_needy_people' => "Unapproved needy people",
         'application_file' => "Application file",
         'no_needy_person_message' => "There is no needy person waiting for approval.",
-    ]
+    ],
+    'membership' => [
+        'membership_management' => "Gestion de l'adhésion",
+        'membership_not_active' => "Votre adhésion n'est pas active. Vous ne pouvez pas demander de service.",
+        'subscribe' => "S'abonner",
+        'membership_active_until' => "Parfait, votre adhésion est active jusqu'au :date",
+    ],
 ];

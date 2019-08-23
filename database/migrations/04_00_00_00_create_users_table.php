@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('store_ownership_proof')->nullable();
             $table->integer('status')->default(0);
             $table->string('store_name')->nullable();
+            $table->date('membership_end_date')->nullable();
 
             $table->boolean('nonprofit')->default(false);
             $table->string('nonprofit_name')->nullable();

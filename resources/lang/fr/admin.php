@@ -196,5 +196,11 @@ return [
         'unapproved_needy_people' => "Demandeurs non-approuvés",
         'application_file' => "Dossier de demande",
         'no_needy_person_message' => "Aucun demandeur en attente d'approbation.",
-    ]
+    ],
+    'membership' => [
+        'membership_management' => "Membership management",
+        'membership_not_active' => "Your membership is not active. You can't request services.",
+        'subscribe' => "S'abonner",
+        'membership_active_until' => "Great, your membership is active until the :date",
+    ],
 ];

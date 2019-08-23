@@ -22,10 +22,17 @@ class Storekeeper extends User
         'address_id',
         'membership',
         'store_name',
+        'membership_end_date',
     ];
 
-    public function memberships()
+    public function hasValidMembership()
     {
-        return $this->hasMany(StorekeeperMembership::class);
+        if ($this->membership_end_date != null) {
+            if (strtotime($this->membership_end_date) > strtotime('now')) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

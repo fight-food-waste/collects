@@ -20,6 +20,12 @@ class LoginController extends Controller
     {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
 
+            if ($request->user()->type == "storekeeper") {
+                if (! $request->user()->hasValidMembership()) {
+                    return response()->json(['error' => "membership.invalid"], 401);
+                }
+            }
+
             $token = $request->user()->renewToken();
 
             return ['token' => $token];
