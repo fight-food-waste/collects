@@ -44,12 +44,12 @@ class BundleController extends Controller
         $bundle->status = 1;
         $bundle->save();
 
-        Mail::raw('Hello, your bundle #' . $bundle->id . ' has been approved.',
-        function ($message) use ($bundle) {
-            $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
-                ->to($bundle->donor->email)
-                ->subject('You bundle has been approved');
-        });
+        Mail::raw(__('flash.bundle_controller.approve_mail_raw', ['bundle' => $bundle->id]),
+            function ($message) use ($bundle) {
+                $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                    ->to($bundle->donor->email)
+                    ->subject(__('flash.bundle_controller.bundle_approved'));
+            });
 
         return redirect()->back()
             ->with('success', __('flash.admin.bundle_controller.approve_success', ['bundle' => $request->input('bundle_id')]));
@@ -68,12 +68,12 @@ class BundleController extends Controller
         $bundle->status = -1;
         $bundle->save();
 
-        Mail::raw('Hello, your bundle #' . $bundle->id . ' has been rejected.',
-        function ($message) use ($bundle) {
-            $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
-                ->to($bundle->donor->email)
-                ->subject('You bundle has been rejected');
-        });
+        Mail::raw(__('flash.bundle_controller.reject_mail_raw', ['bundle' => $bundle->id]),
+            function ($message) use ($bundle) {
+                $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                    ->to($bundle->donor->email)
+                    ->subject(__('flash.bundle_controller.bundle_rejected'));
+            });
 
         return redirect()->back()
             ->with('success', __('flash.admin.bundle_controller.reject_success', ['bundle' => $request->input('bundle_id')]));
