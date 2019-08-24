@@ -62,6 +62,7 @@ class AccountController extends Controller
             'street' => $address->street,
             'zip_postal_code' => $address->zip_postal_code,
             'city' => $address->city,
+            'nonprofit_name' => $user->nonprofit_name
         ]);
 
         return view('account.edit', compact('user', 'form'));
@@ -89,6 +90,7 @@ class AccountController extends Controller
         $user->first_name = $attributes['first_name'];
         $user->last_name = $attributes['last_name'];
         $user->email = $attributes['email'];
+        $user->nonprofit_name = $attributes['nonprofit_name'];
 
         $newAddress = new Address($attributes);
 
