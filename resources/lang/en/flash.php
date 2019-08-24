@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'api' => [
+        'store_mail_raw' => "Your bundle #:bundle has been successfully posted",
+        'bundle_added' => "You added a new bundle",
+    ],
     'admin' => [
         'admin_controller' => [],
         'bundle_controller' => [
@@ -17,6 +21,10 @@ return [
             'update_truck_error' => 'There is no available truck at the moment.',
             'update_status_error' => 'There is not enough free space available in the warehouse!',
             'update_success' => 'The collection round status has been updated.',
+            'update_mail_raw_1' => "Your bundle #bundle will be collected today.",
+            'truck_its_way' => "A truck is on its way",
+            'update_mail_raw_2' => "Your bundle #bundle has been collected.",
+            'bundle_collected' => "Your bundle has been collected",
             'remove_bundle_success' => 'The bundle has been removed from this collection round.',
             'remove_bundle_error' => "The collection round can't be modified anymore.",
             'destroy_error' => 'Something went wrong while deleting the collection round.',
@@ -35,6 +43,10 @@ return [
             'store_success' => "A new delivery round has been created",
             'update_error' => "There is no available truck at the moment.",
             'update_success' => "The delivery round status has been updated.",
+            'update_mail_raw_1' => "Your delivery request #:delivery_request is on its way.",
+            'delivery_request_its_way' => "Your delivery request is on its way",
+            'delivery_request_delivered' => "Your delivery request has been delivered",
+            'update_mail_raw_2' => "Your delivery request #:delivery_request has been delivered.",
             'remove_delivery_request_success' => "The delivery request has been removed from this delivery round.",
             'remove_delivery_request_error' => "The delivery round can't be modified anymore.",
             'destroy_error' => "Something went wrong while deleting the delivery round.",
@@ -74,6 +86,7 @@ return [
         'logout_success' => 'Logged out successfully.',
     ],
     'register_controller' => [
+        'welcome' => "Welcome to Fight Food Waste!",
         'address_not_real' => 'The address you entered does not seem real.',
         'register_success' => 'Registration successful!',
     ],

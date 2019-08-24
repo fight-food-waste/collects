@@ -154,7 +154,7 @@ class RegisterController extends Controller
                 break;
         }
 
-        Mail::raw('Welcome to Fight Food Waste!',
+        Mail::raw(__('flash.register_controller.welcome'),
         function ($message) use ($user) {
             $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
                 ->to($user->email)

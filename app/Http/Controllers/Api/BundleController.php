@@ -25,12 +25,12 @@ class BundleController extends Controller
 
         if ($bundle->exists) {
 
-            Mail::raw('Your bundle #' . $bundle->id . ' has been successfully posted',
-            function ($message) use ($request) {
-                $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
-                    ->to($request->user()->email)
-                    ->subject('You added a new bundle');
-            });
+            Mail::raw(__('flash.api.store_mail_raw', ['bundle' => $bundle->id]),
+                function ($message) use ($request) {
+                    $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                        ->to($request->user()->email)
+                        ->subject(__('flash.api.bundle_added'));
+                });
 
             return response()->json(['success' => true, 'id' => $bundle->id], 200);
         } else {

@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'api' => [
+        'store_mail_raw' => "Votre lot #:bundle a été posté avec succès",
+        'bundle_added' => "Vous avez ajouté un nouveau lot",
+    ],
     'admin' => [
         'admin_controller' => [],
         'bundle_controller' => [
@@ -17,6 +21,10 @@ return [
             'update_truck_error' => 'Aucun camion disponible pour le moment.',
             'update_status_error' => "Aucun espace disponible dans l'entrepôt !",
             'update_success' => "La collecte a bien été mise à jour.",
+            'update_mail_raw_1' => "Votre lot #bundle sera collecté aujourd'hui.",
+            'truck_its_way' => "Un camion est en route",
+            'update_mail_raw_2' => "Votre lot #bundle a été collecté.",
+            'bundle_collected' => "Votre lot a été collecté",
             'remove_bundle_success' => "Le lot a bien été retiré de la collecte.",
             'remove_bundle_error' => "Cette collecte ne peut plus être modifiée.",
             'destroy_error' => "Une erreur s'est produite lors de la suppression de la collecte.",
@@ -35,6 +43,10 @@ return [
             'store_success' => "Une nouvelle distribution a été crée.",
             'update_error' => "Il n'y a aucun camion de disponible pour le moment.",
             'update_success' => "La distribution a bien été mise à jour.",
+            'update_mail_raw_1' => "Votre demande de distribution #:delivery_request est en cours.",
+            'delivery_request_its_way' => "Votre demande de distribution est en route",
+            'delivery_request_delivered' => "Votre demande de distribution a été distribuée",
+            'update_mail_raw_2' => "Votre demande de distribution #:delivery_request a été distribuée.",
             'remove_delivery_request_success' => "La demande de distribution a bien été supprimée de la distribution.",
             'remove_delivery_request_error' => "La distribution ne peut plus être modifiée.",
             'destroy_error' => "Une erreur s'est produite lors de la suppression de la distribution.",
@@ -74,6 +86,7 @@ return [
         'logout_success' => "Déconnexion faite avec succès.",
     ],
     'register_controller' => [
+        'welcome' => "Bienvenue sur Fight Food Waste!",
         'address_not_real' => "L'adresse entrée ne semble être réelle.",
         'register_success' => "Inscription réussie !",
     ],
