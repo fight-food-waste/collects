@@ -66,7 +66,7 @@ return [
             'remove' => 'Remove',
             'action' => 'Action',
         ],
-        'no_product_message' => 'There is no product in this bundle.',
+        'no_product_message' => 'There is no product available.',
     ],
     'collection_rounds' => [
         'collection_round' => 'Collection round',

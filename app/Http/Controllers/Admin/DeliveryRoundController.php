@@ -129,7 +129,7 @@ class DeliveryRoundController extends Controller
                 Mail::raw('Your delivery request #' . $deliveryRequest->id . ' is on its way.',
                     function ($message) use ($deliveryRequest) {
                         $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
-                            ->to($deliveryRequest->needyPerson()->email)
+                            ->to($deliveryRequest->needyPerson->email)
                             ->subject('Your delivery request is on its way');
                     });
             }
@@ -148,7 +148,7 @@ class DeliveryRoundController extends Controller
                 Mail::raw('Your delivery request #' . $deliveryRequest->id . ' has been delivered.',
                     function ($message) use ($deliveryRequest) {
                         $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
-                            ->to($deliveryRequest->needyPerson()->email)
+                            ->to($deliveryRequest->needyPerson->email)
                             ->subject('Your delivery request has been delivered');
                     });
             }
@@ -335,7 +335,7 @@ class DeliveryRoundController extends Controller
      */
     public function export(Request $request)
     {
-        $deliveryRequests = DeliveryRound::findOrFail($request->route('id'))->first()->deliveryRequests;
+        $deliveryRequests = DeliveryRound::findOrFail($request->route('id'))->deliveryRequests;
         $pdf = PDF::loadView('exports.delivery_round', compact('deliveryRequests'));
 
         return $pdf->download('delivery_requests.pdf');

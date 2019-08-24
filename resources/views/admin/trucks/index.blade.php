@@ -39,7 +39,7 @@
                                     <a href="{{ route('admin.collection_rounds.show', $truck->collection_round_id) }}">#{{ $truck->collection_round_id }}</a>
                                 @endif
                             </td>
-                            <td>
+                            <td style="display: flex;">
                                 <a href="{{ route('admin.trucks.edit', $truck->id) }}" class="btn btn-sm btn-secondary">
                                     <i class="fas fa-pen"></i>
                                 </a>

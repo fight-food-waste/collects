@@ -81,9 +81,9 @@ return [
         'access_forbidden' => "Accès refusé : vous n'êtes autorisé à voir ce lot.",
         'destroy_error' => "Une erreur s'est produite lors de la suppression de ce lot.",
         'destroy_success' => "Le lot a bien été supprimé.",
-        'reject_mail_raw' => "Bonjour, votre lot #bundle a été refusé.",
+        'reject_mail_raw' => "Bonjour, votre lot :bundle a été refusé.",
         'bundle_approved' => "Votre lot a été approuvé",
-        'approve_mail_raw' => "Bonjour, votre lot #bundle a été approuvé.",
+        'approve_mail_raw' => "Bonjour, votre lot :bundle a été approuvé.",
         'bundle_rejected' => "Votre lot a été refusé",
     ],
     'delivery_request_controller' => [
@@ -98,6 +98,7 @@ return [
         'destroy_error' => "Le produit n'a pas pu être supprimé.",
         'add_to_delivery_request_success' => "Le produit a bien été ajouté à la demande de distribution.",
         'remove_from_delivery_request_success' => "Le produit a bien été été supprimé de la demande de distribution.",
+        'unapproved_account' => "Vous ne pouvez pas accéder aux produits car votre compte n'a pas été approuvé.",
     ],
     'localization_controller' => [
         'locale_not_exist_error' => 'Cette langue n\'est pas supportée.',

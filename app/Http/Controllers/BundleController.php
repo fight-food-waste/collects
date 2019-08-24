@@ -60,7 +60,10 @@ class BundleController extends Controller
     {
         $bundle = Bundle::findOrFail($request->input('bundle_id'));
 
-        $bundle->products->each->delete();
+        foreach ($bundle->products as $product) {
+            $product->categories()->detach();
+            $product->delete();
+        }
 
         try {
             $bundle->delete();

@@ -65,7 +65,7 @@ return [
             'status' => 'Statut',
             'remove' => 'Supprimer',
         ],
-        'no_product_message' => "Ce lot ne contient aucun produit.",
+        'no_product_message' => "Il n'y pas de produits disponibles.",
     ],
     'collection_rounds' => [
         'collection_round' => 'Collecte',

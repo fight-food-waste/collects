@@ -98,6 +98,7 @@ return [
         'destroy_error' => 'The product could not be deleted.',
         'add_to_delivery_request_success' => 'The product has been added to the delivery request.',
         'remove_from_delivery_request_success' => 'The product has been removed from the delivery request.',
+        'unapproved_account' => "You can't access products because your account has not been approved by an admin.",
     ],
     'localization_controller' => [
         'locale_not_exist_error' => 'This language is not supported.',

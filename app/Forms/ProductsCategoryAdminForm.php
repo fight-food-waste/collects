@@ -36,7 +36,7 @@ class ProductsCategoryAdminForm extends Form
                 'label' => __('form.products_filter_form.warehouse.label'),
             ])
             ->add('in_supply', Field::SELECT, [
-                'rules' => 'int|required|min:1|max:2',
+                'rules' => 'int|min:1|max:2',
                 'choices' => [
                     1 => __('form.products_filter_form.in_supply.1'),
                     2 => __('form.products_filter_form.in_supply.2'),

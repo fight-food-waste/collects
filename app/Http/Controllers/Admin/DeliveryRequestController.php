@@ -31,7 +31,7 @@ class DeliveryRequestController extends Controller
         Mail::raw('Your delivery request #' . $deliveryRequest->id . ' has been approved.',
             function ($message) use ($deliveryRequest) {
                 $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
-                    ->to($deliveryRequest->needyPerson()->email)
+                    ->to($deliveryRequest->needyPerson->email)
                     ->subject('Your delivery request has been approved');
             });
 
@@ -48,7 +48,7 @@ class DeliveryRequestController extends Controller
         Mail::raw('Your delivery request #' . $deliveryRequest->id . ' has been rejected.',
             function ($message) use ($deliveryRequest) {
                 $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
-                    ->to($deliveryRequest->needyPerson()->email)
+                    ->to($deliveryRequest->needyPerson->email)
                     ->subject('Your delivery request has been rejected');
             });
 

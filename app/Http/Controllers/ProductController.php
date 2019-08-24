@@ -28,6 +28,10 @@ class ProductController extends Controller
      */
     public function index(FormBuilder $formBuilder, Request $request)
     {
+        if ($request->user()->status !== 1) {
+            return redirect(route('home'))->with('error', __('flash.product_controller.unapproved_account'));
+        }
+
         $form = $formBuilder->create(ProductsCategoryForm::class, [
             'method' => 'GET',
             'url' => route('products.index'),

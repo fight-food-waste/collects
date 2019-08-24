@@ -165,7 +165,7 @@ class CollectionRoundController extends Controller
             foreach ($products as $product) {
                 foreach ($collectionRound->warehouse->shelves as $shelf) {
                     if ($product->weight <= $shelf->availableWeight()) {
-                        $product->shelf_id = $shelf->number;
+                        $product->shelf_id = $shelf->id;
                         $product->status = 1; // Product is in supply
                         $product->save();
 
@@ -222,6 +222,7 @@ class CollectionRoundController extends Controller
             // Detach bundles from $collectionRound
             foreach ($bundles as $bundle) {
                 $bundle->collection_round_id = null;
+                $bundle->status = 1;
                 $bundle->save();
             }
 
@@ -231,7 +232,7 @@ class CollectionRoundController extends Controller
                 return redirect()->back()->with('error', __('flash.admin.collection_round_controller.destroy_error'));
             }
 
-            return redirect()->route('admin.collection_rounds.index')
+            return redirect()->back()
                 ->with('success', __('flash.admin.collection_round_controller.destroy_success'));
         } else {
             return redirect()->back()->with('error', __('flash.admin.collection_round_controller.modify_error'));

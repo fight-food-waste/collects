@@ -36,7 +36,7 @@
                                    style="color: #fff" title="Display products">
                                     <i class="fas fa-shopping-basket"></i>
                                 </a>
-                                @if($bundle->status >= 0)
+                                @if($bundle->status === 0)
                                     <form action="{{ route('bundle.destroy', $bundle->id) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="bundle_id" value="{{ $bundle->id }}">
