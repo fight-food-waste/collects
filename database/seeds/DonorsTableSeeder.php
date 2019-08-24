@@ -18,32 +18,32 @@ class DonorsTableSeeder extends Seeder
         Donor::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'donor1@donor1.com',
-            'password' => Hash::make('qwertyuiop'),
+            'email' => 'donor1@gmail.com',
+            'password' => Hash::make('password'),
             'address_id' => 1,
         ]);
 
         Donor::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'donor2@donor2.com',
-            'password' => Hash::make('qwertyuiop'),
+            'email' => 'donor2@gmail.com',
+            'password' => Hash::make('password'),
             'address_id' => 2,
         ]);
 
         Donor::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'donor3@donor3.com',
-            'password' => Hash::make('qwertyuiop'),
+            'email' => 'donor3@gmail.com',
+            'password' => Hash::make('password'),
             'address_id' => 3,
         ]);
 
         Donor::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'donor4@donor4.com',
-            'password' => Hash::make('qwertyuiop'),
+            'email' => 'donor4@gmail.com',
+            'password' => Hash::make('password'),
             'address_id' => 4,
         ]);
     }

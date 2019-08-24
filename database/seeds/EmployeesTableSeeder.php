@@ -18,32 +18,32 @@ class EmployeesTableSeeder extends Seeder
         Employee::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'employee1@employee1.com',
-            'password' => Hash::make('qwertyuiop'),
+            'email' => 'employee1@gmail.com',
+            'password' => Hash::make('password'),
             'address_id' => 5,
         ]);
 
         Employee::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'employee2@employee2.com',
-            'password' => Hash::make('qwertyuiop'),
+            'email' => 'employee2@gmail.com',
+            'password' => Hash::make('password'),
             'address_id' => 6,
         ]);
 
         Employee::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'employee3@employee3.com',
-            'password' => Hash::make('qwertyuiop'),
+            'email' => 'employee3@gmail.com',
+            'password' => Hash::make('password'),
             'address_id' => 7,
         ]);
 
         Employee::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'employee4@employee4.com',
-            'password' => Hash::make('qwertyuiop'),
+            'email' => 'employee4@gmail.com',
+            'password' => Hash::make('password'),
             'address_id' => 8,
         ]);
     }

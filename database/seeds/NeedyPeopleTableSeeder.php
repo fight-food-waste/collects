@@ -18,8 +18,8 @@ class NeedyPeopleTableSeeder extends Seeder
         NeedyPerson::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'needy@needy.com',
-            'password' => Hash::make('qwertyuiop'),
+            'email' => 'needyperson1@gmail.com',
+            'password' => Hash::make('password'),
             'address_id' => 9,
             'application_filename' => 'test.pdf',
         ]);

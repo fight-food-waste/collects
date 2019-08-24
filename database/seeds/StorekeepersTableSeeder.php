@@ -18,8 +18,8 @@ class StorekeepersTableSeeder extends Seeder
         Storekeeper::create([
             'first_name' => $faker->firstName(),
             'last_name' => $faker->lastName,
-            'email' => 'store@store.com',
-            'password' => Hash::make('qwertyuiop'),
+            'email' => 'storekeeper1@gmail.com',
+            'password' => Hash::make('password'),
             'address_id' => 10,
             'store_name' => 'Maison Doucet',
         ]);
