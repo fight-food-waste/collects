@@ -79,7 +79,7 @@ class DeliveryRoundController extends Controller
     {
         $form = $formBuilder->create(DeliveryRoundForm::class);
 
-        if (! $form->isValid()) {
+        if (!$form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
 
@@ -126,11 +126,11 @@ class DeliveryRoundController extends Controller
                     $product->save();
                 }
 
-                Mail::raw('Your delivery request #' . $deliveryRequest->id . ' is on its way.',
+                Mail::raw(__('flash.admin.delivery_round_controller.update_mail_raw_1', ['delivery_request' => $deliveryRequest->id]),
                     function ($message) use ($deliveryRequest) {
                         $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
                             ->to($deliveryRequest->needyPerson->email)
-                            ->subject('Your delivery request is on its way');
+                            ->subject(__('flash.admin.delivery_round_controller.delivery_request_its_way'));
                     });
             }
         }
@@ -145,11 +145,11 @@ class DeliveryRoundController extends Controller
                 $deliveryRequest->status = 3;
                 $deliveryRequest->save();
 
-                Mail::raw('Your delivery request #' . $deliveryRequest->id . ' has been delivered.',
+                Mail::raw(__('flash.admin.delivery_round_controller.update_mail_raw_2', ['delivery_request' => $deliveryRequest->id]),
                     function ($message) use ($deliveryRequest) {
                         $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
                             ->to($deliveryRequest->needyPerson->email)
-                            ->subject('Your delivery request has been delivered');
+                            ->subject(__('flash.admin.delivery_round_controller.delivery_request_delivered'));
                     });
             }
         }

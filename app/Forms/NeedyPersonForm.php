@@ -29,6 +29,7 @@ class NeedyPersonForm extends Form
             ->add('nonprofit_name', Field::TEXT, [
                 'rules' => 'string|min:3|nullable',
                 'label' => __('signup.nonprofit_name'),
+                'value' => empty($this->data) ? null : $this->data['nonprofit_name'],
             ])
             ->add('application_file', Field::FILE, [
                 'rules' => 'required|file|mimes:pdf',

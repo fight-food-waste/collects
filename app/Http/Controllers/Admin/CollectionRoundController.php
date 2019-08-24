@@ -120,12 +120,12 @@ class CollectionRoundController extends Controller
                 $truck->save();
 
                 foreach ($bundles as $bundle) {
-                    Mail::raw('Your bundle #' . $bundle->id . ' will be collected today.',
-                    function ($message) use ($bundle) {
-                        $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
-                            ->to($bundle->donor->email)
-                            ->subject('A truck is on its way');
-                    });
+                    Mail::raw(__('flash.admin.collection_round_controller.update_mail_raw_1', ['bundle' => $bundle->id]),
+                        function ($message) use ($bundle) {
+                            $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                                ->to($bundle->donor->email)
+                                ->subject(__('flash.admin.collection_round_controller.truck_its_way'));
+                        });
                 }
             }
         }
@@ -138,12 +138,12 @@ class CollectionRoundController extends Controller
             }
 
             foreach ($bundles as $bundle) {
-                Mail::raw('Your bundle #' . $bundle->id . ' has been collected.',
-                function ($message) use ($bundle) {
-                    $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
-                        ->to($bundle->donor->email)
-                        ->subject('Your bundle has been collected');
-                });
+                Mail::raw(__('flash.admin.collection_round_controller.update_mail_raw_2', ['bundle' => $bundle->id]),
+                    function ($message) use ($bundle) {
+                        $message->from('noreply@fight-food-waste.com', 'Fight Food Waste')
+                            ->to($bundle->donor->email)
+                            ->subject(__('flash.admin.collection_round_controller.bundle_collected'));
+                    });
             }
 
             // Free truck
